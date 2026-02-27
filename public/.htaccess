@@ -1,0 +1,13 @@
+# Symfony Standard .htaccess für public/
+# Leitet alle Requests auf index.php um, sofern die Datei nicht physisch existiert.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Anfragen auf existierende Dateien/Ordner durchlassen (CSS, JS, Bilder etc.)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Alles andere an index.php weiterleiten
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>

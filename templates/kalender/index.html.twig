@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kalender & Termine – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📅 Kalender & Termine</h1>
+    <p>
+        Zentraler Terminplaner mit Zu-/Absagen – alle Termine auf einen Blick.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📆', title: 'Vereinskalender', desc: 'Monats-, Wochen- und Tagesansicht für alle Termine.' },
+            { icon: '📝', title: 'Termin anlegen', desc: 'Spiele, Trainings, Besprechungen, Turniere und Sonstiges eintragen.' },
+            { icon: '✅', title: 'Zu-/Absagen', desc: 'Teilnahme bestätigen, absagen oder als offen markieren.' },
+            { icon: '👥', title: 'Teilnahmeübersicht', desc: 'Trainer sehen auf einen Blick, wer zugesagt hat.' },
+            { icon: '🌤️', title: 'Wetterdaten', desc: 'Automatisch für Outdoor-Termine angezeigt.' },
+            { icon: '🚗', title: 'Fahrgemeinschaften', desc: 'Direkt aus der Termindetailansicht organisieren.' },
+        ]
+    } %}
+
+    {# ─── Vereinskalender ─── #}
+    <h2>Der Vereinskalender</h2>
+    <p>
+        Der Kalender zeigt alle Termine in einer übersichtlichen Darstellung:
+        Spieltermine, Trainingseinheiten, Besprechungen und Turniere.
+        Wechselt zwischen <strong>Monats-</strong>, <strong>Wochen-</strong> und <strong>Tagesansicht</strong>.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/kalender/kalender-uebersicht.png',
+        alt: 'Vereinskalender in Kaderblick',
+        caption: 'Der Vereinskalender mit Monatsansicht und farbigen Termintypen.'
+    } %}
+
+    {# ─── Termin anlegen ─── #}
+    <h2>Termin anlegen (Trainer/Admin)</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Kalender öffnen', text: 'Im Menü auf <strong>„Kalender"</strong> klicken.' },
+            { title: 'Neuen Termin erstellen', text: 'Auf <strong>„+ Neuer Termin"</strong> klicken oder direkt auf ein Datum im Kalender.' },
+            { title: 'Details eingeben', text: '<strong>Titel</strong>, Beschreibung (optional), <strong>Start-/Enddatum und -uhrzeit</strong>, Termintyp (Spiel/Training/Turnier/Besprechung/Sonstiges), Spielort (optional).' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Der Termin erscheint sofort im Kalender.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/kalender/termin-anlegen.png',
+        alt: 'Termin anlegen Formular',
+        caption: 'Einen neuen Termin mit allen Details anlegen.'
+    } %}
+
+    {# ─── Zu-/Absagen ─── #}
+    <h2>Zu- und Absagen</h2>
+    <p>Für jeden Termin könnt ihr euren Teilnahmestatus angeben:</p>
+    <ul>
+        <li>✅ <strong>Zugesagt</strong> — Ihr seid dabei</li>
+        <li>❌ <strong>Abgesagt</strong> — Ihr könnt nicht teilnehmen</li>
+        <li>❓ <strong>Noch offen</strong> — Ihr wisst es noch nicht</li>
+    </ul>
+    <p>
+        Optional könnt ihr eine <strong>Notiz</strong> hinterlegen (z.&nbsp;B. „Komme 10 Min. später").
+        Statusänderungen erzeugen <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a>
+        für alle Teilnehmer.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/kalender/zusage-absage.png',
+        alt: 'Zu- und Absageoptionen',
+        caption: 'Den Teilnahmestatus für einen Termin festlegen.'
+    } %}
+
+    {# ─── Teilnahmeübersicht ─── #}
+    <h2>Teilnahmeübersicht (Trainer)</h2>
+    <p>
+        Trainer sehen auf einen Blick, wer zugesagt, abgesagt oder noch offen ist.
+        Die Übersicht unterscheidet zwischen <strong>Kaderspielern</strong> und
+        <strong>anderen Teilnehmern</strong>.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/kalender/teilnahmeuebersicht.png',
+        alt: 'Teilnahmeübersicht für Trainer',
+        caption: 'Die Teilnahmeübersicht zeigt den Status aller Spieler.'
+    } %}
+
+    {# ─── Wetterdaten ─── #}
+    <h2>Wetterdaten</h2>
+    <p>
+        Für Outdoor-Termine werden automatisch Wetterdaten angezeigt – so wisst ihr
+        schon vorher, ob ihr Regenjacke oder Sonnencreme braucht.
+    </p>
+
+    {# ─── Fahrgemeinschaften ─── #}
+    <h2>Fahrgemeinschaften</h2>
+    <p>
+        Direkt aus der Termindetailansicht könnt ihr
+        <a href="{{ path('app_fahrgemeinschaften') }}">Fahrgemeinschaften</a> organisieren –
+        besonders praktisch für Auswärtsspiele.
+    </p>
+{% endblock %}

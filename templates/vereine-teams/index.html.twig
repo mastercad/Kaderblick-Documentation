@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vereine & Teams – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🏢 Vereine & Teams</h1>
+    <p>
+        Das Fundament von Kaderblick: Vereinsstruktur mit Teams, Altersklassen und Ligen.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🏟️', title: 'Verein', desc: 'Das Dach für alle Teams, Spieler und Trainer. Mehrere Vereine gleichzeitig möglich.' },
+            { icon: '👥', title: 'Teams', desc: 'Mannschaften anlegen und verwalten (z.&nbsp;B. 1. Mannschaft, U17, Alte Herren).' },
+            { icon: '🎂', title: 'Altersklassen', desc: 'Orientiert am deutschen Jugendfußball mit Stichtag 1. Januar.' },
+            { icon: '🏆', title: 'Ligen', desc: 'Offizielle Spielklassen eintragen und Teams zuordnen.' },
+            { icon: '🔗', title: 'fussball.de', desc: 'Spielergebnisse automatisch mit fussball.de synchronisieren.' },
+        ]
+    } %}
+
+    {# ─── Der Verein ─── #}
+    <h2>Der Verein</h2>
+    <p>
+        Ganz oben steht der <strong>Verein</strong> – das Dach für alle Teams, Spieler und Trainer.
+        Die Plattform kann von mehreren Vereinen gleichzeitig genutzt werden.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/vereine-teams/verein-uebersicht.png',
+        alt: 'Vereinsübersicht in Kaderblick',
+        caption: 'Die Vereinsübersicht zeigt die Struktur auf einen Blick.'
+    } %}
+
+    {# ─── Teams verwalten ─── #}
+    <h2>Teams verwalten</h2>
+    <p>
+        Ein <strong>Team</strong> ist die aktive Spielgemeinschaft (z.&nbsp;B. „1. Mannschaft",
+        „U17", „Alte Herren").
+    </p>
+
+    <h3>Neues Team anlegen (nur Admins)</h3>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Teams öffnen', text: 'Im Menü auf <strong>„Teams"</strong> klicken.' },
+            { title: 'Neues Team erstellen', text: 'Auf <strong>„Neues Team"</strong> klicken.' },
+            { title: 'Daten eingeben', text: 'Name, <strong>Altersklasse</strong> (Pflicht), Liga (optional) eintragen.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Team erscheint sofort in der Übersicht.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/vereine-teams/team-anlegen.png',
+        alt: 'Team anlegen Formular',
+        caption: 'Ein neues Team wird mit Name und Altersklasse angelegt.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Gut zu wissen',
+        text: 'Team bearbeiten über das Stift-Icon. Team löschen mit Sicherheitsabfrage (löscht auch alle Zuordnungen).'
+    } %}
+
+    {# ─── Altersklassen ─── #}
+    <h2>Altersklassen</h2>
+    <p>
+        Orientiert am deutschen Jugendfußball, Stichtag 1. Januar:
+    </p>
+    <ul>
+        <li><strong>F-Junioren</strong> — 6–7 Jahre</li>
+        <li><strong>E-Junioren</strong> — 8–9 Jahre</li>
+        <li><strong>D-Junioren</strong> — 10–11 Jahre</li>
+        <li><strong>C-Junioren</strong> — 12–13 Jahre</li>
+        <li><strong>B-Junioren</strong> — 14–15 Jahre</li>
+        <li><strong>A-Junioren</strong> — 16–17 Jahre</li>
+        <li><strong>U19</strong> — 18–19 Jahre</li>
+        <li><strong>U21</strong> — 20–21 Jahre</li>
+        <li><strong>U23</strong> — 22–23 Jahre</li>
+        <li><strong>Senioren</strong> — 18+ Jahre</li>
+        <li><strong>Ü32, Ü40, Ü50</strong> — Freizeit-/Hobbyligen</li>
+    </ul>
+
+    {# ─── Ligen ─── #}
+    <h2>Ligen verwalten</h2>
+    <p>
+        Offizielle Ligen (Kreisliga A, Bezirksliga, etc.) können eingetragen und Teams
+        zugeordnet werden.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/vereine-teams/ligen.png',
+        alt: 'Ligenverwaltung',
+        caption: 'Ligen anlegen und Teams zuordnen.'
+    } %}
+
+    {# ─── fussball.de ─── #}
+    <h2>Verknüpfung mit fussball.de</h2>
+    <p>
+        Spielergebnisse können automatisch mit <strong>fussball.de</strong> synchronisiert werden.
+        Dazu muss der Admin einmalig die fussball.de-ID des Teams einrichten.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Die fussball.de-ID findet ihr in der URL eurer Mannschaftsseite auf fussball.de.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Warum sehe ich ein Team nicht?</h3>
+    <p>Ihr seht nur Teams, denen ihr zugeordnet seid. Sprecht euren Trainer oder Admin an.</p>
+
+    <h3>Kann ein Spieler in mehreren Teams sein?</h3>
+    <p>Ja, das ist problemlos möglich.</p>
+
+    <h3>Kann ich die Altersklasse ändern?</h3>
+    <p>Nur Administratoren können Altersklassen über das Bearbeiten-Symbol ändern.</p>
+{% endblock %}

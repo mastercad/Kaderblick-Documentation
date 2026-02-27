@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Umfragen – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📊 Umfragen</h1>
+    <p>
+        Schnelle Abstimmungen und Fragebögen für das Team – von der Trainingszeitwahl
+        bis zur Mannschaftsfahrt.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📝', title: 'Umfrage erstellen', desc: 'Titel, Beschreibung, Zielgruppe, Fälligkeitsdatum und Fragen definieren.' },
+            { icon: '✅', title: 'Teilnehmen', desc: 'Fragen beantworten – nur einmal möglich.' },
+            { icon: '📊', title: 'Ergebnisse', desc: 'Verteilung der Antworten, Teilnehmerzahl und Freitextantworten einsehen.' },
+            { icon: '🎯', title: 'Fragetypen', desc: 'Einfachauswahl, Mehrfachauswahl und Freitext.' },
+        ]
+    } %}
+
+    {# ─── Teilnehmen ─── #}
+    <h2>An einer Umfrage teilnehmen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Umfragen öffnen', text: 'Im Menü auf <strong>„Umfragen"</strong> klicken.' },
+            { title: 'Umfrage auswählen', text: 'Die gewünschte Umfrage aus der Liste öffnen.' },
+            { title: 'Fragen beantworten', text: 'Alle Fragen beantworten (Einfach-/Mehrfachauswahl oder Freitext).' },
+            { title: 'Absenden', text: 'Auf <strong>„Absenden"</strong> klicken. Eure Antwort wird gespeichert.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/umfragen/umfrage-teilnehmen.png',
+        alt: 'An einer Umfrage teilnehmen',
+        caption: 'Eine Umfrage mit verschiedenen Fragetypen beantworten.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Achtung',
+        text: 'Ihr könnt nur <strong>einmal</strong> an einer Umfrage teilnehmen. Achtet auf das Fälligkeitsdatum!'
+    } %}
+
+    {# ─── Erstellen ─── #}
+    <h2>Umfrage erstellen (Trainer/Admin)</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Neue Umfrage', text: 'Auf <strong>„+ Neue Umfrage"</strong> klicken.' },
+            { title: 'Grunddaten eingeben', text: '<strong>Titel</strong>, Beschreibung, <strong>Zielgruppe</strong> (Teams / Vereine / Plattformweit), <strong>Fälligkeitsdatum</strong>.' },
+            { title: 'Fragen hinzufügen', text: 'Fragen mit Typ (<strong>Einfachauswahl</strong>, <strong>Mehrfachauswahl</strong>, <strong>Freitext</strong>) und Antwortoptionen erstellen.' },
+            { title: 'Veröffentlichen', text: 'Auf <strong>Veröffentlichen</strong> klicken. Die Zielgruppe wird automatisch benachrichtigt.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/umfragen/umfrage-erstellen.png',
+        alt: 'Umfrage erstellen',
+        caption: 'Eine neue Umfrage mit Fragen und Antwortoptionen anlegen.'
+    } %}
+
+    {# ─── Ergebnisse ─── #}
+    <h2>Ergebnisse einsehen (nur Berechtigte)</h2>
+    <p>
+        Trainer und Admins können die Ergebnisse einer Umfrage einsehen:
+    </p>
+    <ul>
+        <li><strong>Verteilung der Antworten</strong> — Grafische Darstellung der Ergebnisse</li>
+        <li><strong>Teilnehmerzahl</strong> — Wie viele Personen abgestimmt haben</li>
+        <li><strong>Freitextantworten</strong> — Alle eingegebenen Texte</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/umfragen/umfrage-ergebnisse.png',
+        alt: 'Umfrage-Ergebnisse',
+        caption: 'Die Ergebnisse einer Umfrage mit Antwortverteilung.'
+    } %}
+{% endblock %}

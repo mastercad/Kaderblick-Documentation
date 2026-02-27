@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fahrgemeinschaften – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🚗 Fahrgemeinschaften</h1>
+    <p>
+        Fahrten zu Terminen koordinieren – besonders praktisch für Auswärtsspiele.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🚗', title: 'Fahrt anbieten', desc: 'Freie Plätze, Treffpunkt, Abfahrtszeit und Hinweis angeben.' },
+            { icon: '🙋', title: 'Mitfahren', desc: 'Angebotene Fahrten einsehen und sich als Mitfahrer anmelden.' },
+            { icon: '❌', title: 'Stornieren', desc: 'Als Mitfahrer abmelden oder als Fahrer die Fahrt löschen.' },
+            { icon: '📅', title: 'Termingebunden', desc: 'Fahrgemeinschaften sind immer an einen Kalender-Termin gebunden.' },
+        ]
+    } %}
+
+    {# ─── Fahrt anbieten ─── #}
+    <h2>Fahrt anbieten</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Termin öffnen', text: 'Öffnet den gewünschten <a href="' ~ path('app_kalender') ~ '">Termin</a> in der Detailansicht.' },
+            { title: 'Fahrt anbieten', text: 'Klickt auf <strong>„Fahrt anbieten"</strong>.' },
+            { title: 'Details eingeben', text: '<strong>Freie Plätze</strong> (1–8), <strong>Treffpunkt</strong>, <strong>Abfahrtszeit</strong>, optionaler Hinweis.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Angebot wird für alle Teilnehmer sichtbar.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/fahrgemeinschaften/fahrt-anbieten.png',
+        alt: 'Fahrt anbieten Formular',
+        caption: 'Eine Fahrt mit freien Plätzen und Treffpunkt anbieten.'
+    } %}
+
+    {# ─── Mitfahren ─── #}
+    <h2>Mitfahren</h2>
+    <p>
+        In der Termindetailansicht seht ihr alle angebotenen Fahrten.
+        Klickt auf <strong>„Mitfahren"</strong>, um euch als Mitfahrer anzumelden.
+        Fahrer und Mitfahrer sehen sich gegenseitig.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/fahrgemeinschaften/mitfahren.png',
+        alt: 'Mitfahrgelegenheit buchen',
+        caption: 'Sich als Mitfahrer bei einer angebotenen Fahrt anmelden.'
+    } %}
+
+    {# ─── Stornieren ─── #}
+    <h2>Stornieren</h2>
+    <ul>
+        <li><strong>Als Mitfahrer:</strong> Klickt auf „Abmelden" – euer Platz wird wieder frei.</li>
+        <li><strong>Als Fahrer:</strong> Klickt auf „Fahrt löschen" – alle Mitfahrer werden automatisch abgemeldet und benachrichtigt.</li>
+    </ul>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Achtung',
+        text: 'Wenn ihr als Fahrer die Fahrt löscht, werden alle Mitfahrer automatisch abgemeldet. Informiert eure Mitfahrer rechtzeitig!'
+    } %}
+
+    {# ─── Grundprinzip ─── #}
+    <h2>Grundprinzip</h2>
+    <p>
+        Fahrgemeinschaften sind immer an einen
+        <a href="{{ path('app_kalender') }}">Kalender-Termin</a> gebunden.
+        Pro Termin können <strong>beliebig viele</strong> Fahrgemeinschaften angeboten werden.
+    </p>
+{% endblock %}

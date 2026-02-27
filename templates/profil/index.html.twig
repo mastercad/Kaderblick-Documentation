@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mein Profil – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>👤 Mein Profil</h1>
+    <p>
+        Eure persönliche Visitenkarte in Kaderblick – Stammdaten, Profilbild und
+        Konfektionsgrößen an einem Ort.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '👤', title: 'Profildaten', desc: 'Vorname, Nachname, E-Mail, Telefon und Geburtsdatum.' },
+            { icon: '📷', title: 'Profilbild', desc: 'Individuelles Foto hochladen – wird überall in der App angezeigt.' },
+            { icon: '👕', title: 'Konfektionsgrößen', desc: 'Trikot, Hose, Stutzen und Schuhe – für Ausrüstungsbestellungen.' },
+            { icon: '🔑', title: 'Passwort ändern', desc: 'Aktuelles Passwort eingeben, neues setzen – sofort wirksam.' },
+            { icon: '📊', title: 'Profil-Vollständigkeit', desc: 'System zeigt an, wie vollständig euer Profil ist.' },
+        ]
+    } %}
+
+    {# ─── Profildaten ─── #}
+    <h2>Profildaten</h2>
+    <p>Die folgenden Daten könnt ihr in eurem Profil pflegen:</p>
+    <ul>
+        <li><strong>Vorname & Nachname</strong></li>
+        <li><strong>E-Mail-Adresse</strong></li>
+        <li><strong>Profilbild</strong></li>
+        <li><strong>Telefonnummer</strong> (optional)</li>
+        <li><strong>Geburtsdatum</strong></li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/profil/profildaten.png',
+        alt: 'Profildaten bearbeiten',
+        caption: 'Eure persönlichen Daten im Profil bearbeiten.'
+    } %}
+
+    {# ─── Größenangaben ─── #}
+    <h2>Größenangaben</h2>
+    <p>Für Ausrüstungsbestellungen sind folgende Größen hinterlegt:</p>
+    <ul>
+        <li>👕 <strong>Trikotgröße</strong></li>
+        <li>👖 <strong>Hosengröße</strong></li>
+        <li>🧦 <strong>Stutzen</strong></li>
+        <li>👟 <strong>Schuhgröße</strong></li>
+    </ul>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Haltet eure Konfektionsgrößen aktuell – so stellt der Trainer sicher, dass die richtige Ausrüstung bestellt wird.'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/profil/groessenangaben.png',
+        alt: 'Größenangaben im Profil',
+        caption: 'Trikot-, Hosen-, Stutzen- und Schuhgröße hinterlegen.'
+    } %}
+
+    {# ─── Passwort ändern ─── #}
+    <h2>Passwort ändern</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Profil öffnen', text: 'Geht in euer <strong>Profil</strong>.' },
+            { title: 'Passwort-Bereich', text: 'Scrollt zum Bereich <strong>„Passwort ändern"</strong>.' },
+            { title: 'Neues Passwort setzen', text: 'Aktuelles Passwort eingeben → Neues Passwort eingeben → <strong>Speichern</strong>.' },
+        ]
+    } %}
+    <p>Das neue Passwort ist sofort wirksam.</p>
+
+    {# ─── Profil-Vollständigkeit ─── #}
+    <h2>Profil-Vollständigkeit</h2>
+    <p>
+        Das System zeigt euch an, wie vollständig euer Profil ist. Ein vollständiges
+        Profil verbessert die Mannschaftsplanung und erleichtert Ausrüstungsbestellungen.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/profil/vollstaendigkeit.png',
+        alt: 'Profil-Vollständigkeitsanzeige',
+        caption: 'Die Fortschrittsanzeige zeigt, wie komplett euer Profil ist.'
+    } %}
+{% endblock %}

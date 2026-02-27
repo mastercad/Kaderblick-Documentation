@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nachrichten – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>💬 Nachrichten</h1>
+    <p>
+        Direktnachrichten und Gruppenunterhaltungen innerhalb von Kaderblick –
+        ohne externe Messenger.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '✉️', title: 'Direktnachrichten', desc: 'Eins-zu-eins-Nachrichten an andere Mitglieder senden.' },
+            { icon: '👥', title: 'Gruppenunterhaltungen', desc: 'Teamchat, Elternchat, Trainerchat und eigene Gruppen.' },
+            { icon: '🔔', title: 'Benachrichtigungen', desc: 'In-App und Push (bei installierter PWA) bei neuen Nachrichten.' },
+        ]
+    } %}
+
+    {# ─── Direktnachrichten ─── #}
+    <h2>Direktnachrichten</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Nachrichten öffnen', text: 'Im Menü auf <strong>„Nachrichten"</strong> klicken.' },
+            { title: 'Neue Nachricht', text: 'Auf <strong>„Neue Nachricht"</strong> klicken.' },
+            { title: 'Empfänger wählen', text: 'Den gewünschten Empfänger suchen und auswählen.' },
+            { title: 'Schreiben & senden', text: 'Nachricht verfassen und absenden.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/nachrichten/direktnachricht.png',
+        alt: 'Direktnachricht senden',
+        caption: 'Eine Direktnachricht an ein anderes Mitglied verfassen.'
+    } %}
+
+    {# ─── Gruppenunterhaltungen ─── #}
+    <h2>Gruppenunterhaltungen</h2>
+    <p>
+        Erstellt Gruppen für euer Team, Eltern oder Trainer. Gebt der Gruppe einen
+        <strong>Namen</strong> und fügt die gewünschten <strong>Mitglieder</strong> hinzu.
+    </p>
+    <ul>
+        <li><strong>Teamchat</strong> — Alle Spieler eines Teams</li>
+        <li><strong>Elternchat</strong> — Für Eltern der Jugendspieler</li>
+        <li><strong>Trainerchat</strong> — Austausch unter Trainern</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/nachrichten/gruppenchat.png',
+        alt: 'Gruppenunterhaltung',
+        caption: 'Der Teamchat für schnelle Absprachen.'
+    } %}
+
+    {# ─── Benachrichtigungen ─── #}
+    <h2>Benachrichtigungen</h2>
+    <p>
+        Bei neuen Nachrichten erhaltet ihr eine <strong>In-App-Benachrichtigung</strong>.
+        Wenn ihr Kaderblick als PWA installiert habt, bekommt ihr auch
+        <strong>Push-Benachrichtigungen</strong> auf euer Smartphone.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Installiert Kaderblick als App auf eurem Smartphone, um keine Nachricht zu verpassen. Mehr dazu unter <a href="' ~ path('app_erste_schritte') ~ '">Erste Schritte</a>.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Gibt es Lesebestätigungen?</h3>
+    <p>Nein, aktuell werden keine Lesebestätigungen angezeigt.</p>
+
+    <h3>Kann ich aus einer Gruppe austreten?</h3>
+    <p>Wendet euch an den Gruppenadministrator.</p>
+
+    <h3>Gibt es eine Suchfunktion?</h3>
+    <p>Aktuell könnt ihr durch Scrollen in der Unterhaltung navigieren.</p>
+{% endblock %}

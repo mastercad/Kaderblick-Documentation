@@ -1,0 +1,21 @@
+{#
+    Screenshot / Bild mit optionaler Beschreibung.
+
+    Verwendung:
+        {% include 'components/screenshot.html.twig' with {
+            src: 'images/docs/spieler/spieler-uebersicht.png',
+            alt: 'Spielerübersicht in Kaderblick',
+            caption: 'Die Spielerübersicht zeigt alle Kadermitglieder auf einen Blick.'
+        } %}
+#}
+<figure class="screenshot">
+    <img
+        src="{{ asset(src) }}"
+        alt="{{ alt|default('Screenshot') }}"
+        class="screenshot__img"
+        loading="lazy"
+    >
+    {% if caption is defined and caption %}
+        <figcaption class="screenshot__caption">{{ caption }}</figcaption>
+    {% endif %}
+</figure>

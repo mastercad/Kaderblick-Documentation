@@ -1,0 +1,14 @@
+{#
+    Tastenkürzel / UI-Element Hinweis.
+
+    Verwendung:
+        {% include 'components/kbd.html.twig' with { keys: 'Strg + S' } %}
+    oder inline:
+        Drücke <kbd>Strg</kbd> + <kbd>S</kbd> zum Speichern.
+#}
+<span class="kbd-combo">
+    {% for key in keys|split(' + ') %}
+        <kbd class="kbd">{{ key|trim }}</kbd>
+        {% if not loop.last %}<span class="kbd-plus">+</span>{% endif %}
+    {% endfor %}
+</span>

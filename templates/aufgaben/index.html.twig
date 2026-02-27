@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aufgaben – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>✅ Aufgaben</h1>
+    <p>
+        Wer macht was und bis wann? Aufgaben verteilen, wiederkehrende Pflichten
+        organisieren und den Status im Blick behalten.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📝', title: 'Aufgabe anlegen', desc: 'Titel, Beschreibung, Fälligkeitsdatum und Personen zuweisen.' },
+            { icon: '🔁', title: 'Wiederkehrende Aufgaben', desc: 'Täglich, wöchentlich oder monatlich – automatisch neue Einträge.' },
+            { icon: '⚽', title: 'Automatische Spielaufgaben', desc: 'Typ „Vor jedem Spiel" mit Rotationssystem für faire Verteilung.' },
+            { icon: '📊', title: 'Status-Tracking', desc: 'Offen → In Bearbeitung → Erledigt.' },
+            { icon: '⭐', title: 'XP-Verknüpfung', desc: 'Bei Erledigung können XP-Punkte vergeben werden.' },
+        ]
+    } %}
+
+    {# ─── Aufgabe anlegen ─── #}
+    <h2>Aufgabe anlegen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Aufgabenbereich öffnen', text: 'Im Menü auf <strong>„Aufgaben"</strong> klicken.' },
+            { title: 'Neue Aufgabe erstellen', text: 'Auf <strong>„+ Neue Aufgabe"</strong> klicken.' },
+            { title: 'Details eingeben', text: '<strong>Titel</strong>, Beschreibung (optional) und <strong>Fälligkeitsdatum</strong> eintragen.' },
+            { title: 'Personen zuweisen', text: 'Wählt die verantwortlichen Personen aus – sie werden automatisch <a href="' ~ path('app_benachrichtigungen') ~ '">benachrichtigt</a>.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/aufgaben/aufgabe-anlegen.png',
+        alt: 'Aufgabe anlegen Formular',
+        caption: 'Eine neue Aufgabe mit Titel, Fälligkeitsdatum und Zuweisung erstellen.'
+    } %}
+
+    {# ─── Wiederkehrende Aufgaben ─── #}
+    <h2>Wiederkehrende Aufgaben</h2>
+    <p>
+        Für regelmäßige Pflichten könnt ihr <strong>wiederkehrende Aufgaben</strong> anlegen:
+    </p>
+    <ul>
+        <li><strong>Täglich</strong> — z.&nbsp;B. Trainingsplatz vorbereiten</li>
+        <li><strong>Wöchentlich</strong> — z.&nbsp;B. Trikots waschen</li>
+        <li><strong>Monatlich</strong> — z.&nbsp;B. Vereinsbeiträge prüfen</li>
+    </ul>
+    <p>Das System erstellt automatisch neue Einträge im passenden Rhythmus.</p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/aufgaben/wiederkehrend.png',
+        alt: 'Wiederkehrende Aufgabe einrichten',
+        caption: 'Wiederkehrende Aufgaben automatisch im gewählten Rhythmus erstellen.'
+    } %}
+
+    {# ─── Automatische Spielaufgaben ─── #}
+    <h2>Automatische Spielaufgaben</h2>
+    <p>
+        Mit dem Typ <strong>„Vor jedem Spiel"</strong> werden Aufgaben automatisch generiert,
+        wenn ein neues Spiel angelegt wird. Das integrierte <strong>Rotationssystem</strong>
+        sorgt für eine faire Verteilung unter den Spielern.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Nutzt automatische Spielaufgaben z.&nbsp;B. für „Trikots mitbringen", „Getränke besorgen" oder „Eckenfahnen aufstellen".'
+    } %}
+
+    {# ─── Status ─── #}
+    <h2>Aufgabenstatus</h2>
+    <p>Jede Aufgabe durchläuft drei Phasen:</p>
+    <ul>
+        <li>🔲 <strong>Offen</strong> — Noch nicht begonnen</li>
+        <li>🔄 <strong>In Bearbeitung</strong> — Wird gerade erledigt</li>
+        <li>✅ <strong>Erledigt</strong> — Abgeschlossen</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/aufgaben/status-uebersicht.png',
+        alt: 'Aufgabenstatus Übersicht',
+        caption: 'Die Aufgabenliste mit verschiedenen Status-Anzeigen.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Bekomme ich eine Erinnerung?</h3>
+    <p>Ja, bei Zuweisung erhaltet ihr eine <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigung</a>.</p>
+
+    <h3>Kann ich eine Aufgabe weitergeben?</h3>
+    <p>Trainer und Admins können die Zuweisung jederzeit ändern.</p>
+
+    <h3>Ich sehe keine Aufgaben – warum?</h3>
+    <p>Ihr seht nur Aufgaben, die euch direkt zugewiesen sind.</p>
+{% endblock %}

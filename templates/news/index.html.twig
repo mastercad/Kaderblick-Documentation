@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📰 News & Vereinsnachrichten</h1>
+    <p>
+        Aktuelle Nachrichten, Ankündigungen und Spielberichte – alles, was im Verein passiert.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📖', title: 'News lesen', desc: 'News-Liste mit Titel und Vorschautext – Klick für den vollständigen Beitrag.' },
+            { icon: '✍️', title: 'News schreiben', desc: 'Trainer und Admins können Beiträge mit Bildern erstellen und veröffentlichen.' },
+            { icon: '📸', title: 'Bilder & Galerien', desc: 'Fotos und Galerien zu Beiträgen hinzufügen.' },
+            { icon: '🔔', title: 'Benachrichtigungen', desc: 'Automatische Benachrichtigung bei neuen Beiträgen.' },
+        ]
+    } %}
+
+    {# ─── Lesen ─── #}
+    <h2>News lesen</h2>
+    <p>
+        Die News-Übersicht zeigt alle Beiträge mit <strong>Titel</strong> und <strong>Vorschautext</strong>.
+        Klickt auf einen Beitrag, um den vollständigen Inhalt zu lesen.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/news/news-uebersicht.png',
+        alt: 'News-Übersicht',
+        caption: 'Die News-Liste mit Titel und Vorschautext.'
+    } %}
+
+    {# ─── Inhalte ─── #}
+    <h2>Typische Inhalte</h2>
+    <ul>
+        <li><strong>Spielberichte</strong> — Zusammenfassungen nach dem Spiel</li>
+        <li><strong>Ankündigungen</strong> — Wichtige Vereinsmitteilungen</li>
+        <li><strong>Vereinsfeste</strong> — Einladungen und Rückblicke</li>
+        <li><strong>Fotogalerien</strong> — Bilder von Events und Spielen</li>
+        <li><strong>Trainingsänderungen</strong> — Kurzfristige Planänderungen</li>
+    </ul>
+
+    {# ─── Schreiben ─── #}
+    <h2>News schreiben (nur Berechtigte)</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'News-Bereich öffnen', text: 'Im Menü auf <strong>„News"</strong> klicken.' },
+            { title: 'Neuen Beitrag erstellen', text: 'Auf <strong>„+ Neuer Beitrag"</strong> klicken.' },
+            { title: 'Inhalt verfassen', text: '<strong>Titel</strong>, vollständiger Beitrag mit <strong>Rich Text</strong>, Vorschautext und optional Bilder hochladen.' },
+            { title: 'Veröffentlichen', text: 'Klickt auf <strong>„Veröffentlichen"</strong>. Der Beitrag ist sofort für alle sichtbar.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/news/news-schreiben.png',
+        alt: 'News-Beitrag erstellen',
+        caption: 'Einen News-Beitrag mit Rich Text und Bildern verfassen.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Berechtigungen',
+        text: 'Nur <strong>Trainer</strong> und <strong>Administratoren</strong> können News-Beiträge erstellen. Spieler können Beiträge lesen.'
+    } %}
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Turniere – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🏆 Turniere</h1>
+    <p>
+        Hallenturnier, Kreispokal, internes Turnier – vollständig planen und dokumentieren.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📝', title: 'Turnier anlegen', desc: 'Name, Format, Zeitraum und Spielort festlegen.' },
+            { icon: '👥', title: 'Teams hinzufügen', desc: 'Eigene und externe Teams als Teilnehmer eintragen.' },
+            { icon: '📋', title: 'Spielplan generieren', desc: 'System berechnet automatisch alle Paarungen.' },
+            { icon: '⚽', title: 'Vollwertige Spiele', desc: 'Jede Paarung wird ein Spiel mit Ereignissen, Statistiken und Videoanalyse.' },
+            { icon: '📊', title: 'Ergebnisübersicht', desc: 'Alle Turnierspiele und Ergebnisse auf einen Blick.' },
+        ]
+    } %}
+
+    {# ─── Turnier anlegen ─── #}
+    <h2>Turnier anlegen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Turnierbereich öffnen', text: 'Im Menü auf <strong>„Turniere"</strong> navigieren.' },
+            { title: 'Neues Turnier erstellen', text: 'Auf <strong>„+ Neues Turnier"</strong> klicken.' },
+            { title: 'Details eingeben', text: '<strong>Name</strong>, <strong>Format</strong> (Jeder-gegen-jeden / K.O. / Gruppenphase), <strong>Start-/Enddatum</strong>, Spielort.' },
+            { title: 'Teams hinzufügen', text: 'Eigene und externe Teams als Teilnehmer eintragen.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Turnier wird automatisch mit einem Kalender-Ereignis verknüpft.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/turniere/turnier-anlegen.png',
+        alt: 'Turnier anlegen Formular',
+        caption: 'Ein neues Turnier mit allen Details anlegen.'
+    } %}
+
+    {# ─── Spielplan ─── #}
+    <h2>Spielplan automatisch erstellen</h2>
+    <p>
+        Das System berechnet automatisch alle Paarungen basierend auf dem gewählten
+        Turnierformat. Jede Paarung wird als vollwertiges <a href="{{ path('app_spiele') }}">Spiel</a>
+        angelegt – komplett mit Ereignissen, Statistiken und Videoanalyse-Möglichkeit.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/turniere/spielplan.png',
+        alt: 'Automatisch generierter Spielplan',
+        caption: 'Der automatisch generierte Turnier-Spielplan.'
+    } %}
+
+    {# ─── Detailseite ─── #}
+    <h2>Turnier-Detailseite</h2>
+    <p>
+        Die Detailseite zeigt alle Turnierspiele, Ergebnisse und eine Gesamtübersicht.
+        Turnierergebnisse fließen automatisch in die Spielerstatistiken ein.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/turniere/turnier-detail.png',
+        alt: 'Turnier-Detailseite mit Ergebnissen',
+        caption: 'Alle Turnierspiele und Ergebnisse auf einen Blick.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Kann ich den Spielplan nachträglich korrigieren?</h3>
+    <p>Ja, einzelne Paarungen können manuell angepasst werden.</p>
+
+    <h3>Kann ich ein Turnier nach dem Start noch ändern?</h3>
+    <p>Ja, Anpassungen sind jederzeit möglich.</p>
+
+    <h3>Fließen Turnierstatistiken in die Spielerstatistiken ein?</h3>
+    <p>Ja, automatisch – Tore, Assists und Einsätze werden gezählt.</p>
+{% endblock %}

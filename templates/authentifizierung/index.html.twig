@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anmelden & Registrieren – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🔐 Anmelden & Registrieren</h1>
+    <p>
+        Alles rund um euren Account: Wie ihr euch registriert, anmeldet, euer Passwort
+        zurücksetzen könnt und was zu tun ist, wenn etwas nicht klappt.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📝', title: 'Registrierung', desc: 'Konto erstellen mit Name, E-Mail und Passwort.' },
+            { icon: '🔑', title: 'Login', desc: 'Mit E-Mail/Passwort oder Google-Konto anmelden.' },
+            { icon: '🔄', title: 'Passwort zurücksetzen', desc: 'Neues Passwort per E-Mail-Link anfordern.' },
+            { icon: '📧', title: 'E-Mail ändern', desc: 'E-Mail-Adresse im Profil aktualisieren.' },
+            { icon: '🚪', title: 'Abmelden', desc: 'Session beenden über das Profil-Menü.' },
+        ]
+    } %}
+
+    {# ─── Registrierung ─── #}
+    <h2>Neu hier? So registriert ihr euch</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Registrieren öffnen', text: 'Öffnet Kaderblick und klickt oben rechts auf <strong>„Registrieren"</strong> (oder „Anmelden" → dann auf den Registrieren-Link).' },
+            { title: 'Namen eingeben', text: 'Gebt euren <strong>vollständigen Namen</strong> ein (Vor- und Nachname).' },
+            { title: 'E-Mail eintragen', text: 'Tragt eine <strong>gültige E-Mail-Adresse</strong> ein – an diese wird eine Bestätigungsmail geschickt.' },
+            { title: 'Passwort wählen', text: 'Wählt ein <strong>sicheres Passwort</strong> (mindestens 8 Zeichen, am besten eine Mischung aus Buchstaben, Zahlen und Sonderzeichen).' },
+            { title: 'Bestätigen', text: 'Klickt auf <strong>„Registrieren"</strong> und öffnet die Bestätigungsmail in eurem Postfach. Euer Konto ist erst nach Klick auf den Link aktiv!' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/authentifizierung/registrierung.png',
+        alt: 'Registrierungsformular',
+        caption: 'Das Registrierungsformular mit allen Pflichtfeldern.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Wichtig',
+        text: 'Ohne E-Mail-Bestätigung könnt ihr euch nicht anmelden. Schaut auch im Spam-Ordner nach, falls die Mail nicht ankommt.'
+    } %}
+
+    {# ─── Login ─── #}
+    <h2>Einloggen</h2>
+    <p>
+        Klickt auf <strong>„Anmelden"</strong>, gebt eure E-Mail-Adresse und euer Passwort
+        ein und klickt auf <strong>„Einloggen"</strong>.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Wenn ihr Kaderblick auf dem Smartphone als App gespeichert habt, bleibt ihr meistens automatisch eingeloggt.'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/authentifizierung/login.png',
+        alt: 'Login-Seite',
+        caption: 'Die Anmeldeseite mit E-Mail/Passwort und Google-Login-Option.'
+    } %}
+
+    {# ─── Google Login ─── #}
+    <h2>Mit Google einloggen</h2>
+    <p>
+        Falls euer Verein die Google-Anmeldung aktiviert hat, könnt ihr euch mit eurem
+        bestehenden Google-Konto anmelden – ganz ohne separates Passwort:
+    </p>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Google-Button klicken', text: 'Auf <strong>„Mit Google anmelden"</strong> klicken.' },
+            { title: 'Konto wählen', text: 'Euer Google-Konto auswählen.' },
+            { title: 'Bestätigen', text: 'Bestätigung geben – fertig, ihr seid eingeloggt!' },
+        ]
+    } %}
+    <p>
+        Bei der ersten Anmeldung mit Google wird automatisch ein Kaderblick-Konto für euch angelegt.
+    </p>
+
+    {# ─── Passwort vergessen ─── #}
+    <h2>Passwort vergessen?</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Link aufrufen', text: 'Auf der Loginseite auf <strong>„Passwort vergessen?"</strong> klicken.' },
+            { title: 'E-Mail eingeben', text: 'Eure E-Mail-Adresse eingeben und auf <strong>„Link anfordern"</strong> klicken.' },
+            { title: 'Neues Passwort setzen', text: 'Ihr erhaltet eine E-Mail mit einem Link – klickt ihn an, gebt euer neues Passwort ein und bestätigt es.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Achtung',
+        text: 'Der Link in der E-Mail ist nur eine begrenzte Zeit gültig.'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/authentifizierung/passwort-vergessen.png',
+        alt: 'Passwort-vergessen Formular',
+        caption: 'Über „Passwort vergessen" könnt ihr ein neues Passwort anfordern.'
+    } %}
+
+    {# ─── E-Mail ändern ─── #}
+    <h2>E-Mail-Adresse ändern</h2>
+    <p>
+        Geht in euer <a href="{{ path('app_profil') }}">Profil</a>, tragt die neue
+        E-Mail-Adresse ein und speichert. Ihr erhaltet eine Bestätigungsmail an die
+        <strong>neue Adresse</strong> – erst nach Bestätigung wird die Adresse übernommen.
+    </p>
+
+    {# ─── Abmelden ─── #}
+    <h2>Eingeloggt bleiben oder abmelden</h2>
+    <p>
+        Kaderblick speichert eure Anmeldung, sodass ihr nicht bei jedem Besuch erneut
+        einloggen müsst. Auf <strong>öffentlichen Computern</strong> meldet euch nach der
+        Nutzung über das Profil-Menü ab.
+    </p>
+
+    {# ─── Konto gesperrt ─── #}
+    <h2>Mein Konto ist gesperrt – was nun?</h2>
+    <p>
+        Falls euer Konto gesperrt oder noch nicht freigegeben wurde, seht ihr nach dem
+        Login eine entsprechende Meldung. Wendet euch an euren
+        <a href="{{ path('app_admin') }}">Vereinsadministrator</a>.
+    </p>
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Ich habe mich registriert, aber bekomme keine Bestätigungsmail.</h3>
+    <p>Spam-Ordner prüfen, dann den Vereinsadministrator kontaktieren.</p>
+
+    <h3>Kann ich dieselbe E-Mail-Adresse für mehrere Kinder nutzen?</h3>
+    <p>Nein, jeder Account braucht eine eigene E-Mail-Adresse.</p>
+
+    <h3>Kann ich meinen Account löschen?</h3>
+    <p>Wendet euch an euren Vereinsadministrator.</p>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>�️ Dashboard</h1>
+    <p>
+        Eure persönliche Startseite mit Widgets – alle wichtigen Infos auf einen Blick.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📅', title: 'Nächste Termine', desc: 'Anstehende Spiele, Trainings und Besprechungen.' },
+            { icon: '📋', title: 'Offene Aufgaben', desc: 'Aufgaben, die noch erledigt werden müssen.' },
+            { icon: '📰', title: 'Aktuelle News', desc: 'Die neuesten Nachrichten aus dem Verein.' },
+            { icon: '🔔', title: 'Benachrichtigungen', desc: 'Ungelesene Hinweise und Updates.' },
+            { icon: '📈', title: 'Berichte', desc: 'Selbst erstellte Berichte direkt auf dem Dashboard.' },
+        ]
+    } %}
+
+    {# ─── Kacheln ─── #}
+    <h2>Die Dashboard-Kacheln</h2>
+    <p>
+        Das Dashboard ist in <strong>Kacheln</strong> organisiert, die verschiedene
+        Informationen darstellen:
+    </p>
+    <ul>
+        <li>📅 <strong>Nächste Termine</strong> — Eure anstehenden Events</li>
+        <li>📋 <strong>Offene Aufgaben</strong> — Was noch zu erledigen ist</li>
+        <li>📰 <strong>Aktuelle News</strong> — Neueste Vereinsnachrichten</li>
+        <li>🔔 <strong>Benachrichtigungen</strong> — Aktuelle Hinweise</li>
+        <li>📈 <strong>Berichte</strong> — Eure gespeicherten Auswertungen</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/dashboard/dashboard-uebersicht.png',
+        alt: 'Dashboard mit Kacheln',
+        caption: 'Das personalisierte Dashboard mit verschiedenen Informations-Kacheln.'
+    } %}
+
+    {# ─── Anpassen ─── #}
+    <h2>Dashboard anpassen</h2>
+    <p>
+        Ihr könnt euer Dashboard individuell gestalten:
+    </p>
+    <ul>
+        <li><strong>Kacheln hinzufügen</strong> oder <strong>entfernen</strong></li>
+        <li><strong>Reihenfolge</strong> per Drag &amp; Drop anpassen</li>
+    </ul>
+    <p>
+        Die Einstellungen werden <strong>pro Person</strong> gespeichert – jedes Mitglied
+        hat sein eigenes Dashboard.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/dashboard/dashboard-anpassen.png',
+        alt: 'Dashboard anpassen',
+        caption: 'Kacheln hinzufügen, entfernen und per Drag & Drop anordnen.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Fügt eure wichtigsten <a href="' ~ path('app_berichte') ~ '">Berichte</a> als Dashboard-Kachel hinzu – so habt ihr die relevantesten Auswertungen immer direkt im Blick.'
+    } %}
+
+    {# ─── Berichts-Kacheln ─── #}
+    <h2>Berichts-Kacheln</h2>
+    <p>
+        Selbst erstellte <a href="{{ path('app_berichte') }}">Berichte</a> können direkt
+        als Kachel auf dem Dashboard angezeigt werden. Die Daten werden bei jedem
+        Dashboard-Aufruf automatisch aktualisiert.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/dashboard/berichts-kachel.png',
+        alt: 'Bericht als Dashboard-Kachel',
+        caption: 'Ein Bericht als Live-Kachel direkt auf dem Dashboard.'
+    } %}
+{% endblock %}

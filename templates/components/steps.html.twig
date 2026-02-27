@@ -1,0 +1,32 @@
+{#
+    Schritt-für-Schritt-Anleitung.
+
+    Verwendung:
+        {% include 'components/steps.html.twig' with {
+            steps: [
+                { title: 'Menü öffnen', text: 'Klicke in der Sidebar auf <strong>Spieler</strong>.' },
+                { title: 'Neuen Spieler anlegen', text: 'Klicke auf den Button <strong>+ Spieler hinzufügen</strong>.', image: 'images/docs/spieler/spieler-anlegen-button.png' },
+                { title: 'Daten eingeben', text: 'Fülle die Pflichtfelder aus: Name, Position, Trikotnummer.' },
+                { title: 'Speichern', text: 'Klicke auf <strong>Speichern</strong>. Der Spieler erscheint in der Übersicht.' },
+            ]
+        } %}
+#}
+<ol class="steps">
+    {% for step in steps %}
+        <li class="steps__item">
+            <div class="steps__number">{{ loop.index }}</div>
+            <div class="steps__body">
+                <div class="steps__title">{{ step.title }}</div>
+                <div class="steps__text">{{ step.text|raw }}</div>
+                {% if step.image is defined and step.image %}
+                    <img
+                        src="{{ asset(step.image) }}"
+                        alt="Schritt {{ loop.index }}: {{ step.title }}"
+                        class="steps__image"
+                        loading="lazy"
+                    >
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+</ol>

@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Videos & Spielanalyse – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🎬 Videos & Spielanalyse</h1>
+    <p>
+        Spielvideos mit Spielereignissen verknüpfen und Szenen per Klick anspringen –
+        für effektive Spielanalyse.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📹', title: 'Videos hinzufügen', desc: 'YouTube-Links oder Dateipfade mit Spielstart-Offset hinterlegen.' },
+            { icon: '⏱️', title: 'Spielstart-Konzept', desc: 'Exakte Umrechnung von Spielminute zu Videosekunde dank Anpfiff-Offset.' },
+            { icon: '📊', title: 'Zeitleiste', desc: 'Visuelle Darstellung aller Ereignisse – Klick springt zur Szene.' },
+            { icon: '🎥', title: 'Mehrere Perspektiven', desc: 'Verschiedene Kameraperspektiven pro Spiel synchronisiert.' },
+            { icon: '✂️', title: 'Szenen markieren', desc: 'Start-/Endpunkt und Beschreibung für wichtige Spielszenen.' },
+        ]
+    } %}
+
+    {# ─── Videos hinzufügen ─── #}
+    <h2>Videos hinzufügen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Spiel öffnen', text: 'Navigiert zum gewünschten <a href="' ~ path('app_spiele') ~ '">Spiel</a> und öffnet die Detailansicht.' },
+            { title: 'Video hinzufügen', text: 'Klickt auf <strong>„+ Video hinzufügen"</strong>.' },
+            { title: 'Details eingeben', text: '<strong>Name</strong>, YouTube-Link oder Dateipfad, <strong>Videotyp</strong>, Kamera-Perspektive.' },
+            { title: 'Spielstart festlegen', text: 'Die <strong>Sekunde im Video bei Anpfiff</strong> eingeben – das ist der Offset für die Umrechnung.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Video wird mit dem Spiel verknüpft.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/video-analyse/video-hinzufuegen.png',
+        alt: 'Video zu einem Spiel hinzufügen',
+        caption: 'Ein Video mit Spielstart-Offset einem Spiel zuordnen.'
+    } %}
+
+    {# ─── Spielstart-Konzept ─── #}
+    <h2>Das Spielstart-Konzept</h2>
+    <p>
+        Der <strong>Spielstart-Offset</strong> ermöglicht die exakte Umrechnung von Spielminuten
+        zu Videosekunden. Beispiel:
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Rechenbeispiel',
+        text: 'Anpfiff bei Sekunde 225 im Video → Ein Tor in Spielminute 23 entspricht Videosekunde 1605 (225 + 23×60).'
+    } %}
+
+    <p>
+        So springt das Video automatisch zur richtigen Stelle, wenn ihr auf ein
+        Spielereignis klickt.
+    </p>
+
+    {# ─── Zeitleiste ─── #}
+    <h2>Die Zeitleiste</h2>
+    <p>
+        Alle Spielereignisse (Tore, Karten, Wechsel) werden in einer visuellen Zeitleiste
+        dargestellt. Ein Klick auf ein Ereignis lässt das Video direkt zur entsprechenden
+        Szene springen.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/video-analyse/zeitleiste.png',
+        alt: 'Visuelle Zeitleiste mit Spielereignissen',
+        caption: 'Die Zeitleiste zeigt alle Ereignisse – Klick springt zur Szene im Video.'
+    } %}
+
+    {# ─── Mehrere Videos ─── #}
+    <h2>Mehrere Videos pro Spiel</h2>
+    <p>
+        Verschiedene Kameraperspektiven können einem Spiel zugeordnet werden.
+        Alle Videos werden mit derselben Ereignisliste synchronisiert – so könnt
+        ihr jede Szene aus verschiedenen Winkeln betrachten.
+    </p>
+
+    {# ─── Szenen markieren ─── #}
+    <h2>Szenen markieren (Videosegmente)</h2>
+    <p>
+        Für die detaillierte Analyse könnt ihr einzelne Szenen markieren:
+    </p>
+    <ul>
+        <li><strong>Start- und Endpunkt</strong> im Video festlegen</li>
+        <li><strong>Beschreibung</strong> hinzufügen (z.&nbsp;B. „Großchance", „Defensivfehler")</li>
+        <li>Szenen für <strong>Standardsituationen</strong>, <strong>taktische Muster</strong> etc. kategorisieren</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/video-analyse/szene-markieren.png',
+        alt: 'Szene im Video markieren',
+        caption: 'Eine Spielszene mit Start-/Endpunkt und Beschreibung markieren.'
+    } %}
+
+    {# ─── Berechtigungen ─── #}
+    <h2>Berechtigungen</h2>
+    <ul>
+        <li><strong>Ansehen:</strong> Alle Teammitglieder</li>
+        <li><strong>Hochladen/Verwalten:</strong> Nur Administratoren</li>
+    </ul>
+{% endblock %}

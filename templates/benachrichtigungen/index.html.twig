@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benachrichtigungen – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🔔 Benachrichtigungen</h1>
+    <p>
+        In-App und Push – damit ihr nichts Wichtiges verpasst.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🔔', title: 'Glocken-Symbol', desc: 'Zeigt ungelesene Benachrichtigungen mit Zahlenbadge an.' },
+            { icon: '📱', title: 'Push-Benachrichtigungen', desc: 'Auch wenn Kaderblick geschlossen ist – als PWA auf dem Smartphone.' },
+            { icon: '📋', title: 'Verschiedene Typen', desc: 'Nachrichten, Termine, Aufgaben, News, Umfragen und mehr.' },
+        ]
+    } %}
+
+    {# ─── Glocken-Symbol ─── #}
+    <h2>Das Glocken-Symbol</h2>
+    <p>
+        Oben rechts in der App seht ihr das <strong>Glocken-Symbol</strong> mit einem
+        <strong>Zahlenbadge</strong> für ungelesene Benachrichtigungen. Ein Klick öffnet die Liste –
+        ein Klick auf eine einzelne Benachrichtigung springt direkt zum betreffenden Bereich.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/benachrichtigungen/glocke.png',
+        alt: 'Glocken-Symbol mit Benachrichtigungen',
+        caption: 'Das Glocken-Symbol zeigt die Anzahl ungelesener Benachrichtigungen.'
+    } %}
+
+    {# ─── Typen ─── #}
+    <h2>Benachrichtigungstypen</h2>
+    <ul>
+        <li>💬 <strong>Neue Nachricht</strong> — Jemand hat euch geschrieben</li>
+        <li>📅 <strong>Neuer Termin</strong> — Ein neuer Termin wurde angelegt</li>
+        <li>✅ <strong>Teilnahme-Bestätigung</strong> — Jemand hat zu-/abgesagt</li>
+        <li>📋 <strong>Aufgabe zugewiesen</strong> — Ihr habt eine neue Aufgabe erhalten</li>
+        <li>📰 <strong>Neue News</strong> — Ein neuer Beitrag wurde veröffentlicht</li>
+        <li>📊 <strong>Neue Umfrage</strong> — Eine Umfrage wartet auf eure Teilnahme</li>
+    </ul>
+
+    {# ─── Push ─── #}
+    <h2>Push-Benachrichtigungen (PWA)</h2>
+    <p>
+        Damit ihr auch benachrichtigt werdet, wenn Kaderblick nicht geöffnet ist:
+    </p>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Kaderblick installieren', text: 'Fügt Kaderblick zum Startbildschirm hinzu (siehe <a href="' ~ path('app_erste_schritte') ~ '">Erste Schritte</a>).' },
+            { title: 'Benachrichtigungen erlauben', text: 'Wenn die App fragt, ob sie Benachrichtigungen senden darf: <strong>Erlauben</strong> klicken.' },
+            { title: 'Fertig', text: 'Ab sofort erhaltet ihr Push-Benachrichtigungen direkt auf euer Smartphone.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: '<strong>Android:</strong> Chrome-Browser nutzen. <strong>iPhone:</strong> Safari-Browser nutzen. Push-Benachrichtigungen funktionieren nur mit der PWA-Installation.'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/benachrichtigungen/push-einrichten.png',
+        alt: 'Push-Benachrichtigungen einrichten',
+        caption: 'Push-Benachrichtigungen auf dem Smartphone aktivieren.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Ich bekomme keine Benachrichtigungen – was tun?</h3>
+    <p>
+        Prüft eure Browser-Einstellungen. Für Kaderblick muss die Berechtigung
+        „Benachrichtigungen" auf „Erlauben" stehen.
+    </p>
+
+    <h3>Push-Benachrichtigungen kommen verspätet an.</h3>
+    <p>Die PWA-Installation liefert die schnellsten Benachrichtigungen.</p>
+
+    <h3>Kann ich Benachrichtigungen löschen?</h3>
+    <p>
+        Benachrichtigungen werden automatisch als gelesen markiert, wenn ihr darauf klickt.
+        Manuelle Löschung ist ebenfalls möglich.
+    </p>
+{% endblock %}

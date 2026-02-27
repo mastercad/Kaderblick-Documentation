@@ -1,0 +1,23 @@
+{#
+    Feature-Liste mit Icons — für Funktionsübersichten.
+
+    Verwendung:
+        {% include 'components/feature_list.html.twig' with {
+            features: [
+                { icon: '👤', title: 'Spielerprofil', desc: 'Name, Position, Trikotnummer und persönliche Daten.' },
+                { icon: '📊', title: 'Statistiken', desc: 'Einsätze, Tore und Assists pro Saison.' },
+                { icon: '📷', title: 'Profilbild', desc: 'Individuelle Fotos für jeden Spieler.' },
+            ]
+        } %}
+#}
+<div class="feature-list">
+    {% for feature in features %}
+        <div class="feature-list__item">
+            <div class="feature-list__icon">{{ feature.icon }}</div>
+            <div class="feature-list__body">
+                <div class="feature-list__title">{{ feature.title }}</div>
+                <div class="feature-list__desc">{{ feature.desc|raw }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

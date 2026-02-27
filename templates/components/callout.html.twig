@@ -1,0 +1,22 @@
+{#
+    Hinweis-Box (Callout) für Tipps, Warnungen und Infos.
+
+    Verwendung:
+        {% include 'components/callout.html.twig' with {
+            type: 'tip',
+            title: 'Tipp',
+            text: 'Hier steht der Hinweistext.'
+        } %}
+
+    Typen: tip (grün), info (blau), warning (gelb), danger (rot)
+#}
+{% set icons = { tip: '💡', info: 'ℹ️', warning: '⚠️', danger: '🚫' } %}
+<div class="callout callout--{{ type|default('info') }}">
+    <div class="callout__icon">{{ icons[type|default('info')] }}</div>
+    <div class="callout__body">
+        {% if title is defined and title %}
+            <div class="callout__title">{{ title }}</div>
+        {% endif %}
+        <div class="callout__text">{{ text|raw }}</div>
+    </div>
+</div>

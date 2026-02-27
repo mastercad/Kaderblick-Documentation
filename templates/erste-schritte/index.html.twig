@@ -1,0 +1,190 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erste Schritte – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🚀 Erste Schritte – So startet ihr durch!</h1>
+    <p>
+        Willkommen bei Kaderblick! Auf dieser Seite erfahrt ihr alles, was ihr für
+        den Start braucht – von der Registrierung bis zu eurer ersten Runde durch die App.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Was euch erwartet</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🌐', title: 'Kaderblick öffnen', desc: 'Direkt im Browser – kein Download, keine Installation nötig.' },
+            { icon: '📝', title: 'Registrieren', desc: 'Konto erstellen und E-Mail-Adresse bestätigen.' },
+            { icon: '🔑', title: 'Anmelden', desc: 'Mit E-Mail und Passwort oder Google-Konto einloggen.' },
+            { icon: '🖥️', title: 'Dashboard entdecken', desc: 'Eure persönliche Startseite mit allen wichtigen Infos.' },
+            { icon: '🧭', title: 'Navigation kennenlernen', desc: 'Alle Bereiche der App über das Menü erreichen.' },
+            { icon: '👤', title: 'Profil vervollständigen', desc: 'Profilbild, Konfektionsgrößen und persönliche Daten hinterlegen.' },
+        ]
+    } %}
+
+    {# ─── Schritt 1 ─── #}
+    <h2>Schritt 1: Kaderblick öffnen</h2>
+    <p>
+        Kaderblick läuft direkt im Browser – kein Download, keine Installation nötig.
+        Öffnet einfach die Adresse, die euer Verein euch mitgeteilt hat.
+    </p>
+    <p>
+        <strong>Unterstützte Browser:</strong> Chrome, Firefox, Safari, Edge – alle aktuellen Versionen funktionieren.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp für das Smartphone',
+        text: 'Ihr könnt Kaderblick direkt auf den Startbildschirm legen, sodass es sich wie eine echte App anfühlt:<br>
+        <strong>iPhone/iPad:</strong> Im Safari-Browser auf das Teilen-Symbol tippen → „Zum Home-Bildschirm"<br>
+        <strong>Android:</strong> Im Chrome-Browser auf die drei Punkte tippen → „Zum Startbildschirm hinzufügen"'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/erste-schritte/startseite.png',
+        alt: 'Kaderblick Startseite im Browser',
+        caption: 'Die Startseite von Kaderblick – direkt im Browser erreichbar.'
+    } %}
+
+    {# ─── Schritt 2 ─── #}
+    <h2>Schritt 2: Registrieren oder Anmelden</h2>
+    <p>
+        Wenn ihr Kaderblick das erste Mal öffnet, seht ihr die Startseite.
+        Oben rechts findet ihr den <strong>Anmelden</strong>-Button.
+    </p>
+
+    <h3>Noch kein Konto? Jetzt registrieren!</h3>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Registrieren klicken', text: 'Klickt auf <strong>„Registrieren"</strong> auf der Startseite.' },
+            { title: 'Name eingeben', text: 'Gebt euren vollständigen Namen ein (Vor- und Nachname).' },
+            { title: 'E-Mail-Adresse eintragen', text: 'Eine gültige E-Mail-Adresse eingeben – an diese wird eine Bestätigungsmail geschickt.' },
+            { title: 'Passwort wählen', text: 'Ein sicheres Passwort wählen (mindestens 8 Zeichen).' },
+            { title: 'Bestätigungsmail öffnen', text: 'Ihr erhaltet eine E-Mail mit einem <strong>Bestätigungslink</strong>. Klickt diesen an – erst danach ist euer Konto aktiv.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/erste-schritte/registrierung.png',
+        alt: 'Registrierungsformular von Kaderblick',
+        caption: 'Das Registrierungsformular – schnell und unkompliziert.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Achtung',
+        text: 'Schaut auch im Spam-Ordner nach, falls die E-Mail nicht ankommt. Die Bestätigung ist notwendig, damit euer Konto freigeschaltet wird.'
+    } %}
+
+    <h3>Bereits registriert? Einfach einloggen!</h3>
+    <p>
+        Klickt auf <strong>„Anmelden"</strong>, gebt eure E-Mail-Adresse und euer Passwort ein
+        und klickt auf <strong>„Einloggen"</strong>. Alternativ könnt ihr euch auch direkt mit
+        eurem <strong>Google-Konto</strong> anmelden.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/erste-schritte/login.png',
+        alt: 'Login-Seite von Kaderblick',
+        caption: 'Die Anmeldeseite mit E-Mail/Passwort und Google-Login.'
+    } %}
+
+    {# ─── Schritt 3 ─── #}
+    <h2>Schritt 3: Das Dashboard – euer persönlicher Überblick</h2>
+    <p>
+        Nach dem Login landet ihr auf dem <strong>Dashboard</strong>. Das ist eure persönliche
+        Startseite mit den wichtigsten Infos auf einen Blick:
+    </p>
+    <ul>
+        <li>Eure nächsten Termine</li>
+        <li>Aktuelle Neuigkeiten aus dem Verein</li>
+        <li>Offene Aufgaben</li>
+        <li>Neueste Benachrichtigungen</li>
+    </ul>
+    <p>
+        Das Dashboard lässt sich individuell anpassen – ihr entscheidet, welche Infos
+        ihr dort sehen möchtet. Mehr dazu im Kapitel
+        <a href="{{ path('app_dashboard') }}">Dashboard</a>.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/erste-schritte/dashboard.png',
+        alt: 'Dashboard nach dem Login',
+        caption: 'Euer persönliches Dashboard mit den wichtigsten Infos.'
+    } %}
+
+    {# ─── Schritt 4 ─── #}
+    <h2>Schritt 4: Navigation kennenlernen</h2>
+    <p>
+        Über das <strong>Menü</strong> (das Symbol mit den drei Strichen oder die Navigationsleiste)
+        erreicht ihr alle Bereiche der App:
+    </p>
+    <ul>
+        <li><strong>Spiele</strong> — Alle Spiele eures Teams – vergangene und zukünftige</li>
+        <li><strong>Kalender</strong> — Alle Termine: Training, Spiele, Besprechungen</li>
+        <li><strong>News</strong> — Aktuelle Nachrichten eures Vereins</li>
+        <li><strong>Nachrichten</strong> — Chats mit Mitspielern, Trainer oder Gruppen</li>
+        <li><strong>Mein Profil</strong> — Eigene Daten, Profilbild und Einstellungen</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/erste-schritte/navigation.png',
+        alt: 'Navigation und Menüstruktur',
+        caption: 'Über das Menü erreicht ihr alle Bereiche von Kaderblick.'
+    } %}
+
+    {# ─── Schritt 5 ─── #}
+    <h2>Schritt 5: Profil vervollständigen</h2>
+    <p>
+        Nehmt euch kurz Zeit, euer Profil auszufüllen. Besonders wichtig:
+    </p>
+    <ul>
+        <li><strong>Profilbild hochladen</strong> — damit euch andere Mitglieder erkennen</li>
+        <li><strong>Konfektionsgrößen</strong> — damit der Trainer weiß, welche Trikotgröße ihr braucht</li>
+    </ul>
+    <p>
+        Je vollständiger euer Profil ist, desto besser kann das System euch relevante
+        Informationen zeigen. Alles dazu erklärt das Kapitel
+        <a href="{{ path('app_profil') }}">Mein Profil</a>.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/erste-schritte/profil.png',
+        alt: 'Profilseite ausfüllen',
+        caption: 'Ein vollständiges Profil hilft dem Team und dem System.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen beim Start</h2>
+
+    <h3>Ich bekomme keine Bestätigungsmail – was tun?</h3>
+    <p>
+        Schaut zuerst in den Spam-Ordner. Ist die Mail auch dort nicht, wendet euch
+        an euren Vereinsadministrator oder nutzt auf der Loginseite „Erneut senden".
+    </p>
+
+    <h3>Ich kann mich nicht anmelden, obwohl ich registriert bin.</h3>
+    <p>
+        Möglicherweise wurde euer Konto noch nicht durch einen Administrator freigegeben.
+        Sprecht euren Trainer oder Vereinsverantwortlichen an.
+    </p>
+
+    <h3>Ich habe mein Passwort vergessen.</h3>
+    <p>
+        Auf der Loginseite gibt es den Link <strong>„Passwort vergessen?"</strong> – damit könnt
+        ihr ein neues Passwort anfordern.
+    </p>
+
+    <h3>Kann ich auch mehrere Vereinsmitglieder von einem Gerät aus verwalten?</h3>
+    <p>
+        Ja, aber jedes Mitglied benötigt seinen eigenen Account. Eltern, die das Kind
+        altersbedingt noch unterstützen, können als Vormund im Account des Kindes
+        eingetragen werden – das regelt euer Vereinsadministrator.
+    </p>
+
+    <h3>Die App sieht komisch aus oder ein Button ist weg?</h3>
+    <p>
+        Versucht die Seite neu zu laden (<kbd>F5</kbd> auf dem Computer oder Wischen
+        in der App-Ansicht). Falls das Problem bleibt, nutzt das Feedback-Formular in der App.
+    </p>
+{% endblock %}

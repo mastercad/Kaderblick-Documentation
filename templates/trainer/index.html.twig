@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trainer – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🧑‍🏫 Trainer</h1>
+    <p>
+        Profil, Lizenzen und Team-/Vereinszuordnung – alles, was die Trainer-Verwaltung in
+        Kaderblick ausmacht.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '👤', title: 'Trainerprofil', desc: 'Vorname, Nachname, Geburtsdatum, E-Mail und Nationalitäten.' },
+            { icon: '👥', title: 'Teamzuordnung', desc: 'Mit Rolle (Cheftrainer, Co-Trainer, Torwarttrainer), Start- und Enddatum.' },
+            { icon: '🏟️', title: 'Vereinszuordnung', desc: 'Für vereinsweit tätige Trainer.' },
+            { icon: '📜', title: 'Lizenzen', desc: 'DFB-, UEFA-Lizenzen und weitere Qualifikationen mit Ablaufdatum.' },
+            { icon: '🔗', title: 'Benutzerkonto', desc: 'Trainer mit einem Kaderblick-Account verknüpfen.' },
+        ]
+    } %}
+
+    {# ─── Trainer anlegen ─── #}
+    <h2>Neuen Trainer anlegen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Trainerbereich öffnen', text: 'Im Menü auf <strong>„Trainer"</strong> navigieren.' },
+            { title: 'Neuen Trainer hinzufügen', text: 'Auf <strong>„+ Trainer hinzufügen"</strong> klicken.' },
+            { title: 'Pflichtfelder ausfüllen', text: '<strong>Vorname</strong> und <strong>Nachname</strong> sind Pflicht. Geburtsdatum (optional), E-Mail (empfohlen), Nationalitäten.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Der Trainer erscheint in der Übersicht.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/trainer/trainer-anlegen.png',
+        alt: 'Formular zum Anlegen eines Trainers',
+        caption: 'Das Trainer-Formular mit Pflicht- und optionalen Feldern.'
+    } %}
+
+    {# ─── Teamzuordnung ─── #}
+    <h2>Teamzuordnung</h2>
+    <p>
+        Jeder Trainer kann einem oder mehreren Teams zugeordnet werden – jeweils mit
+        einer Rolle und einem Zeitraum:
+    </p>
+    <ul>
+        <li><strong>Cheftrainer</strong> — Hauptverantwortlicher des Teams</li>
+        <li><strong>Co-Trainer</strong> — Unterstützender Trainer</li>
+        <li><strong>Torwarttrainer</strong> — Speziell für Torhütertraining</li>
+    </ul>
+    <p>
+        Mit <strong>Startdatum</strong> und optionalem <strong>Enddatum</strong> wird die Zuordnung zeitlich
+        begrenzt. Trainer sehen nur die Teams, denen sie zugeordnet sind.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/trainer/teamzuordnung.png',
+        alt: 'Trainer-Teamzuordnung',
+        caption: 'Teamzuordnung mit Rolle und Zeitraum.'
+    } %}
+
+    {# ─── Vereinszuordnung ─── #}
+    <h2>Vereinszuordnung</h2>
+    <p>
+        Für vereinsweit tätige Trainer (z.&nbsp;B. Athletiktrainer, Koordinator) gibt es
+        eine separate Vereinszuordnung.
+    </p>
+
+    {# ─── Lizenzen ─── #}
+    <h2>Lizenzen und Qualifikationen</h2>
+    <p>
+        Trainerlizenzen können im Profil hinterlegt werden:
+    </p>
+    <ul>
+        <li>DFB-D-Lizenz / DFB-C-Lizenz</li>
+        <li>UEFA-B-Lizenz / UEFA-A-Lizenz</li>
+        <li>Torwarttrainer-Lizenz</li>
+        <li>Weitere Qualifikationen</li>
+    </ul>
+    <p>
+        Jeweils mit optionalem <strong>Erwerbsdatum</strong> und <strong>Ablaufdatum</strong>.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/trainer/lizenzen.png',
+        alt: 'Trainerlizenz-Verwaltung',
+        caption: 'Lizenzen und Qualifikationen im Trainerprofil.'
+    } %}
+
+    {# ─── Benutzerkonto ─── #}
+    <h2>Benutzerkonto verknüpfen</h2>
+    <p>
+        Über den <a href="{{ path('app_admin') }}">Vereinsadministrator</a> kann ein Trainer
+        mit einem Kaderblick-Benutzerkonto verknüpft werden. Danach sieht der Trainer:
+    </p>
+    <ul>
+        <li>Spiele seiner Teams</li>
+        <li>Kalender und Termine</li>
+        <li>Kader und Spieler</li>
+        <li>Zugewiesene Aufgaben</li>
+    </ul>
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Der Trainer sieht keine Spiele – was tun?</h3>
+    <p>Teamzuordnung prüfen und sicherstellen, dass das Benutzerkonto verknüpft ist.</p>
+
+    <h3>Kann ein Trainer mehrere Teams betreuen?</h3>
+    <p>Ja, einfach je eine Zuordnung pro Team anlegen.</p>
+
+    <h3>Wo verwalte ich Trainerlizenzen?</h3>
+    <p>Administratoren finden die Lizenzverwaltung unter „Trainerlizenzen" im Admin-Bereich.</p>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Übersicht – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Willkommen bei Kaderblick!</h1>
+    <p>
+        <strong>Kaderblick</strong> ist eure digitale Vereinsplattform – alles, was ihr für den
+        Vereinsalltag braucht, an einem Ort. Ob Spielergebnisse, Trainingsplanung, Termine,
+        Nachrichten oder Trikotgrößen: Mit Kaderblick habt ihr alles im Griff – egal ob am
+        Computer, Tablet oder Smartphone.
+    </p>
+    <p>
+        Diese Dokumentation erklärt euch alle Funktionen der Plattform – Schritt für Schritt
+        und ohne Fachchinesisch.
+    </p>
+
+    {# ─── Für wen ─── #}
+    <h2>Für wen ist Kaderblick gedacht?</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '⚽', title: 'Spieler', desc: 'Termine im Blick behalten, Zu- oder Absagen geben, eigene Statistiken verfolgen.' },
+            { icon: '👪', title: 'Eltern', desc: 'Spieltermine einsehen, An-/Abmeldungen für das Kind, Fahrgemeinschaften organisieren.' },
+            { icon: '🧑‍🏫', title: 'Trainer', desc: 'Mannschaft verwalten, Aufstellungen planen, Spielberichte führen, Aufgaben verteilen.' },
+            { icon: '⚙️', title: 'Vereinsverantwortliche', desc: 'Kader pflegen, News veröffentlichen, Umfragen starten, Auswertungen erstellen.' },
+        ]
+    } %}
+
+    {# ─── Wie komme ich dahin ─── #}
+    <h2>Wie komme ich zu Kaderblick?</h2>
+    <p>
+        Kaderblick läuft direkt im Browser – ihr müsst nichts installieren. Ruft einfach die Adresse
+        auf, die euch euer Vereinsverantwortlicher mitgeteilt hat. Die Plattform funktioniert auf
+        <strong>allen Geräten</strong>: Computer, Laptop, Smartphone und Tablet.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Ihr könnt Kaderblick auch wie eine App auf eurem Smartphone speichern. Öffnet die Seite im Browser, tippt auf „Zum Startbildschirm hinzufügen" – schon habt ihr ein App-Symbol auf dem Handy!'
+    } %}
+
+    {# ─── Alle Bereiche ─── #}
+    <h2>Alle Bereiche im Überblick</h2>
+    <div class="feature-grid">
+        {% set descriptions = {
+            'app_erste_schritte': 'Registrierung, erster Login und Navigation kennenlernen.',
+            'app_authentifizierung': 'Konto erstellen, einloggen, Passwort zurücksetzen.',
+            'app_vereine_teams': 'Vereinsstruktur, Teams, Altersklassen und Ligen.',
+            'app_spieler': 'Kader pflegen, Positionen, Statistiken und Vereinshistorie.',
+            'app_trainer': 'Trainerprofil, Lizenzen und Team-/Vereinszuordnung.',
+            'app_spiele': 'Spielansetzung, Live-Protokoll und Ergebniserfassung.',
+            'app_kalender': 'Alle Termine auf einen Blick mit Zu- und Absagen.',
+            'app_aufstellungen': 'Taktische Aufstellungen grafisch planen per Drag & Drop.',
+            'app_turniere': 'Turniere anlegen, Spielplan erstellen, Ergebnisse erfassen.',
+            'app_video_analyse': 'Spielvideos verwalten und Szenen per Klick anspringen.',
+            'app_nachrichten': 'Direkt mit Teamkollegen oder Gruppen schreiben.',
+            'app_news': 'Vereinsnachrichten lesen und veröffentlichen.',
+            'app_aufgaben': 'Aufgaben verteilen, wiederkehrende Pflichten organisieren.',
+            'app_umfragen': 'Abstimmungen und Umfragen für das Team starten.',
+            'app_benachrichtigungen': 'Keine wichtige Info mehr verpassen – In-App und Push.',
+            'app_dashboard': 'Persönliche Startseite mit den wichtigsten Infos.',
+            'app_berichte': 'Statistiken und Auswertungen per Assistent erstellen.',
+            'app_fahrgemeinschaften': 'Mitfahrgelegenheiten zu Auswärtsspielen organisieren.',
+            'app_profil': 'Eigene Daten, Profilbild und Konfektionsgrößen pflegen.',
+            'app_admin': 'Benutzerverwaltung, Stammdaten und Einstellungen.',
+            'app_xp_system': 'Erfahrungspunkte, Level und Belohnungssystem.',
+        } %}
+
+        {% for route, item in navigation %}
+            {% if route != 'app_home' %}
+            <a href="{{ path(route) }}" class="feature-card">
+                <div class="feature-card__icon">{{ item.icon }}</div>
+                <div class="feature-card__title">{{ item.label }}</div>
+                <div class="feature-card__desc">{{ descriptions[route]|default('') }}</div>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {# ─── Hilfe ─── #}
+    <h2>Etwas funktioniert nicht – was nun?</h2>
+    <ul>
+        <li>Schaut zunächst in das entsprechende Kapitel dieser Dokumentation</li>
+        <li>Nutzt die <strong>Feedback-Funktion</strong> in der App, um ein Problem oder einen Verbesserungswunsch zu melden</li>
+        <li>Wendet euch an euren Vereinsadministrator</li>
+    </ul>
+{% endblock %}

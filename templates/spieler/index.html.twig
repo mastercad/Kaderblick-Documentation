@@ -1,0 +1,183 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spieler – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>⚽ Spieler</h1>
+    <p>
+        Der Spieler-Bereich umfasst die komplette Verwaltung aller Kadermitglieder —
+        von Profildaten bis hin zu individuellen Statistiken. Hier erfährst du, wie du
+        Spieler anlegst, bearbeitest und deren Leistungen im Blick behältst.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '👤', title: 'Spielerprofil', desc: 'Vorname, Nachname, Geburtsdatum, Hauptposition, Alternativpositionen, starker Fuß, Größe, Gewicht und Nationalitäten.' },
+            { icon: '📊', title: 'Statistiken', desc: 'Tore, Assists, Spielteilnahmen – automatisch gesammelt und in Berichte integriert.' },
+            { icon: '📷', title: 'Profilbild', desc: 'Individuelles Foto hochladen – wird in der Aufstellung und im Profil angezeigt.' },
+            { icon: '🏷️', title: 'Positionen & Rollen', desc: 'Hauptposition (Pflicht) und optionale Alternativpositionen zuweisen.' },
+            { icon: '👥', title: 'Team-Zuordnung', desc: 'Mit Zeitraum (Von–Bis), Trikotnummer und Rolle.' },
+            { icon: '🏟️', title: 'Vereins-Zuordnung', desc: 'Start-/Enddatum für die vollständige Vereinskarriere.' },
+            { icon: '🔗', title: 'Benutzerkonto', desc: 'Spieler mit einem Kaderblick-Account verknüpfen.' },
+        ]
+    } %}
+
+    {# ─── Screenshot der Übersicht ─── #}
+    <h2>Die Spielerübersicht</h2>
+    <p>
+        Die Übersichtsseite zeigt alle Kadermitglieder in einer Kartenansicht.
+        Du siehst auf einen Blick: Name, Position, Trikotnummer und Profilbild.
+    </p>
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spieler/spieler-uebersicht.svg',
+        alt: 'Spielerübersicht in Kaderblick',
+        caption: 'Die Spielerübersicht zeigt alle Kadermitglieder in einer übersichtlichen Kartenansicht.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Du kannst die Ansicht über das Suchfeld oben filtern — z.&nbsp;B. nach Name oder Position.'
+    } %}
+
+    {# ─── Schritt-für-Schritt: Spieler anlegen ─── #}
+    <h2>Spieler anlegen</h2>
+    <p>So legst du einen neuen Spieler im System an:</p>
+
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            {
+                title: 'Spielerbereich öffnen',
+                text: 'Klicke in der Seitenleiste auf <strong>Spieler</strong>.'
+            },
+            {
+                title: 'Neuen Spieler hinzufügen',
+                text: 'Klicke oben rechts auf den Button <strong>+ Spieler hinzufügen</strong>.',
+                image: 'images/docs/spieler/spieler-anlegen-button.svg'
+            },
+            {
+                title: 'Pflichtfelder ausfüllen',
+                text: 'Fülle mindestens die folgenden Felder aus: <strong>Vorname</strong>, <strong>Nachname</strong>, <strong>Position</strong> und <strong>Trikotnummer</strong>.'
+            },
+            {
+                title: 'Profilbild hochladen (optional)',
+                text: 'Klicke auf den Bildbereich rechts, um ein Foto hochzuladen. Unterstützte Formate: JPG, PNG (max. 2&nbsp;MB).'
+            },
+            {
+                title: 'Speichern',
+                text: 'Klicke auf <strong>Speichern</strong>. Der neue Spieler erscheint sofort in der Übersicht.'
+            }
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spieler/spieler-formular.svg',
+        alt: 'Formular zum Anlegen eines Spielers',
+        caption: 'Das Spieler-Formular mit allen Pflicht- und optionalen Feldern.'
+    } %}
+
+    {# ─── Spieler bearbeiten ─── #}
+    <h2>Spieler bearbeiten</h2>
+    <p>
+        Um die Daten eines bestehenden Spielers zu ändern, klicke in der Übersicht
+        auf die Spielerkarte. Es öffnet sich das Profil mit einem
+        <strong>Bearbeiten</strong>-Button.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Gut zu wissen',
+        text: 'Änderungen an Stammdaten (Name, Geburtsdatum) werden sofort übernommen. Positionswechsel wirken sich erst auf zukünftige Aufstellungen aus.'
+    } %}
+
+    {# ─── Team-Zuordnung ─── #}
+    <h2>Team-Zuordnung</h2>
+    <p>
+        Spieler werden mit <strong>Zeitraum (Von–Bis)</strong>, <strong>Trikotnummer</strong> und
+        <strong>Rolle</strong> einem Team zugeordnet. Ein leeres Enddatum bedeutet: aktuell aktiv.
+        Ehemalige Zugehörigkeiten bleiben als Historie erhalten.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spieler/team-zuordnung.png',
+        alt: 'Team-Zuordnung eines Spielers',
+        caption: 'Team-Zuordnung mit Zeitraum, Trikotnummer und Rolle.'
+    } %}
+
+    {# ─── Vereins-Zuordnung ─── #}
+    <h2>Vereins-Zuordnung</h2>
+    <p>
+        Neben der Team-Zuordnung gibt es die Vereins-Zuordnung mit Start- und
+        Enddatum – für die vollständige Vereinskarriere eines Spielers.
+    </p>
+
+    {# ─── Benutzerkonto verknüpfen ─── #}
+    <h2>Spieler mit Benutzerkonto verknüpfen</h2>
+    <p>
+        Über <a href="{{ path('app_admin') }}">Administration → Nutzerzuordnungen</a>
+        kann ein Spieler mit einem Kaderblick-Benutzerkonto verknüpft werden.
+        Danach sieht der Spieler seine Spiele, Statistiken, Termine und Aufgaben.
+    </p>
+
+    {# ─── Statistiken ─── #}
+    <h2>Spieler-Statistiken</h2>
+    <p>
+        Im Profil jedes Spielers findest du einen <strong>Statistik-Tab</strong>.
+        Dort werden alle relevanten Leistungsdaten zusammengefasst:
+    </p>
+    <ul>
+        <li><strong>Einsätze</strong> — Anzahl der Spiele (Startelf + Einwechslungen)</li>
+        <li><strong>Tore</strong> — Erzielte Treffer pro Saison</li>
+        <li><strong>Assists</strong> — Torvorlagen</li>
+        <li><strong>Spielminuten</strong> — Gesamte Einsatzzeit</li>
+        <li><strong>Bewertungen</strong> — Durchschnittliche Spielerbewertung</li>
+    </ul>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Statistiken werden automatisch aktualisiert, sobald ein Spielergebnis eingetragen wird. Du musst nichts manuell berechnen.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Kann ich einen Spieler mehreren Mannschaften zuordnen?</h3>
+    <p>
+        Ja. Ein Spieler kann gleichzeitig in mehreren Mannschaften sein — z.&nbsp;B. in
+        der U17 und im Fördertraining. Die Zuordnung erfolgt im Spielerprofil unter
+        <strong>Mannschaften</strong>.
+    </p>
+
+    <h3>Was passiert, wenn ich einen Spieler lösche?</h3>
+    <p>
+        Gelöschte Spieler werden zunächst archiviert und können 30 Tage lang
+        wiederhergestellt werden. Danach werden die Daten endgültig entfernt.
+        Historische Statistiken bleiben anonymisiert erhalten.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Achtung',
+        text: 'Das Löschen eines Spielers kann nur von Nutzern mit <strong>Trainer-</strong> oder <strong>Admin-Rolle</strong> durchgeführt werden.'
+    } %}
+
+    <h3>Spieler nicht in der Aufstellung? </h3>
+    <p>
+        Prüft die Teamzuordnung – nur Spieler mit einem gültigen Zeitraum erscheinen in der
+        <a href="{{ path('app_aufstellungen') }}">Aufstellung</a>.
+    </p>
+
+    <h3>Spieler existiert schon?</h3>
+    <p>
+        Legt den Spieler nicht erneut an, sondern aktualisiert die bestehende Zuordnung.
+    </p>
+
+    <h3>Welche Bildformate werden für Profilbilder unterstützt?</h3>
+    <p>
+        JPG und PNG, maximal 2&nbsp;MB. Das Bild wird automatisch zugeschnitten und
+        auf eine einheitliche Größe skaliert.
+    </p>
+{% endblock %}

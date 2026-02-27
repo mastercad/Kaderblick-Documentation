@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aufstellungen – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📋 Aufstellungen planen</h1>
+    <p>
+        Interaktiver Aufstellungsplaner mit Drag &amp; Drop auf virtuellem Spielfeld –
+        taktische Aufstellungen erstellen und als Vorlagen speichern.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '⚙️', title: 'Formationssystem wählen', desc: '4-4-2, 4-3-3, 4-2-3-1, 3-5-2, 5-3-2 und weitere.' },
+            { icon: '🖱️', title: 'Drag & Drop', desc: 'Spieler per Drag &amp; Drop auf dem virtuellen Spielfeld positionieren.' },
+            { icon: '💾', title: 'Speichern', desc: 'Aufstellungen benennen und dauerhaft speichern.' },
+            { icon: '📑', title: 'Vorlagen', desc: 'Gespeicherte Aufstellungen als Vorlagen wiederverwenden.' },
+        ]
+    } %}
+
+    {# ─── Neue Aufstellung ─── #}
+    <h2>Neue Aufstellung erstellen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Formationssystem wählen', text: 'Wählt eine Grundformation aus (z.&nbsp;B. 4-4-2, 4-3-3, 3-5-2).' },
+            { title: 'Spieler positionieren', text: 'Zieht eure Spieler per <strong>Drag &amp; Drop</strong> auf die gewünschte Position im Spielfeld.' },
+            { title: 'Name vergeben', text: 'Gebt der Aufstellung einen aussagekräftigen Namen (z.&nbsp;B. „Heimspiel gegen TSV").' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Die Aufstellung bleibt dauerhaft verfügbar.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/aufstellungen/aufstellung-editor.png',
+        alt: 'Interaktiver Aufstellungsplaner',
+        caption: 'Spieler per Drag & Drop auf dem virtuellen Spielfeld positionieren.'
+    } %}
+
+    {# ─── Formationssysteme ─── #}
+    <h2>Verfügbare Formationssysteme</h2>
+    <ul>
+        <li><strong>4-4-2</strong> — Klassische Formation mit zwei Stürmern</li>
+        <li><strong>4-3-3</strong> — Offensiv mit drei Stürmern</li>
+        <li><strong>4-2-3-1</strong> — Kompakt mit einem Stoßstürmer</li>
+        <li><strong>3-5-2</strong> — Dreierkette mit Flügelspiel</li>
+        <li><strong>5-3-2</strong> — Defensiv orientiert</li>
+        <li>Weitere Systeme können vom Admin konfiguriert werden</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/aufstellungen/formationssysteme.png',
+        alt: 'Auswahl der Formationssysteme',
+        caption: 'Die verfügbaren Formationssysteme zur Auswahl.'
+    } %}
+
+    {# ─── Vorlagen ─── #}
+    <h2>Vorlagen wiederverwenden</h2>
+    <p>
+        Gespeicherte Aufstellungen bleiben dauerhaft erhalten und können als Vorlagen
+        für zukünftige Spiele wiederverwendet werden. So müsst ihr nicht jedes Mal
+        von vorne beginnen.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Speichert mehrere Varianten mit unterschiedlichen Namen – z.&nbsp;B. „Offensiv", „Defensiv", „Pressing". So habt ihr für jede Situation eine passende Vorlage parat.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Ein Spieler fehlt in der Auswahl – warum?</h3>
+    <p>
+        Prüft die <a href="{{ path('app_spieler') }}">Teamzuordnung</a> des Spielers.
+        Nur Spieler mit aktiver Zuordnung erscheinen in der Auswahl.
+    </p>
+
+    <h3>Kann ich Aufstellungen mit anderen teilen?</h3>
+    <p>Aktuell nur per Screenshot. Eine Teilen-Funktion ist in Planung.</p>
+
+    <h3>Kann ich mehrere Varianten speichern?</h3>
+    <p>Ja, einfach mit unterschiedlichen Namen speichern.</p>
+{% endblock %}

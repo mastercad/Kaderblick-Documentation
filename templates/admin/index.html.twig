@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>⚙️ Administration</h1>
+    <p>
+        Werkzeugkasten für Vereinsverantwortliche – nur mit Admin-Rolle zugänglich.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Hinweis',
+        text: 'Diese Funktionen sind ausschließlich für Benutzer mit der <strong>Admin-Rolle</strong> sichtbar und zugänglich.'
+    } %}
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '👥', title: 'Benutzerkonten', desc: 'Übersicht aller Konten: aktivieren, deaktivieren, Rollen vergeben.' },
+            { icon: '🔗', title: 'Verknüpfungen', desc: 'Benutzer mit Spieler- oder Trainerprofilen verknüpfen.' },
+            { icon: '🏷️', title: 'Stammdaten', desc: 'Positionen, Altersklassen, Ligen und Vereine zentral pflegen.' },
+            { icon: '📬', title: 'Feedback', desc: 'Nutzerrückmeldungen lesen und bearbeiten.' },
+        ]
+    } %}
+
+    {# ─── Benutzerkonten ─── #}
+    <h2>Benutzerkonten verwalten</h2>
+    <p>
+        In der Benutzerübersicht seht ihr alle registrierten Konten. Ihr könnt:
+    </p>
+    <ul>
+        <li>Konten <strong>aktivieren oder deaktivieren</strong></li>
+        <li><strong>Rollen vergeben</strong> (z.&nbsp;B. Admin-Rolle)</li>
+        <li>Den Verifizierungsstatus prüfen</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/admin/benutzeruebersicht.png',
+        alt: 'Benutzerübersicht im Admin-Bereich',
+        caption: 'Alle Benutzerkonten im Überblick – mit Status und Rollen.'
+    } %}
+
+    {# ─── Verknüpfungen ─── #}
+    <h2>Benutzer mit Spieler/Trainer verknüpfen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Benutzer öffnen', text: 'Klickt in der Benutzerübersicht auf den gewünschten Account.' },
+            { title: 'Verknüpfung bearbeiten', text: 'Klickt auf <strong>„Verknüpfung bearbeiten"</strong>.' },
+            { title: 'Profil zuordnen', text: 'Wählt das entsprechende <a href="' ~ path('app_spieler') ~ '">Spieler</a>- oder <a href="' ~ path('app_trainer') ~ '">Trainerprofil</a> aus.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Mitglied sieht ab sofort seine persönlichen Daten.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Wichtig',
+        text: 'Ohne Verknüpfung sieht ein Benutzer keine Spieler-/Trainerstatistiken, persönliche Spiele oder zugewiesene Aufgaben.'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/admin/verknuepfung.png',
+        alt: 'Benutzer-Spieler Verknüpfung',
+        caption: 'Einen Benutzer-Account mit einem Spielerprofil verknüpfen.'
+    } %}
+
+    {# ─── Stammdaten ─── #}
+    <h2>Stammdaten verwalten</h2>
+    <p>Im Admin-Bereich pflegt ihr die zentralen Stammdaten der Plattform:</p>
+    <ul>
+        <li>🏷️ <strong>Positionen</strong> — Spielerpositionen definieren</li>
+        <li>🎂 <strong>Altersklassen</strong> — Altersgruppen für den Jugendfußball</li>
+        <li>🏆 <strong>Ligen</strong> — Offizielle Spielklassen</li>
+        <li>🏟️ <strong>Vereine</strong> — Vereinsdaten und Strukturen</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/admin/stammdaten.png',
+        alt: 'Stammdaten-Verwaltung',
+        caption: 'Zentrale Stammdaten wie Positionen, Altersklassen und Ligen pflegen.'
+    } %}
+
+    {# ─── Feedback ─── #}
+    <h2>Feedback verwalten</h2>
+    <p>
+        Nutzer können über die <strong>Feedback-Funktion</strong> in der App Rückmeldungen
+        und Verbesserungswünsche einreichen. Als Admin könnt ihr:
+    </p>
+    <ul>
+        <li>Eingegangenes Feedback lesen</li>
+        <li>Status setzen (<strong>offen</strong> / <strong>bearbeitet</strong>)</li>
+    </ul>
+
+    {# ─── Systembereiche ─── #}
+    <h2>Übersicht der Admin-Bereiche</h2>
+    <ul>
+        <li><strong>Benutzer</strong> — Konten, Rollen, Verknüpfungen</li>
+        <li><strong>Stammdaten</strong> — Positionen, Altersklassen, Ligen, Vereine</li>
+        <li><strong>Feedback</strong> — Nutzerrückmeldungen</li>
+        <li><strong>Teams</strong> — Teams erstellen und bearbeiten</li>
+        <li><strong>Vereine</strong> — Vereinsdaten pflegen</li>
+    </ul>
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Ein Mitglied kann sich nicht einloggen – was tun?</h3>
+    <p>Prüft, ob das Konto aktiv und verifiziert ist.</p>
+
+    <h3>Wie vergebe ich einem Benutzer mehr Rechte?</h3>
+    <p>Öffnet den Benutzer-Detail und weist dort die gewünschte Rolle zu.</p>
+
+    <h3>Ein Spieler sieht keine Statistiken – warum?</h3>
+    <p>Die Verknüpfung zwischen Benutzerkonto und Spielerprofil fehlt wahrscheinlich.</p>
+
+    <h3>Kann ich einen Benutzer komplett löschen?</h3>
+    <p>
+        Benutzer können nur <strong>deaktiviert</strong> werden. Eine vollständige Löschung
+        ist über den technischen Support möglich.
+    </p>
+{% endblock %}

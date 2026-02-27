@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spiele – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🏟️ Spiele</h1>
+    <p>
+        Das Herzstück von Kaderblick: Spielansetzung, Live-Protokoll und Nachbereitung –
+        von der Planung bis zur Ergebniserfassung.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📋', title: 'Spielübersicht', desc: 'Laufende, bevorstehende und vergangene Spiele in drei Kategorien.' },
+            { icon: '➕', title: 'Spiel anlegen', desc: 'Heim-/Auswärtsteam, Spieltyp, Spielort und Liga festlegen.' },
+            { icon: '⚽', title: 'Spielereignisse', desc: 'Tore, Karten, Wechsel und Assists mit Spieler und Minute protokollieren.' },
+            { icon: '🔄', title: 'Wechsel', desc: 'Ein-/Auswechslungen mit Minute und optionalem Grund erfassen.' },
+            { icon: '📊', title: 'Automatische Berechnung', desc: 'Spielstand wird live aus den Ereignissen berechnet.' },
+            { icon: '🔗', title: 'fussball.de', desc: 'Automatische Übernahme von Ergebnissen.' },
+        ]
+    } %}
+
+    {# ─── Spielübersicht ─── #}
+    <h2>Die Spielübersicht</h2>
+    <p>
+        Die Spielübersicht unterteilt Spiele in drei Kategorien:
+    </p>
+    <ul>
+        <li><strong>Laufende Spiele</strong> — Aktuell stattfindende Begegnungen</li>
+        <li><strong>Bevorstehende Spiele</strong> — Geplante zukünftige Spiele</li>
+        <li><strong>Vergangene Spiele</strong> — Abgeschlossene Begegnungen mit Ergebnissen</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spiele/spieluebersicht.png',
+        alt: 'Spielübersicht in Kaderblick',
+        caption: 'Die Spielübersicht mit laufenden, bevorstehenden und vergangenen Spielen.'
+    } %}
+
+    {# ─── Spiel anlegen ─── #}
+    <h2>Spiel anlegen</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Spielbereich öffnen', text: 'Im Menü auf <strong>„Spiele"</strong> klicken.' },
+            { title: 'Neues Spiel erstellen', text: 'Auf <strong>„+ Neues Spiel"</strong> klicken.' },
+            { title: 'Teams festlegen', text: '<strong>Heimteam</strong> und <strong>Auswärtsteam</strong> auswählen (darf nicht das gleiche Team sein).' },
+            { title: 'Details eingeben', text: '<strong>Spieltyp</strong> (Liga / Freundschaft / Pokal / ...), Spielort und Liga.' },
+            { title: 'Termin festlegen', text: 'Datum und Uhrzeit werden über den <a href="' ~ path('app_kalender') ~ '">Kalender</a> gesteuert.' },
+            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Spiel erscheint in der Übersicht.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spiele/spiel-anlegen.png',
+        alt: 'Spiel anlegen Formular',
+        caption: 'Ein neues Spiel mit allen Pflichtfeldern anlegen.'
+    } %}
+
+    {# ─── Spielereignisse ─── #}
+    <h2>Spielereignisse erfassen</h2>
+    <p>
+        Während oder nach dem Spiel könnt ihr folgende Ereignisse protokollieren:
+    </p>
+    <ul>
+        <li>⚽ <strong>Tor</strong> — Mit Spieler und Spielminute</li>
+        <li>🙈 <strong>Eigentor</strong></li>
+        <li>🟨 <strong>Gelbe Karte</strong></li>
+        <li>🟥 <strong>Rote Karte</strong></li>
+        <li>🟨🟥 <strong>Gelb-Rot</strong></li>
+        <li>🔄 <strong>Wechsel</strong> — Ein- und Auswechselspieler mit Minute</li>
+        <li>👟 <strong>Assist</strong> — Torvorlage</li>
+    </ul>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Automatische Berechnung',
+        text: 'Der <strong>Spielstand wird automatisch</strong> aus den Spielereignissen berechnet. Ihr müsst kein Ergebnis manuell eintragen!'
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spiele/spielereignisse.png',
+        alt: 'Spielereignisse erfassen',
+        caption: 'Tore, Karten und Wechsel mit Spieler und Minute erfassen.'
+    } %}
+
+    {# ─── Wechsel ─── #}
+    <h2>Wechsel erfassen</h2>
+    <p>
+        Bei einem Wechsel werden <strong>Einwechsel-</strong> und <strong>Auswechselspieler</strong>,
+        die <strong>Minute</strong> und ein optionaler <strong>Grund</strong> erfasst.
+    </p>
+
+    {# ─── Spiel abschließen ─── #}
+    <h2>Spiel abschließen</h2>
+    <p>
+        Markiert ein Spiel als <strong>„Abgeschlossen"</strong> – es wird in die vergangenen Spiele
+        verschoben und die Statistiken werden finalisiert.
+    </p>
+
+    {# ─── Spieldetailseite ─── #}
+    <h2>Die Spieldetailseite</h2>
+    <p>
+        In der Detailansicht findet ihr:
+    </p>
+    <ul>
+        <li><strong>Ergebnis</strong> — Automatisch berechnet</li>
+        <li><strong>Chronologische Ereignisliste</strong> — Alle Tore, Karten, Wechsel</li>
+        <li><strong>Verknüpfte Videos</strong> — Für die <a href="{{ path('app_video_analyse') }}">Spielanalyse</a></li>
+        <li><strong>Wetterdaten</strong> — Automatisch hinterlegt</li>
+        <li><strong>Teilnahmestatus</strong> — Wer war dabei?</li>
+    </ul>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/spiele/spieldetail.png',
+        alt: 'Spieldetailseite',
+        caption: 'Die vollständige Spieldetailseite mit Ergebnis, Ereignissen und Videos.'
+    } %}
+
+    {# ─── Spielorte ─── #}
+    <h2>Spielorte</h2>
+    <p>
+        Spielorte werden einmalig angelegt und können danach bei jedem Spiel ausgewählt
+        werden.
+    </p>
+
+    {# ─── fussball.de ─── #}
+    <h2>fussball.de-Synchronisation</h2>
+    <p>
+        Ergebnisse können automatisch von <strong>fussball.de</strong> übernommen werden.
+        Die Einrichtung erfolgt einmalig durch den
+        <a href="{{ path('app_admin') }}">Administrator</a>.
+    </p>
+
+    {# ─── Berechtigungen ─── #}
+    <h2>Berechtigungen</h2>
+    <ul>
+        <li><strong>Spieler/Eltern:</strong> Nur Spiele des eigenen Teams einsehen</li>
+        <li><strong>Trainer:</strong> Eigene Teams + Ereignisse nachtragen</li>
+        <li><strong>Admins:</strong> Voller Zugriff auf alle Spiele</li>
+    </ul>
+{% endblock %}

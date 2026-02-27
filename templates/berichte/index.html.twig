@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Berichte – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📈 Berichte & Auswertungen</h1>
+    <p>
+        Datenauswertungen ohne Programmierung – mit dem integrierten Berichts-Assistenten.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🧙', title: 'Berichts-Assistent', desc: 'Schritt für Schritt zum fertigen Bericht – ohne technische Kenntnisse.' },
+            { icon: '📑', title: 'Vorlagen', desc: 'Häufig genutzte Berichte als Vorlage speichern und wiederverwenden.' },
+            { icon: '🖥️', title: 'Dashboard-Integration', desc: 'Berichte direkt als Kachel auf dem Dashboard anzeigen.' },
+            { icon: '🔄', title: 'Live-Daten', desc: 'Berichte werden bei jedem Aufruf automatisch aktualisiert.' },
+        ]
+    } %}
+
+    {# ─── Berichts-Assistent ─── #}
+    <h2>Berichts-Assistent (Wizard)</h2>
+    <p>
+        Der Berichts-Assistent führt euch in fünf Schritten zum fertigen Bericht:
+    </p>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Thema wählen', text: 'Wählt das Thema: <strong>Spieler</strong>, <strong>Spiele</strong>, <strong>Trainingsbeteiligung</strong> oder <strong>Statistiken</strong>.' },
+            { title: 'Filter festlegen', text: 'Grenzt die Daten ein: <strong>Team</strong>, <strong>Saison</strong>, <strong>Heim/Auswärts</strong> und mehr.' },
+            { title: 'Spalten auswählen', text: 'Bestimmt, welche Informationen angezeigt werden sollen (Name, Tore, Ergebnis, ...).' },
+            { title: 'Sortierung definieren', text: 'Legt fest, nach welcher Spalte die Ergebnisse sortiert werden.' },
+            { title: 'Speichern', text: 'Vergebt einen <strong>Namen</strong> und speichert den Bericht. Er ist jederzeit wieder abrufbar.' },
+        ]
+    } %}
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/berichte/berichts-assistent.png',
+        alt: 'Berichts-Assistent',
+        caption: 'Der Berichts-Assistent führt Schritt für Schritt zum fertigen Bericht.'
+    } %}
+
+    {# ─── Vorlagen ─── #}
+    <h2>Vorlagen</h2>
+    <p>
+        Häufig genutzte Berichte könnt ihr als <strong>Vorlage</strong> speichern.
+        So müsst ihr die Filtereinstellungen nicht jedes Mal neu konfigurieren.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/berichte/vorlagen.png',
+        alt: 'Berichtsvorlagen',
+        caption: 'Gespeicherte Berichtsvorlagen für schnellen Zugriff.'
+    } %}
+
+    {# ─── Dashboard-Integration ─── #}
+    <h2>Dashboard-Integration</h2>
+    <p>
+        Jeden gespeicherten Bericht könnt ihr als <strong>Kachel auf dem
+        <a href="{{ path('app_dashboard') }}">Dashboard</a></strong> hinzufügen.
+        So habt ihr die wichtigsten Auswertungen immer im Blick.
+    </p>
+
+    {% include 'components/screenshot.html.twig' with {
+        src: 'images/docs/berichte/dashboard-kachel.png',
+        alt: 'Bericht als Dashboard-Kachel',
+        caption: 'Ein Bericht als Kachel direkt auf dem Dashboard.'
+    } %}
+
+    {# ─── Häufige Fragen ─── #}
+    <h2>Häufige Fragen</h2>
+
+    <h3>Können andere meinen Bericht sehen?</h3>
+    <p>Nein, Berichte sind standardmäßig privat.</p>
+
+    <h3>Werden Berichte automatisch aktualisiert?</h3>
+    <p>Ja, die Daten werden bei jedem Aufruf live berechnet.</p>
+
+    <h3>Kann ich Berichte exportieren?</h3>
+    <p>
+        Aktuell über die Browser-Druckfunktion (<kbd>Strg</kbd> + <kbd>P</kbd>).
+        Ein Dateiexport ist in Planung.
+    </p>
+{% endblock %}

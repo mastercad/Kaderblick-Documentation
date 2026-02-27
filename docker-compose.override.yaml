@@ -1,0 +1,27 @@
+
+services:
+###> doctrine/doctrine-bundle ###
+  database:
+    ports:
+      - "5432"
+    networks:
+      - docs-kaderblick-net
+###< doctrine/doctrine-bundle ###
+
+###> symfony/mailer ###
+  mailer:
+    image: axllent/mailpit
+    ports:
+      - "1025"
+      - "8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    networks:
+      - docs-kaderblick-net
+###< symfony/mailer ###
+
+  # Port für App-Service
+  app:
+    ports:
+      - "${APP_PORT:-8082}:80"
