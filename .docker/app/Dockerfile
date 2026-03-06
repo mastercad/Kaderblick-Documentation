@@ -8,11 +8,10 @@ RUN apt-get update && apt-get install -yqq \
     libicu-dev \
     libonig-dev \
     libzip-dev \
-    libpq-dev \
     ca-certificates \
     openssl libssl-dev \
     && update-ca-certificates \
-    && docker-php-ext-install pdo pdo_pgsql intl zip opcache bcmath
+    && docker-php-ext-install intl zip opcache bcmath
 
 RUN a2enmod rewrite
 

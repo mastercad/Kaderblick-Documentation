@@ -105,8 +105,8 @@ jobs:
             chmod -R 755 "$RELEASE_DIR"
             chown -R kaderblick-ftp-admin:psacln "$RELEASE_DIR"
 
-            docker compose down --remove-orphans app
-            docker compose up -d --build --force-recreate app
+            docker compose -p kaderblick-docs down --remove-orphans app
+            docker compose -p kaderblick-docs up -d --build --force-recreate app
 
       # ------------------------------
       # Composer
@@ -122,4 +122,36 @@ jobs:
             RELEASE_DIR="${{ steps.release.outputs.dir }}"
             cd "$RELEASE_DIR"
 
-            docker compose exec -T app composer install --no-dev --optimize-autoloader
+            docker compose -p kaderblick-docs exec -T app composer install --no-dev --optimize-autoloader
+
+      # ------------------------------
+      # Activate Release (Zero-Downtime)
+      # ------------------------------
+      - name: Activate Release
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PLESK_HOST }}
+          username: ${{ secrets.ROOT_USER }}
+          password: ${{ secrets.ROOT_PASSWORD }}
+          script: |
+            set -e
+            RELEASE_DIR="${{ steps.release.outputs.dir }}"
+            CURRENT_DIR="${{ secrets.MAIN_PROJECT_PATH }}/current"
+
+            docker compose -p kaderblick-docs down --remove-orphans app
+            ln -sfn "$RELEASE_DIR" "$CURRENT_DIR"
+            chmod -R 777 "$CURRENT_DIR/var"
+
+            cd "$CURRENT_DIR"
+            docker compose -p kaderblick-docs up -d --force-recreate app
+
+      - name: Cleanup old releases
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PLESK_HOST }}
+          username: ${{ secrets.ROOT_USER }}
+          password: ${{ secrets.ROOT_PASSWORD }}
+          script: |
+            set -e
+            cd "${{ secrets.MAIN_PROJECT_PATH }}/releases"
+            ls -1t | tail -n +4 | xargs -I {} rm -rf {}
