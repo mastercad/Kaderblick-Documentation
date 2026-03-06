@@ -105,7 +105,7 @@ jobs:
             chmod -R 755 "$RELEASE_DIR"
             chown -R kaderblick-ftp-admin:psacln "$RELEASE_DIR"
 
-            docker compose --remove-orphans app
+            docker compose down --remove-orphans app
             docker compose up -d --build --force-recreate app
 
       # ------------------------------
