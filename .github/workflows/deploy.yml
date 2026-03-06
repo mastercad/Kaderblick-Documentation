@@ -40,7 +40,7 @@ jobs:
       - name: Prepare files
         run: |
           mkdir -p build
-          cp -r docker-compose.yaml .docker .env.dist composer.json composer.lock symfony.lock assets bin config migrations public src templates translations build/
+          cp -r docker-compose.yaml .docker .env.dist composer.json composer.lock symfony.lock importmap.php assets bin config migrations public src templates translations build/
 
       # ------------------------------
       # Create release directory for SCP
