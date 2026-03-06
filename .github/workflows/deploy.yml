@@ -39,7 +39,7 @@ jobs:
       # ------------------------------
       - name: Prepare files
         run: |
-          cp -r ./*
+          cp -r ./* build/
 
       # ------------------------------
       # Create release directory for SCP
