@@ -39,7 +39,7 @@ jobs:
       # ------------------------------
       - name: Prepare files
         run: |
-          cp -r docker-compose.yml .docker app
+          cp -r ./*
 
       # ------------------------------
       # Create release directory for SCP
