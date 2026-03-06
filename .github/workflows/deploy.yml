@@ -35,6 +35,14 @@ jobs:
         run: echo "dir=${{ secrets.MAIN_PROJECT_PATH }}/releases/$(date +%Y%m%d_%H%M%S)" >> $GITHUB_OUTPUT
 
       # ------------------------------
+      # Prepare build files
+      # ------------------------------
+      - name: Prepare files
+        run: |
+          mkdir -p build
+          cp -r ./* build/
+
+      # ------------------------------
       # Create release directory for SCP
       # ------------------------------
       - name: Create release directory on server
@@ -58,7 +66,7 @@ jobs:
           host: ${{ secrets.PLESK_HOST }}
           username: ${{ secrets.PLESK_USERNAME }}
           password: ${{ secrets.PLESK_PASSWORD }}
-          source: "./*"
+          source: "build/*"
           target: "${{ steps.release.outputs.dir }}"
           strip_components: 1
 
