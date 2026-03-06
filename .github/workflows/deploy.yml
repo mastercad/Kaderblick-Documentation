@@ -56,7 +56,6 @@ jobs:
             mkdir -p "${{ steps.release.outputs.dir }}"
             chmod 755 "${{ steps.release.outputs.dir }}"
             chown -R ${{ secrets.PLESK_USERNAME }}:psacln "${{ steps.release.outputs.dir }}"
-            chown -R ${{ secrets.PLESK_USERNAME }}:psacln "$RELEASE_DIR"
 
       # ------------------------------
       # Copy build files to server
