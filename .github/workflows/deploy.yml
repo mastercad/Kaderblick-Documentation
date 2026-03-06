@@ -40,7 +40,7 @@ jobs:
       - name: Prepare files
         run: |
           mkdir -p build
-          cp -r ./* build/
+          cp -r docker-compose.yml .docker assets bin config migrations public src templates translations build/
 
       # ------------------------------
       # Create release directory for SCP
@@ -69,21 +69,6 @@ jobs:
           source: "build/*"
           target: "${{ steps.release.outputs.dir }}"
           strip_components: 1
-
-      # ------------------------------
-      # Deploy secrets & JWT
-      # ------------------------------
-      - name: Deploy secrets & JWT
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
-          script: |
-            set -e
-            RELEASE_DIR="${{ steps.release.outputs.dir }}"
-
-            chown -R kaderblick-ftp-admin:psacln "$RELEASE_DIR"
 
       # ------------------------------
       # Prepare .env files
