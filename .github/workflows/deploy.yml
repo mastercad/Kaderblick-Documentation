@@ -40,7 +40,7 @@ jobs:
       - name: Prepare files
         run: |
           mkdir -p build
-          cp -r docker-compose.yml .docker assets bin config migrations public src templates translations build/
+          cp -r docker-compose.yaml .docker assets bin config migrations public src templates translations build/
 
       # ------------------------------
       # Create release directory for SCP
