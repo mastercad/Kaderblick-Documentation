@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -yqq \
 RUN a2enmod rewrite
 
 # Eigene VHost-Konfiguration mit AllowOverride + FallbackResource
-# COPY vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
 # RUN echo "openssl.cafile=/etc/ssl/certs/ca-certificates.crt" > /usr/local/etc/php/conf.d/99-ca-certificates.ini
 
