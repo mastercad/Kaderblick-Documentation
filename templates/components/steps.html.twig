@@ -20,7 +20,7 @@
                 <div class="steps__text">{{ step.text|raw }}</div>
                 {% if step.image is defined and step.image %}
                     <img
-                        src="{{ asset(step.image) }}"
+                        src="{{ step.image }}"
                         alt="Schritt {{ loop.index }}: {{ step.title }}"
                         class="steps__image"
                         loading="lazy"
