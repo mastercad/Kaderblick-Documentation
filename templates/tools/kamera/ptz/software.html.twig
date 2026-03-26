@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Software – PTZ-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>💻 Software – PTZ-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_ptz',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Die PTZ-Kamera wird über eine vollständig eigenentwickelte Steuerungssoftware bedient.
+        Sie ersetzt die Hersteller-App und bietet speziell auf den Fußball-Einsatz zugeschnittene Funktionen.
+    </p>
+
+    {# ─── Funktionen ─── #}
+    <h2>Funktionen der Steuerungssoftware</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🕹️', title: 'Echtzeit-Steuerung', desc: 'Schwenk, Neigung und Zoom in Echtzeit per Tastatur, Maus oder Gamepad.' },
+            { icon: '📍', title: 'Preset-Verwaltung', desc: 'Kamerapositionen speichern und per Knopfdruck abrufen (z. B. Eckball links, Elfmeter).' },
+            { icon: '📹', title: 'Aufnahmesteuerung', desc: 'Start, Stopp und Aufnahmestatus direkt aus der Software heraus.' },
+            { icon: '🖥️', title: 'Live-Vorschau', desc: 'Echtzeit-Videobild in der Steuerungsoberfläche.' },
+            { icon: '⚙️', title: 'Kamera-Konfiguration', desc: 'Bildparameter (Belichtung, Weißabgleich, Schärfe) direkt einstellen.' },
+        ]
+    } %}
+
+    {# ─── Installation ─── #}
+    <h2>Installation</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Repository klonen', text: 'Den Quellcode der PTZ-Steuerungssoftware auschecken.' },
+            { title: 'Abhängigkeiten installieren', text: 'Benötigte Bibliotheken und Treiber installieren.' },
+            { title: 'Kamera-IP eintragen', text: 'Die Netzwerkadresse der PTZ-Kamera in der Konfiguration hinterlegen.' },
+            { title: 'Starten', text: 'Die Anwendung starten und die Verbindung zur Kamera prüfen.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Gamepad-Empfehlung',
+        text: 'Die Steuerung per Gamepad (z. B. Xbox Controller) ist besonders intuitiv – ein Stick steuert Schwenk/Neigung, der andere den Zoom.'
+    } %}
+{% endblock %}

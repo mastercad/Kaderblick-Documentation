@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BallMarkerGui – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🎯 BallMarkerGui</h1>
+    <p>
+        Die BallMarkerGui ist ein grafisches Tool zum manuellen Markieren von Ballpositionen
+        in Spielvideos. Die gesammelten Daten dienen als Grundlage für taktische Analysen
+        und Heatmaps.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🖱️', title: 'Klick-Markierung', desc: 'Ballposition per Mausklick im Videobild markieren.' },
+            { icon: '⏩', title: 'Frame-Navigation', desc: 'Frame-genau durch das Spielvideo navigieren.' },
+            { icon: '📐', title: 'Koordinaten-Mapping', desc: 'Bildpixel werden auf Spielfeldkoordinaten umgerechnet.' },
+            { icon: '💾', title: 'Datenexport', desc: 'Markierungen als strukturierte Daten exportieren (JSON/CSV).' },
+            { icon: '🗺️', title: 'Heatmap-Grundlage', desc: 'Gesammelte Positionsdaten bilden die Basis für Ballbesitz-Heatmaps.' },
+        ]
+    } %}
+
+    {# ─── Bedienung ─── #}
+    <h2>Bedienung</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Video laden', text: 'Ein Spielvideo in der BallMarkerGui öffnen.' },
+            { title: 'Kalibrieren', text: 'Die Eckpunkte des Spielfelds im Bild markieren, um das Koordinaten-Mapping zu kalibrieren.' },
+            { title: 'Markieren', text: 'Frame für Frame die Ballposition per Klick auf das Videobild setzen.' },
+            { title: 'Exportieren', text: 'Die gesammelten Positionsdaten exportieren und in Kaderblick importieren.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Manuelles Tracking',
+        text: 'Die BallMarkerGui setzt auf manuelles Tracking – damit ist die Genauigkeit deutlich höher als bei automatischen Systemen, besonders bei schwierigen Lichtverhältnissen oder verdecktem Ball.'
+    } %}
+{% endblock %}

@@ -1,0 +1,16 @@
+/* ─── Layout ─── */
+.site-layout {
+    display: flex;
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+}
+
+/* ─── Footer ─── */
+.site-footer {
+    margin-left: var(--sidebar-width);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+}

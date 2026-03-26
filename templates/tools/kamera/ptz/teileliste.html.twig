@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teileliste – PTZ-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📋 Teileliste – PTZ-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_ptz',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Alle Komponenten, die für das PTZ-Kamera-Setup benötigt werden.
+    </p>
+
+    {# ─── Kamera & Zubehör ─── #}
+    <h2>Kamera & Zubehör</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bauteil</th>
+                <th>Anzahl</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>PTZ-Kamera</td><td>1</td><td>Pan-Tilt-Zoom IP-Kamera mit ONVIF-Unterstützung</td></tr>
+            <tr><td>Stativ</td><td>1</td><td>Stabiles Stativ (mind. 2 m Höhe empfohlen)</td></tr>
+            <tr><td>Stativ-Adapter (3D-Druck)</td><td>1</td><td>Eigene Halterung – siehe <a href="{{ path('app_tools_kamera_ptz_3d_ansicht') }}">3D-Ansicht</a></td></tr>
+            <tr><td>Wetterschutz (3D-Druck)</td><td>1</td><td>Regenschutz-Abdeckung für die Kamera</td></tr>
+        </tbody>
+    </table>
+
+    {# ─── Netzwerk & Strom ─── #}
+    <h2>Netzwerk & Strom</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bauteil</th>
+                <th>Anzahl</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>PoE-Injektor oder Netzteil</td><td>1</td><td>Stromversorgung der Kamera (PoE bevorzugt)</td></tr>
+            <tr><td>Netzwerkkabel</td><td>1</td><td>Cat6-Kabel, mind. 20 m für flexible Positionierung</td></tr>
+            <tr><td>WLAN-Router (optional)</td><td>1</td><td>Mobiler Router für kabellose Verbindung zum Steuerungsrechner</td></tr>
+        </tbody>
+    </table>
+
+    {# ─── Steuerung ─── #}
+    <h2>Steuerung</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bauteil</th>
+                <th>Anzahl</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Laptop / Steuerungsrechner</td><td>1</td><td>Zum Ausführen der PTZ-Steuerungssoftware</td></tr>
+            <tr><td>Gamepad (optional)</td><td>1</td><td>Xbox oder ähnlicher Controller für intuitive Steuerung</td></tr>
+        </tbody>
+    </table>
+{% endblock %}

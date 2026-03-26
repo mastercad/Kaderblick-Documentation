@@ -1,0 +1,34 @@
+/* ─── Custom Font ─── */
+@font-face {
+    font-family: 'ImpactWeb';
+    src: url('/fonts/ImpactLTStd.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+/* ─── Design Tokens ─── */
+:root {
+    --color-primary: #018606;
+    --color-primary-light: #00c853;
+    --color-bg: #f8f9fa;
+    --color-surface: #ffffff;
+    --color-text: #1a1a1a;
+    --color-text-muted: #6b7280;
+    --color-border: #e5e7eb;
+    --sidebar-width: 260px;
+    --header-height: 60px;
+}
+
+/* ─── Reset & Basis ─── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+}

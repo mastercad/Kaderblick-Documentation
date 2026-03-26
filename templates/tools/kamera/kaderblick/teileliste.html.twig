@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teileliste – Kaderblick-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📋 Teileliste – Kaderblick-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_kaderblick',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Alle Bauteile und Komponenten, die für den Bau des Kaderblick-Kamerasystems benötigt werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Hinweis',
+        text: 'Die Preise sind Richtwerte und können je nach Bezugsquelle variieren. Verlinkte Shops dienen nur als Beispiel.'
+    } %}
+
+    {# ─── Elektronik ─── #}
+    <h2>Elektronik</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bauteil</th>
+                <th>Anzahl</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Einplatinencomputer</td><td>1</td><td>Raspberry Pi oder vergleichbar – Herzstück des Systems</td></tr>
+            <tr><td>Kameramodul</td><td>1</td><td>Weitwinkel-Kameramodul, kompatibel mit dem Einplatinencomputer</td></tr>
+            <tr><td>SD-Karte</td><td>1</td><td>Mindestens 64 GB, Class 10 / U3</td></tr>
+            <tr><td>Netzteil</td><td>1</td><td>5V-Netzteil mit ausreichend Leistung (mind. 3A)</td></tr>
+            <tr><td>Netzwerkadapter</td><td>1</td><td>WLAN-Stick oder Ethernet-Adapter (falls nicht integriert)</td></tr>
+        </tbody>
+    </table>
+
+    {# ─── Gehäuse & Mechanik ─── #}
+    <h2>Gehäuse & Mechanik</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bauteil</th>
+                <th>Anzahl</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Gehäuse (3D-Druck)</td><td>1 Set</td><td>Hauptgehäuse + Deckel – siehe <a href="{{ path('app_tools_kamera_kaderblick_3d_ansicht') }}">3D-Ansicht</a></td></tr>
+            <tr><td>Kamerafenster</td><td>1</td><td>Transparentes Acrylglas oder Polycarbonat</td></tr>
+            <tr><td>Dichtung</td><td>1</td><td>Silikondichtung für den Gehäusedeckel</td></tr>
+            <tr><td>Schrauben-Set</td><td>1</td><td>M3-Schrauben und Muttern für die Montage</td></tr>
+            <tr><td>Halterung / Klemme</td><td>1</td><td>Zur Befestigung an Masten oder Zäunen</td></tr>
+        </tbody>
+    </table>
+
+    {# ─── Kabel & Zubehör ─── #}
+    <h2>Kabel & Zubehör</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Bauteil</th>
+                <th>Anzahl</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Flachbandkabel</td><td>1</td><td>Verbindung zwischen Einplatinencomputer und Kameramodul</td></tr>
+            <tr><td>USB-Kabel</td><td>1</td><td>Für Stromversorgung (ggf. verlängert)</td></tr>
+            <tr><td>Kabelverschraubung</td><td>1–2</td><td>Wasserdichte Durchführung für Kabel am Gehäuse</td></tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bauanleitung – Kaderblick-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🔧 Bauanleitung – Kaderblick-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_kaderblick',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Schritt-für-Schritt-Anleitung zum Aufbau des Kaderblick-Kamerasystems.
+        Von der Platine bis zum fertigen, wetterfesten Gehäuse.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Voraussetzungen',
+        text: 'Grundkenntnisse in Löten, 3D-Druck und Elektronik werden empfohlen. Alle benötigten Bauteile sind in der <a href="' ~ path('app_tools_kamera_kaderblick_teileliste') ~ '">Teileliste</a> aufgeführt.'
+    } %}
+
+    {# ─── Bauabschnitte ─── #}
+    <h2>Bauabschnitte</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Gehäuse drucken', text: 'Die 3D-Druckteile des Gehäuses fertigen. STL-Dateien und Druckeinstellungen sind in der <a href="' ~ path('app_tools_kamera_kaderblick_3d_ansicht') ~ '">3D-Ansicht</a> dokumentiert.' },
+            { title: 'Elektronik bestücken', text: 'Platine vorbereiten, Komponenten auflöten und Verbindungen herstellen.' },
+            { title: 'Kameramodul einbauen', text: 'Das Kameramodul im Gehäuse positionieren und mit der Platine verbinden.' },
+            { title: 'Verkabelung', text: 'Stromversorgung, Netzwerk und ggf. weitere Sensoren anschließen.' },
+            { title: 'Gehäuse montieren', text: 'Alle Komponenten im Gehäuse verbauen und wetterfest verschließen.' },
+            { title: 'Software aufspielen', text: 'Die <a href="' ~ path('app_tools_kamera_kaderblick_software') ~ '">Kamera-Software</a> installieren und konfigurieren.' },
+            { title: 'Testen', text: 'Funktionstest durchführen: Aufnahme, Netzwerk, automatischer Start.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp',
+        text: 'Dokumentiert jeden Bauschritt mit Fotos – das hilft bei der Fehlersuche und bei späteren Nachbauten.'
+    } %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CameraSimulator – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🎮 CameraSimulator</h1>
+    <p>
+        Der CameraSimulator ermöglicht die Simulation verschiedener Kamerapositionen und -perspektiven
+        auf einem virtuellen Spielfeld. Damit lassen sich optimale Aufstellungspositionen für das
+        Kaderblick-Kamerasystem und andere Kameras planen, ohne vor Ort testen zu müssen.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📐', title: 'Virtuelle Positionierung', desc: 'Kamerastandort auf dem virtuellen Spielfeld frei wählen und verschieben.' },
+            { icon: '🔭', title: 'Perspektiv-Vorschau', desc: 'Live-Vorschau des Sichtfelds aus der gewählten Kameraposition.' },
+            { icon: '📏', title: 'Abdeckungsanalyse', desc: 'Visualisierung der Spielfeldabdeckung – tote Winkel sofort erkennen.' },
+            { icon: '⚙️', title: 'Kamera-Parameter', desc: 'Brennweite, Höhe, Neigung und weitere Parameter anpassen.' },
+            { icon: '💾', title: 'Konfiguration speichern', desc: 'Optimale Setups abspeichern und für den realen Aufbau verwenden.' },
+        ]
+    } %}
+
+    {# ─── Anwendung ─── #}
+    <h2>Typische Anwendung</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Spielfeld konfigurieren', text: 'Die Maße und Gegebenheiten des Spielfelds eingeben (Größe, Umgebung).' },
+            { title: 'Kamera platzieren', text: 'Die virtuelle Kamera an der gewünschten Position aufstellen.' },
+            { title: 'Parameter einstellen', text: 'Brennweite, Höhe und Neigungswinkel anpassen, bis das gewünschte Sichtfeld erreicht ist.' },
+            { title: 'Ergebnis prüfen', text: 'Die Spielfeldabdeckung und Perspektive in der Vorschau kontrollieren.' },
+            { title: 'Setup übernehmen', text: 'Die optimale Konfiguration speichern und am Spieltag umsetzen.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Vor dem Spieltag planen',
+        text: 'Mit dem CameraSimulator lässt sich bereits vor dem Aufbau am Spielfeldrand die optimale Kameraposition ermitteln – das spart Zeit und vermeidet Fehlpositionierungen.'
+    } %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{# Sub-Navigation für Kamera-Detailseiten #}
+{# Parameter: base_route (string), current_path (string) #}
+<nav class="subnav">
+    <a href="{{ path(base_route) }}"
+       class="subnav__link {{ current_path == path(base_route) ? 'subnav__link--active' : '' }}">
+        Übersicht
+    </a>
+    <a href="{{ path(base_route ~ '_bauanleitung') }}"
+       class="subnav__link {{ current_path == path(base_route ~ '_bauanleitung') ? 'subnav__link--active' : '' }}">
+        🔧 Bauanleitung
+    </a>
+    <a href="{{ path(base_route ~ '_3d_ansicht') }}"
+       class="subnav__link {{ current_path == path(base_route ~ '_3d_ansicht') ? 'subnav__link--active' : '' }}">
+        🧊 3D-Ansicht
+    </a>
+    <a href="{{ path(base_route ~ '_software') }}"
+       class="subnav__link {{ current_path == path(base_route ~ '_software') ? 'subnav__link--active' : '' }}">
+        💻 Software
+    </a>
+    <a href="{{ path(base_route ~ '_teileliste') }}"
+       class="subnav__link {{ current_path == path(base_route ~ '_teileliste') ? 'subnav__link--active' : '' }}">
+        📋 Teileliste
+    </a>
+</nav>

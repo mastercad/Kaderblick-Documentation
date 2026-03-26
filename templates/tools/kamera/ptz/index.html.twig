@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PTZ-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🕹️ PTZ-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_ptz',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Die PTZ-Kamera (Pan-Tilt-Zoom) ermöglicht live gesteuertes Filmen über eine eigens
+        entwickelte Software. Schwenk, Neigung und Zoom werden in Echtzeit vom Bediener kontrolliert –
+        ideal zum gezielten Verfolgen von Spielszenen.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Eigene Steuerungssoftware',
+        text: 'Die PTZ-Kamera wird nicht mit der mitgelieferten Herstellersoftware gesteuert, sondern über eine komplett eigenentwickelte Steuerungs-Anwendung.'
+    } %}
+
+    {# ─── Merkmale ─── #}
+    <h2>Merkmale</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🕹️', title: 'Live-Steuerung', desc: 'Schwenk, Neigung und Zoom in Echtzeit über die eigene Software steuern.' },
+            { icon: '🔍', title: 'Optischer Zoom', desc: 'Stufenloser Zoom für Nahaufnahmen einzelner Spieler oder Spielszenen.' },
+            { icon: '🌐', title: 'Netzwerk-Steuerung', desc: 'Steuerung über WLAN oder LAN – kein direkter Zugang zur Kamera nötig.' },
+            { icon: '📹', title: 'Hohe Auflösung', desc: 'Hochauflösende Aufnahmen mit variabler Brennweite.' },
+            { icon: '🎯', title: 'Presets', desc: 'Vordefinierte Kamerapositionen für Standardsituationen (Ecken, Elfmeter, Mittellinie).' },
+        ]
+    } %}
+
+    {# ─── Einsatz ─── #}
+    <h2>Einsatz am Spieltag</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Aufstellen', text: 'Die PTZ-Kamera auf einem Stativ am Spielfeldrand positionieren.' },
+            { title: 'Verbinden', text: 'Kamera mit dem Netzwerk verbinden und die Steuerungssoftware starten.' },
+            { title: 'Live steuern', text: 'Das Spiel live mitverfolgen und die Kamera auf relevante Szenen ausrichten.' },
+            { title: 'Aufnahme sichern', text: 'Die Aufnahme nach dem Spiel exportieren und im VideoManager verarbeiten.' },
+        ]
+    } %}
+
+    {# ─── Weitere Infos ─── #}
+    <h2>Weitere Informationen</h2>
+    <p>Detaillierte Informationen zu Aufbau, Software und Komponenten:</p>
+    <div class="feature-grid">
+        <a href="{{ path('app_tools_kamera_ptz_bauanleitung') }}" class="feature-card">
+            <div class="feature-card__icon">🔧</div>
+            <div class="feature-card__title">Bauanleitung</div>
+            <div class="feature-card__desc">Aufbau und Montage des PTZ-Kamera-Setups.</div>
+        </a>
+        <a href="{{ path('app_tools_kamera_ptz_3d_ansicht') }}" class="feature-card">
+            <div class="feature-card__icon">🧊</div>
+            <div class="feature-card__title">3D-Ansicht</div>
+            <div class="feature-card__desc">3D-Darstellung der Halterung und Zubehörteile.</div>
+        </a>
+        <a href="{{ path('app_tools_kamera_ptz_software') }}" class="feature-card">
+            <div class="feature-card__icon">💻</div>
+            <div class="feature-card__title">Software</div>
+            <div class="feature-card__desc">Die eigene PTZ-Steuerungssoftware im Detail.</div>
+        </a>
+        <a href="{{ path('app_tools_kamera_ptz_teileliste') }}" class="feature-card">
+            <div class="feature-card__icon">📋</div>
+            <div class="feature-card__title">Teileliste</div>
+            <div class="feature-card__desc">Alle benötigten Komponenten für das PTZ-Setup.</div>
+        </a>
+    </div>
+{% endblock %}

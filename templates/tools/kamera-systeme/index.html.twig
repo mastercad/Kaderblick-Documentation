@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kamerasysteme – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>📷 Kamerasysteme</h1>
+    <p>
+        Für die Aufnahme von Spielen kommen drei verschiedene Kamerasysteme zum Einsatz –
+        je nach Anforderung, Platz und Verfügbarkeit. Jedes System hat eine eigene Detailseite.
+    </p>
+
+    {# ─── Kamera-Karten ─── #}
+    <h2>Die drei Systeme</h2>
+    <div class="feature-grid">
+        <a href="{{ path('app_tools_kamera_kaderblick') }}" class="feature-card">
+            <div class="feature-card__icon">🎥</div>
+            <div class="feature-card__title">Kaderblick-Kamera</div>
+            <div class="feature-card__desc">
+                Komplett selbst entwickelt und gebaut – fest installiert, automatisiert und
+                voll in die Plattform integriert. Mit Bauanleitung, 3D-Ansicht, Software & Teileliste.
+            </div>
+        </a>
+        <a href="{{ path('app_tools_kamera_ptz') }}" class="feature-card">
+            <div class="feature-card__icon">🕹️</div>
+            <div class="feature-card__title">PTZ-Kamera</div>
+            <div class="feature-card__desc">
+                Pan-Tilt-Zoom-Kamera mit eigener Live-Steuerungssoftware – ideal für gezielte
+                Perspektiven. Mit Bauanleitung, 3D-Ansicht, Software & Teileliste.
+            </div>
+        </a>
+        <a href="{{ path('app_tools_kamera_dji') }}" class="feature-card">
+            <div class="feature-card__icon">🏃</div>
+            <div class="feature-card__title">DJI Osmo Action5 Pro</div>
+            <div class="feature-card__desc">
+                Kompakte Action-Kamera für manuelle Aufnahmen – flexibel und mobil einsetzbar
+                als Ergänzung zu den stationären Systemen.
+            </div>
+        </a>
+    </div>
+
+    {# ─── Vergleich ─── #}
+    <h2>Vergleich der Systeme</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Eigenschaft</th>
+                <th>Kaderblick</th>
+                <th>PTZ-Kamera</th>
+                <th>DJI Osmo Action5 Pro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Aufnahme</td>
+                <td>Automatisch</td>
+                <td>Live-gesteuert</td>
+                <td>Manuell</td>
+            </tr>
+            <tr>
+                <td>Mobilität</td>
+                <td>Fest installiert</td>
+                <td>Stationär</td>
+                <td>Mobil</td>
+            </tr>
+            <tr>
+                <td>Steuerung</td>
+                <td>Keine nötig</td>
+                <td>Eigene Software</td>
+                <td>Am Gerät</td>
+            </tr>
+            <tr>
+                <td>Perspektive</td>
+                <td>Weitwinkel / Gesamtfeld</td>
+                <td>Variabel (Zoom)</td>
+                <td>Manuell wählbar</td>
+            </tr>
+            <tr>
+                <td>Entwicklung</td>
+                <td>Eigenentwicklung</td>
+                <td>Software eigenentwickelt</td>
+                <td>Kommerziell (DJI)</td>
+            </tr>
+            <tr>
+                <td>Unterseiten</td>
+                <td>Bauanleitung, 3D, Software, Teile</td>
+                <td>Bauanleitung, 3D, Software, Teile</td>
+                <td>–</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}3D-Ansicht – Kaderblick-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🧊 3D-Ansicht – Kaderblick-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_kaderblick',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Interaktive 3D-Darstellung des Kaderblick-Kameragehäuses. Dreh das Modell per Maus oder Touch.
+        Klicke in der Teilekarte auf ein Bauteil, um es im 3D-Modell zu fokussieren.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: '3D-Modelle',
+        text: 'Unterstützt werden <strong>OBJ</strong>- und <strong>GLB</strong>-Dateien. Lege deine Dateien unter <code>/public/models/</code> ab:<br>• OBJ: <code>kaderblick-kamera.obj</code> (+ optional <code>.mtl</code>)<br>• GLB: <code>kaderblick-kamera.glb</code> (Photogrammetrie-Scan)<br>Sind beide vorhanden, kannst du per Umschalter zwischen den Formaten wechseln.'
+    } %}
+
+    {# ─── 3D-Viewer + SVG-Teilekarte ─── #}
+    {% include 'components/model_viewer.html.twig' with {
+        model_src_glb: asset('models/kaderblick-kamera.glb'),
+        model_src_obj: asset('models/kaderblick-kamera.obj'),
+        model_src_mtl: asset('models/kaderblick-kamera.mtl'),
+        model_alt: 'Kaderblick-Kamera – 3D-Modell',
+        svg_src: asset('images/docs/kamera/kaderblick-teile.svg'),
+        parts: [
+            { id: 'part-gehaeuse',     label: 'Hauptgehäuse',      orbit: '0deg 75deg 105%',   target: '0m 0m 0m' },
+            { id: 'part-deckel',       label: 'Gehäusedeckel',     orbit: '0deg 30deg 90%',    target: '0m 0.08m 0m' },
+            { id: 'part-fenster',      label: 'Kamerafenster',     orbit: '0deg 75deg 70%',    target: '0m 0.02m 0.05m' },
+            { id: 'part-kameramodul',  label: 'Kameramodul',       orbit: '0deg 75deg 60%',    target: '0m 0.03m 0.04m' },
+            { id: 'part-platine',      label: 'Platine / Elektronik', orbit: '180deg 60deg 90%', target: '0m -0.02m 0m' },
+            { id: 'part-halterung',    label: 'Montagehalterung',  orbit: '0deg 120deg 110%',  target: '0m -0.08m 0m' },
+            { id: 'part-kabel',        label: 'Kabeldurchführung',  orbit: '90deg 75deg 90%',   target: '-0.05m 0m 0m' },
+            { id: 'part-netzteil',     label: 'Stromanschluss',    orbit: '-90deg 75deg 90%',  target: '0.05m 0m 0m' },
+        ]
+    } %}
+
+    {# ─── Gehäuse-Komponenten ─── #}
+    <h2>Gehäuse-Komponenten</h2>
+    <p>
+        Das Kaderblick-Kameragehäuse wird aus <strong>lasergeschnittenem Sperrholz</strong> (3 mm und 5 mm) zusammengebaut.
+        Die einzelnen Teile werden per Lasercutter aus der SVG-Schnittvorlage geschnitten und anschließend verleimt.
+    </p>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📦', title: 'Hauptgehäuse', desc: 'Lasergeschnittene Seitenteile und Boden aus 5 mm Sperrholz – bilden die stabile Grundstruktur.' },
+            { icon: '🔝', title: 'Deckel', desc: 'Abnehmbarer Deckel aus 3 mm Sperrholz – ermöglicht Zugang zur Elektronik.' },
+            { icon: '🔭', title: 'Kamerafenster', desc: 'Aussparung für ein transparentes Acrylglas-Fenster als Kameraöffnung.' },
+            { icon: '🔩', title: 'Halterung', desc: 'Montagehalterung zur Befestigung an Masten, Zäunen oder eigenen Stativen.' },
+        ]
+    } %}
+
+    {# ─── Lasercutter-Dateien ─── #}
+    <h2>Lasercutter-Dateien</h2>
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Schnittvorlagen',
+        text: 'Die Gehäuseteile werden per Lasercutter aus Sperrholz geschnitten. Folgende Dateien stehen zur Verfügung:<br>• <strong>SVG</strong> – Universelle Schnittvorlage (oben in der Teilekarte interaktiv dargestellt)<br>• <strong>LightBurn (.lbrn2)</strong> – Projektdatei mit voreingestellten Schnitt- und Gravurparametern'
+    } %}
+
+    <h3>Material & Einstellungen</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Empfehlung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Material</td><td>Birkensperrholz</td></tr>
+            <tr><td>Stärke Seitenteile / Boden</td><td>5 mm</td></tr>
+            <tr><td>Stärke Deckel / Innenteile</td><td>3 mm</td></tr>
+            <tr><td>Verklebung</td><td>Holzleim (z.B. Ponal Express)</td></tr>
+            <tr><td>Oberflächenbehandlung</td><td>Optional: Holzlasur oder Sprühlack für Wetterschutz</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Downloads</h3>
+    <ul>
+        <li>📐 <a href="{{ asset('downloads/kaderblick-kamera-schnittvorlage.svg') }}">SVG-Schnittvorlage</a></li>
+        <li>🔥 <a href="{{ asset('downloads/kaderblick-kamera.lbrn2') }}">LightBurn-Projektdatei (.lbrn2)</a></li>
+    </ul>
+{% endblock %}

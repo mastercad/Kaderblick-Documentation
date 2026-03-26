@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Software – Kaderblick-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>💻 Software – Kaderblick-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_kaderblick',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Die Kaderblick-Kamera wird durch mehrere Software-Komponenten gesteuert –
+        von der Aufnahmesteuerung bis zum automatischen Upload auf die Plattform.
+    </p>
+
+    {# ─── Komponenten ─── #}
+    <h2>Software-Komponenten</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🎬', title: 'Aufnahme-Steuerung', desc: 'Steuert Start, Stopp und Konfiguration der Videoaufnahme automatisch.' },
+            { icon: '📡', title: 'Streaming-Modul', desc: 'Ermöglicht Live-Streaming und Echtzeit-Übertragung des Videosignals.' },
+            { icon: '☁️', title: 'Upload-Service', desc: 'Automatischer Upload der Aufnahmen auf die Kaderblick-Plattform.' },
+            { icon: '⚙️', title: 'Konfiguration', desc: 'Web-Interface zur Einstellung von Auflösung, Bildrate, Netzwerk und Zeitplänen.' },
+            { icon: '📊', title: 'Monitoring', desc: 'Überwachung von Speicherplatz, Temperatur, Netzwerkstatus und Aufnahme-Zustand.' },
+        ]
+    } %}
+
+    {# ─── Installation ─── #}
+    <h2>Installation</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Betriebssystem', text: 'Raspberry Pi OS Lite (oder vergleichbar) auf die SD-Karte flashen.' },
+            { title: 'Basis-Setup', text: 'Netzwerk, SSH und Zeitzone konfigurieren.' },
+            { title: 'Kamera-Software', text: 'Die Kaderblick-Kamera-Software aus dem Repository klonen und installieren.' },
+            { title: 'Konfiguration', text: 'Aufnahmeparameter, Netzwerk und Upload-Ziel im Config-File eintragen.' },
+            { title: 'Autostart', text: 'Den Service als Systemd-Unit einrichten, damit die Aufnahme beim Einschalten automatisch startet.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Open Source',
+        text: 'Die gesamte Software des Kaderblick-Kamerasystems ist eigenentwickelt. Dokumentation und Quellcode sind intern verfügbar.'
+    } %}
+{% endblock %}

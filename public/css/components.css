@@ -1,0 +1,462 @@
+/* ─── Feature Cards ─── */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.feature-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(1, 134, 6, 0.1);
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.feature-card__icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card__title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.feature-card__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+/* ─── Callout / Hinweis-Boxen ─── */
+.callout {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-radius: 8px;
+    margin: 1.25rem 0;
+    border-left: 4px solid;
+}
+
+.callout--tip {
+    background: #f0fdf4;
+    border-left-color: #22c55e;
+}
+
+.callout--info {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+}
+
+.callout--warning {
+    background: #fffbeb;
+    border-left-color: #f59e0b;
+}
+
+.callout--danger {
+    background: #fef2f2;
+    border-left-color: #ef4444;
+}
+
+.callout__icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    line-height: 1.5;
+}
+
+.callout__title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+}
+
+.callout__text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #374151;
+}
+
+/* ─── Screenshot / Bild ─── */
+.screenshot {
+    margin: 1.25rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.screenshot__img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.screenshot__caption {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    padding: 0.6rem 1rem;
+    border-top: 1px solid var(--color-border);
+    background: #fafafa;
+    text-align: center;
+}
+
+/* ─── Schritt-für-Schritt Anleitung ─── */
+.steps {
+    list-style: none;
+    margin: 1.25rem 0;
+    padding: 0;
+}
+
+.steps__item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.steps__item:last-child {
+    border-bottom: none;
+}
+
+.steps__number {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-top: 0.1rem;
+}
+
+.steps__title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+
+.steps__text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.steps__image {
+    display: block;
+    max-width: 100%;
+    margin-top: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+}
+
+/* ─── Feature-Liste ─── */
+.feature-list {
+    margin: 1rem 0 1.5rem;
+}
+
+.feature-list__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.feature-list__item:last-child {
+    border-bottom: none;
+}
+
+.feature-list__icon {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    width: 1.75rem;
+    text-align: center;
+    margin-top: 0.1rem;
+}
+
+.feature-list__title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+}
+
+.feature-list__desc {
+    font-size: 0.84rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+/* ─── Tastenkürzel ─── */
+kbd, .kbd {
+    display: inline-block;
+    padding: 0.15rem 0.45rem;
+    font-family: 'Inter', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #374151;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 #d1d5db;
+    line-height: 1.4;
+}
+
+.kbd-plus {
+    margin: 0 0.2rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+/* ─── Sub-Navigation (Kamera-Detailseiten) ─── */
+.subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem 0 1.75rem;
+    padding: 0.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+.subnav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.subnav__link:hover {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.subnav__link--active {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+.subnav__link--active:hover {
+    background: #f0fdf4;
+    color: var(--color-primary);
+}
+
+/* ─── Format-Umschalter (OBJ / GLB) ─── */
+.viewer-format-toggle {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+.viewer-format-toggle__btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.viewer-format-toggle__btn:hover {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.viewer-format-toggle__btn--active {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+/* ─── 3D-Viewer + Teilekarte Layout ─── */
+.viewer-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+/* 3D-Viewer Panel */
+.viewer-panel {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-surface);
+}
+
+.viewer-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    background: #fafafa;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.viewer-panel__title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.viewer-panel__reset {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.viewer-panel__reset:hover {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.viewer-panel model-viewer {
+    display: block;
+    width: 100%;
+    height: 450px;
+}
+
+/* OBJ-Viewer Canvas (Three.js) */
+.viewer-panel__canvas {
+    display: block;
+    width: 100%;
+    height: 450px;
+    background: #f8f9fa;
+}
+
+.viewer-panel__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* Teilekarte / SVG Map */
+.parts-map {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-surface);
+}
+
+.parts-map__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    background: #fafafa;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.parts-map__title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.parts-map__hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.parts-map__svg-wrap {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.parts-map__svg {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+
+/* Teile-Legende */
+.parts-map__legend {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--color-border);
+    background: #fafafa;
+}
+
+.parts-map__legend-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.parts-map__legend-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+}
+
+.parts-map__legend-btn {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+}
+
+.parts-map__legend-btn:hover {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.parts-map__legend-btn--active {
+    background: #f0fdf4;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+}

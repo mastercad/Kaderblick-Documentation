@@ -46,12 +46,35 @@ abstract class BaseController extends AbstractController
     }
 
     /**
+     * Gibt die Sidebar-Navigation für Tools & Equipment zurück.
+     */
+    protected function getToolsNavigation(): array
+    {
+        return [
+            'app_tools_kamera_systeme' => [
+                'label' => 'Kamerasysteme',
+                'icon' => '📷',
+                'children' => [
+                    'app_tools_kamera_kaderblick' => ['label' => 'Kaderblick-Kamera', 'icon' => '🎥'],
+                    'app_tools_kamera_ptz' => ['label' => 'PTZ-Kamera', 'icon' => '🕹️'],
+                    'app_tools_kamera_dji' => ['label' => 'DJI Osmo Action5 Pro', 'icon' => '🏃'],
+                ],
+            ],
+            'app_tools_video_manager' => ['label' => 'VideoManager', 'icon' => '🎞️'],
+            'app_tools_ball_marker_gui' => ['label' => 'BallMarkerGui', 'icon' => '🎯'],
+            'app_tools_video_schnitt' => ['label' => 'VideoSchnitt', 'icon' => '✂️'],
+            'app_tools_camera_simulator' => ['label' => 'CameraSimulator', 'icon' => '🎮'],
+        ];
+    }
+
+    /**
      * Rendert ein Template mit automatisch injizierter Navigation und Active-State.
      */
     protected function renderDocs(string $template, string $activeRoute, array $parameters = []): Response
     {
         return $this->render($template, array_merge($parameters, [
             'navigation' => $this->getNavigation(),
+            'tools_navigation' => $this->getToolsNavigation(),
             'active_route' => $activeRoute,
         ]));
     }

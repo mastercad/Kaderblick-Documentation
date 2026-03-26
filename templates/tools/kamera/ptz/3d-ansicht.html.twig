@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}3D-Ansicht – PTZ-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🧊 3D-Ansicht – PTZ-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_ptz',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Interaktive 3D-Darstellung des PTZ-Kamera-Setups. Dreh das Modell per Maus oder Touch.
+        Klicke in der Teilekarte auf eine Komponente, um sie im 3D-Modell zu fokussieren.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: '3D-Modelle',
+        text: 'Unterstützt werden <strong>OBJ</strong>- und <strong>GLB</strong>-Dateien. Lege deine Dateien unter <code>/public/models/</code> ab:<br>• OBJ: <code>ptz-kamera.obj</code> (+ optional <code>.mtl</code>)<br>• GLB: <code>ptz-kamera.glb</code> (Photogrammetrie-Scan)<br>Sind beide vorhanden, kannst du per Umschalter zwischen den Formaten wechseln.'
+    } %}
+
+    {# ─── 3D-Viewer + SVG-Teilekarte ─── #}
+    {% include 'components/model_viewer.html.twig' with {
+        model_src_glb: asset('models/ptz-kamera.glb'),
+        model_src_obj: asset('models/ptz-kamera.obj'),
+        model_src_mtl: asset('models/ptz-kamera.mtl'),
+        model_alt: 'PTZ-Kamera – 3D-Modell',
+        svg_src: asset('images/docs/kamera/ptz-teile.svg'),
+        parts: [
+            { id: 'part-ptz-kamera',     label: 'PTZ-Kamera',       orbit: '0deg 65deg 100%',    target: '0m 0.05m 0m' },
+            { id: 'part-stativ-adapter',  label: 'Stativ-Adapter',   orbit: '0deg 90deg 90%',     target: '0m 0m 0m' },
+            { id: 'part-stativ',          label: 'Stativ',           orbit: '0deg 110deg 120%',   target: '0m -0.1m 0m' },
+            { id: 'part-wetterschutz',    label: 'Wetterschutz',     orbit: '0deg 40deg 90%',     target: '0m 0.08m 0m' },
+            { id: 'part-kabelfuehrung',   label: 'Kabelführung',     orbit: '90deg 85deg 100%',   target: '-0.03m 0m 0m' },
+            { id: 'part-poe',             label: 'PoE-Adapter',      orbit: '-45deg 80deg 110%',  target: '0.05m -0.05m 0m' },
+            { id: 'part-netzwerk',        label: 'Netzwerkkabel',    orbit: '45deg 80deg 110%',   target: '-0.05m -0.05m 0m' },
+        ]
+    } %}
+
+    {# ─── 3D-gedruckte Teile ─── #}
+    <h2>3D-gedruckte Teile</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🔩', title: 'Stativ-Adapter', desc: 'Adapter zur Montage der PTZ-Kamera auf verschiedenen Stativtypen.' },
+            { icon: '🛡️', title: 'Wetterschutz', desc: 'Abdeckung zum Schutz der Kamera bei Regen und Wind.' },
+            { icon: '📡', title: 'Kabelführung', desc: 'Kabelkanal zur sauberen Verlegung von Strom- und Netzwerkkabeln am Stativ.' },
+        ]
+    } %}
+
+    <h3>Druckeinstellungen</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Empfehlung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Material</td><td>PETG oder ASA</td></tr>
+            <tr><td>Schichthöhe</td><td>0.2 mm</td></tr>
+            <tr><td>Infill</td><td>40–50 %</td></tr>
+            <tr><td>Wandlinien</td><td>4</td></tr>
+            <tr><td>Stützen</td><td>Je nach Teil</td></tr>
+        </tbody>
+    </table>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Stabilität',
+        text: 'Da die Halterung das Gewicht der PTZ-Kamera tragen muss, wird ein höherer Infill (40–50 %) und stabiles Material (PETG/ASA) empfohlen.'
+    } %}
+{% endblock %}

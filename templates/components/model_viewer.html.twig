@@ -1,0 +1,462 @@
+{# ─── 3D-Viewer + Interaktive Teilekarte ─── #}
+{# Parameter:
+     model_src       (string|null)  – Pfad zur .glb-Datei (abwärtskompatibel, wie model_src_glb)
+     model_src_glb   (string|null)  – Pfad zur .glb-Datei, z.B. '/models/kaderblick-kamera.glb'
+     model_src_obj   (string|null)  – Pfad zur .obj-Datei, z.B. '/models/kaderblick-kamera.obj'
+     model_src_mtl   (string|null)  – Pfad zur .mtl-Datei (optional, Material für OBJ)
+     model_alt       (string)       – Alt-Text für das 3D-Modell
+     svg_src         (string|null)  – Pfad zur SVG-Teilekarte
+     parts           (array)        – Liste der Teile: [{ id, label, orbit, target }]
+         id     = SVG-Element-ID (z.B. 'part-deckel')
+         label  = Anzeigename (z.B. 'Gehäusedeckel')
+         orbit  = Kameraposition als "theta phi radius" (z.B. '45deg 55deg 0.5m')
+         target = Fokuspunkt als "x y z" (z.B. '0m 0.1m 0m')
+
+     Unterstützte Kombinationen:
+       – Nur OBJ  → Three.js-Viewer
+       – Nur GLB  → model-viewer Web Component
+       – Beide    → Umschalter zwischen OBJ (Three.js) und GLB (model-viewer)
+#}
+
+{# ─── Quellen normalisieren ─── #}
+{% set glb_src = model_src_glb is defined and model_src_glb ? model_src_glb : (model_src is defined and model_src ? model_src : null) %}
+{% set obj_src = model_src_obj is defined and model_src_obj ? model_src_obj : null %}
+{% set mtl_src = model_src_mtl is defined and model_src_mtl ? model_src_mtl : null %}
+{% set has_glb = glb_src is not null %}
+{% set has_obj = obj_src is not null %}
+{% set has_both = has_glb and has_obj %}
+
+<div class="viewer-layout">
+    {# ─── Format-Umschalter (nur wenn beide Formate vorhanden) ─── #}
+    {% if has_both %}
+    <div class="viewer-format-toggle">
+        <button class="viewer-format-toggle__btn viewer-format-toggle__btn--active" id="toggleObj" data-format="obj" title="OBJ-Datei (Three.js)">
+            📐 OBJ-Modell
+        </button>
+        <button class="viewer-format-toggle__btn" id="toggleGlb" data-format="glb" title="GLB-Datei (Photogrammetrie-Scan)">
+            🧊 GLB-Scan
+        </button>
+    </div>
+    {% endif %}
+
+    {# ─── GLB-Viewer (model-viewer Web Component) ─── #}
+    {% if has_glb %}
+    <div class="viewer-panel" id="viewerPanelGlb" {% if has_both %}style="display: none;"{% endif %}>
+        <div class="viewer-panel__header">
+            <span class="viewer-panel__title">🧊 3D-Ansicht {% if has_both %}<small>(GLB)</small>{% endif %}</span>
+            <button class="viewer-panel__reset" id="viewerResetGlb" title="Ansicht zurücksetzen">↺ Reset</button>
+        </div>
+        <model-viewer
+            id="modelViewerGlb"
+            src="{{ glb_src }}"
+            alt="{{ model_alt }}"
+            camera-controls
+            touch-action="pan-y"
+            auto-rotate
+            shadow-intensity="1"
+            environment-image="neutral"
+            camera-orbit="0deg 75deg 105%"
+            min-camera-orbit="auto auto 50%"
+            max-camera-orbit="auto auto 200%"
+            interaction-prompt="auto"
+            loading="lazy"
+            reveal="auto"
+            style="width: 100%; height: 100%; background: #f8f9fa;">
+            <div class="viewer-panel__loading" slot="poster">
+                <span>GLB-Modell wird geladen …</span>
+            </div>
+        </model-viewer>
+    </div>
+    {% endif %}
+
+    {# ─── OBJ-Viewer (Three.js) ─── #}
+    {% if has_obj %}
+    <div class="viewer-panel" id="viewerPanelObj" {% if has_both %}style="display: block;"{% elseif not has_obj %}style="display: none;"{% endif %}>
+        <div class="viewer-panel__header">
+            <span class="viewer-panel__title">📐 3D-Ansicht {% if has_both %}<small>(OBJ)</small>{% endif %}</span>
+            <button class="viewer-panel__reset" id="viewerResetObj" title="Ansicht zurücksetzen">↺ Reset</button>
+        </div>
+        <canvas id="objViewerCanvas" class="viewer-panel__canvas"></canvas>
+        <div class="viewer-panel__loading" id="objLoading">
+            <span>OBJ-Modell wird geladen …</span>
+        </div>
+    </div>
+    {% endif %}
+
+    {# ─── SVG-Teilekarte ─── #}
+    {% if svg_src is defined and svg_src %}
+    <div class="parts-map">
+        <div class="parts-map__header">
+            <span class="parts-map__title">🗺️ Teilekarte</span>
+            <span class="parts-map__hint">Klicke auf ein Teil, um es im 3D-Modell zu fokussieren</span>
+        </div>
+        <div class="parts-map__svg-wrap" id="partsMapSvg">
+            <object type="image/svg+xml" data="{{ svg_src }}" id="partsSvgObject" class="parts-map__svg">
+                SVG-Teilekarte konnte nicht geladen werden.
+            </object>
+        </div>
+
+        {# ─── Teile-Legende ─── #}
+        {% if parts is defined and parts %}
+        <div class="parts-map__legend">
+            <div class="parts-map__legend-title">Bauteile</div>
+            <ul class="parts-map__legend-list">
+                {% for part in parts %}
+                <li>
+                    <button class="parts-map__legend-btn"
+                            data-part-id="{{ part.id }}"
+                            data-orbit="{{ part.orbit }}"
+                            data-target="{{ part.target }}">
+                        {{ part.label }}
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+{# ─── Three.js OBJ-Viewer Script (ES Module) ─── #}
+{% if has_obj %}
+<script type="module">
+import * as THREE from 'three';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+(function () {
+    const canvas = document.getElementById('objViewerCanvas');
+    const loadingEl = document.getElementById('objLoading');
+    if (!canvas) return;
+
+    /* ———— Three.js Setup ———— */
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.shadowMap.enabled = true;
+
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 1000);
+    camera.position.set(0, 1, 3);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 2;
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    /* Speichere Startwerte für Reset */
+    const defaultCamPos = new THREE.Vector3(0, 1, 3);
+    const defaultTarget = new THREE.Vector3(0, 0, 0);
+
+    /* Beleuchtung */
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(5, 10, 7);
+    dirLight.castShadow = true;
+    scene.add(dirLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+    fillLight.position.set(-5, 3, -5);
+    scene.add(fillLight);
+
+    /* Boden-Grid (dezent) */
+    const grid = new THREE.GridHelper(4, 20, 0xcccccc, 0xe5e5e5);
+    grid.position.y = -0.01;
+    scene.add(grid);
+
+    /* Canvas-Größe anpassen */
+    function resize() {
+        const parent = canvas.parentElement;
+        const w = parent.clientWidth;
+        const h = parent.clientHeight || 450;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* Animation Loop */
+    let modelBoundingSphere = null;
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    /* ———— OBJ laden ———— */
+    const objUrl = '{{ obj_src }}';
+    const mtlUrl = '{{ mtl_src ?? '' }}';
+
+    function loadObj(mtlLoader) {
+        const loader = new OBJLoader();
+        if (mtlLoader) loader.setMaterials(mtlLoader);
+
+        loader.load(objUrl, function (obj) {
+            /* Modell zentrieren und skalieren */
+            const box = new THREE.Box3().setFromObject(obj);
+            const center = box.getCenter(new THREE.Vector3());
+            const size = box.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 2 / maxDim;
+            obj.scale.setScalar(scale);
+            obj.position.sub(center.multiplyScalar(scale));
+
+            /* Bounding Sphere für Fokus-Funktionen speichern */
+            const scaledBox = new THREE.Box3().setFromObject(obj);
+            modelBoundingSphere = scaledBox.getBoundingSphere(new THREE.Sphere());
+
+            /* Standard-Material wenn keine MTL */
+            if (!mtlLoader) {
+                obj.traverse(function (child) {
+                    if (child.isMesh) {
+                        child.material = new THREE.MeshStandardMaterial({
+                            color: 0x888888,
+                            roughness: 0.5,
+                            metalness: 0.2
+                        });
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+            }
+
+            scene.add(obj);
+
+            /* Kamera initial positionieren */
+            const sphere = modelBoundingSphere;
+            const dist = sphere.radius * 2.5;
+            camera.position.set(0, sphere.center.y + dist * 0.4, dist);
+            controls.target.copy(sphere.center);
+            defaultCamPos.copy(camera.position);
+            defaultTarget.copy(controls.target);
+            controls.update();
+
+            /* Grid an Unterseite */
+            grid.position.y = scaledBox.min.y;
+
+            /* Laden fertig */
+            if (loadingEl) loadingEl.style.display = 'none';
+        },
+        function (xhr) {
+            /* Fortschritt */
+            if (loadingEl && xhr.total > 0) {
+                const pct = Math.round((xhr.loaded / xhr.total) * 100);
+                loadingEl.querySelector('span').textContent = 'OBJ-Modell wird geladen … ' + pct + ' %';
+            }
+        },
+        function (err) {
+            console.error('OBJ laden fehlgeschlagen:', err);
+            if (loadingEl) loadingEl.querySelector('span').textContent = 'Fehler beim Laden der OBJ-Datei.';
+        });
+    }
+
+    if (mtlUrl) {
+        const mtlLoader = new MTLLoader();
+        mtlLoader.load(mtlUrl, function (materials) {
+            materials.preload();
+            loadObj(materials);
+        }, undefined, function () {
+            console.warn('MTL laden fehlgeschlagen, lade OBJ ohne Materialien.');
+            loadObj(null);
+        });
+    } else {
+        loadObj(null);
+    }
+
+    /* ———— Fokus-Funktion für Three.js ———— */
+    /* Konvertiert orbit-String ("45deg 55deg 0.5m") → Kamera-Position */
+    function parseOrbit(orbitStr) {
+        const parts = orbitStr.trim().split(/\s+/);
+        let theta = 0, phi = 75, radius = 1;
+        if (parts[0]) theta = parseFloat(parts[0]) * (Math.PI / 180);
+        if (parts[1]) phi = parseFloat(parts[1]) * (Math.PI / 180);
+        if (parts[2]) {
+            const rv = parts[2];
+            if (rv.endsWith('%') && modelBoundingSphere) {
+                radius = modelBoundingSphere.radius * (parseFloat(rv) / 100) * 2.5;
+            } else {
+                radius = parseFloat(rv);
+            }
+        }
+        /* Kugelkoordinaten → kartesisch */
+        const x = radius * Math.sin(phi) * Math.sin(theta);
+        const y = radius * Math.cos(phi);
+        const z = radius * Math.sin(phi) * Math.cos(theta);
+        return new THREE.Vector3(x, y, z);
+    }
+
+    function parseTarget(targetStr) {
+        const parts = targetStr.trim().split(/\s+/);
+        const x = parseFloat(parts[0]) || 0;
+        const y = parseFloat(parts[1]) || 0;
+        const z = parseFloat(parts[2]) || 0;
+        return new THREE.Vector3(x, y, z);
+    }
+
+    /* Öffentliche Fokus-Funktion (wird vom gemeinsamen Script aufgerufen) */
+    window.__objViewerFocus = function (orbit, target) {
+        const camPos = parseOrbit(orbit);
+        const tgt = parseTarget(target);
+        /* Offset relativ zum Modellzentrum */
+        if (modelBoundingSphere) {
+            tgt.add(modelBoundingSphere.center);
+            camPos.add(modelBoundingSphere.center);
+        }
+        controls.autoRotate = false;
+        camera.position.copy(camPos);
+        controls.target.copy(tgt);
+        controls.update();
+    };
+
+    window.__objViewerReset = function () {
+        camera.position.copy(defaultCamPos);
+        controls.target.copy(defaultTarget);
+        controls.autoRotate = true;
+        controls.update();
+    };
+})();
+</script>
+{% endif %}
+
+{# ─── Gemeinsames Interaktions-Script ─── #}
+<script>
+(function () {
+    var hasGlb = {{ has_glb ? 'true' : 'false' }};
+    var hasObj = {{ has_obj ? 'true' : 'false' }};
+    var hasBoth = hasGlb && hasObj;
+    var activeFormat = hasObj ? 'obj' : 'glb'; /* Standard: OBJ wenn vorhanden */
+
+    var glbViewer = document.getElementById('modelViewerGlb');
+    var glbPanel = document.getElementById('viewerPanelGlb');
+    var objPanel = document.getElementById('viewerPanelObj');
+
+    var resetGlb = document.getElementById('viewerResetGlb');
+    var resetObj = document.getElementById('viewerResetObj');
+    var svgObj = document.getElementById('partsSvgObject');
+
+    var defaultOrbit = '0deg 75deg 105%';
+    var defaultTarget = 'auto auto auto';
+
+    /* ———— Format-Umschalter ———— */
+    if (hasBoth) {
+        var toggleBtns = document.querySelectorAll('.viewer-format-toggle__btn');
+        toggleBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                activeFormat = btn.dataset.format;
+                toggleBtns.forEach(function (b) { b.classList.remove('viewer-format-toggle__btn--active'); });
+                btn.classList.add('viewer-format-toggle__btn--active');
+
+                if (activeFormat === 'glb') {
+                    if (glbPanel) glbPanel.style.display = 'block';
+                    if (objPanel) objPanel.style.display = 'none';
+                } else {
+                    if (glbPanel) glbPanel.style.display = 'none';
+                    if (objPanel) objPanel.style.display = 'block';
+                }
+                clearActiveStates();
+            });
+        });
+    }
+
+    /* ———— Reset-Buttons ———— */
+    if (resetGlb && glbViewer) {
+        resetGlb.addEventListener('click', function () {
+            glbViewer.cameraOrbit = defaultOrbit;
+            glbViewer.cameraTarget = defaultTarget;
+            glbViewer.setAttribute('auto-rotate', '');
+            clearActiveStates();
+        });
+    }
+    if (resetObj) {
+        resetObj.addEventListener('click', function () {
+            if (window.__objViewerReset) window.__objViewerReset();
+            clearActiveStates();
+        });
+    }
+
+    /* ———— Fokus-Funktion: je nach aktivem Viewer ———— */
+    function focusPart(orbit, target, partId) {
+        if (activeFormat === 'glb' && glbViewer) {
+            glbViewer.removeAttribute('auto-rotate');
+            glbViewer.cameraOrbit = orbit;
+            glbViewer.cameraTarget = target;
+        } else if (activeFormat === 'obj' && window.__objViewerFocus) {
+            window.__objViewerFocus(orbit, target);
+        }
+        setActiveState(partId);
+    }
+
+    /* ———— Aktiv-Zustand in SVG und Legende ———— */
+    function setActiveState(partId) {
+        clearActiveStates();
+        document.querySelectorAll('.parts-map__legend-btn').forEach(function (btn) {
+            if (btn.dataset.partId === partId) {
+                btn.classList.add('parts-map__legend-btn--active');
+            }
+        });
+        if (svgObj && svgObj.contentDocument) {
+            var el = svgObj.contentDocument.getElementById(partId);
+            if (el) el.classList.add('part--active');
+        }
+    }
+
+    function clearActiveStates() {
+        document.querySelectorAll('.parts-map__legend-btn--active').forEach(function (btn) {
+            btn.classList.remove('parts-map__legend-btn--active');
+        });
+        if (svgObj && svgObj.contentDocument) {
+            svgObj.contentDocument.querySelectorAll('.part--active').forEach(function (el) {
+                el.classList.remove('part--active');
+            });
+        }
+    }
+
+    /* ———— Legende-Buttons: Klick → Fokus ———— */
+    document.querySelectorAll('.parts-map__legend-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            focusPart(btn.dataset.orbit, btn.dataset.target, btn.dataset.partId);
+        });
+    });
+
+    /* ———— SVG laden → Klick-Events registrieren ———— */
+    if (svgObj) {
+        svgObj.addEventListener('load', function () {
+            var svgDoc = svgObj.contentDocument;
+            if (!svgDoc) return;
+
+            svgDoc.querySelectorAll('[data-orbit]').forEach(function (el) {
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', function () {
+                    focusPart(el.getAttribute('data-orbit'), el.getAttribute('data-target'), el.id);
+                });
+                el.addEventListener('mouseenter', function () { el.classList.add('part--hover'); });
+                el.addEventListener('mouseleave', function () { el.classList.remove('part--hover'); });
+            });
+
+            document.querySelectorAll('.parts-map__legend-btn').forEach(function (btn) {
+                var svgPart = svgDoc.getElementById(btn.dataset.partId);
+                if (svgPart) {
+                    svgPart.style.cursor = 'pointer';
+                    if (!svgPart.hasAttribute('data-orbit')) {
+                        svgPart.setAttribute('data-orbit', btn.dataset.orbit);
+                        svgPart.setAttribute('data-target', btn.dataset.target);
+                    }
+                    svgPart.addEventListener('click', function () {
+                        focusPart(btn.dataset.orbit, btn.dataset.target, btn.dataset.partId);
+                    });
+                    svgPart.addEventListener('mouseenter', function () { svgPart.classList.add('part--hover'); });
+                    svgPart.addEventListener('mouseleave', function () { svgPart.classList.remove('part--hover'); });
+                }
+            });
+        });
+    }
+})();
+</script>

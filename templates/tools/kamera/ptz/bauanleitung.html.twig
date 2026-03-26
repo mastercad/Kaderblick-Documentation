@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bauanleitung – PTZ-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🔧 Bauanleitung – PTZ-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_ptz',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Aufbau und Montage des PTZ-Kamera-Setups – von der Halterung bis zur
+        Netzwerkverbindung und Ersteinrichtung der Steuerungssoftware.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Voraussetzungen',
+        text: 'Die PTZ-Kamera selbst ist ein kommerzielles Produkt. Diese Anleitung beschreibt den Aufbau des Gesamtsetups inkl. eigener Halterung und Steuerungssoftware.'
+    } %}
+
+    {# ─── Aufbau ─── #}
+    <h2>Aufbau-Schritte</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Halterung fertigen', text: 'Die Halterung für die PTZ-Kamera nach den 3D-Modellen drucken oder aus Alu-Profil bauen (siehe <a href="' ~ path('app_tools_kamera_ptz_3d_ansicht') ~ '">3D-Ansicht</a>).' },
+            { title: 'Kamera montieren', text: 'Die PTZ-Kamera auf der Halterung befestigen und auf dem Stativ sichern.' },
+            { title: 'Stromversorgung', text: 'Netzteil oder PoE-Adapter anschließen.' },
+            { title: 'Netzwerk herstellen', text: 'Kamera per LAN-Kabel oder WLAN mit dem Steuerungsrechner verbinden.' },
+            { title: 'Software einrichten', text: 'Die <a href="' ~ path('app_tools_kamera_ptz_software') ~ '">PTZ-Steuerungssoftware</a> installieren und die Kamera-IP konfigurieren.' },
+            { title: 'Presets konfigurieren', text: 'Standardpositionen (Ecken, Mittellinie, Elfmeterpunkt) als Presets speichern.' },
+            { title: 'Testlauf', text: 'Steuerung, Zoom und Aufnahmequalität ihn einem Probelauf prüfen.' },
+        ]
+    } %}
+{% endblock %}

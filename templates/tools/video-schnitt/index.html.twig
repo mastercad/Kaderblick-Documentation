@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VideoSchnitt – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>✂️ VideoSchnitt</h1>
+    <p>
+        Das VideoSchnitt-Tool ermöglicht schnelles und gezieltes Schneiden von Spielvideos.
+        Einzelne Szenen können extrahiert, zusammengestellt und für die Analyse oder Präsentation
+        aufbereitet werden.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '✂️', title: 'Szenen schneiden', desc: 'Start- und Endpunkt setzen, um einzelne Spielszenen aus dem Gesamtvideo zu extrahieren.' },
+            { icon: '🔗', title: 'Szenen zusammenfügen', desc: 'Mehrere geschnittene Szenen zu einem Highlight-Video kombinieren.' },
+            { icon: '🎬', title: 'Multi-Kamera', desc: 'Szenen aus verschiedenen Kameraperspektiven zusammenführen.' },
+            { icon: '📝', title: 'Beschriftung', desc: 'Szenen mit Titeln und Anmerkungen versehen.' },
+            { icon: '💾', title: 'Export', desc: 'Fertige Clips in gängigen Formaten exportieren.' },
+        ]
+    } %}
+
+    {# ─── Workflow ─── #}
+    <h2>Typischer Workflow</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Video laden', text: 'Das Spielvideo aus dem VideoManager oder direkt von der Festplatte öffnen.' },
+            { title: 'Szenen markieren', text: 'Die gewünschten Szenen mit Start- und Endpunkt markieren.' },
+            { title: 'Zusammenstellen', text: 'Die markierten Szenen in der gewünschten Reihenfolge anordnen.' },
+            { title: 'Exportieren', text: 'Das fertige Video rendern und als Datei speichern.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Optimiert für Spielvideos',
+        text: 'Der VideoSchnitt ist kein allgemeines Schnittprogramm, sondern speziell auf den Workflow mit Fußball-Spielvideos zugeschnitten – schnell, einfach, ohne Overhead.'
+    } %}
+{% endblock %}

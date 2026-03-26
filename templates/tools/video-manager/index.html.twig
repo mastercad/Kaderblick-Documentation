@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VideoManager – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🎞️ VideoManager</h1>
+    <p>
+        Der VideoManager ist ein eigenständiges Tool zur Verwaltung, Organisation und Verarbeitung
+        von Spielvideos. Er bildet die Brücke zwischen Kameraaufnahme und der Analyse in Kaderblick.
+    </p>
+
+    {# ─── Funktionsübersicht ─── #}
+    <h2>Funktionsübersicht</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📂', title: 'Video-Import', desc: 'Aufnahmen von verschiedenen Kamerasystemen importieren und zentral verwalten.' },
+            { icon: '🏷️', title: 'Metadaten zuordnen', desc: 'Videos mit Spielen, Teams und Datum verknüpfen.' },
+            { icon: '🔄', title: 'Formatkonvertierung', desc: 'Videos in das benötigte Format und die passende Auflösung konvertieren.' },
+            { icon: '☁️', title: 'Upload-Vorbereitung', desc: 'Videos für den Upload auf die Plattform oder YouTube vorbereiten.' },
+            { icon: '📊', title: 'Übersicht', desc: 'Alle aufgenommenen Spiele und deren Videostatus auf einen Blick.' },
+        ]
+    } %}
+
+    {# ─── Workflow ─── #}
+    <h2>Typischer Workflow</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Aufnahme importieren', text: 'Die Videodateien von der Kamera oder SD-Karte in den VideoManager importieren.' },
+            { title: 'Spiel zuordnen', text: 'Das importierte Video dem entsprechenden Spiel in der Datenbank zuweisen.' },
+            { title: 'Verarbeiten', text: 'Bei Bedarf konvertieren, zuschneiden oder Metadaten ergänzen.' },
+            { title: 'Bereitstellen', text: 'Das fertige Video für Kaderblick oder externe Plattformen exportieren.' },
+        ]
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Eigenständiges Tool',
+        text: 'Der VideoManager ist ein lokal laufendes Desktop-Programm und wird unabhängig von der Web-Plattform betrieben.'
+    } %}
+{% endblock %}

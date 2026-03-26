@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaderblick-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🎥 Kaderblick-Kamera</h1>
+
+    {% include 'components/kamera_subnav.html.twig' with {
+        base_route: 'app_tools_kamera_kaderblick',
+        current_path: app.request.pathInfo
+    } %}
+
+    <p>
+        Das <strong>Kaderblick</strong>-Kamerasystem ist eine komplette Eigenentwicklung – von der
+        Hardware über das Gehäuse bis zur Software. Es wurde speziell für den Einsatz auf
+        Fußballplätzen konzipiert und gebaut.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Eigenentwicklung',
+        text: 'Hardware und Software des Kaderblick-Kamerasystems wurden vollständig selbst entwickelt und gebaut – von der Platine bis zur Streaming-Software.'
+    } %}
+
+    {# ─── Merkmale ─── #}
+    <h2>Merkmale</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🔩', title: 'Eigene Hardware', desc: 'Selbst entwickelte und gebaute Elektronik – maßgeschneidert für den Spielbetrieb.' },
+            { icon: '📐', title: 'Eigenes Gehäuse', desc: 'Wetterfestes Gehäuse, entworfen in 3D und selbst gefertigt.' },
+            { icon: '🤖', title: 'Automatische Aufnahme', desc: 'Kein Bediener nötig – das System startet und stoppt automatisch.' },
+            { icon: '📡', title: 'Plattform-Integration', desc: 'Direkte Anbindung an die Kaderblick-Plattform für nahtlosen Video-Upload.' },
+            { icon: '🔭', title: 'Weitwinkel', desc: 'Optimiert für die Erfassung des gesamten Spielfelds von einer festen Position.' },
+        ]
+    } %}
+
+    {# ─── Einsatz ─── #}
+    <h2>Einsatz</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Montieren', text: 'Die Kamera an der vorgesehenen Halterung am Spielfeldrand befestigen.' },
+            { title: 'Einschalten', text: 'Das System startet automatisch und stellt die Verbindung her.' },
+            { title: 'Aufnahme', text: 'Die Aufnahme läuft automatisch über die gesamte Spielzeit.' },
+            { title: 'Abruf', text: 'Das Video wird automatisch bereitgestellt und kann in Kaderblick analysiert werden.' },
+        ]
+    } %}
+
+    {# ─── Weitere Infos ─── #}
+    <h2>Weitere Informationen</h2>
+    <p>Detaillierte Informationen zu den einzelnen Aspekten des Kamerasystems:</p>
+    <div class="feature-grid">
+        <a href="{{ path('app_tools_kamera_kaderblick_bauanleitung') }}" class="feature-card">
+            <div class="feature-card__icon">🔧</div>
+            <div class="feature-card__title">Bauanleitung</div>
+            <div class="feature-card__desc">Schritt-für-Schritt-Anleitung zum Aufbau des Kamerasystems.</div>
+        </a>
+        <a href="{{ path('app_tools_kamera_kaderblick_3d_ansicht') }}" class="feature-card">
+            <div class="feature-card__icon">🧊</div>
+            <div class="feature-card__title">3D-Ansicht</div>
+            <div class="feature-card__desc">Interaktive 3D-Darstellung des Gehäuses und der Komponenten.</div>
+        </a>
+        <a href="{{ path('app_tools_kamera_kaderblick_software') }}" class="feature-card">
+            <div class="feature-card__icon">💻</div>
+            <div class="feature-card__title">Software</div>
+            <div class="feature-card__desc">Die Software-Komponenten: Steuerung, Streaming, Verarbeitung.</div>
+        </a>
+        <a href="{{ path('app_tools_kamera_kaderblick_teileliste') }}" class="feature-card">
+            <div class="feature-card__icon">📋</div>
+            <div class="feature-card__title">Teileliste</div>
+            <div class="feature-card__desc">Alle benötigten Bauteile, Komponenten und Bezugsquellen.</div>
+        </a>
+    </div>
+{% endblock %}

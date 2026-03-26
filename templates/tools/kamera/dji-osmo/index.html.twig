@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DJI Osmo Action5 Pro – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>🏃 DJI Osmo Action5 Pro</h1>
+    <p>
+        Die <strong>DJI Osmo Action5 Pro</strong> ist eine kompakte Action-Kamera, die für manuelle
+        Aufnahmen von Spielen eingesetzt wird. Sie dient als flexible und mobile Ergänzung
+        zu den stationären Kamerasystemen.
+    </p>
+
+    {# ─── Merkmale ─── #}
+    <h2>Merkmale</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '📱', title: 'Kompakt & leicht', desc: 'Klein genug für die Hosentasche – in Sekunden einsatzbereit.' },
+            { icon: '🎥', title: '4K-Aufnahmen', desc: 'Hochauflösende Videoaufnahmen bis 4K bei 120 fps.' },
+            { icon: '🔄', title: 'Bildstabilisierung', desc: 'Hervorragende elektronische Stabilisierung – auch bei Bewegung ruhige Bilder.' },
+            { icon: '💧', title: 'Wetterfest', desc: 'Wasserdicht und robust – ideal auch bei schlechtem Wetter.' },
+            { icon: '🔋', title: 'Akkulaufzeit', desc: 'Lange Akkulaufzeit für mindestens ein komplettes Spiel (90+ Minuten).' },
+        ]
+    } %}
+
+    {# ─── Einsatz ─── #}
+    <h2>Typischer Einsatz</h2>
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Vorbereiten', text: 'Akku laden, SD-Karte einsetzen und Video-Einstellungen prüfen (Auflösung, Bildrate).' },
+            { title: 'Positionieren', text: 'Die Kamera manuell am Spielfeldrand positionieren – z. B. auf einem kleinen Stativ oder per Klemme.' },
+            { title: 'Aufnehmen', text: 'Das Spiel manuell aufnehmen. Bei Bedarf Perspektive und Ausschnitt anpassen.' },
+            { title: 'Übertragen', text: 'Die Aufnahme nach dem Spiel per SD-Karte oder USB auf den Rechner übertragen.' },
+            { title: 'Verarbeiten', text: 'Das Video im <a href="' ~ path('app_tools_video_manager') ~ '">VideoManager</a> importieren und dem Spiel zuordnen.' },
+        ]
+    } %}
+
+    {# ─── Empfohlene Einstellungen ─── #}
+    <h2>Empfohlene Einstellungen</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Einstellung</th>
+                <th>Wert</th>
+                <th>Hinweis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Auflösung</td><td>4K</td><td>Beste Qualität für spätere Analyse</td></tr>
+            <tr><td>Bildrate</td><td>30 fps</td><td>Reicht für Spielanalyse, spart Speicher. 60 fps für Zeitlupen.</td></tr>
+            <tr><td>Stabilisierung</td><td>RockSteady</td><td>Für ruhige Bilder auch bei Handaufnahmen</td></tr>
+            <tr><td>Sichtfeld</td><td>Weit / Ultra-Wide</td><td>Möglichst viel Spielfeld erfassen</td></tr>
+            <tr><td>Farbe</td><td>Normal</td><td>D-Cinelike nur bei geplanter Nachbearbeitung</td></tr>
+        </tbody>
+    </table>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'tip',
+        title: 'Tipp: Zweitkamera',
+        text: 'Die DJI Osmo Action5 Pro eignet sich ideal als Zweitkamera – z. B. für eine alternative Perspektive hinter dem Tor oder als mobile Kamera bei Auswärtsspielen, wo kein festes Setup möglich ist.'
+    } %}
+{% endblock %}
