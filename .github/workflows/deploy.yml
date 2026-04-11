@@ -8,44 +8,73 @@ on:
 
 jobs:
 
-  deployment:
+  # ------------------------------
+  # Image auf der CI-Pipeline bauen und in die GHCR pushen
+  # ------------------------------
+  build:
+    name: Build & Push Image
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
+
+    outputs:
+      image: ${{ steps.vars.outputs.image }}
+      package_name: ${{ steps.vars.outputs.package_name }}
 
     steps:
-      # ------------------------------
-      # Checkout repository
-      # ------------------------------
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      # ------------------------------
-      # Cache Composer vendors
-      # ------------------------------
-      - name: Cache Composer vendors
-        uses: actions/cache@v3
+      - name: Set image variables
+        id: vars
+        run: |
+          REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "image=ghcr.io/${REPO}:${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "image_latest=ghcr.io/${REPO}:latest" >> $GITHUB_OUTPUT
+          echo "package_name=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: .docker/app/Dockerfile
+          push: true
+          tags: |
+            ${{ steps.vars.outputs.image }}
+            ${{ steps.vars.outputs.image_latest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ------------------------------
+  # Fertiges Image auf dem Server deployen
+  # ------------------------------
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
 
       # ------------------------------
-      # Generate release directory
+      # Release-Verzeichnis generieren
       # ------------------------------
       - name: Generate release directory name
         id: release
         run: echo "dir=${{ secrets.MAIN_PROJECT_PATH }}/releases/$(date +%Y%m%d_%H%M%S)" >> $GITHUB_OUTPUT
 
       # ------------------------------
-      # Prepare build files
+      # Release-Verzeichnis auf dem Server anlegen
       # ------------------------------
-      - name: Prepare files
-        run: |
-          mkdir -p build
-          cp -r docker-compose.yaml .docker .env.dist composer.json composer.lock symfony.lock bin config public src templates translations build/
-
-      # ------------------------------
-      # Create release directory for SCP
-      # ------------------------------
-                
       - name: Create release directory on server
         uses: appleboy/ssh-action@master
         with:
@@ -59,75 +88,21 @@ jobs:
             chown -R ${{ secrets.PLESK_USERNAME }}:psacln "${{ steps.release.outputs.dir }}"
 
       # ------------------------------
-      # Copy build files to server
+      # Compose-Datei und .env.dist auf den Server kopieren
       # ------------------------------
-      - name: Copy files to server
+      - name: Copy compose and env files to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.PLESK_HOST }}
           username: ${{ secrets.PLESK_USERNAME }}
           password: ${{ secrets.PLESK_PASSWORD }}
-          source: "build/*"
+          source: "docker-compose.yaml,.env.dist"
           target: "${{ steps.release.outputs.dir }}"
-          strip_components: 1
 
       # ------------------------------
-      # Prepare .env files
+      # Image aus GHCR laden, Release aktivieren
       # ------------------------------
-      - name: Prepare .env files
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
-          script: |
-            set -e
-            RELEASE_DIR="${{ steps.release.outputs.dir }}"
-            cd "$RELEASE_DIR"
-
-            cp .env.dist .env
-            sed -i 's/^APP_ENV=dev$/APP_ENV=prod/' .env
-
-      # ------------------------------
-      # Build & start
-      # ------------------------------
-      - name: Build
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
-          script: |
-            set -e
-            RELEASE_DIR="${{ steps.release.outputs.dir }}"
-            cd "$RELEASE_DIR"
-            
-            chmod -R 755 "$RELEASE_DIR"
-            chown -R kaderblick-ftp-admin:psacln "$RELEASE_DIR"
-
-            docker compose -p kaderblick-docs down --remove-orphans app
-            docker compose -p kaderblick-docs up -d --build --force-recreate app
-
-      # ------------------------------
-      # Composer
-      # ------------------------------
-      - name: Composer
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
-          script: |
-            set -e
-            RELEASE_DIR="${{ steps.release.outputs.dir }}"
-            cd "$RELEASE_DIR"
-
-            docker compose -p kaderblick-docs exec -T app composer install --no-dev --optimize-autoloader
-
-      # ------------------------------
-      # Activate Release (Zero-Downtime)
-      # ------------------------------
-      - name: Activate Release
+      - name: Deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PLESK_HOST }}
@@ -137,15 +112,34 @@ jobs:
             set -e
             RELEASE_DIR="${{ steps.release.outputs.dir }}"
             CURRENT_DIR="${{ secrets.MAIN_PROJECT_PATH }}/current"
+            IMAGE="${{ needs.build.outputs.image }}"
 
-            docker compose -p kaderblick-docs down --remove-orphans app
+            cd "$RELEASE_DIR"
+
+            # .env aus .env.dist erzeugen und für Produktion anpassen
+            cp .env.dist .env
+            sed -i 's/^APP_ENV=dev$/APP_ENV=prod/' .env
+            echo "APP_IMAGE=$IMAGE" >> .env
+
+            chmod -R 755 "$RELEASE_DIR"
+            chown -R kaderblick-ftp-admin:psacln "$RELEASE_DIR"
+
+            # Bei GHCR anmelden und fertiges Image laden (kein Build auf dem Server)
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+            docker pull "$IMAGE"
+
+            # Laufenden Container stoppen
+            docker compose -p kaderblick-docs down --remove-orphans || true
+
+            # Symlink auf neues Release setzen und Container starten
             ln -sfn "$RELEASE_DIR" "$CURRENT_DIR"
-            chmod -R 777 "$CURRENT_DIR/var"
-
             cd "$CURRENT_DIR"
-            docker compose -p kaderblick-docs up -d --force-recreate app
+            docker compose -p kaderblick-docs up -d --force-recreate --no-build
 
-      - name: Cleanup old releases
+      # ------------------------------
+      # Aufräumen: alte Releases und ungenutzte Images auf dem Server
+      # ------------------------------
+      - name: Cleanup server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PLESK_HOST }}
@@ -153,5 +147,27 @@ jobs:
           password: ${{ secrets.ROOT_PASSWORD }}
           script: |
             set -e
+            # Alte Release-Verzeichnisse löschen (nur die letzten 3 behalten)
             cd "${{ secrets.MAIN_PROJECT_PATH }}/releases"
-            ls -1t | tail -n +4 | xargs -I {} rm -rf {}
+            ls -1t | tail -n +4 | xargs -r -I {} rm -rf {}
+
+            # Alte gepullte SHA-Images dieses Projekts entfernen – aktives und :latest behalten
+            CURRENT_IMAGE="${{ needs.build.outputs.image }}"
+            REPO_PREFIX="ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
+            docker images --filter "reference=${REPO_PREFIX}:*" --format "{{.Repository}}:{{.Tag}}" \
+              | grep -v ":latest$" \
+              | grep -vF "$CURRENT_IMAGE" \
+              | xargs -r docker rmi || true
+
+      # ------------------------------
+      # Aufräumen: alte Images in der GHCR (letzte 3 behalten)
+      # ------------------------------
+      - name: Cleanup old GHCR images
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ needs.build.outputs.package_name }}
+          package-type: container
+          min-versions-to-keep: 3
+          ignore-versions: "^latest$"
+          token: ${{ secrets.GHCR_TOKEN }}
+

@@ -2,14 +2,21 @@
 services:
   # App-Service für die Symfony-Anwendung
   app:
-    build: ./.docker/app
+    image: ${APP_IMAGE:-kaderblick-docs-app:local}
+    build:
+      context: .
+      dockerfile: .docker/app/Dockerfile
     restart: unless-stopped
     ports:
       - "${APP_PORT:-8082}:80"
     volumes:
-      - .:/var/www/symfony
+      - app_var:/var/www/symfony/var
     networks:
       - docs-kaderblick-net
+
+volumes:
+  app_var:
+    driver: local
 
 networks:
   docs-kaderblick-net:

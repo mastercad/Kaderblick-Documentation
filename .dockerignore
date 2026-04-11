@@ -1,0 +1,14 @@
+.git/
+.github/
+.vscode/
+vendor/
+var/
+.env
+.env.local
+.env.dev
+.env.test
+.env.prod
+.env.*.local
+.phpunit.cache/
+phpunit.xml
+tests/

@@ -1,6 +1,7 @@
 FROM php:8.3-apache
 
 ENV TZ=Europe/Berlin
+ENV APP_ENV=prod
 
 RUN apt-get update && apt-get install -yqq \
     git \
@@ -11,30 +12,29 @@ RUN apt-get update && apt-get install -yqq \
     ca-certificates \
     openssl libssl-dev \
     && update-ca-certificates \
-    && docker-php-ext-install intl zip opcache bcmath
+    && docker-php-ext-install intl zip opcache bcmath \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite
 
-# Eigene VHost-Konfiguration mit AllowOverride + FallbackResource
-COPY vhost.conf /etc/apache2/sites-available/000-default.conf
-
-# RUN echo "openssl.cafile=/etc/ssl/certs/ca-certificates.crt" > /usr/local/etc/php/conf.d/99-ca-certificates.ini
+# Build-Kontext ist das Projekt-Root (nicht .docker/app/)
+COPY .docker/app/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN echo "date.timezone=$TZ" > /usr/local/etc/php/conf.d/timezone.ini
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+    && echo "date.timezone=$TZ" > /usr/local/etc/php/conf.d/timezone.ini
 
 WORKDIR /var/www/symfony
 
-RUN mkdir -p var/cache \
-    && mkdir -p var/log
+# Gesamten Quellcode in das Image kopieren (.dockerignore filtert unnötige Dateien)
+COPY . .
 
-RUN mkdir -p var/log \
-    && chown -R www-data:www-data var/log \
-    && chmod -R 775 var/log
-
-RUN chown -R www-data:www-data /var/www/symfony/var
+# Composer-Dependencies installieren und Verzeichnisrechte setzen
+RUN composer install --no-dev --optimize-autoloader --no-interaction \
+    && mkdir -p var/cache var/log \
+    && chown -R www-data:www-data var \
+    && chmod -R 775 var
 
 EXPOSE 80
 
