@@ -92,15 +92,6 @@ jobs:
           env-slug:      prod
           project-slug:  docs-kaderblick-i-cuo
 
-      - name: Write SSH key to file
-        run: |
-          echo "$HETZNER_SSH_KEY" > /tmp/hetzner_ssh_key
-          chmod 600 /tmp/hetzner_ssh_key
-          wc -l /tmp/hetzner_ssh_key
-          head -1 /tmp/hetzner_ssh_key
-          tail -1 /tmp/hetzner_ssh_key
-          ssh-keygen -y -f /tmp/hetzner_ssh_key 2>&1 | head -1 || echo "KEY UNGUELTIG"
-
       # ------------------------------
       # Release-Verzeichnis generieren
       # ------------------------------
@@ -116,7 +107,7 @@ jobs:
         with:
           host:     ${{ env.HETZNER_HOST }}
           username: ${{ env.HETZNER_USER }}
-          key_path: /tmp/hetzner_ssh_key
+          key:      ${{ env.HETZNER_SSH_KEY }}
           script: |
             set -e
             mkdir -p "${{ steps.release.outputs.dir }}"
@@ -130,7 +121,7 @@ jobs:
         with:
           host:     ${{ env.HETZNER_HOST }}
           username: ${{ env.HETZNER_USER }}
-          key_path: /tmp/hetzner_ssh_key
+          key:      ${{ env.HETZNER_SSH_KEY }}
           source:   "docker-compose.yaml,.env.dist"
           target:   "${{ steps.release.outputs.dir }}"
 
@@ -142,7 +133,7 @@ jobs:
         with:
           host:     ${{ env.HETZNER_HOST }}
           username: ${{ env.HETZNER_USER }}
-          key_path: /tmp/hetzner_ssh_key
+          key:      ${{ env.HETZNER_SSH_KEY }}
           script: |
             set -e
             RELEASE_DIR="${{ steps.release.outputs.dir }}"
@@ -178,7 +169,7 @@ jobs:
         with:
           host:     ${{ env.HETZNER_HOST }}
           username: ${{ env.HETZNER_USER }}
-          key_path: /tmp/hetzner_ssh_key
+          key:      ${{ env.HETZNER_SSH_KEY }}
           script: |
             set -e
             # Alte Release-Verzeichnisse löschen (nur die letzten 3 behalten)
