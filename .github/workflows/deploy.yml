@@ -96,6 +96,10 @@ jobs:
         run: |
           echo "$HETZNER_SSH_KEY" > /tmp/hetzner_ssh_key
           chmod 600 /tmp/hetzner_ssh_key
+          wc -l /tmp/hetzner_ssh_key
+          head -1 /tmp/hetzner_ssh_key
+          tail -1 /tmp/hetzner_ssh_key
+          ssh-keygen -y -f /tmp/hetzner_ssh_key 2>&1 | head -1 || echo "KEY UNGUELTIG"
 
       # ------------------------------
       # Release-Verzeichnis generieren
