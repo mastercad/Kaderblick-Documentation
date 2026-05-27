@@ -36,6 +36,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
     && chown -R www-data:www-data var \
     && chmod -R 775 var
 
+COPY .docker/app/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 EXPOSE 80
 
-CMD apache2-foreground
+CMD ["/usr/local/bin/docker-entrypoint.sh"]
