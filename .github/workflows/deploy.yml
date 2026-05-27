@@ -1,4 +1,4 @@
-name: Deploy to Alfahosting
+name: Deploy to Hetzner
 
 on:
   push:
@@ -23,6 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Fetch infrastructure secrets
+        uses: ./.github/actions/infisical-fetch
+        with:
+          client-id:     ${{ secrets.INFISICAL_CLIENT_ID }}
+          client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
+          domain:        ${{ secrets.INFISICAL_URL }}
+          env-slug:      global
+          project-slug:  infrastructure
+
       - name: Set image variables
         id: vars
         run: |
@@ -36,7 +45,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ env.GHCR_TOKEN }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -65,53 +74,70 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Fetch infrastructure secrets
+        uses: ./.github/actions/infisical-fetch
+        with:
+          client-id:     ${{ secrets.INFISICAL_CLIENT_ID }}
+          client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
+          domain:        ${{ secrets.INFISICAL_URL }}
+          env-slug:      global
+          project-slug:  infrastructure
+
+      - name: Fetch docs-kaderblick secrets
+        uses: ./.github/actions/infisical-fetch
+        with:
+          client-id:     ${{ secrets.INFISICAL_CLIENT_ID }}
+          client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
+          domain:        ${{ secrets.INFISICAL_URL }}
+          env-slug:      prod
+          project-slug:  docs-kaderblick
+
       # ------------------------------
       # Release-Verzeichnis generieren
       # ------------------------------
       - name: Generate release directory name
         id: release
-        run: echo "dir=${{ secrets.MAIN_PROJECT_PATH }}/releases/$(date +%Y%m%d_%H%M%S)" >> $GITHUB_OUTPUT
+        run: echo "dir=${{ env.SERVER_PROJECT_PATH }}/releases/$(date +%Y%m%d_%H%M%S)" >> $GITHUB_OUTPUT
 
       # ------------------------------
       # Release-Verzeichnis auf dem Server anlegen
       # ------------------------------
       - name: Create release directory on server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.5
         with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
+          host:     ${{ env.HETZNER_HOST }}
+          username: ${{ env.HETZNER_USER }}
+          key:      ${{ env.HETZNER_SSH_KEY }}
           script: |
             set -e
             mkdir -p "${{ steps.release.outputs.dir }}"
             chmod 755 "${{ steps.release.outputs.dir }}"
-            chown -R ${{ secrets.PLESK_USERNAME }}:psacln "${{ steps.release.outputs.dir }}"
 
       # ------------------------------
       # Compose-Datei und .env.dist auf den Server kopieren
       # ------------------------------
       - name: Copy compose and env files to server
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v1.0.0
         with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.PLESK_USERNAME }}
-          password: ${{ secrets.PLESK_PASSWORD }}
-          source: "docker-compose.yaml,.env.dist"
-          target: "${{ steps.release.outputs.dir }}"
+          host:     ${{ env.HETZNER_HOST }}
+          username: ${{ env.HETZNER_USER }}
+          key:      ${{ env.HETZNER_SSH_KEY }}
+          source:   "docker-compose.yaml,.env.dist"
+          target:   "${{ steps.release.outputs.dir }}"
 
       # ------------------------------
       # Image aus GHCR laden, Release aktivieren
       # ------------------------------
       - name: Deploy
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.5
         with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
+          host:     ${{ env.HETZNER_HOST }}
+          username: ${{ env.HETZNER_USER }}
+          key:      ${{ env.HETZNER_SSH_KEY }}
           script: |
             set -e
             RELEASE_DIR="${{ steps.release.outputs.dir }}"
-            CURRENT_DIR="${{ secrets.MAIN_PROJECT_PATH }}/current"
+            CURRENT_DIR="${{ env.SERVER_PROJECT_PATH }}/current"
             IMAGE="${{ needs.build.outputs.image }}"
 
             cd "$RELEASE_DIR"
@@ -122,10 +148,9 @@ jobs:
             echo "APP_IMAGE=$IMAGE" >> .env
 
             chmod -R 755 "$RELEASE_DIR"
-            chown -R kaderblick-ftp-admin:psacln "$RELEASE_DIR"
 
             # Bei GHCR anmelden und fertiges Image laden (kein Build auf dem Server)
-            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+            echo "${{ env.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
             docker pull "$IMAGE"
 
             # Laufenden Container stoppen
@@ -140,15 +165,15 @@ jobs:
       # Aufräumen: alte Releases und ungenutzte Images auf dem Server
       # ------------------------------
       - name: Cleanup server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.5
         with:
-          host: ${{ secrets.PLESK_HOST }}
-          username: ${{ secrets.ROOT_USER }}
-          password: ${{ secrets.ROOT_PASSWORD }}
+          host:     ${{ env.HETZNER_HOST }}
+          username: ${{ env.HETZNER_USER }}
+          key:      ${{ env.HETZNER_SSH_KEY }}
           script: |
             set -e
             # Alte Release-Verzeichnisse löschen (nur die letzten 3 behalten)
-            cd "${{ secrets.MAIN_PROJECT_PATH }}/releases"
+            cd "${{ env.SERVER_PROJECT_PATH }}/releases"
             ls -1t | tail -n +4 | xargs -r -I {} rm -rf {}
 
             # Alte gepullte SHA-Images dieses Projekts entfernen – aktives und :latest behalten
@@ -165,9 +190,9 @@ jobs:
       - name: Cleanup old GHCR images
         uses: actions/delete-package-versions@v5
         with:
-          package-name: ${{ needs.build.outputs.package_name }}
-          package-type: container
+          package-name:        ${{ needs.build.outputs.package_name }}
+          package-type:        container
           min-versions-to-keep: 3
-          ignore-versions: "^latest$"
-          token: ${{ secrets.GHCR_TOKEN }}
+          ignore-versions:     "^latest$"
+          token:               ${{ env.GHCR_TOKEN }}
 

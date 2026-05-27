@@ -1,0 +1,33 @@
+# ─── Lokale Entwicklung ────────────────────────────────────────────────────────
+# Diese Datei wird von docker compose automatisch geladen (kein extra Flag nötig).
+# Macht Image-Rebuilds für Template-, Asset- und Controller-Änderungen überflüssig.
+#
+# Workflow lokal:
+#   docker compose up -d   →  App läuft, Änderungen in templates/public/src/config
+#                             sind SOFORT sichtbar ohne Rebuild und ohne cache:clear.
+#
+# Für einen sauberen Prod-Build (Image bauen + pushen):
+#   docker compose -f docker-compose.yaml build
+# ──────────────────────────────────────────────────────────────────────────────
+
+services:
+  app:
+    environment:
+      # Dev-Modus: Twig kompiliert Templates bei jedem Request neu,
+      # kein manuelles cache:clear mehr nötig.
+      APP_ENV: dev
+      APP_DEBUG: "1"
+    volumes:
+      # Quellverzeichnisse direkt vom Host einbinden – Änderungen sofort wirksam.
+      - ./templates:/var/www/symfony/templates
+      - ./public:/var/www/symfony/public
+      - ./src:/var/www/symfony/src
+      - ./config:/var/www/symfony/config
+      - ./translations:/var/www/symfony/translations
+      # var/ bleibt als benanntes Volume (Schreibrechte www-data ok, dev-Cache landet
+      # in var/cache/dev/ – getrennt vom prod-Cache des named Volume).
+    command: >
+      bash -c "
+        composer install --optimize-autoloader --no-interaction &&
+        apache2-foreground
+      "

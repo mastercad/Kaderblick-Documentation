@@ -1,0 +1,953 @@
+{# ─── Kaderblick 3D Viewer – Spezialisierte Komponente ─── #}
+
+<style>
+.kb3d-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+/* ── Viewer Panel ─────────────────────────────────────────────────────────── */
+.kb3d-viewer-panel {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #2e333d;
+    display: flex;
+    flex-direction: column;
+}
+
+.kb3d-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 1rem;
+    background: #1a1e28;
+    color: #c9cdd4;
+    font-size: 0.85rem;
+    font-weight: 600;
+    gap: 0.5rem;
+}
+
+.kb3d-viewer-title { flex: 1; }
+
+.kb3d-viewer-actions { display: flex; gap: 0.4rem; }
+
+.kb3d-canvas-wrap {
+    position: relative;
+    height: 520px;
+    background: #181c22;
+}
+
+#kb3dCanvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.kb3d-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c7585;
+    font-size: 0.875rem;
+    background: #181c22;
+    pointer-events: none;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.kb3d-btn {
+    padding: 0.3rem 0.65rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: #c9cdd4;
+    cursor: pointer;
+    font-size: 0.78rem;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+.kb3d-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.kb3d-btn--active {
+    background: #c8313a;
+    border-color: #c8313a;
+    color: #fff;
+}
+.kb3d-btn--active:hover { background: #e03a44; }
+
+/* ── Parts Panel ──────────────────────────────────────────────────────────── */
+.kb3d-parts-panel {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+.kb3d-parts-header {
+    padding: 0.55rem 1rem;
+    background: #2c3240;
+    color: #fff;
+}
+
+.kb3d-parts-title { display: block; font-weight: 600; font-size: 0.85rem; }
+.kb3d-parts-hint  { display: block; font-size: 0.73rem; color: #9ba3b0; margin-top: 0.1rem; }
+
+.kb3d-deselect-btn {
+    display: none;
+    margin-top: 0.3rem;
+    padding: 0.15rem 0.6rem;
+    background: rgba(68, 153, 255, 0.15);
+    border: 1px solid rgba(68, 153, 255, 0.4);
+    border-radius: 4px;
+    color: #4499ff;
+    font-size: 0.73rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.kb3d-deselect-btn:hover { background: rgba(68, 153, 255, 0.28); }
+.kb3d-deselect-btn--visible { display: inline-block; }
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.kb3d-tabs {
+    display: flex;
+    background: #f4f6f8;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.kb3d-tab {
+    flex: 1;
+    padding: 0.45rem 0.25rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: #6c757d;
+    font-weight: 500;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.kb3d-tab:hover { color: #212529; background: #e9ecef; }
+.kb3d-tab--active { color: #0d6efd; border-bottom-color: #0d6efd; background: #fff; font-weight: 700; }
+
+.kb3d-tab-panels { flex: 1; overflow: hidden; }
+
+.kb3d-tab-pane {
+    display: none;
+    overflow: auto;
+    max-height: 700px;
+}
+.kb3d-tab-pane--active { display: block; }
+
+/* ── SVG Container ───────────────────────────────────────────────────────── */
+.kb3d-svg-wrap {
+    padding: 0.75rem;
+    min-height: 200px;
+}
+
+.kb3d-svg-wrap svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.kb3d-svg-loading, .kb3d-svg-error {
+    color: #6c757d;
+    font-size: 0.82rem;
+    padding: 1rem 0;
+    text-align: center;
+}
+.kb3d-svg-error { color: #dc3545; }
+
+/* ── SVG interaktive Teile ───────────────────────────────────────────────── */
+.kb3d-svg-part { cursor: pointer; }
+
+.kb3d-svg-part--hover {
+    filter: drop-shadow(0 0 5px rgba(90, 158, 64, 0.9));
+}
+
+.kb3d-svg-part--active,
+.kb3d-svg-part--active * {
+    fill: #325928 !important;
+    stroke: #1e3619 !important;
+    stroke-width: 1.5px !important;
+}
+.kb3d-svg-part--active {
+    animation: kb3d-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes kb3d-pulse {
+    from { opacity: 0.75; }
+    to   { opacity: 1; }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+    .kb3d-canvas-wrap { height: 380px; }
+    .kb3d-tab-pane { max-height: 350px; }
+}
+</style>
+
+<div class="kb3d-layout">
+
+    {# ─── 3D Viewer ─── #}
+    <div class="kb3d-viewer-panel">
+        <div class="kb3d-viewer-header">
+            <span class="kb3d-viewer-title">3D-Ansicht (OBJ)</span>
+            <div class="kb3d-viewer-actions">
+                <button id="kb3dExplodeBtn" class="kb3d-btn">💥 Explosionsansicht</button>
+                <button id="kb3dResetBtn" class="kb3d-btn">↺ Reset</button>
+            </div>
+        </div>
+        <div class="kb3d-canvas-wrap">
+            <canvas id="kb3dCanvas"></canvas>
+            <div id="kb3dLoading" class="kb3d-loading"><span>Modell wird geladen …</span></div>
+        </div>
+    </div>
+
+    {# ─── SVG Teilekarte ─── #}
+    <div class="kb3d-parts-panel">
+        <div class="kb3d-parts-header">
+            <span class="kb3d-parts-title">Teilekarte</span>
+            <span class="kb3d-parts-hint">Klicke auf ein Teil, um es im 3D-Modell zu fokussieren</span>
+            <button class="kb3d-deselect-btn" id="kb3dDeselectBtn">✕ Auswahl aufheben</button>
+        </div>
+        <div class="kb3d-tabs">
+            <button class="kb3d-tab kb3d-tab--active" data-tab="aussen">Außen</button>
+            <button class="kb3d-tab" data-tab="innen">Innen</button>
+            <button class="kb3d-tab" data-tab="klein">Kleine Kamera</button>
+        </div>
+        <div class="kb3d-tab-panels">
+            <div id="kb3d-tab-aussen" class="kb3d-tab-pane kb3d-tab-pane--active">
+                <div class="kb3d-svg-wrap" id="kb3d-svg-aussen"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
+            </div>
+            <div id="kb3d-tab-innen" class="kb3d-tab-pane">
+                <div class="kb3d-svg-wrap" id="kb3d-svg-innen"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
+            </div>
+            <div id="kb3d-tab-klein" class="kb3d-tab-pane">
+                <div class="kb3d-svg-wrap" id="kb3d-svg-klein"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OBJLoader }       from 'three/addons/loaders/OBJLoader.js';
+import { MTLLoader }       from 'three/addons/loaders/MTLLoader.js';
+import { OrbitControls }   from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+(async function () {
+    'use strict';
+
+    // ─── Konfiguration ────────────────────────────────────────────────────────
+    const OBJ_URL = {{ asset('models/kaderblick-kamera.obj')|json_encode|raw }};
+    const MTL_URL = {{ asset('models/kaderblick-kamera.mtl')|json_encode|raw }};
+
+    const SVG_CONFIGS = [
+        {
+            tabId:       'aussen',
+            svgUrl:      {{ asset('models/svg/Kameragehäuse_außen_kamera.svg')|json_encode|raw }},
+            mappingUrls: [
+                {{ asset('models/svg/Kameragehäuse_außen_kamera_mapping.json')|json_encode|raw }},
+                {{ asset('models/svg/Kameragehäuse_außen_kamera_neu_mapping.json')|json_encode|raw }}
+            ],
+            isInner: false
+        },
+        {
+            tabId:       'innen',
+            svgUrl:      {{ asset('models/svg/Kameragehäuse_innen.svg')|json_encode|raw }},
+            mappingUrls: [
+                {{ asset('models/svg/Kameragehäuse_innen_mapping.json')|json_encode|raw }}
+            ],
+            isInner: true
+        },
+        {
+            tabId:       'klein',
+            svgUrl:      {{ asset('models/svg/Kameragehäuse_kleine_kamera.svg')|json_encode|raw }},
+            mappingUrls: [
+                {{ asset('models/svg/Kameragehäuse_kleine_kamera_mapping.json')|json_encode|raw }}
+            ],
+            isInner: false
+        }
+    ];
+
+    // Stärke der Explosionsanimation (in normalisierten Modelleinheiten)
+    const EXPLODE_FACTOR = 2.0;
+
+    // ─── Three.js Setup ───────────────────────────────────────────────────────
+    const canvas    = document.getElementById('kb3dCanvas');
+    const loadingEl = document.getElementById('kb3dLoading');
+    if (!canvas) return;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf5f5f5);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping         = THREE.NeutralToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    renderer.outputColorSpace    = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled   = true;
+    renderer.shadowMap.type      = THREE.PCFSoftShadowMap;
+
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 500);
+    camera.position.set(0, 2, 5);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping    = true;
+    controls.dampingFactor    = 0.07;
+    controls.autoRotate       = false; // wird erst nach Modell-Load aktiviert
+    controls.autoRotateSpeed  = 1.5;
+    controls.minDistance      = 0.3;
+    controls.maxDistance      = 30;
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    // ─── Beleuchtung ──────────────────────────────────────────────────────────
+    // AgX Tonemapping (Blenders eigener Algorithmus): komprimiert helle Flächen
+    // und hebt dunkle an – genau wie in Blenders Render-Ausgabe.
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    const envTexture = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmremGenerator.dispose();
+
+    // IBL als primäre Lichtquelle – beleuchtet alle Flächen gleichmäßig von allen Seiten
+    scene.environment = envTexture;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    keyLight.position.set(2, 4, 3);
+    keyLight.castShadow         = true;
+    keyLight.shadow.mapSize.set(2048, 2048);
+    keyLight.shadow.camera.near = 0.1;
+    keyLight.shadow.camera.far  = 60;
+    keyLight.shadow.bias        = -0.001;
+    scene.add(keyLight);
+    scene.add(keyLight.target);
+
+    // Gegenlicht von unten – spiegelt den Key symmetrisch, damit Unterseite gleich hell ist
+    const bottomLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    bottomLight.position.set(-2, -4, -3);
+    scene.add(bottomLight);
+    scene.add(bottomLight.target);
+
+    // Subtiler Boden-Grid (hell für weißen Hintergrund)
+    const grid = new THREE.GridHelper(8, 40, 0xcccccc, 0xe0e0e0);
+    scene.add(grid);
+
+    // ─── State ────────────────────────────────────────────────────────────────
+    let rootObj = null;
+    const meshMap           = new Map(); // name → Object3D
+    const originalPositions = new Map(); // name → THREE.Vector3 (lokale Startposition)
+    const originalMaterials = new Map(); // mesh.uuid → Material
+    const meshWorldCenters  = new Map(); // name → world-space Zentrum (für Explosion)
+
+    let worldModelCenter = new THREE.Vector3();
+    let modelRadius      = 1;
+    let loadedScale      = 1; // Normalisierungs-Skalierung des Root-Objekts (für Explosions-Offset)
+
+    const innerMeshNames      = new Set();
+    const outerShellMeshNames = new Set();
+
+    const defaultCamPos = new THREE.Vector3();
+    const defaultTarget = new THREE.Vector3();
+
+    let isExploded = false;
+
+    // ─── Animations-State ─────────────────────────────────────────────────────
+    let camAnim      = null;          // Kamera-Fly-to
+    const meshAnims  = new Map();     // name → { startPos, endPos, t, duration }
+    let lastTime     = performance.now();
+
+    function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+
+    // ─── Canvas Resize ────────────────────────────────────────────────────────
+    function resize() {
+        const wrap = canvas.parentElement;
+        const w = wrap.clientWidth  || 600;
+        const h = wrap.clientHeight || 520;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+    }
+    resize();
+    new ResizeObserver(resize).observe(canvas.parentElement);
+
+    // ─── Render Loop ──────────────────────────────────────────────────────────
+    function animate() {
+        requestAnimationFrame(animate);
+        const now   = performance.now();
+        const delta = Math.min((now - lastTime) / 1000, 0.1);
+        lastTime = now;
+
+        // Kamera-Animation
+        if (camAnim) {
+            camAnim.t += delta / camAnim.duration;
+            const t = easeInOut(Math.min(camAnim.t, 1));
+            camera.position.lerpVectors(camAnim.startPos, camAnim.endPos, t);
+            controls.target.lerpVectors(camAnim.startTarget, camAnim.endTarget, t);
+            if (camAnim.t >= 1) camAnim = null;
+        }
+
+        // Mesh-Positions-Animationen (Explosion)
+        meshAnims.forEach((anim, name) => {
+            anim.t += delta / anim.duration;
+            const t    = easeInOut(Math.min(anim.t, 1));
+            const obj3d = meshMap.get(name);
+            if (obj3d) obj3d.position.lerpVectors(anim.startPos, anim.endPos, t);
+            if (anim.t >= 1) meshAnims.delete(name);
+        });
+
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // ─── Kamera Fly-To ────────────────────────────────────────────────────────
+    function flyToMeshes(names, duration = 1.3, isInner = false) {
+        const box = new THREE.Box3();
+        let any = false;
+        names.forEach(n => { const o = meshMap.get(n); if (o) { box.expandByObject(o); any = true; } });
+        if (!any) return;
+
+        const center = box.getCenter(new THREE.Vector3());
+        const size   = box.getSize(new THREE.Vector3());
+
+        // Richtung vom Modell-Zentrum zum Mesh → Kamera auf die Außenseite bringen.
+        const dirToMesh = center.clone().sub(worldModelCenter);
+        let dir;
+        if (dirToMesh.length() > 0.001) {
+            dir = dirToMesh.normalize();
+            if (isInner) {
+                // Innenteil: Y-Anteil nach oben klemmen, damit die Kamera nicht
+                // unter das Modell fährt. Highlight ist durch die transparente Hülle sichtbar.
+                dir.y = Math.max(dir.y, 0.15);
+                dir.normalize();
+            }
+        } else {
+            dir = camera.position.clone().sub(center);
+            if (dir.length() < 0.001) dir.set(0.5, 0.4, 1);
+            dir.normalize();
+        }
+
+        // Innenteile brauchen mehr Abstand, damit die Hülle im Bild bleibt (Kontext)
+        const dist = isInner
+            ? Math.max(size.length() * 2.2, modelRadius * 1.8)
+            : Math.max(size.length() * 2.2, modelRadius * 1.2);
+
+        camAnim = {
+            startPos:    camera.position.clone(),
+            endPos:      center.clone().addScaledVector(dir, dist),
+            startTarget: controls.target.clone(),
+            endTarget:   center.clone(),
+            t:           0,
+            duration
+        };
+        controls.autoRotate = false;
+    }
+
+    // ─── Highlight / Dim System ───────────────────────────────────────────────
+    const MAT_HIGHLIGHT = new THREE.MeshStandardMaterial({
+        color:             0x7ecb5f,
+        emissive:          new THREE.Color(0x2d6e1a),
+        emissiveIntensity: 0.4,
+        roughness:         0.35,
+        metalness:         0.05
+    });
+    const MAT_DIM = new THREE.MeshStandardMaterial({
+        color:       0x2a2f3a,
+        opacity:     0.35,
+        transparent: true,
+        roughness:   0.9
+    });
+
+    function applyHighlight(targetNames) {
+        const hl = new Set(targetNames);
+        meshMap.forEach((obj3d, name) => {
+            obj3d.traverse(child => {
+                if (!child.isMesh) return;
+                child.material = hl.has(name) ? MAT_HIGHLIGHT : MAT_DIM;
+            });
+        });
+    }
+
+    function clearHighlight() {
+        meshMap.forEach(obj3d => {
+            obj3d.traverse(child => {
+                if (!child.isMesh) return;
+                const orig = originalMaterials.get(child.uuid);
+                if (orig) child.material = orig;
+            });
+        });
+    }
+
+    // ─── Mesh-Positions-Animation ─────────────────────────────────────────────
+    function animateMeshTo(name, targetPos, duration) {
+        const obj3d = meshMap.get(name);
+        if (!obj3d) return;
+        meshAnims.set(name, {
+            startPos: obj3d.position.clone(),
+            endPos:   targetPos.clone(),
+            t:        0,
+            duration
+        });
+    }
+
+    // ─── Explosion ────────────────────────────────────────────────────────────
+    // Jedes Mesh soll sich um (modelRadius * factor) Welteinheiten vom Zentrum entfernen.
+    // Da alle Mesh-Gruppen mit lokalPos=(0,0,0) starten und der Parent uniform mit
+    // loadedScale skaliert ist, gilt: weltOffset = loadedScale * lokalOffset.
+    // → lokalOffset = weltOffset / loadedScale = dir * modelRadius * factor / loadedScale
+    function explodeNames(names, factor, duration) {
+        names.forEach(name => {
+            const worldCenter = meshWorldCenters.get(name);
+            if (!worldCenter) return;
+            const dir = worldCenter.clone().sub(worldModelCenter);
+            if (dir.length() < 0.001) return;
+            dir.normalize();
+            const origLocal   = (originalPositions.get(name) ?? new THREE.Vector3()).clone();
+            const localOffset = (modelRadius * EXPLODE_FACTOR * factor) / loadedScale;
+            animateMeshTo(name, origLocal.addScaledVector(dir, localOffset), duration);
+        });
+    }
+
+    function restoreNames(names, duration) {
+        names.forEach(name => {
+            const orig = originalPositions.get(name);
+            if (orig) animateMeshTo(name, orig, duration);
+        });
+    }
+
+    // Vollständige Explosionsansicht (alle Teile)
+    function toggleExplode() {
+        const btn = document.getElementById('kb3dExplodeBtn');
+        if (isExploded) {
+            restoreNames([...meshMap.keys()], 1.1);
+            isExploded = false;
+            if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = '💥 Explosionsansicht'; }
+            clearHighlight();
+        } else {
+            explodeNames([...meshMap.keys()], 1.0, 1.2);
+            isExploded = true;
+            if (btn) { btn.classList.add('kb3d-btn--active'); btn.textContent = '🔗 Zusammenbauen'; }
+            clearHighlight();
+            clearSvgActive();
+        }
+    }
+
+    // ─── Teil-Auswahl via SVG-Klick ───────────────────────────────────────────
+    function selectPart(meshNames, isInner = false) {
+        if (!meshNames.length) return;
+        flyToMeshes(meshNames, 1.2, isInner);
+        applyHighlight(meshNames);
+    }
+
+    // ─── SVG Aktiv-Zustand ────────────────────────────────────────────────────
+    function clearSvgActive() {
+        document.querySelectorAll('.kb3d-svg-part--active').forEach(e =>
+            e.classList.remove('kb3d-svg-part--active')
+        );
+    }
+
+    // ─── Deselect ─────────────────────────────────────────────────────────────
+    const deselectBtn = document.getElementById('kb3dDeselectBtn');
+    function deselect() {
+        clearSvgActive();
+        clearHighlight();
+        deselectBtn.classList.remove('kb3d-deselect-btn--visible');
+        camAnim = {
+            startPos:    camera.position.clone(),
+            endPos:      defaultCamPos.clone(),
+            startTarget: controls.target.clone(),
+            endTarget:   defaultTarget.clone(),
+            t:           0,
+            duration:    1.0
+        };
+        controls.autoRotate = true;
+    }
+    deselectBtn.addEventListener('click', deselect);
+
+    // ─── OBJ-Modell laden ─────────────────────────────────────────────────────
+    async function loadModel() {
+        return new Promise((resolve, reject) => {
+            function doLoad(materials) {
+                const loader = new OBJLoader();
+                if (materials) loader.setMaterials(materials);
+
+                loader.load(OBJ_URL,
+                    obj => {
+                        // Modell normalisieren: zentrieren + auf einheitliche Größe skalieren
+                        const box    = new THREE.Box3().setFromObject(obj);
+                        const center = box.getCenter(new THREE.Vector3());
+                        const size   = box.getSize(new THREE.Vector3());
+                        const scale  = 2.5 / Math.max(size.x, size.y, size.z);
+                        loadedScale  = scale;
+                        obj.scale.setScalar(scale);
+                        obj.position.sub(center.multiplyScalar(scale));
+
+                        // Bounding-Sphere nach Transformation (für Kamera + Explosion)
+                        const scaledBox = new THREE.Box3().setFromObject(obj);
+                        worldModelCenter = scaledBox.getCenter(new THREE.Vector3());
+                        modelRadius      = scaledBox.getBoundingSphere(new THREE.Sphere()).radius;
+
+                        // Mesh-Map aufbauen + Materialien speichern
+                        obj.traverse(child => {
+                            if (child.name && !meshMap.has(child.name)) {
+                                meshMap.set(child.name, child);
+                                originalPositions.set(child.name, child.position.clone());
+                            }
+                            if (child.isMesh) {
+                                const src     = child.material;
+                                const matName = (src && src.name) ? src.name.toLowerCase() : '';
+
+                                // scene.environment liefert IBL an alle Materialien;
+                                // envMapIntensity steuert die Stärke pro Material.
+                                let color, roughness, metalness, envMapIntensity;
+                                if (matName.includes('anstrich')) {
+                                    color           = new THREE.Color('#325928');
+                                    roughness       = 0.55;
+                                    metalness       = 0.0;
+                                    envMapIntensity = 0.6;
+                                } else if (matName.includes('gusseisen')) {
+                                    color           = new THREE.Color('#c8c8c8');
+                                    roughness       = 0.48;
+                                    metalness       = 0.85;
+                                    envMapIntensity = 1.5;
+                                } else if (matName.includes('holz')) {
+                                    color           = src ? src.color : new THREE.Color('#c8c870');
+                                    roughness       = 0.85;
+                                    metalness       = 0.0;
+                                    envMapIntensity = 0.3;
+                                } else if (matName.includes('weiss')) {
+                                    color           = new THREE.Color('#ffffff');
+                                    roughness       = 0.15;
+                                    metalness       = 0.0;
+                                    envMapIntensity = 0.4;
+                                } else {
+                                    color           = src ? src.color : new THREE.Color('#cccccc');
+                                    roughness       = 0.5;
+                                    metalness       = 0.0;
+                                    envMapIntensity = 0.4;
+                                }
+
+                                child.material = new THREE.MeshStandardMaterial({
+                                    color,
+                                    map:   src ? src.map : null,
+                                    roughness,
+                                    metalness,
+                                    envMapIntensity
+                                });
+                                originalMaterials.set(child.uuid, child.material);
+                                child.castShadow    = true;
+                                child.receiveShadow = true;
+                            }
+                        });
+
+                        scene.add(obj);
+                        rootObj = obj;
+
+                        // Welt-Zentren der Meshes berechnen (für Explosions-Richtungen)
+                        meshMap.forEach((child, name) => {
+                            meshWorldCenters.set(name,
+                                new THREE.Box3().setFromObject(child).getCenter(new THREE.Vector3())
+                            );
+                        });
+
+                        // Grid an Modell-Unterseite
+                        grid.position.y = scaledBox.min.y - 0.02;
+
+                        // Kamera initial positionieren – relativ zum Modell-Zentrum,
+                        // damit bei off-center Geometrie der Orbit trotzdem stimmt.
+                        const dist = modelRadius * 2.8;
+                        camera.position.set(
+                            worldModelCenter.x + dist * 0.6,
+                            worldModelCenter.y + dist * 0.45,
+                            worldModelCenter.z + dist
+                        );
+                        controls.target.copy(worldModelCenter);
+                        controls.autoRotate = true; // jetzt erst aktivieren
+                        defaultCamPos.copy(camera.position);
+                        defaultTarget.copy(worldModelCenter);
+                        controls.update();
+
+                        if (loadingEl) loadingEl.style.display = 'none';
+                        resolve();
+                    },
+                    xhr => {
+                        if (loadingEl && xhr.total > 0) {
+                            const pct = Math.round(xhr.loaded / xhr.total * 100);
+                            loadingEl.querySelector('span').textContent = `Modell wird geladen … ${pct} %`;
+                        }
+                    },
+                    err => {
+                        if (loadingEl) loadingEl.querySelector('span').textContent = 'Fehler beim Laden des Modells.';
+                        reject(err);
+                    }
+                );
+            }
+
+            if (MTL_URL) {
+                const mtl = new MTLLoader();
+                mtl.load(MTL_URL, mats => { mats.preload(); doLoad(mats); }, undefined, () => doLoad(null));
+            } else {
+                doLoad(null);
+            }
+        });
+    }
+
+    // ─── Mapping-JSONs laden ──────────────────────────────────────────────────
+    // Rückgabe: Map<tabId, Map<svgId, { meshNames: string[], isInner: bool }>>
+    // Jeder Tab bekommt eine eigene Map – verhindert ID-Kollisionen zwischen
+    // SVG-Dateien, deren Element-IDs sich zufällig überschneiden.
+    async function loadMappings() {
+        const tabMaps = new Map(); // tabId → Map<svgId, {meshNames, isInner}>
+        for (const config of SVG_CONFIGS) {
+            const tabMap = new Map();
+            tabMaps.set(config.tabId, tabMap);
+            for (const url of config.mappingUrls) {
+                try {
+                    const resp = await fetch(url);
+                    if (!resp.ok) continue;
+                    const data = await resp.json();
+                    for (const part of (data.parts ?? [])) {
+                        const existing = tabMap.get(part.svg_id);
+                        if (existing) {
+                            for (const m of part.meshes) {
+                                if (!existing.meshNames.includes(m)) existing.meshNames.push(m);
+                            }
+                        } else {
+                            tabMap.set(part.svg_id, {
+                                meshNames: [...part.meshes],
+                                isInner:   config.isInner
+                            });
+                        }
+                        if (config.isInner) {
+                            part.meshes.forEach(m => innerMeshNames.add(m));
+                        } else {
+                            part.meshes.forEach(m => outerShellMeshNames.add(m));
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[KB3D] Mapping laden fehlgeschlagen:', url, e);
+                }
+            }
+        }
+        return tabMaps;
+    }
+
+    // ─── SVG inline laden (via fetch + DOMParser) ─────────────────────────────
+    async function loadInlineSvg(containerId, svgUrl) {
+        const container = document.getElementById(containerId);
+        if (!container) return null;
+        try {
+            const resp = await fetch(svgUrl);
+            if (!resp.ok) {
+                container.innerHTML = '<p class="kb3d-svg-error">SVG konnte nicht geladen werden.</p>';
+                return null;
+            }
+            const text   = await resp.text();
+            const parser = new DOMParser();
+            const doc    = parser.parseFromString(text, 'image/svg+xml');
+            const svgEl  = doc.documentElement;
+            // Responsiv machen
+            svgEl.removeAttribute('width');
+            svgEl.removeAttribute('height');
+            svgEl.style.cssText = 'width:100%;height:auto;display:block;';
+            container.innerHTML = '';
+            container.appendChild(document.adoptNode(svgEl));
+            return svgEl;
+        } catch (e) {
+            console.warn('[KB3D] SVG laden fehlgeschlagen:', svgUrl, e);
+            container.innerHTML = '<p class="kb3d-svg-error">SVG konnte nicht geladen werden.</p>';
+            return null;
+        }
+    }
+
+    // ─── SVG-Klick-Events registrieren ────────────────────────────────────────
+    // Inkscape exportiert Teile oft als <g id="g16194"><path id="path630"/></g>.
+    // Das Mapping kennt nur den Pfad, aber der Klick landet auf der Gruppe.
+    // Lösung: für jedes gemappte Element werden auch alle <g>-Vorfahren mit ID
+    // in die Handler-Map aufgenommen (meshNames werden dabei zusammengeführt).
+    function registerSvgClicks(svgEl, svgToMesh) {
+        if (!svgEl) return;
+
+        // Hilfe: Info in elementMap eintragen oder vorhandene meshNames ergänzen
+        function mergeEl(elementMap, el, info) {
+            if (elementMap.has(el)) {
+                const ex = elementMap.get(el);
+                for (const m of info.meshNames) {
+                    if (!ex.meshNames.includes(m)) ex.meshNames.push(m);
+                }
+            } else {
+                elementMap.set(el, { meshNames: [...info.meshNames], isInner: info.isInner });
+            }
+        }
+
+        // Gemappte Elemente + alle <g>-Vorfahren mit ID erfassen
+        const elementMap = new Map(); // DOM-Element → {meshNames, isInner}
+        svgToMesh.forEach((info, svgId) => {
+            const el = svgEl.querySelector('#' + CSS.escape(svgId));
+            if (!el) return;
+            mergeEl(elementMap, el, info);
+            // <g>-Vorfahren mit ID ebenfalls registrieren
+            let anc = el.parentElement;
+            while (anc && anc !== svgEl) {
+                if (anc.id) mergeEl(elementMap, anc, info);
+                anc = anc.parentElement;
+            }
+        });
+
+        // ── DEBUG ──────────────────────────────────────────────────────────────
+        console.group(`[KB3D] registerSvgClicks`);
+        console.log(`Mapping-Einträge: ${svgToMesh.size} | registrierte Elemente (inkl. Gruppen): ${elementMap.size}`);
+        if (elementMap.size === 0) {
+            console.warn('Keine Übereinstimmungen! SVG-IDs vs. Mapping-IDs prüfen.');
+            console.log('Mapping-IDs:', [...svgToMesh.keys()]);
+            const sample = [...svgEl.querySelectorAll('[id]')].slice(0, 15).map(e => e.id);
+            console.log('SVG-IDs (Auszug):', sample);
+        }
+        console.groupEnd();
+        // ── DEBUG ENDE ─────────────────────────────────────────────────────────
+
+        elementMap.forEach((info, el) => {
+            el.classList.add('kb3d-svg-part');
+            if (el.getAttribute('fill') === 'none') el.setAttribute('fill', 'transparent');
+            el.querySelectorAll('[fill="none"]').forEach(c => c.setAttribute('fill', 'transparent'));
+            el.setAttribute('pointer-events', 'all');
+
+            el.addEventListener('click', e => {
+                // stopPropagation verhindert Doppelauslösung wenn Kind UND Eltern-Gruppe
+                // beide einen Handler haben (Kind feuert zuerst, Gruppe bleibt stumm).
+                e.stopPropagation();
+                const inModel = info.meshNames.filter(n => meshMap.has(n));
+                const missing = info.meshNames.filter(n => !meshMap.has(n));
+                console.group(`[KB3D] Klick: id="${el.id}" <${el.tagName.toLowerCase()}>`);
+                console.log('Mapping → meshNames:', info.meshNames, '| isInner:', info.isInner);
+                if (inModel.length)  console.log('✓ im Modell:', inModel);
+                if (missing.length)  console.warn('✗ NICHT im Modell:', missing, '← Name prüfen');
+                if (!inModel.length) console.error('Kein Mesh-Name im Modell gefunden!');
+                console.groupEnd();
+                if (el.classList.contains('kb3d-svg-part--active')) {
+                    deselect();
+                    return;
+                }
+
+                clearSvgActive();
+                el.classList.add('kb3d-svg-part--active');
+                el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                deselectBtn.classList.add('kb3d-deselect-btn--visible');
+                document.getElementById('kb3dCanvas').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                selectPart(info.meshNames, info.isInner);
+            });
+            el.addEventListener('mouseenter', () => el.classList.add('kb3d-svg-part--hover'));
+            el.addEventListener('mouseleave', () => el.classList.remove('kb3d-svg-part--hover'));
+        });
+    }
+
+    // ─── Tab-Wechsel ──────────────────────────────────────────────────────────
+    document.querySelectorAll('.kb3d-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.kb3d-tab').forEach(b => b.classList.remove('kb3d-tab--active'));
+            document.querySelectorAll('.kb3d-tab-pane').forEach(p => p.classList.remove('kb3d-tab-pane--active'));
+            btn.classList.add('kb3d-tab--active');
+            const pane = document.getElementById('kb3d-tab-' + btn.dataset.tab);
+            if (pane) pane.classList.add('kb3d-tab-pane--active');
+        });
+    });
+
+    // ─── Steuer-Buttons ───────────────────────────────────────────────────────
+    document.getElementById('kb3dExplodeBtn')?.addEventListener('click', toggleExplode);
+
+    document.getElementById('kb3dResetBtn')?.addEventListener('click', () => {
+        restoreNames([...meshMap.keys()], 0.9);
+        isExploded = false;
+        clearHighlight();
+        clearSvgActive();
+
+        const explodeBtn = document.getElementById('kb3dExplodeBtn');
+        if (explodeBtn) {
+            explodeBtn.classList.remove('kb3d-btn--active');
+            explodeBtn.textContent = '💥 Explosionsansicht';
+        }
+
+        camAnim = {
+            startPos:    camera.position.clone(),
+            endPos:      defaultCamPos.clone(),
+            startTarget: controls.target.clone(),
+            endTarget:   defaultTarget.clone(),
+            t:           0,
+            duration:    1.0
+        };
+        controls.autoRotate = true;
+    });
+
+    // ─── Initialisierung ──────────────────────────────────────────────────────
+    try {
+        // Modell und Mappings parallel laden
+        const [tabMaps] = await Promise.all([
+            loadMappings(),
+            loadModel()
+        ]);
+
+        // ── Orbit-Zentrum anhand gemappter Meshes neuberechnen ────────────────
+        // Das OBJ kann Hilfsobjekte enthalten (Cube, Cylinder, Torus …) die das
+        // Bounding-Box-Zentrum weit vom eigentlichen Gehäuse wegziehen.
+        // Lösung: Zentrum + Radius nur aus Meshes berechnen die im Mapping stehen.
+        const allMappedNames = new Set([...innerMeshNames, ...outerShellMeshNames]);
+        const mappedInModel  = [...allMappedNames].filter(n => meshMap.has(n));
+        if (mappedInModel.length > 0) {
+            const mappedBox = new THREE.Box3();
+            mappedInModel.forEach(n => mappedBox.expandByObject(meshMap.get(n)));
+            if (!mappedBox.isEmpty()) {
+                worldModelCenter = mappedBox.getCenter(new THREE.Vector3());
+                modelRadius      = mappedBox.getBoundingSphere(new THREE.Sphere()).radius;
+                const dist = modelRadius * 2.8;
+                camera.position.set(
+                    worldModelCenter.x + dist * 0.6,
+                    worldModelCenter.y + dist * 0.45,
+                    worldModelCenter.z + dist
+                );
+                controls.target.copy(worldModelCenter);
+                defaultCamPos.copy(camera.position);
+                defaultTarget.copy(worldModelCenter);
+                controls.update();
+                console.log('[KB3D] Orbit-Zentrum auf gemappte Meshes gesetzt:', worldModelCenter, '| Radius:', modelRadius.toFixed(3));
+
+                // ── Key-Light auf Modell ausrichten ──────────────────────────
+                // DirectionalLight.target zeigt ohne explizite Zuweisung auf (0,0,0).
+                // Die Shadow-Camera berechnet ihren Frustum relativ zum target –
+                // liegt das Modell woanders, treffen weder Licht noch Schatten korrekt.
+                keyLight.target.position.copy(worldModelCenter);
+                keyLight.target.updateMatrixWorld();
+                bottomLight.target.position.copy(worldModelCenter);
+                bottomLight.target.updateMatrixWorld();
+                // Shadow-Frustum am Modell-Radius ausrichten
+                const sc = keyLight.shadow.camera;
+                const sr = modelRadius * 1.6;
+                sc.left = sc.bottom = -sr;
+                sc.right = sc.top   =  sr;
+                sc.far  = dist * 3;
+                sc.updateProjectionMatrix();
+            }
+        } else {
+            console.warn('[KB3D] Keine gemappten Meshes im Modell gefunden – Orbit-Zentrum bleibt aus loadModel().');
+        }
+
+        // SVGs sequenziell laden + Klick-Events registrieren (je Tab eigene Map)
+        for (const config of SVG_CONFIGS) {
+            const svgEl  = await loadInlineSvg(`kb3d-svg-${config.tabId}`, config.svgUrl);
+            const tabMap = tabMaps.get(config.tabId) ?? new Map();
+            registerSvgClicks(svgEl, tabMap);
+        }
+    } catch (e) {
+        console.error('[KB3D] Initialisierungsfehler:', e);
+    }
+
+})();
+</script>
