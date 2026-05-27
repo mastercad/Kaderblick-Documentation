@@ -83,6 +83,9 @@ jobs:
           env-slug:      global
           project-slug:  infrastructure-r-zu-j
 
+      - name: Debug SSH key format
+        run: echo "$HETZNER_SSH_KEY" | wc -l
+
       - name: Fetch docs-kaderblick secrets
         uses: ./.github/actions/infisical-fetch
         with:
