@@ -138,7 +138,7 @@ jobs:
             set -e
             RELEASE_DIR="${{ steps.release.outputs.dir }}"
             CURRENT_DIR="${{ env.SERVER_PROJECT_PATH }}/current"
-            IMAGE="${{ needs.build.outputs.image }}"
+            IMAGE="ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]'):${{ github.sha }}"
 
             cd "$RELEASE_DIR"
 
