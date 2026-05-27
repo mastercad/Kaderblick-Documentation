@@ -30,7 +30,7 @@ jobs:
           client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
           domain:        ${{ secrets.INFISICAL_URL }}
           env-slug:      global
-          project-slug:  infrastructure
+          project-slug:  infrastructure-r-zu-j
 
       - name: Set image variables
         id: vars
@@ -81,7 +81,7 @@ jobs:
           client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
           domain:        ${{ secrets.INFISICAL_URL }}
           env-slug:      global
-          project-slug:  infrastructure
+          project-slug:  infrastructure-r-zu-j
 
       - name: Fetch docs-kaderblick secrets
         uses: ./.github/actions/infisical-fetch
@@ -90,7 +90,7 @@ jobs:
           client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
           domain:        ${{ secrets.INFISICAL_URL }}
           env-slug:      prod
-          project-slug:  docs-kaderblick
+          project-slug:  docs-kaderblick-i-cuo
 
       # ------------------------------
       # Release-Verzeichnis generieren
