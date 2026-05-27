@@ -12,32 +12,35 @@
 
     <p>
         Schritt-für-Schritt-Anleitung zum Aufbau des Kaderblick-Kamerasystems.
-        Von der Platine bis zum fertigen, wetterfesten Gehäuse.
+        Das Gehäuse besteht aus lasergeschnittenem Sperrholz (3 mm und 5 mm),
+        die Teile werden per Fingerverbindung zusammengesteckt, geklebt und anschließend lackiert.
     </p>
 
     {% include 'components/callout.html.twig' with {
         type: 'warning',
         title: 'Voraussetzungen',
-        text: 'Grundkenntnisse in Löten, 3D-Druck und Elektronik werden empfohlen. Alle benötigten Bauteile sind in der <a href="' ~ path('app_tools_kamera_kaderblick_teileliste') ~ '">Teileliste</a> aufgeführt.'
+        text: 'Grundkenntnisse in Holzbearbeitung und Elektronik werden empfohlen. Zugang zu einem Lasercutter ist erforderlich. Alle benötigten Bauteile sind in der <a href="' ~ path('app_tools_kamera_kaderblick_teileliste') ~ '">Teileliste</a> aufgeführt.'
     } %}
 
     {# ─── Bauabschnitte ─── #}
     <h2>Bauabschnitte</h2>
     {% include 'components/steps.html.twig' with {
         steps: [
-            { title: 'Gehäuse drucken', text: 'Die 3D-Druckteile des Gehäuses fertigen. STL-Dateien und Druckeinstellungen sind in der <a href="' ~ path('app_tools_kamera_kaderblick_3d_ansicht') ~ '">3D-Ansicht</a> dokumentiert.' },
-            { title: 'Elektronik bestücken', text: 'Platine vorbereiten, Komponenten auflöten und Verbindungen herstellen.' },
-            { title: 'Kameramodul einbauen', text: 'Das Kameramodul im Gehäuse positionieren und mit der Platine verbinden.' },
-            { title: 'Verkabelung', text: 'Stromversorgung, Netzwerk und ggf. weitere Sensoren anschließen.' },
-            { title: 'Gehäuse montieren', text: 'Alle Komponenten im Gehäuse verbauen und wetterfest verschließen.' },
-            { title: 'Software aufspielen', text: 'Die <a href="' ~ path('app_tools_kamera_kaderblick_software') ~ '">Kamera-Software</a> installieren und konfigurieren.' },
-            { title: 'Testen', text: 'Funktionstest durchführen: Aufnahme, Netzwerk, automatischer Start.' },
+            { title: 'Schnittmuster lasern', text: 'Alle Gehäuseteile aus 3 mm und 5 mm Sperrholz auf dem Lasercutter ausschneiden. Die Fingerverbindungen sorgen für passgenaue Verbindungen zwischen den Wandteilen.' },
+            { title: 'Teile zusammenstecken', text: 'Alle Wandteile über die Fingerverbindungen zusammenstecken und die Passform prüfen, bevor geklebt wird.' },
+            { title: 'Kleben', text: 'Das Gehäuse mit Holzleim verkleben. Die Fingerverbindungen geben von sich aus ausreichend Stabilität – Teile sauber ausrichten und fixieren, bis der Leim ausgehärtet ist.' },
+            { title: 'Verankerungsbleche montieren', text: 'Metallbleche an den kritischen Stellen einsetzen und befestigen, um ein Aufspalten des Holzes dauerhaft zu verhindern.' },
+            { title: 'Stativaufnahme befestigen', text: 'Den 20-mm-Stativzapfen-Adapter an der Unterseite des Gehäuses montieren.' },
+            { title: 'Güsösen eindrehen', text: 'Die beiden Schraubgüsösen für die Befestigung am 8-Meter-Stativ eindrehen – die Kamera hängt von unten am Stativ.' },
+            { title: 'Schleifen und lackieren', text: 'Oberfläche fein schleifen und mit Laubgrün RAL 6002 lackieren. Mehrere dünne Schichten ergeben ein gleichmäßiges Ergebnis.' },
+            { title: 'Elektronik einbauen', text: 'Raspberry Pi, Kameras, Festplatten, Motoren und Stromversorgung einsetzen und verkabeln.' },
+            { title: 'Funktionstest', text: 'System einschalten und prüfen: Aufnahme, Netzwerkverbindung, Motorsteuerung und automatischer Start.' },
         ]
     } %}
 
     {% include 'components/callout.html.twig' with {
         type: 'tip',
         title: 'Tipp',
-        text: 'Dokumentiert jeden Bauschritt mit Fotos – das hilft bei der Fehlersuche und bei späteren Nachbauten.'
+        text: 'Jeden Bauschritt mit Fotos dokumentieren – das hilft bei der Fehlersuche und bei späteren Nachbauten.'
     } %}
 {% endblock %}

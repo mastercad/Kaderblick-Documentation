@@ -16,20 +16,14 @@
         Fußballplätzen konzipiert und gebaut.
     </p>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Eigenentwicklung',
-        text: 'Hardware und Software des Kaderblick-Kamerasystems wurden vollständig selbst entwickelt und gebaut – von der Platine bis zur Streaming-Software.'
-    } %}
-
     {# ─── Merkmale ─── #}
     <h2>Merkmale</h2>
     {% include 'components/feature_list.html.twig' with {
         features: [
-            { icon: '🔩', title: 'Eigene Hardware', desc: 'Selbst entwickelte und gebaute Elektronik – maßgeschneidert für den Spielbetrieb.' },
-            { icon: '📐', title: 'Eigenes Gehäuse', desc: 'Wetterfestes Gehäuse, entworfen in 3D und selbst gefertigt.' },
-            { icon: '🤖', title: 'Automatische Aufnahme', desc: 'Kein Bediener nötig – das System startet und stoppt automatisch.' },
-            { icon: '📡', title: 'Plattform-Integration', desc: 'Direkte Anbindung an die Kaderblick-Plattform für nahtlosen Video-Upload.' },
+            { icon: '🪵', title: 'Lasercut-Holzgehäuse', desc: 'Körper aus 3 mm und 5 mm Sperrholz, mit Fingerverbindungen zusammengesteckt, geklebt und in Laubgrün RAL 6002 lackiert.' },
+            { icon: '🔩', title: 'Stativmontage', desc: '20-mm-Stativzapfen an der Unterseite sowie zwei Schraubgüsösen für die Befestigung am 8-Meter-Stativ.' },
+            { icon: '⏯️', title: 'Aufnahme-Steuerung', desc: 'Start und Stopp der Aufnahme werden über die CameraControl-App gesteuert.' },
+            { icon: '📡', title: 'VideoManager-Integration', desc: 'Die Aufnahmen können optional über den VideoManager auf YouTube hochgeladen und in Kaderblick eingestellt werden.' },
             { icon: '🔭', title: 'Weitwinkel', desc: 'Optimiert für die Erfassung des gesamten Spielfelds von einer festen Position.' },
         ]
     } %}

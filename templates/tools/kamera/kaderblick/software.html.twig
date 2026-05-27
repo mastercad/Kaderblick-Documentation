@@ -11,37 +11,29 @@
     } %}
 
     <p>
-        Die Kaderblick-Kamera wird durch mehrere Software-Komponenten gesteuert –
-        von der Aufnahmesteuerung bis zum automatischen Upload auf die Plattform.
+        Das Kaderblick-Kamerasystem wird durch zwei eigenentwickelte Software-Komponenten gesteuert:
+        eine REST-API auf den Raspberry Pis und eine Android-App zur Fernsteuerung und Überwachung.
+        Zusätzlich gibt es den VideoManager als separates Tool.
     </p>
 
     {# ─── Komponenten ─── #}
-    <h2>Software-Komponenten</h2>
+    <h2>Komponenten</h2>
     {% include 'components/feature_list.html.twig' with {
         features: [
-            { icon: '🎬', title: 'Aufnahme-Steuerung', desc: 'Steuert Start, Stopp und Konfiguration der Videoaufnahme automatisch.' },
-            { icon: '📡', title: 'Streaming-Modul', desc: 'Ermöglicht Live-Streaming und Echtzeit-Übertragung des Videosignals.' },
-            { icon: '☁️', title: 'Upload-Service', desc: 'Automatischer Upload der Aufnahmen auf die Kaderblick-Plattform.' },
-            { icon: '⚙️', title: 'Konfiguration', desc: 'Web-Interface zur Einstellung von Auflösung, Bildrate, Netzwerk und Zeitplänen.' },
-            { icon: '📊', title: 'Monitoring', desc: 'Überwachung von Speicherplatz, Temperatur, Netzwerkstatus und Aufnahme-Zustand.' },
+            { icon: '🖥️', title: 'Kamera-API (Raspberry Pi)', desc: 'Läuft auf jedem der beiden Raspberry Pis. Greift das Kamerabild der angeschlossenen Arducam ab und stellt es über eine REST-Schnittstelle bereit. Alle Kameraparameter und Aufnahmen werden darüber gesteuert.' },
+            { icon: '📱', title: 'CameraControl (Android)', desc: 'Android-App zur Steuerung und Überwachung beider Kamerasysteme über die REST-API.' },
+            { icon: '🎞️', title: 'VideoManager', desc: 'Separates Tool zur Verwaltung und Verarbeitung der Aufnahmen – dokumentiert im Bereich Tools.' },
         ]
     } %}
 
-    {# ─── Installation ─── #}
-    <h2>Installation</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Betriebssystem', text: 'Raspberry Pi OS Lite (oder vergleichbar) auf die SD-Karte flashen.' },
-            { title: 'Basis-Setup', text: 'Netzwerk, SSH und Zeitzone konfigurieren.' },
-            { title: 'Kamera-Software', text: 'Die Kaderblick-Kamera-Software aus dem Repository klonen und installieren.' },
-            { title: 'Konfiguration', text: 'Aufnahmeparameter, Netzwerk und Upload-Ziel im Config-File eintragen.' },
-            { title: 'Autostart', text: 'Den Service als Systemd-Unit einrichten, damit die Aufnahme beim Einschalten automatisch startet.' },
+    {# ─── CameraControl ─── #}
+    <h2>CameraControl – Funktionen</h2>
+    {% include 'components/feature_list.html.twig' with {
+        features: [
+            { icon: '🖼️', title: 'Live-Vorschau', desc: 'Das empfangene Kamerabild beider Systeme wird direkt in der App angezeigt.' },
+            { icon: '⚙️', title: 'Kameraeinstellungen', desc: 'Auflösung, Belichtungszeit, Belichtungsmodus, Sättigung, Helligkeit und weitere Parameter sind direkt in der App einstellbar.' },
+            { icon: '❤️', title: 'Systemüberwachung', desc: 'Gesundheitsstatus beider Kamerasysteme auf einen Blick – Verbindung, Speicher, allgemeiner Systemzustand.' },
+            { icon: '⏯️', title: 'Aufnahme-Steuerung', desc: 'Aufnahme anhalten oder neu starten, Kameras neu booten oder herunterfahren – alles per App aus der Ferne.' },
         ]
-    } %}
-
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Open Source',
-        text: 'Die gesamte Software des Kaderblick-Kamerasystems ist eigenentwickelt. Dokumentation und Quellcode sind intern verfügbar.'
     } %}
 {% endblock %}
