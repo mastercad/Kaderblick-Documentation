@@ -269,11 +269,11 @@
 </div>
 
 <script type="module">
-import * as THREE          from 'https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js';
-import { OBJLoader }       from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/OBJLoader.js';
-import { MTLLoader }       from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/MTLLoader.js';
-import { OrbitControls }   from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/controls/OrbitControls.js';
-import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/environments/RoomEnvironment.js';
+import * as THREE from 'three';
+import { OBJLoader }       from 'three/addons/loaders/OBJLoader.js';
+import { MTLLoader }       from 'three/addons/loaders/MTLLoader.js';
+import { OrbitControls }   from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 (async function () {
     'use strict';
@@ -288,7 +288,6 @@ import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.164.1/exam
             svgUrl:      {{ asset('models/svg/Kameragehäuse_außen_kamera.svg')|json_encode|raw }},
             mappingUrls: [
                 {{ asset('models/svg/Kameragehäuse_außen_kamera_mapping.json')|json_encode|raw }},
-                {{ asset('models/svg/Kameragehäuse_außen_kamera_neu_mapping.json')|json_encode|raw }}
             ],
             isInner: false
         },
