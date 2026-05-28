@@ -31,7 +31,30 @@
 
 .kb3d-viewer-title { flex: 1; }
 
-.kb3d-viewer-actions { display: flex; gap: 0.4rem; }
+.kb3d-viewer-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+
+.kb3d-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 0.15rem 0.4rem;
+}
+
+.kb3d-btn-group-label {
+    font-size: 0.72rem;
+    color: #8a9099;
+    white-space: nowrap;
+    padding-right: 0.1rem;
+}
+
+.kb3d-btn-group .kb3d-btn {
+    border-color: transparent;
+    background: transparent;
+}
+.kb3d-btn-group .kb3d-btn:hover { background: rgba(255,255,255,0.12); }
 
 .kb3d-canvas-wrap {
     position: relative;
@@ -198,7 +221,17 @@
         <div class="kb3d-viewer-header">
             <span class="kb3d-viewer-title">3D-Ansicht (OBJ)</span>
             <div class="kb3d-viewer-actions">
-                <button id="kb3dExplodeBtn" class="kb3d-btn">💥 Explosionsansicht</button>
+                <div class="kb3d-btn-group">
+                    <span class="kb3d-btn-group-label">Deckel:</span>
+                    <button id="kb3dDeckelBtn" class="kb3d-btn">Öffnen</button>
+                    <button id="kb3dDeckelHideBtn" class="kb3d-btn">Ausblenden</button>
+                </div>
+                <div class="kb3d-btn-group">
+                    <span class="kb3d-btn-group-label">Schutz:</span>
+                    <button id="kb3dSchutzBtn" class="kb3d-btn">Öffnen</button>
+                    <button id="kb3dSchutzHideBtn" class="kb3d-btn">Ausblenden</button>
+                </div>
+                <button id="kb3dExplodeBtn" class="kb3d-btn">💥 Explosion</button>
                 <button id="kb3dResetBtn" class="kb3d-btn">↺ Reset</button>
             </div>
         </div>
@@ -280,18 +313,32 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     // Stärke der Explosionsanimation (in normalisierten Modelleinheiten)
     const EXPLODE_FACTOR = 2.0;
 
+    // ─── Animierte Baugruppen ─────────────────────────────────────────────────
+    // Mesh-Namen aus dem OBJ-Modell (sobald exportiert werden sie aktiv)
+    const DECKEL_MESH_NAMES = [
+        'part_0072', 'part_0073', 'part_0074', 'part_0075', 'part_0076',
+        'part_0077', 'part_0108', 'part_0109', 'part_0110', 'part_0111'
+    ];
+    const KAMERASCHUTZ_MESH_NAMES = [
+        'part_0122', 'part_0123', 'part_0124', 'part_0125'
+    ];
+
+    // Bewegungsweite relativ zu modelRadius (anpassen falls zu viel/wenig Hub)
+    const DECKEL_LIFT_FACTOR        = 0.65; // nach oben (+Y)
+    const KAMERASCHUTZ_SLIDE_FACTOR = 0.55; // nach vorn (+Z); bei falsche Richtung → -1 setzen
+
     // ─── Three.js Setup ───────────────────────────────────────────────────────
     const canvas    = document.getElementById('kb3dCanvas');
     const loadingEl = document.getElementById('kb3dLoading');
     if (!canvas) return;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf5f5f5);
+    scene.background = new THREE.Color(0x181c22);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.toneMapping         = THREE.NeutralToneMapping;
-    renderer.toneMappingExposure = 1.0;
+    renderer.toneMapping         = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.8;
     renderer.outputColorSpace    = THREE.SRGBColorSpace;
     renderer.shadowMap.enabled   = true;
     renderer.shadowMap.type      = THREE.PCFSoftShadowMap;
@@ -313,15 +360,15 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     // AgX Tonemapping (Blenders eigener Algorithmus): komprimiert helle Flächen
     // und hebt dunkle an – genau wie in Blenders Render-Ausgabe.
     const pmremGenerator = new THREE.PMREMGenerator(renderer);
-    const envTexture = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+    const envTexture = pmremGenerator.fromScene(new RoomEnvironment(), 0.7).texture;
     pmremGenerator.dispose();
 
     // IBL als primäre Lichtquelle – beleuchtet alle Flächen gleichmäßig von allen Seiten
     scene.environment = envTexture;
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 0.7);
     keyLight.position.set(2, 4, 3);
     keyLight.castShadow         = true;
     keyLight.shadow.mapSize.set(2048, 2048);
@@ -331,14 +378,14 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     scene.add(keyLight);
     scene.add(keyLight.target);
 
-    // Gegenlicht von unten – spiegelt den Key symmetrisch, damit Unterseite gleich hell ist
-    const bottomLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    // Gegenlicht von unten – subtiles Aufhell-Licht, kein dominanter Strahler
+    const bottomLight = new THREE.DirectionalLight(0xffffff, 0.35);
     bottomLight.position.set(-2, -4, -3);
     scene.add(bottomLight);
     scene.add(bottomLight.target);
 
-    // Subtiler Boden-Grid (hell für weißen Hintergrund)
-    const grid = new THREE.GridHelper(8, 40, 0xcccccc, 0xe0e0e0);
+    // Subtiler Boden-Grid (dunkel für dunklen Hintergrund)
+    const grid = new THREE.GridHelper(8, 40, 0x2a3040, 0x222836);
     scene.add(grid);
 
     // ─── State ────────────────────────────────────────────────────────────────
@@ -358,7 +405,11 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     const defaultCamPos = new THREE.Vector3();
     const defaultTarget = new THREE.Vector3();
 
-    let isExploded = false;
+    let isExploded           = false;
+    let isDeckelOpen         = false;
+    let isDeckelHidden       = false;
+    let isKameraschutzOpen   = false;
+    let isKameraschutzHidden = false;
 
     // ─── Animations-State ─────────────────────────────────────────────────────
     let camAnim      = null;          // Kamera-Fly-to
@@ -524,13 +575,95 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
         });
     }
 
+    // ─── Gerichtete Gruppen-Animation (Deckel / Kameraschutz) ─────────────────
+    // direction: THREE.Vector3 (normiert, Welt-Koordinatensystem)
+    // offsetFactor: Bruchteil von modelRadius
+    // Basis: Zielposition der laufenden Animation (falls aktiv), sonst aktuelle
+    // Position – funktioniert korrekt im Normal- UND Explosionsmodus.
+    function animateGroupInDirection(names, direction, offsetFactor, duration) {
+        const localOffset = (modelRadius * offsetFactor) / loadedScale;
+        names.forEach(name => {
+            const obj3d = meshMap.get(name);
+            if (!obj3d) return;
+            const base = meshAnims.has(name)
+                ? meshAnims.get(name).endPos.clone()
+                : obj3d.position.clone();
+            animateMeshTo(name, base.addScaledVector(direction, localOffset), duration);
+        });
+    }
+
+    function toggleDeckel() {
+        const btn = document.getElementById('kb3dDeckelBtn');
+        if (isDeckelOpen) {
+            // Umgekehrte Richtung → landet korrekt in Normal- UND Explosionsansicht
+            animateGroupInDirection(DECKEL_MESH_NAMES, new THREE.Vector3(0, -1, 0), DECKEL_LIFT_FACTOR, 0.9);
+            isDeckelOpen = false;
+            if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = 'Öffnen'; }
+        } else {
+            animateGroupInDirection(DECKEL_MESH_NAMES, new THREE.Vector3(0, 1, 0), DECKEL_LIFT_FACTOR, 0.9);
+            isDeckelOpen = true;
+            if (btn) { btn.classList.add('kb3d-btn--active'); btn.textContent = 'Schließen'; }
+        }
+    }
+
+    function toggleKameraschutz() {
+        const btn = document.getElementById('kb3dSchutzBtn');
+        if (isKameraschutzOpen) {
+            animateGroupInDirection(KAMERASCHUTZ_MESH_NAMES, new THREE.Vector3(0, 0, -1), KAMERASCHUTZ_SLIDE_FACTOR, 0.9);
+            isKameraschutzOpen = false;
+            if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = 'Öffnen'; }
+        } else {
+            animateGroupInDirection(KAMERASCHUTZ_MESH_NAMES, new THREE.Vector3(0, 0, 1), KAMERASCHUTZ_SLIDE_FACTOR, 0.9);
+            isKameraschutzOpen = true;
+            if (btn) { btn.classList.add('kb3d-btn--active'); btn.textContent = 'Schließen'; }
+        }
+    }
+
+    // ─── Sichtbarkeit Baugruppen ──────────────────────────────────────────────
+    function setGroupVisibility(names, visible) {
+        names.forEach(name => {
+            const obj3d = meshMap.get(name);
+            if (obj3d) obj3d.visible = visible;
+        });
+    }
+
+    function toggleDeckelVisibility() {
+        isDeckelHidden = !isDeckelHidden;
+        setGroupVisibility(DECKEL_MESH_NAMES, !isDeckelHidden);
+        const btn = document.getElementById('kb3dDeckelHideBtn');
+        if (btn) {
+            btn.classList.toggle('kb3d-btn--active', isDeckelHidden);
+            btn.textContent = isDeckelHidden ? 'Einblenden' : 'Ausblenden';
+        }
+    }
+
+    function toggleSchutzVisibility() {
+        isKameraschutzHidden = !isKameraschutzHidden;
+        setGroupVisibility(KAMERASCHUTZ_MESH_NAMES, !isKameraschutzHidden);
+        const btn = document.getElementById('kb3dSchutzHideBtn');
+        if (btn) {
+            btn.classList.toggle('kb3d-btn--active', isKameraschutzHidden);
+            btn.textContent = isKameraschutzHidden ? 'Einblenden' : 'Ausblenden';
+        }
+    }
+
     // Vollständige Explosionsansicht (alle Teile)
     function toggleExplode() {
         const btn = document.getElementById('kb3dExplodeBtn');
+        // Deckel/Schutz-Zustand zurücksetzen: explodeNames/restoreNames arbeiten
+        // auf originalPositions – offene Baugruppen würden sonst inkonsistent liegen.
+        if (isDeckelOpen || isKameraschutzOpen) {
+            isDeckelOpen = false;
+            isKameraschutzOpen = false;
+            const deckelBtn = document.getElementById('kb3dDeckelBtn');
+            if (deckelBtn) { deckelBtn.classList.remove('kb3d-btn--active'); deckelBtn.textContent = 'Öffnen'; }
+            const schutzBtn = document.getElementById('kb3dSchutzBtn');
+            if (schutzBtn) { schutzBtn.classList.remove('kb3d-btn--active'); schutzBtn.textContent = 'Öffnen'; }
+        }
         if (isExploded) {
             restoreNames([...meshMap.keys()], 1.1);
             isExploded = false;
-            if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = '💥 Explosionsansicht'; }
+            if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = '💥 Explosion'; }
             clearHighlight();
         } else {
             explodeNames([...meshMap.keys()], 1.0, 1.2);
@@ -610,10 +743,10 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
                                 // envMapIntensity steuert die Stärke pro Material.
                                 let color, roughness, metalness, envMapIntensity;
                                 if (matName.includes('anstrich')) {
-                                    color           = new THREE.Color('#325928');
+                                    color           = new THREE.Color('#4d8535');
                                     roughness       = 0.55;
                                     metalness       = 0.0;
-                                    envMapIntensity = 0.6;
+                                    envMapIntensity = 1.5;
                                 } else if (matName.includes('gusseisen')) {
                                     color           = new THREE.Color('#c8c8c8');
                                     roughness       = 0.48;
@@ -626,7 +759,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
                                     envMapIntensity = 0.3;
                                 } else if (matName.includes('weiss')) {
                                     color           = new THREE.Color('#ffffff');
-                                    roughness       = 0.15;
+                                    roughness       = 0.40;
                                     metalness       = 0.0;
                                     envMapIntensity = 0.4;
                                 } else {
@@ -862,19 +995,37 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     });
 
     // ─── Steuer-Buttons ───────────────────────────────────────────────────────
+    document.getElementById('kb3dDeckelBtn')?.addEventListener('click', toggleDeckel);
+    document.getElementById('kb3dDeckelHideBtn')?.addEventListener('click', toggleDeckelVisibility);
+    document.getElementById('kb3dSchutzBtn')?.addEventListener('click', toggleKameraschutz);
+    document.getElementById('kb3dSchutzHideBtn')?.addEventListener('click', toggleSchutzVisibility);
     document.getElementById('kb3dExplodeBtn')?.addEventListener('click', toggleExplode);
 
     document.getElementById('kb3dResetBtn')?.addEventListener('click', () => {
         restoreNames([...meshMap.keys()], 0.9);
-        isExploded = false;
+        isExploded           = false;
+        isDeckelOpen         = false;
+        isDeckelHidden       = false;
+        isKameraschutzOpen   = false;
+        isKameraschutzHidden = false;
+        setGroupVisibility(DECKEL_MESH_NAMES, true);
+        setGroupVisibility(KAMERASCHUTZ_MESH_NAMES, true);
         clearHighlight();
         clearSvgActive();
 
         const explodeBtn = document.getElementById('kb3dExplodeBtn');
         if (explodeBtn) {
             explodeBtn.classList.remove('kb3d-btn--active');
-            explodeBtn.textContent = '💥 Explosionsansicht';
+            explodeBtn.textContent = '💥 Explosion';
         }
+        const deckelBtn = document.getElementById('kb3dDeckelBtn');
+        if (deckelBtn) { deckelBtn.classList.remove('kb3d-btn--active'); deckelBtn.textContent = 'Öffnen'; }
+        const deckelHideBtn = document.getElementById('kb3dDeckelHideBtn');
+        if (deckelHideBtn) { deckelHideBtn.classList.remove('kb3d-btn--active'); deckelHideBtn.textContent = 'Ausblenden'; }
+        const schutzBtn = document.getElementById('kb3dSchutzBtn');
+        if (schutzBtn) { schutzBtn.classList.remove('kb3d-btn--active'); schutzBtn.textContent = 'Öffnen'; }
+        const schutzHideBtn = document.getElementById('kb3dSchutzHideBtn');
+        if (schutzHideBtn) { schutzHideBtn.classList.remove('kb3d-btn--active'); schutzHideBtn.textContent = 'Ausblenden'; }
 
         camAnim = {
             startPos:    camera.position.clone(),
