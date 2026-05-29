@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -yqq \
     && docker-php-ext-install intl zip opcache bcmath \
     && rm -rf /var/lib/apt/lists/*
 
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # Build-Kontext ist das Projekt-Root (nicht .docker/app/)
 COPY .docker/app/vhost.conf /etc/apache2/sites-available/000-default.conf
