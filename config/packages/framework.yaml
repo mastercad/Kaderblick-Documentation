@@ -2,6 +2,9 @@
 framework:
     secret: '%env(APP_SECRET)%'
     annotations: false
+
+    assets:
+        version: 'v1'
     http_method_override: false
     handle_all_throwables: true
 
