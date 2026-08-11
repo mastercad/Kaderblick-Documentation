@@ -6,28 +6,13 @@
     <h1>Erste Schritte mit Kaderblick</h1>
 
     <p>
-        Diese Seite hilft euch beim Einstieg. Ihr müsst dafür nichts über Computer oder die Technik
-        hinter Kaderblick wissen. Entscheidend ist nur: <strong>Wo finde ich etwas und was kann ich dort tun?</strong>
+        Hier findet ihr die wichtigsten Schritte von der Registrierung bis zur Orientierung in Kaderblick.
     </p>
-
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Nicht jeder sieht genau dieselben Bereiche',
-        text: 'Welche Bereiche und Schaltflächen ihr seht, hängt davon ab, welche Aufgabe ihr im Verein habt. Spieler, Trainer und Personen aus der Verwaltung benötigen unterschiedliche Möglichkeiten. Wenn eine Funktion nur für bestimmte Personen sichtbar ist, weisen wir in der jeweiligen Anleitung darauf hin.'
-    } %}
-
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Viele Wege führen zum selben Ziel',
-        text: 'Einige Tätigkeiten sind in Kaderblick an mehreren Stellen möglich. Zum Beispiel kann die Teilnahme an einem Training aus verschiedenen Übersichten heraus geändert werden. Die ausführlichen Kapitel nennen deshalb nicht nur einen Weg, sondern alle bestätigten sinnvollen Wege.'
-    } %}
 
     <h2>1. Kaderblick öffnen</h2>
 
     <p>
-        Öffnet Kaderblick über die Internetadresse eures Vereins. Auf der Startseite findet ihr die Möglichkeit
-        zur Anmeldung. Wenn Kaderblick an einer Stelle noch eine englische Bezeichnung verwendet, nennen wir sie
-        nur dann mit, wenn ihr sie zum Wiederfinden benötigt.
+        Öffnet Kaderblick über die Internetadresse eures Vereins. Auf der Startseite findet ihr die Möglichkeit zur Anmeldung.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -38,15 +23,15 @@
             'Schaltfläche zum Anmelden',
             'genug Umgebung, damit die Lage der Schaltfläche gut erkennbar ist'
         ],
-        purpose: 'Neue Benutzer sollen sofort erkennen, wo sie die Anmeldung öffnen.'
+        purpose: 'Position der Anmeldung auf der Startseite zeigen.'
     } %}
 
     <h2>2. Ein neues Konto anlegen</h2>
 
     <p>
-        Wenn ihr Kaderblick noch nicht benutzt habt, öffnet zuerst die Anmeldung und wechselt dort zur Registrierung.
-        Tragt euren vollständigen Namen und eure E-Mail-Adresse ein und legt ein Passwort fest. Das Passwort muss
-        mindestens <strong>8 Zeichen</strong> lang sein und zur Kontrolle noch einmal eingegeben werden.
+        Öffnet die Anmeldung und wechselt dort zur Registrierung. Tragt euren vollständigen Namen und eure
+        E-Mail-Adresse ein und legt ein Passwort fest. Das Passwort muss mindestens <strong>8 Zeichen</strong>
+        lang sein und zur Kontrolle noch einmal eingegeben werden.
     </p>
 
     {% include 'components/steps.html.twig' with {
@@ -71,21 +56,21 @@
             'Passwortbestätigung',
             'Schaltfläche zum Erstellen des Kontos'
         ],
-        purpose: 'Der Benutzer soll die beschriebenen Felder direkt im Formular wiederfinden.'
+        purpose: 'Felder und Schaltflächen der Registrierung zeigen.'
     } %}
 
     <h2>3. Mit einem vorhandenen Konto anmelden</h2>
 
     <p>
-        Wenn ihr bereits ein Konto habt, meldet ihr euch mit eurer E-Mail-Adresse und eurem Passwort an.
-        Kaderblick bietet außerdem eine Anmeldung über ein Google-Konto an.
+        Meldet euch mit eurer E-Mail-Adresse und eurem Passwort an. Alternativ ist die Anmeldung über ein
+        Google-Konto möglich.
     </p>
 
     <p>
         Wenn ihr euer Passwort nicht mehr wisst, könnt ihr direkt aus der Anmeldung ein neues anfordern.
         Ist ein Konto nach zu vielen fehlgeschlagenen Anmeldeversuchen gesperrt, kann dort auch eine Entsperrung
-        angefordert werden. Die einzelnen Fälle werden im Kapitel
-        <a href="{{ path('app_authentifizierung') }}">Anmelden &amp; Registrieren</a> ausführlich erklärt.
+        angefordert werden. Weitere Informationen findet ihr unter
+        <a href="{{ path('app_authentifizierung') }}">Anmelden &amp; Registrieren</a>.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -98,15 +83,15 @@
             'Möglichkeit bei vergessenem Passwort',
             'Schaltfläche zum Einloggen'
         ],
-        purpose: 'Neue Benutzer sollen die verschiedenen Möglichkeiten zur Anmeldung sofort erkennen.'
+        purpose: 'Anmeldemöglichkeiten und die zugehörigen Eingabefelder zeigen.'
     } %}
 
-    <h2>4. Dem richtigen Spieler oder Trainer zugeordnet werden</h2>
+    <h2>4. Vereinszugehörigkeit angeben</h2>
 
     <p>
-        Nach einer neuen Registrierung kann Kaderblick euch fragen, zu welcher Person im Verein euer Benutzerkonto
-        gehört. Dabei könnt ihr angeben, ob es um einen Spieler oder einen Trainer geht, die richtige Person suchen
-        und eure Beziehung zu dieser Person auswählen.
+        Nach einer neuen Registrierung kann Kaderblick euch nach eurer Vereinszugehörigkeit fragen. Dabei gebt ihr
+        an, ob die Zuordnung zu einem Spieler oder Trainer erfolgen soll, sucht die betreffende Person und wählt eure
+        Beziehung zu dieser Person aus.
     </p>
 
     {% include 'components/steps.html.twig' with {
@@ -128,23 +113,21 @@
             'Auswahl der Beziehung',
             'abschließende Schaltfläche zum Absenden des Antrags'
         ],
-        purpose: 'Benutzer sollen verstehen, dass hier ihr Benutzerkonto mit der richtigen Person im Verein verbunden wird.'
+        purpose: 'Auswahl und Beantragung der Vereinszugehörigkeit zeigen.'
     } %}
 
-    <h2>5. Die wichtigsten Bereiche finden</h2>
+    <h2>5. Die wichtigsten Bereiche</h2>
 
     <p>
-        Nach der Anmeldung erreicht ihr die wichtigsten Bereiche über die Navigation. Welche zusätzlichen Einträge
-        angezeigt werden, hängt von euren Aufgaben und Berechtigungen im Verein ab.
+        Welche Bereiche angezeigt werden, hängt von euren Aufgaben und Berechtigungen im Verein ab.
     </p>
 
     <h3>Am Computer</h3>
 
     <p>
-        Am Computer befindet sich links eine Seitenleiste. Dort erreicht ihr unter anderem
-        <strong>Dashboard</strong>, <strong>Kalender</strong>, <strong>Spiele</strong>,
-        <strong>Team &amp; Verein</strong> und <strong>Meine Aufgaben</strong>. Weitere Bereiche werden je nach
-        Aufgabe im Verein ergänzt.
+        Über die Seitenleiste erreicht ihr unter anderem <strong>Dashboard</strong>, <strong>Kalender</strong>,
+        <strong>Spiele</strong>, <strong>Team &amp; Verein</strong> und <strong>Meine Aufgaben</strong>.
+        Weitere Bereiche werden je nach Aufgabe im Verein ergänzt.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -158,15 +141,15 @@
             'Meine Aufgaben',
             'weitere sichtbare Bereiche eines normalen Benutzers'
         ],
-        purpose: 'Benutzer sollen die Hauptbereiche und die Lage der Navigation auf Anhieb erkennen.'
+        purpose: 'Lage der Hauptbereiche in der Navigation zeigen.'
     } %}
 
     <h3>Auf dem Smartphone</h3>
 
     <p>
-        Auf dem Smartphone stehen unten dauerhaft die wichtigsten Schnellzugriffe:
-        <strong>Dashboard</strong>, <strong>Kalender</strong>, <strong>Spiele</strong>,
-        <strong>Mein Team</strong> und <strong>Mehr</strong>. Über <strong>Mehr</strong> öffnet ihr die übrigen Bereiche.
+        Unten stehen die Schnellzugriffe <strong>Dashboard</strong>, <strong>Kalender</strong>,
+        <strong>Spiele</strong>, <strong>Mein Team</strong> und <strong>Mehr</strong> zur Verfügung.
+        Über <strong>Mehr</strong> öffnet ihr die übrigen Bereiche.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -179,31 +162,22 @@
             'Mein Team',
             'Mehr'
         ],
-        purpose: 'Benutzer auf dem Smartphone sollen sofort sehen, dass die wichtigsten Bereiche unten erreichbar sind und weitere Bereiche hinter „Mehr“ liegen.'
+        purpose: 'Schnellzugriffe und Zugang zu den weiteren Bereichen zeigen.'
     } %}
 
-    <h2>6. Wofür sind die Hauptbereiche gedacht?</h2>
+    <h2>6. Hauptbereiche im Überblick</h2>
 
     <ul>
-        <li><strong>Dashboard:</strong> eure persönliche Übersicht mit Informationen aus verschiedenen Bereichen.</li>
+        <li><strong>Dashboard:</strong> persönliche Übersicht mit Informationen aus verschiedenen Bereichen.</li>
         <li><strong>Kalender:</strong> Termine des Vereins und der Mannschaft sowie Möglichkeiten rund um die Teilnahme.</li>
-        <li><strong>Spiele:</strong> alles rund um Spielplan, Spieltag und weitere spielbezogene Funktionen.</li>
-        <li><strong>Team &amp; Verein:</strong> Informationen und Funktionen rund um eure Mannschaft und euren Verein.</li>
-        <li><strong>Meine Aufgaben:</strong> Aufgaben, die euch betreffen, und – wenn ihr dazu berechtigt seid – weitere Aufgabenübersichten.</li>
+        <li><strong>Spiele:</strong> Spielplan, Spieltag und weitere spielbezogene Funktionen.</li>
+        <li><strong>Team &amp; Verein:</strong> Informationen und Funktionen rund um Mannschaft und Verein.</li>
+        <li><strong>Meine Aufgaben:</strong> eigene Aufgaben und – bei entsprechender Berechtigung – weitere Aufgabenübersichten.</li>
     </ul>
 
     {% include 'components/callout.html.twig' with {
-        type: 'warning',
-        title: 'Ein Bereich fehlt bei euch?',
-        text: 'Das bedeutet nicht automatisch, dass etwas kaputt ist. Kaderblick zeigt zusätzliche Bereiche nur den Personen, die sie für ihre Aufgabe benötigen. In den einzelnen Kapiteln steht deshalb jeweils dabei, für wen eine Funktion sichtbar ist.'
+        type: 'info',
+        title: 'Unterschiedliche Berechtigungen',
+        text: 'Zusätzliche Bereiche und Funktionen werden abhängig von der jeweiligen Aufgabe im Verein angezeigt.'
     } %}
-
-    <h2>7. So benutzt ihr die weitere Dokumentation</h2>
-
-    <p>
-        Ihr müsst die Dokumentation nicht von vorne bis hinten lesen. Sucht euch die Tätigkeit heraus,
-        die ihr gerade erledigen möchtet. Dort erklären wir, wo ihr die Funktion findet, welche Schritte nötig sind,
-        welche anderen Wege zum selben Ziel führen, wer die Funktion benutzen darf und wo sich das Ergebnis
-        anschließend in Kaderblick wiederfindet.
-    </p>
 {% endblock %}
