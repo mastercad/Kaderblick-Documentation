@@ -71,9 +71,9 @@
 
     <p>
         Der Bestätigungslink ist <strong>einen Monat</strong> gültig. Nach erfolgreicher Bestätigung zeigt Kaderblick
-        die Meldung, dass die E-Mail-Adresse verifiziert wurde, und bietet <strong>„Zum Login“</strong> an. Ein ungültiger
+        die Meldung, dass die E-Mail-Adresse bestätigt wurde, und bietet <strong>„Zum Login“</strong> an. Ein ungültiger
         oder abgelaufener Link führt auf eine Fehlerseite. Superadmins können für ein noch nicht bestätigtes Konto
-        in der Benutzerverwaltung eine neue Verifikationsmail senden.
+        in der Benutzerverwaltung eine neue Bestätigungs-E-Mail senden.
     </p>
 
     <h2>Mit E-Mail-Adresse und Passwort anmelden</h2>
@@ -150,10 +150,10 @@
     } %}
 
     <p>
-        Wird die Zwei-Faktor-Bestätigung für die gesamte Kaderblick-Installation verpflichtend vorgegeben und ist sie
-        für euer Konto noch nicht eingerichtet, erscheint nach der Anmeldung ein nicht ausblendbarer Hinweis
-        <strong>„Zwei-Faktor-Authentifizierung erforderlich“</strong>. Über <strong>„Jetzt aktivieren“</strong> gelangt ihr
-        direkt zu den entsprechenden Einstellungen im Profil.
+        Ist die Zwei-Faktor-Bestätigung für alle Benutzer verpflichtend und für euer Konto noch nicht eingerichtet,
+        erscheint nach der Anmeldung der Hinweis <strong>„Zwei-Faktor-Authentifizierung erforderlich“</strong>.
+        Über <strong>„Jetzt aktivieren“</strong> gelangt ihr direkt zu den entsprechenden Einstellungen im
+        <a href="{{ path('app_profil') }}">Profil</a>.
     </p>
 
     <h2>Passwort zurücksetzen</h2>
@@ -192,6 +192,22 @@
         ],
         purpose: 'Die Eingaben für das neue Passwort zeigen.'
     } %}
+
+    <h2>E-Mail-Adresse oder Passwort im angemeldeten Konto ändern</h2>
+
+    <p>
+        Öffnet über euer Benutzerbild <strong>„Profil“</strong> und bleibt im Reiter <strong>„Profil“</strong>.
+        Die E-Mail-Adresse steht im Abschnitt <strong>„Name &amp; Kontakt“</strong>. Ein neues Passwort wird im Abschnitt
+        <strong>„Passwort ändern“</strong> eingetragen und im zweiten Feld bestätigt. Bleiben die Passwortfelder leer,
+        wird das bestehende Passwort nicht verändert.
+    </p>
+
+    <p>
+        Bei einer Änderung der E-Mail-Adresse sendet Kaderblick eine Bestätigungs-E-Mail an die neue Adresse. Die
+        bisherige Adresse bleibt so lange bestehen, bis der Link aus dieser E-Mail geöffnet wurde. Der Link ist
+        <strong>24 Stunden</strong> gültig. Wird die neue Adresse bereits von einem anderen Kaderblick-Konto verwendet,
+        wird die Änderung nicht gespeichert.
+    </p>
 
     <h2>Gesperrtes Konto entsperren</h2>
 
@@ -245,10 +261,10 @@
     <h2>Demo-Zugänge</h2>
 
     <p>
-        In einer Kaderblick-Umgebung mit aktivierten Demo-Zugängen erscheint oberhalb der Anmeldung
+        In einer Umgebung mit aktivierten Demo-Zugängen erscheint oberhalb der Anmeldung
         <strong>„Demo-Zugänge anzeigen“</strong>. Dort kann ein Demo-Verein und anschließend ein vorbereiteter Zugang
         ausgewählt werden. Mit <strong>„Übernehmen“</strong> trägt Kaderblick die zugehörige E-Mail-Adresse und das
-        gemeinsame Demo-Passwort in das Anmeldeformular ein; anschließend erfolgt die Anmeldung wie gewohnt über
+        gemeinsame Demo-Passwort in das Anmeldeformular ein; anschließend erfolgt die Anmeldung über
         <strong>„Einloggen“</strong>. In normalen Kaderblick-Umgebungen wird diese Auswahl nicht angezeigt.
     </p>
 
