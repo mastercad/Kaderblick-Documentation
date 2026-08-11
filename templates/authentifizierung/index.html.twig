@@ -3,139 +3,260 @@
 {% block title %}Anmelden & Registrieren – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>🔐 Anmelden & Registrieren</h1>
+    <h1>Anmelden &amp; Registrieren</h1>
+
     <p>
-        Alles rund um euren Account: Wie ihr euch registriert, anmeldet, euer Passwort
-        zurücksetzen könnt und was zu tun ist, wenn etwas nicht klappt.
+        Anmeldung und Registrierung befinden sich im selben Fenster. Über die Reiter <strong>„Login“</strong>
+        und <strong>„Register“</strong> wechselt ihr zwischen einem vorhandenen Konto und dem Anlegen eines neuen Kontos.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📝', title: 'Registrierung', desc: 'Konto erstellen mit Name, E-Mail und Passwort.' },
-            { icon: '🔑', title: 'Login', desc: 'Mit E-Mail/Passwort oder Google-Konto anmelden.' },
-            { icon: '🔄', title: 'Passwort zurücksetzen', desc: 'Neues Passwort per E-Mail-Link anfordern.' },
-            { icon: '📧', title: 'E-Mail ändern', desc: 'E-Mail-Adresse im Profil aktualisieren.' },
-            { icon: '🚪', title: 'Abmelden', desc: 'Session beenden über das Profil-Menü.' },
-        ]
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Anmeldefenster',
+        description: 'Bitte das geöffnete Anmeldefenster im Reiter „Login“ aufnehmen.',
+        items: [
+            'Reiter „Login“ und „Register“',
+            'Schaltfläche „Mit Google anmelden“',
+            'E-Mail-Adresse',
+            'Passwort',
+            '„Passwort vergessen?“',
+            'Schaltfläche „Einloggen“'
+        ],
+        purpose: 'Alle Zugänge zur Anmeldung in einem Bild zeigen.'
     } %}
 
-    {# ─── Registrierung ─── #}
-    <h2>Neu hier? So registriert ihr euch</h2>
+    <h2>Konto mit E-Mail-Adresse erstellen</h2>
+
+    <p>
+        Wechselt im Anmeldefenster auf <strong>„Register“</strong>. Für die Registrierung werden der vollständige
+        Name, eine E-Mail-Adresse, ein Passwort und die Wiederholung des Passworts benötigt. Das Passwort muss
+        mindestens <strong>8 Zeichen</strong> lang sein. Stimmen Passwort und Bestätigung nicht überein, weist
+        Kaderblick direkt darauf hin.
+    </p>
+
     {% include 'components/steps.html.twig' with {
         steps: [
-            { title: 'Registrieren öffnen', text: 'Öffnet Kaderblick und klickt oben rechts auf <strong>„Registrieren"</strong> (oder „Anmelden" → dann auf den Registrieren-Link).' },
-            { title: 'Namen eingeben', text: 'Gebt euren <strong>vollständigen Namen</strong> ein (Vor- und Nachname).' },
-            { title: 'E-Mail eintragen', text: 'Tragt eine <strong>gültige E-Mail-Adresse</strong> ein – an diese wird eine Bestätigungsmail geschickt.' },
-            { title: 'Passwort wählen', text: 'Wählt ein <strong>sicheres Passwort</strong> (mindestens 8 Zeichen, am besten eine Mischung aus Buchstaben, Zahlen und Sonderzeichen).' },
-            { title: 'Bestätigen', text: 'Klickt auf <strong>„Registrieren"</strong> und öffnet die Bestätigungsmail in eurem Postfach. Euer Konto ist erst nach Klick auf den Link aktiv!' },
+            { title: '„Register“ öffnen', text: 'Wechselt im Anmeldefenster auf den Reiter <strong>„Register“</strong>.' },
+            { title: 'Name und E-Mail-Adresse eintragen', text: 'Tragt euren vollständigen Namen und die E-Mail-Adresse ein, die ihr für Kaderblick verwenden möchtet.' },
+            { title: 'Passwort festlegen', text: 'Gebt ein Passwort mit mindestens <strong>8 Zeichen</strong> ein und wiederholt es im Feld <strong>„Passwort bestätigen“</strong>.' },
+            { title: 'Konto erstellen', text: 'Schließt die Registrierung mit <strong>„Konto erstellen“</strong> ab.' }
         ]
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/authentifizierung/registrierung.png',
-        alt: 'Registrierungsformular',
-        caption: 'Das Registrierungsformular mit allen Pflichtfeldern.'
-    } %}
-
-    {% include 'components/callout.html.twig' with {
-        type: 'warning',
-        title: 'Wichtig',
-        text: 'Ohne E-Mail-Bestätigung könnt ihr euch nicht anmelden. Schaut auch im Spam-Ordner nach, falls die Mail nicht ankommt.'
-    } %}
-
-    {# ─── Login ─── #}
-    <h2>Einloggen</h2>
     <p>
-        Klickt auf <strong>„Anmelden"</strong>, gebt eure E-Mail-Adresse und euer Passwort
-        ein und klickt auf <strong>„Einloggen"</strong>.
+        Ist die angegebene E-Mail-Adresse bereits registriert, zeigt Kaderblick die Meldung
+        <strong>„E-Mail-Adresse bereits registriert.“</strong> an. In diesem Fall verwendet ihr die Anmeldung
+        für das vorhandene Konto oder setzt bei Bedarf das Passwort zurück.
     </p>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Wenn ihr Kaderblick auf dem Smartphone als App gespeichert habt, bleibt ihr meistens automatisch eingeloggt.'
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Registrierung',
+        description: 'Bitte das Anmeldefenster im Reiter „Register“ aufnehmen.',
+        items: [
+            'Vollständiger Name',
+            'E-Mail-Adresse',
+            'Passwort mit Hinweis „Mindestens 8 Zeichen“',
+            'Passwort bestätigen',
+            'Schaltfläche „Konto erstellen“'
+        ],
+        purpose: 'Die für ein neues Konto benötigten Angaben zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/authentifizierung/login.png',
-        alt: 'Login-Seite',
-        caption: 'Die Anmeldeseite mit E-Mail/Passwort und Google-Login-Option.'
-    } %}
+    <h2>E-Mail-Adresse bestätigen</h2>
 
-    {# ─── Google Login ─── #}
-    <h2>Mit Google einloggen</h2>
     <p>
-        Falls euer Verein die Google-Anmeldung aktiviert hat, könnt ihr euch mit eurem
-        bestehenden Google-Konto anmelden – ganz ohne separates Passwort:
+        Nach erfolgreicher Registrierung zeigt Kaderblick die E-Mail-Adresse an, an die die Bestätigungs-E-Mail
+        gesendet wurde. Öffnet den darin enthaltenen Link. Erst dadurch wird das mit E-Mail und Passwort erstellte
+        Konto aktiviert und kann für die Anmeldung verwendet werden.
     </p>
+
+    <p>
+        Der Bestätigungslink ist <strong>einen Monat</strong> gültig. Nach erfolgreicher Bestätigung zeigt Kaderblick
+        die Meldung, dass die E-Mail-Adresse verifiziert wurde, und bietet <strong>„Zum Login“</strong> an. Ein ungültiger
+        oder abgelaufener Link führt auf eine Fehlerseite. Superadmins können für ein noch nicht bestätigtes Konto
+        in der Benutzerverwaltung eine neue Verifikationsmail senden.
+    </p>
+
+    <h2>Mit E-Mail-Adresse und Passwort anmelden</h2>
+
+    <p>
+        Im Reiter <strong>„Login“</strong> gebt ihr die E-Mail-Adresse und das Passwort ein und wählt
+        <strong>„Einloggen“</strong>. Bei falscher E-Mail-Adresse oder falschem Passwort erscheint
+        <strong>„Ungültige Zugangsdaten“</strong>.
+    </p>
+
+    <p>
+        Nach zu vielen fehlgeschlagenen Anmeldeversuchen nimmt Kaderblick vorübergehend keine weiteren Versuche an.
+        Die Anmeldung zeigt dann den Hinweis, dass ihr es in <strong>10 Minuten</strong> erneut versuchen könnt.
+        Diese vorübergehende Sperre ist nicht dasselbe wie ein ausdrücklich gesperrtes Benutzerkonto.
+    </p>
+
+    <h2>Mit Google anmelden</h2>
+
+    <p>
+        Über <strong>„Mit Google anmelden“</strong> könnt ihr ein Google-Konto für die Anmeldung verwenden. Am Computer
+        öffnet sich die Google-Anmeldung in einem eigenen Fenster. Auf dem Smartphone wird die Google-Anmeldung in
+        derselben Browseransicht geöffnet und führt anschließend zurück zu Kaderblick.
+    </p>
+
+    <p>
+        Existiert bereits ein Kaderblick-Konto mit derselben E-Mail-Adresse, wird das Google-Konto mit diesem Konto
+        verbunden. Eine noch ausstehende E-Mail-Bestätigung gilt durch die erfolgreiche Google-Anmeldung als erledigt.
+        Existiert noch kein Kaderblick-Konto mit dieser E-Mail-Adresse, legt Kaderblick beim ersten Google-Login ein
+        neues aktives Konto mit dem bei Google hinterlegten Namen an. Ein gesperrtes oder deaktiviertes Konto kann
+        auch über Google nicht angemeldet werden.
+    </p>
+
+    <h2>Zwei-Faktor-Bestätigung bei der Anmeldung</h2>
+
+    <p>
+        Ist für euer Konto eine Zwei-Faktor-Bestätigung aktiviert, folgt nach E-Mail-Adresse und Passwort ein zweiter
+        Schritt. Welche Eingabe verlangt wird, hängt von der im Profil eingerichteten Methode ab.
+    </p>
+
+    <h3>Authenticator-App</h3>
+
+    <p>
+        Bei einer Authenticator-App gebt ihr den aktuell angezeigten <strong>6-stelligen Code</strong> ein. Der Code
+        wechselt alle 30 Sekunden. Falls ihr keinen Zugriff auf die App habt, könnt ihr über
+        <strong>„Backup-Code verwenden“</strong> einen zuvor gesicherten Backup-Code eingeben. Jeder Backup-Code kann
+        nur einmal verwendet werden. Über <strong>„Authenticator-App verwenden“</strong> wechselt ihr wieder zur normalen
+        Code-Eingabe.
+    </p>
+
+    <h3>E-Mail-Code</h3>
+
+    <p>
+        Bei der Bestätigung per E-Mail sendet Kaderblick beim Öffnen des zweiten Anmeldeschritts automatisch einen
+        <strong>6-stelligen Code</strong> an eure registrierte E-Mail-Adresse. Der Code ist <strong>10 Minuten</strong>
+        gültig. Mit <strong>„Code erneut senden“</strong> kann ein neuer Code angefordert werden.
+    </p>
+
+    <p>
+        In beiden Fällen schließt <strong>„Bestätigen &amp; Einloggen“</strong> die Anmeldung ab. Mit
+        <strong>„Zurück zum Login“</strong> kehrt ihr zur Eingabe von E-Mail-Adresse und Passwort zurück.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Zwei-Faktor-Bestätigung',
+        description: 'Bitte den zweiten Anmeldeschritt mit aktivierter Authenticator-App aufnehmen. Wenn die E-Mail-Methode genutzt wird, ist zusätzlich ein zweites Bild sinnvoll.',
+        items: [
+            'Überschrift „Zwei-Faktor-Bestätigung“',
+            'Feld für den 6-stelligen Code',
+            'Schaltfläche „Bestätigen & Einloggen“',
+            'Möglichkeit für Backup-Code beziehungsweise „Code erneut senden“',
+            '„Zurück zum Login“'
+        ],
+        purpose: 'Den zusätzlichen Anmeldeschritt und seine Ausweichmöglichkeiten zeigen.'
+    } %}
+
+    <p>
+        Wird die Zwei-Faktor-Bestätigung für die gesamte Kaderblick-Installation verpflichtend vorgegeben und ist sie
+        für euer Konto noch nicht eingerichtet, erscheint nach der Anmeldung ein nicht ausblendbarer Hinweis
+        <strong>„Zwei-Faktor-Authentifizierung erforderlich“</strong>. Über <strong>„Jetzt aktivieren“</strong> gelangt ihr
+        direkt zu den entsprechenden Einstellungen im Profil.
+    </p>
+
+    <h2>Passwort zurücksetzen</h2>
+
+    <p>
+        Wählt im Anmeldefenster <strong>„Passwort vergessen?“</strong>. Auf der folgenden Seite tragt ihr die
+        E-Mail-Adresse des Kontos ein und wählt <strong>„Link anfordern“</strong>. Kaderblick bestätigt den Vorgang
+        unabhängig davon, ob zu der eingegebenen Adresse ein Konto existiert. Wenn ein passendes Konto vorhanden ist,
+        wird eine E-Mail mit einem Link zum Zurücksetzen des Passworts versendet.
+    </p>
+
     {% include 'components/steps.html.twig' with {
         steps: [
-            { title: 'Google-Button klicken', text: 'Auf <strong>„Mit Google anmelden"</strong> klicken.' },
-            { title: 'Konto wählen', text: 'Euer Google-Konto auswählen.' },
-            { title: 'Bestätigen', text: 'Bestätigung geben – fertig, ihr seid eingeloggt!' },
-        ]
-    } %}
-    <p>
-        Bei der ersten Anmeldung mit Google wird automatisch ein Kaderblick-Konto für euch angelegt.
-    </p>
-
-    {# ─── Passwort vergessen ─── #}
-    <h2>Passwort vergessen?</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Link aufrufen', text: 'Auf der Loginseite auf <strong>„Passwort vergessen?"</strong> klicken.' },
-            { title: 'E-Mail eingeben', text: 'Eure E-Mail-Adresse eingeben und auf <strong>„Link anfordern"</strong> klicken.' },
-            { title: 'Neues Passwort setzen', text: 'Ihr erhaltet eine E-Mail mit einem Link – klickt ihn an, gebt euer neues Passwort ein und bestätigt es.' },
+            { title: 'Zurücksetzen anfordern', text: 'Wählt <strong>„Passwort vergessen?“</strong>, gebt eure E-Mail-Adresse ein und wählt <strong>„Link anfordern“</strong>.' },
+            { title: 'Link aus der E-Mail öffnen', text: 'Der Link zum Zurücksetzen ist <strong>24 Stunden</strong> gültig.' },
+            { title: 'Neues Passwort festlegen', text: 'Gebt ein neues Passwort mit mindestens <strong>8 Zeichen</strong> ein und bestätigt es im zweiten Feld.' },
+            { title: 'Passwort speichern', text: 'Wählt <strong>„Passwort zurücksetzen“</strong>. Nach erfolgreicher Änderung führt Kaderblick automatisch zurück zur Anmeldung.' }
         ]
     } %}
 
-    {% include 'components/callout.html.twig' with {
-        type: 'warning',
-        title: 'Achtung',
-        text: 'Der Link in der E-Mail ist nur eine begrenzte Zeit gültig.'
+    <p>
+        Auf der Seite <strong>„Neues Passwort setzen“</strong> kann das eingegebene Passwort über das Augensymbol
+        ein- und ausgeblendet werden. Ist der Link ungültig oder abgelaufen, bietet Kaderblick direkt
+        <strong>„Neuen Link anfordern“</strong> an.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neues Passwort setzen',
+        description: 'Bitte die Seite nach dem Öffnen eines gültigen Links zum Zurücksetzen aufnehmen.',
+        items: [
+            'Feld „Neues Passwort“',
+            'Hinweis „Mindestens 8 Zeichen“',
+            'Feld „Passwort bestätigen“',
+            'Augensymbol zum Anzeigen des Passworts',
+            'Schaltfläche „Passwort zurücksetzen“'
+        ],
+        purpose: 'Die Eingaben für das neue Passwort zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/authentifizierung/passwort-vergessen.png',
-        alt: 'Passwort-vergessen Formular',
-        caption: 'Über „Passwort vergessen" könnt ihr ein neues Passwort anfordern.'
+    <h2>Gesperrtes Konto entsperren</h2>
+
+    <p>
+        Ist das Benutzerkonto ausdrücklich gesperrt, erscheint beim Anmeldeversuch die Meldung
+        <strong>„Dein Konto wurde gesperrt.“</strong> mit <strong>„Konto entsperren anfordern“</strong>. Dieser Link führt
+        zur Seite <strong>„Konto entsperren“</strong>. Dort gebt ihr eure E-Mail-Adresse ein und wählt
+        <strong>„Entsperr-Link anfordern“</strong>.
+    </p>
+
+    <p>
+        Wenn zu der E-Mail-Adresse ein gesperrtes Konto gehört, sendet Kaderblick einen Entsperr-Link. Der Link ist
+        <strong>24 Stunden</strong> gültig. Beim Öffnen wird das Konto entsperrt; anschließend steht
+        <strong>„Zum Login“</strong> zur Verfügung. Bei einem ungültigen oder abgelaufenen Link könnt ihr direkt einen
+        neuen Entsperr-Link anfordern. Superadmins können ein gesperrtes Konto zusätzlich direkt in der
+        Benutzerverwaltung entsperren.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Konto entsperren',
+        description: 'Bitte die Seite „Konto entsperren“ vor dem Absenden aufnehmen.',
+        items: [
+            'E-Mail-Adresse',
+            'Schaltfläche „Entsperr-Link anfordern“',
+            'Möglichkeit zur Rückkehr zur Startseite'
+        ],
+        purpose: 'Den Weg zur selbstständigen Entsperrung eines Kontos zeigen.'
     } %}
 
-    {# ─── E-Mail ändern ─── #}
-    <h2>E-Mail-Adresse ändern</h2>
+    <h2>Sicherheitshinweis bei einem neuen Gerät oder Browser</h2>
+
     <p>
-        Geht in euer <a href="{{ path('app_profil') }}">Profil</a>, tragt die neue
-        E-Mail-Adresse ein und speichert. Ihr erhaltet eine Bestätigungsmail an die
-        <strong>neue Adresse</strong> – erst nach Bestätigung wird die Adresse übernommen.
+        Wenn ihr euch nach bereits erfolgten Anmeldungen von einem bisher nicht erkannten Gerät oder Browser anmeldet,
+        sendet Kaderblick eine E-Mail mit dem Betreff <strong>„Sicherheitshinweis: Neuer Login von unbekanntem Gerät“</strong>.
+        Ein neuer Browser oder gelöschte Browserdaten können ebenfalls dazu führen, dass eine Anmeldung als neu erkannt wird.
     </p>
 
-    {# ─── Abmelden ─── #}
-    <h2>Eingeloggt bleiben oder abmelden</h2>
     <p>
-        Kaderblick speichert eure Anmeldung, sodass ihr nicht bei jedem Besuch erneut
-        einloggen müsst. Auf <strong>öffentlichen Computern</strong> meldet euch nach der
-        Nutzung über das Profil-Menü ab.
+        Stammt die Anmeldung von euch, ist keine Aktion erforderlich. Stammt sie nicht von euch, enthält die E-Mail
+        <strong>„Konto jetzt sperren“</strong>. Der Sperr-Link ist 24 Stunden gültig. Nach der Sperrung ist keine weitere
+        Anmeldung möglich, bis das Konto über den oben beschriebenen Entsperr-Vorgang wieder freigeschaltet wurde.
     </p>
 
-    {# ─── Konto gesperrt ─── #}
-    <h2>Mein Konto ist gesperrt – was nun?</h2>
+    <h2>Abmelden</h2>
+
     <p>
-        Falls euer Konto gesperrt oder noch nicht freigegeben wurde, seht ihr nach dem
-        Login eine entsprechende Meldung. Wendet euch an euren
-        <a href="{{ path('app_admin') }}">Vereinsadministrator</a>.
+        Öffnet nach der Anmeldung das Benutzermenü über euer Benutzerbild und wählt <strong>„Logout“</strong>.
+        Dadurch wird die aktuelle Anmeldung beendet.
     </p>
 
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
+    <h2>Demo-Zugänge</h2>
 
-    <h3>Ich habe mich registriert, aber bekomme keine Bestätigungsmail.</h3>
-    <p>Spam-Ordner prüfen, dann den Vereinsadministrator kontaktieren.</p>
+    <p>
+        In einer Kaderblick-Umgebung mit aktivierten Demo-Zugängen erscheint oberhalb der Anmeldung
+        <strong>„Demo-Zugänge anzeigen“</strong>. Dort kann ein Demo-Verein und anschließend ein vorbereiteter Zugang
+        ausgewählt werden. Mit <strong>„Übernehmen“</strong> trägt Kaderblick die zugehörige E-Mail-Adresse und das
+        gemeinsame Demo-Passwort in das Anmeldeformular ein; anschließend erfolgt die Anmeldung wie gewohnt über
+        <strong>„Einloggen“</strong>. In normalen Kaderblick-Umgebungen wird diese Auswahl nicht angezeigt.
+    </p>
 
-    <h3>Kann ich dieselbe E-Mail-Adresse für mehrere Kinder nutzen?</h3>
-    <p>Nein, jeder Account braucht eine eigene E-Mail-Adresse.</p>
+    <h2>Benutzerkonto und Vereinszugehörigkeit</h2>
 
-    <h3>Kann ich meinen Account löschen?</h3>
-    <p>Wendet euch an euren Vereinsadministrator.</p>
+    <p>
+        Registrierung und Anmeldung betreffen das Benutzerkonto. Die Zuordnung dieses Kontos zu einem Spieler oder
+        Trainer ist ein eigener Schritt. Die möglichen Zuordnungswege sind unter
+        <a href="{{ path('app_erste_schritte') }}">Erste Schritte</a> beschrieben.
+    </p>
 {% endblock %}
