@@ -1,0 +1,27 @@
+{# Wiederverwendbarer Platzhalter für noch zu liefernde Bilder. #}
+<div class="callout callout--info">
+    <div class="callout__icon">📷</div>
+    <div class="callout__body">
+        <div class="callout__title">Bild benötigt{% if title is defined and title %}: {{ title }}{% endif %}</div>
+        <div class="callout__text">
+            {% if description is defined and description %}
+                <p>{{ description }}</p>
+            {% endif %}
+
+            {% if items is defined and items|length > 0 %}
+                <p><strong>Auf dem Bild sollte zu sehen sein:</strong></p>
+                <ul>
+                    {% for item in items %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if purpose is defined and purpose %}
+                <p><strong>Zweck des Bildes:</strong> {{ purpose }}</p>
+            {% endif %}
+
+            <p><strong>Bitte beachten:</strong> Namen, E-Mail-Adressen und andere persönliche Angaben möglichst unkenntlich machen, sofern sie für die Erklärung nicht benötigt werden.</p>
+        </div>
+    </div>
+</div>
