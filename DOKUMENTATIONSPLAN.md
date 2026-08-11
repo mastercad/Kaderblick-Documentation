@@ -23,7 +23,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Bereich | Stand |
 |---|---|
 | Erste Schritte | abgeschlossen |
-| Anmelden & Registrieren | offen |
+| Anmelden & Registrieren | abgeschlossen |
 | Dashboard | offen |
 | Kalender & Termine | offen |
 | Spiele | offen |
