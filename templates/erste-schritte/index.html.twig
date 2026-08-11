@@ -5,156 +5,207 @@
 {% block body %}
     <h1>Erste Schritte mit Kaderblick</h1>
 
-    <p>
-        Hier findet ihr die wichtigsten Schritte von der Registrierung bis zur Orientierung in Kaderblick.
-    </p>
-
-    <h2>1. Kaderblick öffnen</h2>
+    <h2>Konto erstellen</h2>
 
     <p>
-        Öffnet Kaderblick über die Internetadresse eures Vereins. Auf der Startseite findet ihr die Möglichkeit zur Anmeldung.
-    </p>
-
-    {% include 'components/bildplatzhalter.html.twig' with {
-        title: 'Kaderblick-Startseite',
-        description: 'Bitte die Startseite aufnehmen, bevor ein Benutzer angemeldet ist.',
-        items: [
-            'Kaderblick-Schriftzug im oberen Bereich',
-            'Schaltfläche zum Anmelden',
-            'genug Umgebung, damit die Lage der Schaltfläche gut erkennbar ist'
-        ],
-        purpose: 'Position der Anmeldung auf der Startseite zeigen.'
-    } %}
-
-    <h2>2. Ein neues Konto anlegen</h2>
-
-    <p>
-        Öffnet die Anmeldung und wechselt dort zur Registrierung. Tragt euren vollständigen Namen und eure
-        E-Mail-Adresse ein und legt ein Passwort fest. Das Passwort muss mindestens <strong>8 Zeichen</strong>
-        lang sein und zur Kontrolle noch einmal eingegeben werden.
+        Öffnet das Anmeldefenster und wechselt dort auf <strong>„Register“</strong>. Für die Registrierung werden
+        euer vollständiger Name, eure E-Mail-Adresse und ein Passwort benötigt. Das Passwort muss mindestens
+        <strong>8 Zeichen</strong> lang sein und wird zur Kontrolle ein zweites Mal eingegeben.
     </p>
 
     {% include 'components/steps.html.twig' with {
         steps: [
-            { title: 'Registrierung öffnen', text: 'Öffnet die Anmeldung und wechselt zur Registrierung.' },
-            { title: 'Namen eintragen', text: 'Gebt euren vollständigen Vor- und Nachnamen ein.' },
-            { title: 'E-Mail-Adresse eintragen', text: 'Gebt eine E-Mail-Adresse an, auf die ihr zugreifen könnt.' },
-            { title: 'Passwort festlegen', text: 'Das Passwort muss mindestens <strong>8 Zeichen</strong> lang sein.' },
-            { title: 'Passwort bestätigen', text: 'Gebt dasselbe Passwort noch einmal ein.' },
-            { title: 'Konto erstellen', text: 'Schließt die Registrierung über die dafür vorgesehene Schaltfläche ab.' },
-            { title: 'E-Mail bestätigen', text: 'Öffnet anschließend die Bestätigungs-E-Mail von Kaderblick und folgt dem darin enthaltenen Link.' }
+            { title: 'Registrierung öffnen', text: 'Wechselt im Anmeldefenster von <strong>„Login“</strong> auf <strong>„Register“</strong>.' },
+            { title: 'Persönliche Angaben eintragen', text: 'Tragt euren vollständigen Vor- und Nachnamen sowie eure E-Mail-Adresse ein.' },
+            { title: 'Passwort festlegen', text: 'Gebt ein Passwort mit mindestens <strong>8 Zeichen</strong> ein und wiederholt es im Feld <strong>„Passwort bestätigen“</strong>.' },
+            { title: 'Konto anlegen', text: 'Schließt die Registrierung mit <strong>„Konto erstellen“</strong> ab.' }
         ]
     } %}
 
+    <p>
+        Nach dem Absenden zeigt Kaderblick die E-Mail-Adresse an, an die die Bestätigungs-E-Mail verschickt wurde.
+        Das Konto wird erst aktiviert, wenn ihr den Link in dieser E-Mail öffnet. Der Bestätigungslink ist einen
+        Monat lang gültig.
+    </p>
+
     {% include 'components/bildplatzhalter.html.twig' with {
-        title: 'Registrierung',
-        description: 'Bitte das geöffnete Registrierungsformular aufnehmen.',
+        title: 'Registrierungsformular',
+        description: 'Das Anmeldefenster mit geöffnetem Reiter „Register“ aufnehmen.',
         items: [
-            'vollständiger Name',
+            'Reiter „Login“ und „Register“',
+            'Vollständiger Name',
             'E-Mail-Adresse',
             'Passwort',
-            'Passwortbestätigung',
-            'Schaltfläche zum Erstellen des Kontos'
+            'Passwort bestätigen',
+            'Schaltfläche „Konto erstellen“'
         ],
-        purpose: 'Felder und Schaltflächen der Registrierung zeigen.'
+        purpose: 'Die für die Registrierung benötigten Felder und die Umschaltung zwischen Anmeldung und Registrierung zeigen.'
     } %}
 
-    <h2>3. Mit einem vorhandenen Konto anmelden</h2>
+    <h2>E-Mail-Adresse bestätigen</h2>
 
     <p>
-        Meldet euch mit eurer E-Mail-Adresse und eurem Passwort an. Alternativ ist die Anmeldung über ein
-        Google-Konto möglich.
+        Beim Öffnen des Links aus der Bestätigungs-E-Mail prüft Kaderblick die Registrierung. Nach erfolgreicher
+        Bestätigung wird das Konto aktiviert und die Seite zeigt <strong>„Erfolgreich verifiziert!“</strong> an.
+        Über <strong>„Zum Login“</strong> öffnet ihr anschließend die Anmeldung.
     </p>
 
     <p>
-        Wenn ihr euer Passwort nicht mehr wisst, könnt ihr direkt aus der Anmeldung ein neues anfordern.
-        Ist ein Konto nach zu vielen fehlgeschlagenen Anmeldeversuchen gesperrt, kann dort auch eine Entsperrung
-        angefordert werden. Weitere Informationen findet ihr unter
-        <a href="{{ path('app_authentifizierung') }}">Anmelden &amp; Registrieren</a>.
+        Ist der Link ungültig oder abgelaufen, zeigt Kaderblick stattdessen <strong>„Verifizierung fehlgeschlagen“</strong>.
+        In diesem Zustand stehen die Wege zurück zur Startseite oder zur Anmeldung zur Verfügung.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Erfolgreiche E-Mail-Bestätigung',
+        description: 'Die Seite direkt nach einer erfolgreich bestätigten Registrierung aufnehmen.',
+        items: [
+            'Überschrift „Erfolgreich verifiziert!“',
+            'Bestätigungsmeldung',
+            'Schaltfläche „Zum Login“'
+        ],
+        purpose: 'Den Abschluss der Registrierung und den anschließenden Weg zur Anmeldung zeigen.'
+    } %}
+
+    <h2>Anmelden</h2>
+
+    <p>
+        Im Reiter <strong>„Login“</strong> könnt ihr euch mit E-Mail-Adresse und Passwort anmelden. Alternativ steht
+        <strong>„Mit Google anmelden“</strong> zur Verfügung. Nach einer erfolgreichen Anmeldung öffnet Kaderblick
+        das Dashboard.
+    </p>
+
+    <p>
+        Ist für euer Konto eine Zwei-Faktor-Bestätigung eingerichtet, folgt nach E-Mail-Adresse und Passwort noch
+        die Abfrage des zusätzlichen Codes. Passwortwiederherstellung, Kontosperren und die verschiedenen Arten der
+        Zwei-Faktor-Bestätigung sind unter
+        <a href="{{ path('app_authentifizierung') }}">Anmelden &amp; Registrieren</a> ausführlich beschrieben.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
         title: 'Anmeldung',
-        description: 'Bitte die geöffnete Anmeldung aufnehmen.',
+        description: 'Das Anmeldefenster mit geöffnetem Reiter „Login“ aufnehmen.',
         items: [
-            'Anmeldung mit Google',
+            'Schaltfläche „Mit Google anmelden“',
             'E-Mail-Adresse',
             'Passwort',
-            'Möglichkeit bei vergessenem Passwort',
-            'Schaltfläche zum Einloggen'
+            '„Passwort vergessen?“',
+            'Schaltfläche „Einloggen“'
         ],
-        purpose: 'Anmeldemöglichkeiten und die zugehörigen Eingabefelder zeigen.'
+        purpose: 'Beide Anmeldemöglichkeiten und den Zugang zur Passwortwiederherstellung zeigen.'
     } %}
 
-    <h2>4. Vereinszugehörigkeit angeben</h2>
+    <h2>Vereinszugehörigkeit angeben</h2>
 
     <p>
-        Nach einer neuen Registrierung kann Kaderblick euch nach eurer Vereinszugehörigkeit fragen. Dabei gebt ihr
-        an, ob die Zuordnung zu einem Spieler oder Trainer erfolgen soll, sucht die betreffende Person und wählt eure
-        Beziehung zu dieser Person aus.
+        Bei einem neu angelegten Konto ohne bestehende Zuordnung kann nach der Anmeldung das Fenster
+        <strong>„Meine Vereinszugehörigkeit angeben“</strong> erscheinen. Die Angabe ist freiwillig. Darüber wird
+        beantragt, das Benutzerkonto mit einem bereits im Verein vorhandenen Spieler oder Trainer zu verbinden.
     </p>
 
     {% include 'components/steps.html.twig' with {
         steps: [
-            { title: 'Spieler oder Trainer wählen', text: 'Gebt an, ob es um einen Spieler oder einen Trainer geht.' },
-            { title: 'Person suchen', text: 'Gebt mindestens <strong>2 Buchstaben</strong> des Namens ein und wählt die richtige Person aus.' },
-            { title: 'Beziehung auswählen', text: 'Wählt aus, in welchem Verhältnis ihr zu dieser Person steht.' },
-            { title: 'Angaben prüfen', text: 'Kontrolliert die Zusammenfassung. Eine zusätzliche Anmerkung könnt ihr freiwillig eintragen.' },
-            { title: 'Antrag stellen', text: 'Sendet die Zuordnung ab. Sie wird anschließend von einer zuständigen Person geprüft.' }
+            { title: 'Spieler oder Trainer auswählen', text: 'Gebt zuerst an, ob sich die Zuordnung auf einen Spieler oder einen Trainer bezieht.' },
+            { title: 'Person suchen', text: 'Gebt mindestens <strong>2 Buchstaben</strong> des Namens ein. In den Suchergebnissen werden vorhandene Teamzuordnungen mit angezeigt, sofern welche hinterlegt sind.' },
+            { title: 'Beziehung angeben', text: 'Wählt die passende Beziehung zur ausgewählten Person. Die angebotenen Möglichkeiten richten sich danach, ob zuvor Spieler oder Trainer gewählt wurde.' },
+            { title: 'Angaben prüfen', text: 'Kontrolliert Person und Beziehung in der Zusammenfassung. Eine zusätzliche Anmerkung kann freiwillig ergänzt werden.' },
+            { title: 'Antrag stellen', text: 'Sendet den Antrag ab. Eine zuständige Person prüft die Zuordnung, bevor sie aktiv wird.' }
         ]
     } %}
 
+    <p>
+        Nach dem Absenden meldet Kaderblick, dass der Antrag eingereicht wurde. Sobald er bearbeitet wurde, erhaltet
+        ihr eine Benachrichtigung. Wenn ihr das Fenster zunächst schließt und noch keine Zuordnung besteht, könnt ihr
+        den Vorgang später erneut über euer Benutzermenü mit <strong>„Verknüpfung anfragen“</strong> öffnen.
+    </p>
+
     {% include 'components/bildplatzhalter.html.twig' with {
-        title: 'Vereinszugehörigkeit angeben',
-        description: 'Bitte das Fenster für die Vereinszugehörigkeit aufnehmen. Sinnvoll sind der erste Schritt und die abschließende Zusammenfassung.',
+        title: 'Vereinszugehörigkeit',
+        description: 'Zwei Aufnahmen verwenden: zuerst den ersten Schritt des Fensters „Meine Vereinszugehörigkeit angeben“, danach die Zusammenfassung vor dem Absenden.',
         items: [
+            'Schrittanzeige',
             'Auswahl Spieler oder Trainer',
-            'Suche nach einer Person',
-            'Auswahl der Beziehung',
-            'abschließende Schaltfläche zum Absenden des Antrags'
+            'in der zweiten Aufnahme: ausgewählte Person, Beziehung, optionale Anmerkung und „Antrag stellen“'
         ],
-        purpose: 'Auswahl und Beantragung der Vereinszugehörigkeit zeigen.'
+        purpose: 'Den vollständigen Zuordnungsablauf vom Einstieg bis zum Antrag zeigen.'
     } %}
 
-    <h2>5. Die wichtigsten Bereiche</h2>
+    <h2>Navigation am Computer</h2>
 
     <p>
-        Welche Bereiche angezeigt werden, hängt von euren Aufgaben und Berechtigungen im Verein ab.
+        Am Computer befindet sich die Hauptnavigation links. Sie kann über den Pfeil am unteren Rand ein- oder
+        ausgeklappt werden. Die grundlegenden Bereiche sind <strong>Dashboard</strong>, <strong>Kalender</strong>,
+        <strong>Spiele</strong>, <strong>Team &amp; Verein</strong>, <strong>Community</strong> und
+        <strong>Meine Aufgaben</strong>.
     </p>
 
-    <h3>Am Computer</h3>
-
+    <h3>Dashboard</h3>
     <p>
-        Über die Seitenleiste erreicht ihr unter anderem <strong>Dashboard</strong>, <strong>Kalender</strong>,
-        <strong>Spiele</strong>, <strong>Team &amp; Verein</strong> und <strong>Meine Aufgaben</strong>.
-        Weitere Bereiche werden je nach Aufgabe im Verein ergänzt.
+        Das Dashboard ist die persönliche Übersichtsseite nach der Anmeldung. Die angezeigten Inhalte werden im
+        Kapitel <a href="{{ path('app_dashboard') }}">Dashboard</a> beschrieben.
+    </p>
+
+    <h3>Kalender</h3>
+    <p>
+        Im Kalender werden die für euch sichtbaren Termine zusammengeführt. Dazu gehören unter anderem Trainings,
+        Spiele und weitere Mannschafts- oder Vereinstermine. Teilnahme und weitere terminbezogene Funktionen werden
+        im Kapitel <a href="{{ path('app_kalender') }}">Kalender</a> erklärt.
+    </p>
+
+    <h3>Spiele</h3>
+    <p>
+        Der Bereich <strong>Spiele</strong> führt zu den spielbezogenen Ansichten. Dazu gehören der Spielplan,
+        <strong>Mein Spieltag</strong>, <strong>Aushelfen</strong>, der Import von fussball.de und
+        <strong>Auswertungen</strong>. Welche Möglichkeiten dort tatsächlich zur Verfügung stehen, hängt teilweise
+        von eurer Aufgabe im Verein ab.
+    </p>
+
+    <h3>Team &amp; Verein</h3>
+    <p>
+        Unter <strong>Team &amp; Verein</strong> liegen <strong>Mein Team</strong>, <strong>Mein Verein</strong> und
+        <strong>Mein Deckel</strong>. Dort werden Informationen und Funktionen zusammengefasst, die sich auf die
+        eigene Mannschaft oder den Verein beziehen.
+    </p>
+
+    <h3>Community</h3>
+    <p>
+        Der Bereich <strong>Community</strong> umfasst <strong>Neuigkeiten</strong>, <strong>Umfragen</strong>,
+        <strong>Wissenspool</strong> und <strong>Hall of Fame</strong>.
+    </p>
+
+    <h3>Meine Aufgaben</h3>
+    <p>
+        Über <strong>Meine Aufgaben</strong> erreicht ihr eure Aufgabenübersicht. Innerhalb des Aufgabenbereichs
+        gibt es zusätzlich <strong>Von mir erstellt</strong> und <strong>Alle</strong>. Ob diese Ansichten für euch
+        relevante Inhalte enthalten und welche Aktionen dort möglich sind, richtet sich nach euren Berechtigungen.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
-        title: 'Navigation am Computer',
-        description: 'Bitte Kaderblick nach der Anmeldung mit vollständig aufgeklappter linker Seitenleiste aufnehmen.',
+        title: 'Hauptnavigation am Computer',
+        description: 'Eine angemeldete Desktop-Ansicht mit vollständig ausgeklappter linker Seitenleiste aufnehmen.',
         items: [
             'Dashboard',
             'Kalender',
             'Spiele',
             'Team & Verein',
+            'Community',
             'Meine Aufgaben',
-            'weitere sichtbare Bereiche eines normalen Benutzers'
+            'Pfeil zum Ein- oder Ausklappen der Seitenleiste'
         ],
-        purpose: 'Lage der Hauptbereiche in der Navigation zeigen.'
+        purpose: 'Lage und Bezeichnungen der Hauptbereiche am Computer zeigen.'
     } %}
 
-    <h3>Auf dem Smartphone</h3>
+    <h2>Navigation auf dem Smartphone</h2>
 
     <p>
-        Unten stehen die Schnellzugriffe <strong>Dashboard</strong>, <strong>Kalender</strong>,
-        <strong>Spiele</strong>, <strong>Mein Team</strong> und <strong>Mehr</strong> zur Verfügung.
-        Über <strong>Mehr</strong> öffnet ihr die übrigen Bereiche.
+        Auf dem Smartphone stehen am unteren Bildschirmrand fünf feste Zugänge zur Verfügung:
+        <strong>Dashboard</strong>, <strong>Kalender</strong>, <strong>Spiele</strong>, <strong>Mein Team</strong>
+        und <strong>Mehr</strong>. <strong>Mehr</strong> öffnet die übrige Navigation. Dadurch bleiben die häufig
+        verwendeten Bereiche direkt erreichbar, während weitere Bereiche nicht dauerhaft Platz am unteren Rand belegen.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
         title: 'Navigation auf dem Smartphone',
-        description: 'Bitte eine angemeldete Ansicht auf einem Smartphone aufnehmen. Die untere Leiste muss vollständig sichtbar sein.',
+        description: 'Eine angemeldete Smartphone-Ansicht aufnehmen, auf der die untere Navigation vollständig sichtbar ist.',
         items: [
             'Dashboard',
             'Kalender',
@@ -162,22 +213,47 @@
             'Mein Team',
             'Mehr'
         ],
-        purpose: 'Schnellzugriffe und Zugang zu den weiteren Bereichen zeigen.'
+        purpose: 'Die fünf festen Zugänge der Smartphone-Navigation zeigen.'
     } %}
 
-    <h2>6. Hauptbereiche im Überblick</h2>
+    <h2>Zusätzliche Bereiche nach Aufgabe und Berechtigung</h2>
 
-    <ul>
-        <li><strong>Dashboard:</strong> persönliche Übersicht mit Informationen aus verschiedenen Bereichen.</li>
-        <li><strong>Kalender:</strong> Termine des Vereins und der Mannschaft sowie Möglichkeiten rund um die Teilnahme.</li>
-        <li><strong>Spiele:</strong> Spielplan, Spieltag und weitere spielbezogene Funktionen.</li>
-        <li><strong>Team &amp; Verein:</strong> Informationen und Funktionen rund um Mannschaft und Verein.</li>
-        <li><strong>Meine Aufgaben:</strong> eigene Aufgaben und – bei entsprechender Berechtigung – weitere Aufgabenübersichten.</li>
-    </ul>
+    <p>
+        Trainer erhalten einen zusätzlichen Bereich <strong>Trainer</strong>. Benutzer mit Unterstützer-Aufgaben
+        können einen eigenen Bereich <strong>Supporter</strong> sehen. Für Benutzer mit Verwaltungsrechten wird
+        zusätzlich <strong>Administration</strong> eingeblendet. Diese Bereiche erscheinen nur, wenn das jeweilige
+        Benutzerkonto die dafür erforderliche Aufgabe oder Berechtigung besitzt.
+    </p>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Unterschiedliche Berechtigungen',
-        text: 'Zusätzliche Bereiche und Funktionen werden abhängig von der jeweiligen Aufgabe im Verein angezeigt.'
+    <h2>Benutzermenü</h2>
+
+    <p>
+        Über das Benutzerbild im oberen Bereich öffnet ihr das Benutzermenü. Oben werden Name und E-Mail-Adresse des
+        angemeldeten Kontos angezeigt. Von dort aus gelangt ihr zum <strong>Profil</strong>, zu
+        <strong>Nachrichten</strong>, <strong>Mein Feedback</strong>, den <strong>Cookie-Einstellungen</strong> und
+        zum <strong>Logout</strong>. Außerdem lässt sich dort zwischen heller und dunkler Darstellung wechseln.
+    </p>
+
+    <p>
+        Ist noch keine Spieler- oder Trainerzuordnung vorhanden, erscheint zusätzlich
+        <strong>„Verknüpfung anfragen“</strong>. Über <strong>„Registrierungs-QR-Code“</strong> kann außerdem der
+        Registrierungszugang als QR-Code geöffnet werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Benutzermenü',
+        description: 'Das geöffnete Benutzermenü eines angemeldeten Kontos ohne bestehende Spieler- oder Trainerzuordnung aufnehmen.',
+        items: [
+            'Name und E-Mail-Adresse',
+            'Profil',
+            'Verknüpfung anfragen',
+            'Registrierungs-QR-Code',
+            'Mein Feedback',
+            'Nachrichten',
+            'Darstellungsmodus',
+            'Cookie-Einstellungen',
+            'Logout'
+        ],
+        purpose: 'Persönliche Funktionen und den alternativen Weg zur Vereinszuordnung zeigen.'
     } %}
 {% endblock %}
