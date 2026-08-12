@@ -3,77 +3,213 @@
 {% block title %}Umfragen – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>📊 Umfragen</h1>
+    <h1>Umfragen</h1>
+
     <p>
-        Schnelle Abstimmungen und Fragebögen für das Team – von der Trainingszeitwahl
-        bis zur Mannschaftsfahrt.
+        Unter <strong>Community → Umfragen</strong> werden die vorhandenen Umfragen mit ihrem Bearbeitungsstand
+        angezeigt. Oben fasst Kaderblick zusammen, wie viele Umfragen insgesamt vorhanden sind, wie viele ihr noch
+        nicht beantwortet habt und wie viele bereits von euch beantwortet wurden.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📝', title: 'Umfrage erstellen', desc: 'Titel, Beschreibung, Zielgruppe, Fälligkeitsdatum und Fragen definieren.' },
-            { icon: '✅', title: 'Teilnehmen', desc: 'Fragen beantworten – nur einmal möglich.' },
-            { icon: '📊', title: 'Ergebnisse', desc: 'Verteilung der Antworten, Teilnehmerzahl und Freitextantworten einsehen.' },
-            { icon: '🎯', title: 'Fragetypen', desc: 'Einfachauswahl, Mehrfachauswahl und Freitext.' },
-        ]
-    } %}
+    <h2>Informationen in der Umfragenübersicht</h2>
 
-    {# ─── Teilnehmen ─── #}
-    <h2>An einer Umfrage teilnehmen</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Umfragen öffnen', text: 'Im Menü auf <strong>„Umfragen"</strong> klicken.' },
-            { title: 'Umfrage auswählen', text: 'Die gewünschte Umfrage aus der Liste öffnen.' },
-            { title: 'Fragen beantworten', text: 'Alle Fragen beantworten (Einfach-/Mehrfachauswahl oder Freitext).' },
-            { title: 'Absenden', text: 'Auf <strong>„Absenden"</strong> klicken. Eure Antwort wird gespeichert.' },
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/umfragen/umfrage-teilnehmen.png',
-        alt: 'An einer Umfrage teilnehmen',
-        caption: 'Eine Umfrage mit verschiedenen Fragetypen beantworten.'
-    } %}
-
-    {% include 'components/callout.html.twig' with {
-        type: 'warning',
-        title: 'Achtung',
-        text: 'Ihr könnt nur <strong>einmal</strong> an einer Umfrage teilnehmen. Achtet auf das Fälligkeitsdatum!'
-    } %}
-
-    {# ─── Erstellen ─── #}
-    <h2>Umfrage erstellen (Trainer/Admin)</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Neue Umfrage', text: 'Auf <strong>„+ Neue Umfrage"</strong> klicken.' },
-            { title: 'Grunddaten eingeben', text: '<strong>Titel</strong>, Beschreibung, <strong>Zielgruppe</strong> (Teams / Vereine / Plattformweit), <strong>Fälligkeitsdatum</strong>.' },
-            { title: 'Fragen hinzufügen', text: 'Fragen mit Typ (<strong>Einfachauswahl</strong>, <strong>Mehrfachauswahl</strong>, <strong>Freitext</strong>) und Antwortoptionen erstellen.' },
-            { title: 'Veröffentlichen', text: 'Auf <strong>Veröffentlichen</strong> klicken. Die Zielgruppe wird automatisch benachrichtigt.' },
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/umfragen/umfrage-erstellen.png',
-        alt: 'Umfrage erstellen',
-        caption: 'Eine neue Umfrage mit Fragen und Antwortoptionen anlegen.'
-    } %}
-
-    {# ─── Ergebnisse ─── #}
-    <h2>Ergebnisse einsehen (nur Berechtigte)</h2>
     <p>
-        Trainer und Admins können die Ergebnisse einer Umfrage einsehen:
+        Jede Umfrage zeigt Titel, eine vorhandene Beschreibung, die Anzahl der Fragen, die bisherige Zahl der
+        Teilnahmen und – falls gesetzt – das Fälligkeitsdatum. Bereits abgegebene Umfragen sind als
+        <strong>Beantwortet</strong> gekennzeichnet. Nach Überschreiten des Fälligkeitsdatums erscheint die
+        Kennzeichnung <strong>Abgelaufen</strong>.
     </p>
-    <ul>
-        <li><strong>Verteilung der Antworten</strong> — Grafische Darstellung der Ergebnisse</li>
-        <li><strong>Teilnehmerzahl</strong> — Wie viele Personen abgestimmt haben</li>
-        <li><strong>Freitextantworten</strong> — Alle eingegebenen Texte</li>
-    </ul>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/umfragen/umfrage-ergebnisse.png',
-        alt: 'Umfrage-Ergebnisse',
-        caption: 'Die Ergebnisse einer Umfrage mit Antwortverteilung.'
+    <p>
+        Ein Fälligkeitsdatum sperrt die Teilnahme nicht. Eine noch unbeantwortete Umfrage kann auch danach über
+        <strong>Nachträglich ausfüllen</strong> geöffnet und abgesendet werden. Vor dem Fälligkeitsdatum heißt die
+        entsprechende Schaltfläche <strong>Jetzt ausfüllen</strong>.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Umfragenübersicht',
+        description: 'Bitte die Seite „Umfragen“ mit mehreren neutralen Beispielumfragen aufnehmen. Mindestens eine Umfrage sollte offen, eine beantwortet und eine abgelaufen sein.',
+        items: [
+            'Kennzahlen Gesamt, Offen und Beantwortet',
+            'Titel und Beschreibung',
+            'Anzahl der Fragen und Teilnahmen',
+            'Fälligkeitsdatum beziehungsweise Kennzeichnung Abgelaufen',
+            'Schaltflächen zum Ausfüllen und – bei entsprechender Berechtigung – Ergebnisse, Bearbeiten und Löschen',
+            'Schaltfläche „Neue Umfrage“'
+        ],
+        purpose: 'Status einer Umfrage und die jeweils verfügbaren Aktionen zeigen.'
     } %}
+
+    <h2>Eine Umfrage beantworten</h2>
+
+    <p>
+        <strong>Jetzt ausfüllen</strong> beziehungsweise <strong>Nachträglich ausfüllen</strong> öffnet die Umfrage
+        auf einer eigenen Seite. Dort stehen zunächst Titel und Beschreibung, anschließend die Fragen in ihrer
+        festgelegten Reihenfolge. Mit <strong>Absenden</strong> werden die eingetragenen Antworten gespeichert.
+    </p>
+
+    <p>
+        Kaderblick unterstützt fünf Fragetypen. Bei <strong>Einfachauswahl</strong> kann eine Antwort gewählt werden,
+        bei <strong>Mehrfachauswahl</strong> mehrere. <strong>Freitext</strong> stellt ein mehrzeiliges Textfeld bereit.
+        Die beiden Skalen erlauben Werte von <strong>1 bis 5</strong> beziehungsweise <strong>1 bis 10</strong>. Bei
+        einer Skalenfrage wird zunächst ein mittlerer Reglerstand angezeigt; bewegt den Regler, wenn für diese Frage
+        tatsächlich ein Skalenwert gespeichert werden soll.
+    </p>
+
+    <p>
+        Eine Umfrage kann pro Benutzerkonto nur einmal gespeichert werden. In der Übersicht wird bei einer bereits
+        beantworteten Umfrage derzeit trotzdem die Schaltfläche <strong>Erneut ausfüllen</strong> angezeigt. Sie öffnet
+        das Formular erneut, eine zweite Abgabe wird beim Speichern jedoch abgelehnt. Eine bereits abgegebene Antwort
+        kann über diesen Weg nicht geändert oder ersetzt werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Umfrage ausfüllen',
+        description: 'Bitte eine Beispielumfrage aufnehmen, in der mehrere unterschiedliche Fragetypen gleichzeitig sichtbar sind.',
+        items: [
+            'Titel und Beschreibung der Umfrage',
+            'Einfachauswahl',
+            'Mehrfachauswahl',
+            'Freitextfeld',
+            'Skalenfrage',
+            'Schaltfläche „Absenden“'
+        ],
+        purpose: 'Unterschiede der Fragetypen und den Abschluss der Teilnahme zeigen.'
+    } %}
+
+    <h2>Einen direkten Link zu einer Umfrage weitergeben</h2>
+
+    <p>
+        Rechts oben auf jeder Umfragekarte befindet sich die Schaltfläche zum Kopieren des Links. Sie kopiert den
+        direkten Aufruf der jeweiligen Umfrage in die Zwischenablage. Der Link führt unmittelbar zum Ausfüllen dieser
+        Umfrage und kann beispielsweise in einer Nachricht weitergegeben werden.
+    </p>
+
+    <h2>Eine neue Umfrage anlegen</h2>
+
+    <p>
+        Über <strong>Neue Umfrage</strong> öffnet sich ein Assistent mit den drei Schritten
+        <strong>Allgemein</strong>, <strong>Fragen</strong> und <strong>Zusammenfassung</strong>. Im ersten Schritt ist
+        ein Titel erforderlich. Beschreibung und Fälligkeitsdatum sind optional.
+    </p>
+
+    <p>
+        Außerdem legt ihr fest, für welchen Bereich die Umfrage bestimmt ist. Ihr könnt mehrere Mannschaften,
+        mehrere Vereine oder die gesamte Plattform wählen; diese drei Arten lassen sich nicht miteinander mischen.
+        Bei Mannschaften und Vereinen stehen nur Bereiche zur Verfügung, die für das angemeldete Benutzerkonto
+        auswählbar sind. Plattformweite Umfragen können ausschließlich von der systemweiten Verwaltung gespeichert
+        werden.
+    </p>
+
+    <p>
+        Die gewählte Zielgruppe bestimmt, wer die Benachrichtigung zur neuen Umfrage erhält und welche Personen in
+        der Beteiligungsstatistik als Zielgruppe geführt werden. Im aktuellen Stand wird die Umfragenübersicht selbst
+        jedoch nicht nach dieser Zielgruppe gefiltert: angemeldete Benutzer können auch Umfragen sehen, die für einen
+        anderen Mannschafts- oder Vereinsbereich angelegt wurden.
+    </p>
+
+    <p>
+        Beim Anlegen einer Umfrage prüft Kaderblick, ob ihr zu allen ausgewählten Mannschaften beziehungsweise
+        Vereinen gehört. Gastkonten können keine Umfragen anlegen. Für eine normale Mannschafts- oder Vereinsumfrage
+        ist dagegen nicht grundsätzlich eine Trainer- oder Verwaltungsrolle erforderlich; entscheidend ist die
+        Zugehörigkeit zu allen ausgewählten Bereichen.
+    </p>
+
+    <h2>Fragen zusammenstellen</h2>
+
+    <p>
+        Im Schritt <strong>Fragen</strong> muss mindestens eine Frage angelegt werden. Für jede Frage gebt ihr den
+        Fragetext und den Fragetyp an. Bei Einfach- und Mehrfachauswahl ist außerdem mindestens eine Antwortoption
+        erforderlich. Bereits vorhandene Antwortoptionen können wiederverwendet werden; zusätzlich lassen sich neue
+        Antwortoptionen direkt beim Erstellen der Frage anlegen.
+    </p>
+
+    <p>
+        Einzelne Fragen können vor dem Speichern erneut geöffnet und geändert oder aus der Umfrage entfernt werden.
+        Im letzten Schritt zeigt die <strong>Zusammenfassung</strong> die zusammengestellten Angaben. Mit
+        <strong>Fertigstellen</strong> wird die Umfrage gespeichert.
+    </p>
+
+    <p>
+        Nach dem Anlegen erzeugt Kaderblick eine Benachrichtigung für die Zielgruppe. Ist ein Fälligkeitsdatum gesetzt,
+        können zusätzlich Erinnerungen an noch nicht teilnehmende Personen erzeugt werden. Dafür sind Zeitpunkte bei
+        sieben Tagen, drei Tagen, einem Tag und drei Stunden vor dem Fälligkeitsdatum vorgesehen. Bereits beantwortete
+        Benutzer werden bei diesen Erinnerungen nicht mehr berücksichtigt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neue Umfrage erstellen',
+        description: 'Bitte den Assistenten zum Erstellen einer Umfrage aufnehmen. Für die Dokumentation sind zwei Bilder sinnvoll: „Allgemein“ und „Fragen“. Nur neutrale Beispielbezeichnungen verwenden.',
+        items: [
+            'Schrittanzeige Allgemein, Fragen und Zusammenfassung',
+            'Titel, Beschreibung und Fälligkeitsdatum',
+            'Auswahl für Teams, Vereine oder gesamte Plattform',
+            'Fragetext und Fragetyp',
+            'Antwortoptionen bei einer Auswahlfrage',
+            'Schaltfläche zum Hinzufügen beziehungsweise Übernehmen einer Frage'
+        ],
+        purpose: 'Zielgruppe und Aufbau des Fragenkatalogs beim Erstellen einer Umfrage zeigen.'
+    } %}
+
+    <h2>Ergebnisse und Beteiligung auswerten</h2>
+
+    <p>
+        Die Schaltfläche <strong>Ergebnisse</strong> erscheint nur bei Benutzerkonten, die die betreffende Umfrage
+        auswerten dürfen. Dazu gehören insbesondere der Ersteller, solange die notwendige Zugehörigkeit noch besteht,
+        sowie zuständige Trainer, Unterstützer oder Verwaltungsrollen für alle betroffenen Bereiche. Bei
+        plattformweiten Umfragen liegt diese Berechtigung bei der systemweiten Verwaltung.
+    </p>
+
+    <p>
+        Die Auswertung zeigt zunächst die Größe der Zielgruppe, die Zahl der Teilnahmen, die Zahl der noch offenen
+        Rückmeldungen und die Beteiligungsquote. Zusätzlich werden Zielgruppe, Fälligkeitsdatum und der zeitliche
+        Verlauf der abgegebenen Antworten dargestellt. Unter <strong>Teilgenommen</strong> stehen die Personen mit
+        dem Zeitpunkt ihrer Abgabe; unter <strong>Noch nicht teilgenommen</strong> die noch ausstehenden Personen.
+    </p>
+
+    <p>
+        Für Einfach- und Mehrfachauswahl werden die Stimmen pro Antwort und deren Anteil angezeigt. Bei Skalenfragen
+        erscheint der Durchschnitt, bei Freitextfragen werden die eingegangenen Texte aufgeführt. Die Auswertung zeigt
+        außerdem, ob die erste Benachrichtigung versendet wurde und welche vorgesehenen Erinnerungen bereits erfolgt
+        sind.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Ergebnisse einer Umfrage',
+        description: 'Bitte den Dialog „Umfrage-Status“ einer Beispielumfrage mit vorhandenen Testantworten aufnehmen. Keine realen Namen oder Antworten verwenden.',
+        items: [
+            'Beteiligungsquote sowie Zahlen für Zielgruppe, teilgenommen und ausstehend',
+            'Zielgruppe und Fälligkeitsdatum',
+            'Auswertung mindestens einer Frage',
+            'Bereiche Teilgenommen und Noch nicht teilgenommen',
+            'Status der Benachrichtigungen'
+        ],
+        purpose: 'Umfang der Ergebnis- und Beteiligungsansicht für berechtigte Benutzer zeigen.'
+    } %}
+
+    <h2>Eine Umfrage bearbeiten</h2>
+
+    <p>
+        Wenn die Schaltfläche <strong>Bearbeiten</strong> vorhanden ist, wird derselbe dreistufige Assistent wie beim
+        Anlegen geöffnet. Titel, Beschreibung, Fälligkeitsdatum, Zielgruppe und Fragen können dort geändert werden.
+        Die geänderte Zielgruppe muss weiterhin vollständig innerhalb der eigenen Berechtigung liegen.
+    </p>
+
+    <p>
+        Beim Speichern einer bearbeiteten Umfrage wird der Fragenkatalog neu aufgebaut. Bereits vorhandene Teilnahmen
+        werden dadurch nicht gelöscht und die betreffenden Benutzer können weiterhin keine zweite Antwort abgeben.
+        Wird eine Umfrage nach ersten Teilnahmen inhaltlich verändert, können die alten Antworten deshalb nicht zu neu
+        hinzugefügten oder ersetzten Fragen nachgetragen werden. Solche Änderungen sollten vor allem vor Beginn der
+        Teilnahme vorgenommen werden.
+    </p>
+
+    <h2>Eine Umfrage löschen</h2>
+
+    <p>
+        Die Löschschaltfläche wird nur angezeigt, wenn das Benutzerkonto die Umfrage entfernen darf. Der Ersteller
+        darf seine Umfrage löschen, solange die erforderliche Zugehörigkeit zu allen Zielbereichen weiterhin besteht.
+        Darüber hinaus können zuständige Verwaltungsrollen eine Umfrage für ihre vollständig abgedeckten Bereiche
+        löschen. Die systemweite Verwaltung kann jede Umfrage entfernen. Vor dem Löschen fordert Kaderblick eine
+        Bestätigung an.
+    </p>
 {% endblock %}
