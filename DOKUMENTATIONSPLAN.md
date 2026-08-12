@@ -33,7 +33,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Nachrichten | abgeschlossen |
 | Benachrichtigungen | abgeschlossen |
 | Profil & Benutzerzuordnung | abgeschlossen |
-| Aufstellungen | offen |
+| Aufstellungen | abgeschlossen |
 | Auswertungen | offen |
 | Fahrgemeinschaften | offen |
 | Verwaltung | offen |
