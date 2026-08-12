@@ -1,0 +1,195 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wissenspool – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Wissenspool</h1>
+
+    <p>
+        Im <strong>Community → Wissenspool</strong> werden Beiträge einer Mannschaft gesammelt. Ein Beitrag kann
+        beispielsweise einen erklärenden Text, Links, Bilder oder eingebettete Medien enthalten. Die angezeigten
+        Inhalte richten sich nach der ausgewählten Mannschaft. Globale Beiträge sind unabhängig von einer Mannschaft
+        sichtbar, sofern sie von der systemweiten Verwaltung veröffentlicht wurden.
+    </p>
+
+    <h2>Mannschaft und Beiträge auswählen</h2>
+
+    <p>
+        Ist euer Benutzerkonto mehreren Mannschaften zugeordnet, könnt ihr oben im Wissenspool zwischen diesen
+        Mannschaften wechseln. Bei nur einer Mannschaft wird deren Name angezeigt. Ohne Mannschaftszuordnung kann
+        der Wissenspool nicht nach Mannschaftsinhalten geöffnet werden; Kaderblick zeigt in diesem Fall den Hinweis
+        <strong>Du bist noch in keinem Team.</strong>
+    </p>
+
+    <p>
+        Die Kategorien der ausgewählten Mannschaft stehen direkt unter der Überschrift zur Verfügung. Mit
+        <strong>Alle</strong> werden sämtliche Beiträge der Mannschaft angezeigt. Die Suche grenzt die Beiträge
+        zusätzlich nach dem eingegebenen Begriff ein. Schlagwörter an einem Beitrag können ebenfalls als Filter
+        verwendet werden: Ein Klick auf ein Schlagwort zeigt nur passende Beiträge; der aktive Filter erscheint
+        oberhalb der Treffer und kann dort wieder entfernt werden.
+    </p>
+
+    <p>
+        Angepinnte Beiträge stehen in einem eigenen Abschnitt vor den übrigen Beiträgen. Auf jeder Beitragskarte
+        sind Kategorie, Titel, Verfasser, Veröffentlichungszeitpunkt sowie die Anzahl der Gefällt-mir-Angaben und
+        Kommentare erkennbar. Bis zu drei Schlagwörter werden direkt angezeigt; bei weiteren Schlagwörtern zeigt
+        Kaderblick zusätzlich deren Anzahl. Enthält ein Beitrag geeignete Medien, erscheint auf der Karte eine
+        Vorschau.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Wissenspool mit Beiträgen und Filtern',
+        description: 'Bitte den Wissenspool einer Beispielmannschaft mit mehreren neutralen Beiträgen aufnehmen. Mindestens ein Beitrag sollte angepinnt sein und ein weiterer Schlagwörter enthalten.',
+        items: [
+            'Mannschaftsauswahl oder Mannschaftsname',
+            'Kategorien einschließlich „Alle“',
+            'Suchfeld',
+            'Abschnitt „Angepinnte Beiträge“',
+            'Beitragskarten mit Kategorie, Titel, Verfasser, Schlagwörtern, Gefällt-mir- und Kommentarzahl',
+            'Schaltfläche zum Erstellen eines Beitrags'
+        ],
+        purpose: 'Orientierung, Filtermöglichkeiten und Aufbau der Beitragsübersicht zeigen.'
+    } %}
+
+    <h2>Einen Beitrag öffnen</h2>
+
+    <p>
+        Ein Klick auf eine Beitragskarte öffnet den vollständigen Beitrag am rechten Bildschirmrand; auf kleinen
+        Bildschirmen nimmt diese Ansicht die gesamte Breite ein. Dort stehen die vollständigen Inhalte, die Kategorie,
+        alle Schlagwörter, Verfasser und Veröffentlichungszeitpunkt. Ein Klick auf ein Schlagwort schließt die
+        Detailansicht und setzt dieses Schlagwort als Filter für die Übersicht.
+    </p>
+
+    <p>
+        Verknüpfte Medien werden abhängig von ihrer Art dargestellt. YouTube- und Vimeo-Videos können direkt im
+        Beitrag abgespielt werden, Spotify-Inhalte werden eingebettet angezeigt. Bilder lassen sich durch Anklicken
+        in einer eigenen Browseransicht öffnen. Andere hinterlegte Internetadressen werden als Link dargestellt und
+        in einem neuen Browserfenster beziehungsweise Tab geöffnet.
+    </p>
+
+    <h2>Beiträge mit „Gefällt mir“ markieren</h2>
+
+    <p>
+        Unter jeder Beitragskarte und in der geöffneten Detailansicht befindet sich die Herz-Schaltfläche. Ein Klick
+        fügt eure Gefällt-mir-Angabe hinzu; ein weiterer Klick entfernt sie wieder. Die daneben angezeigte Zahl wird
+        entsprechend aktualisiert. Diese Funktion steht allen angemeldeten Benutzern zur Verfügung, die den Beitrag
+        sehen dürfen.
+    </p>
+
+    <h2>Kommentare lesen und schreiben</h2>
+
+    <p>
+        Kommentare stehen unterhalb des geöffneten Beitrags in zeitlicher Reihenfolge. Neue Kommentare können nur
+        Benutzer verfassen, die für die betreffende Mannschaft Beiträge erstellen dürfen. Das betrifft Trainer der
+        Mannschaft sowie Benutzer mit passenden Supporter-Rechten. Spieler ohne diese Berechtigung können Beiträge
+        und vorhandene Kommentare lesen und Beiträge mit „Gefällt mir“ markieren, erhalten aber kein Eingabefeld für
+        einen neuen Kommentar.
+    </p>
+
+    <p>
+        Ein Kommentar wird über die Senden-Schaltfläche gespeichert. Im Eingabefeld sendet auch die Eingabetaste den
+        Kommentar ab; mit Umschalttaste und Eingabetaste kann innerhalb des Textes eine neue Zeile eingefügt werden.
+        Eigene Kommentare können über die Löschen-Schaltfläche am Kommentar entfernt werden. Die systemweite
+        Verwaltung kann Kommentare ebenfalls löschen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Geöffneter Wissenspool-Beitrag',
+        description: 'Bitte einen neutralen Beispielbeitrag in der geöffneten Detailansicht aufnehmen. Der Beitrag sollte Inhalt, Schlagwörter, ein Medium sowie mehrere Beispielkommentare enthalten.',
+        items: [
+            'Titel und Kategorie',
+            'Schlagwörter',
+            'Beitragsinhalt und eingebettetes Medium',
+            'Verfasser und Veröffentlichungszeitpunkt',
+            'Herz-Schaltfläche mit Anzahl',
+            'Kommentarbereich und – bei einem berechtigten Konto – Eingabefeld für einen neuen Kommentar'
+        ],
+        purpose: 'Aufbau der Detailansicht und die Interaktionsmöglichkeiten zeigen.'
+    } %}
+
+    <h2>Einen Beitrag erstellen</h2>
+
+    <p>
+        Die runde Schaltfläche mit dem Pluszeichen öffnet das Formular <strong>Neuer Beitrag</strong>. Trainer und
+        Benutzer mit Supporter-Rechten für die ausgewählte Mannschaft können damit unmittelbar einen Beitrag
+        anlegen. Fehlt die notwendige Berechtigung, öffnet Kaderblick stattdessen die Anfrage für Supporter-Rechte.
+        Bei genau einer dafür geeigneten Mannschaft kann die Anfrage automatisch für diese Mannschaft abgesendet
+        werden; bei mehreren Mannschaften wählt ihr zunächst die gewünschte Mannschaft aus und könnt eine Anmerkung
+        ergänzen. Über die Bearbeitung der Anfrage informiert Kaderblick anschließend per Benachrichtigung.
+    </p>
+
+    <p>
+        Beim Erstellen wählt ihr die Mannschaft, gebt einen Titel ein und ordnet den Beitrag einer vorhandenen
+        Kategorie zu. Der Titel und die Kategorie sind erforderlich. Der eigentliche Inhalt wird in einem
+        formatierbaren Textfeld geschrieben. Zusätzlich können vorhandene Schlagwörter ausgewählt oder neue
+        Schlagwörter direkt eingegeben werden.
+    </p>
+
+    <p>
+        Unter <strong>Medien-Links</strong> können mehrere Internetadressen ergänzt werden. Nach der Eingabe wird jeder
+        Link mit <strong>Hinzufügen</strong> in den Beitrag übernommen und vor dem Speichern einzeln wieder entfernt.
+        Kaderblick erkennt unter anderem YouTube, Vimeo, Spotify und SoundCloud; andere Adressen bleiben normale
+        Links. Die Reihenfolge der eingetragenen Medien wird beim Speichern übernommen.
+    </p>
+
+    <p>
+        Die Einstellung <strong>Team benachrichtigen</strong> steht nur beim Anlegen eines neuen Beitrags zur
+        Verfügung. Ist sie eingeschaltet, erhalten die übrigen Benutzer der Mannschaft eine Benachrichtigung über
+        den neuen Beitrag. Der Verfasser selbst wird dabei nicht zusätzlich benachrichtigt. Mit
+        <strong>Veröffentlichen</strong> wird der Beitrag gespeichert.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neuen Wissenspool-Beitrag erstellen',
+        description: 'Bitte das Formular „Neuer Beitrag“ mit neutralen Beispieldaten aufnehmen.',
+        items: [
+            'Mannschaftsauswahl',
+            'Titel',
+            'Kategorie',
+            'formatierbarer Inhaltsbereich',
+            'Schlagwörter',
+            'Bereich „Medien-Links“',
+            'Einstellung „Team benachrichtigen“',
+            'Schaltfläche „Veröffentlichen“'
+        ],
+        purpose: 'Alle Angaben zeigen, die beim Erstellen eines Beitrags zur Verfügung stehen.'
+    } %}
+
+    <h2>Zwischen Mannschaften wechseln, während ein Beitrag vorbereitet wird</h2>
+
+    <p>
+        Beim Erstellen kann die Zielmannschaft im Formular noch geändert werden. Danach lädt Kaderblick die
+        Kategorien und Schlagwörter der neu gewählten Mannschaft. Eine zuvor gewählte Kategorie wird nach ihrem Namen
+        in der neuen Mannschaft gesucht. Gibt es dort keine gleichnamige Kategorie, muss eine neue Kategorie manuell
+        ausgewählt werden. Bereits eingetragene Schlagwörter werden ebenfalls nach Namen abgeglichen; nicht vorhandene
+        Schlagwörter bleiben als neue Schlagwörter im Formular erhalten.
+    </p>
+
+    <h2>Einen eigenen Beitrag bearbeiten</h2>
+
+    <p>
+        In der geöffneten Detailansicht erscheint die Schaltfläche <strong>Bearbeiten</strong>, wenn ihr den Beitrag
+        selbst erstellt habt und weiterhin Beiträge für diese Mannschaft erstellen dürft. Die systemweite Verwaltung
+        kann Beiträge unabhängig vom Verfasser bearbeiten. Geändert werden können Titel, Inhalt, Kategorie,
+        Schlagwörter und Medien-Links. Die Mannschaft des vorhandenen Beitrags kann beim Bearbeiten nicht gewechselt
+        werden. Eine erneute Mannschaftsbenachrichtigung lässt sich beim Bearbeiten nicht auslösen.
+    </p>
+
+    <h2>Beiträge anpinnen</h2>
+
+    <p>
+        Trainer und Benutzer mit passenden Supporter-Rechten können einen Mannschaftsbeitrag in der Detailansicht
+        anpinnen und die Markierung dort wieder aufheben. Angepinnte Beiträge werden in der Übersicht vor den übrigen
+        Beiträgen dargestellt. Bei globalen Beiträgen steht diese Funktion ausschließlich der systemweiten Verwaltung
+        zur Verfügung.
+    </p>
+
+    <h2>Einen Beitrag löschen</h2>
+
+    <p>
+        Die Löschen-Schaltfläche erscheint beim eigenen Beitrag nur, solange ihr weiterhin die Berechtigung zum
+        Erstellen von Beiträgen in dieser Mannschaft besitzt. Die systemweite Verwaltung kann jeden Beitrag löschen.
+        Mit dem Löschen verschwindet der Beitrag einschließlich seiner Gefällt-mir-Angaben, Kommentare und
+        Medienzuordnungen aus dem Wissenspool.
+    </p>
+{% endblock %}
