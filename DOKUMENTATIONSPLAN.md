@@ -53,7 +53,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Mein Feedback | abgeschlossen |
 | Strafenkatalog | abgeschlossen |
 | Inventar | abgeschlossen |
-| Kassenbuch | offen |
+| Kassenbuch | abgeschlossen |
 | Abrechnung & Abo | offen |
 | Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | noch zu prüfen |
 
