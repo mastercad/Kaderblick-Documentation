@@ -1,0 +1,225 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aushelfen – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Aushelfen</h1>
+
+    <p>
+        Über <strong>Spiele → Aushelfen</strong> können Spieler hinterlegen, dass sie grundsätzlich für Einsätze bei
+        anderen Mannschaften ihres Vereins zur Verfügung stehen. Bei einem konkreten Spiel gibt es anschließend zwei
+        getrennte Wege: Ein Verantwortlicher kann einen passenden Spieler direkt anfragen oder ein berechtigter Spieler
+        kann selbst Interesse an einem Einsatz anbieten.
+    </p>
+
+    <h2>Bereitschaft zum Aushelfen hinterlegen</h2>
+
+    <p>
+        Die persönliche Bereitschaft wird unter <strong>Spiele → Aushelfen</strong> verwaltet. Damit sie gespeichert
+        werden kann, muss dem Benutzerkonto mindestens ein Spielerprofil zugeordnet sein. Ohne Spielerzuordnung bleibt
+        die Funktion gesperrt und Kaderblick weist darauf hin, dass zuerst eine Verbindung zu einem Spieler benötigt wird.
+    </p>
+
+    <p>
+        Mit <strong>Als Aushelfer verfügbar</strong> wird festgelegt, ob der Spieler bei passenden Spielen als möglicher
+        Aushelfer berücksichtigt werden soll. Ist dem Benutzerkonto genau ein Spieler zugeordnet, verwendet Kaderblick
+        dieses Profil automatisch. Bei mehreren verbundenen Spielern erscheint zusätzlich die Auswahl
+        <strong>Spielerprofil</strong>; dort muss festgelegt werden, für welchen Spieler die Bereitschaft gilt.
+    </p>
+
+    <p>
+        Im Feld <strong>Hinweis für Trainer</strong> kann eine freiwillige Zusatzinformation hinterlegt werden, zum
+        Beispiel zeitliche Einschränkungen. Der Hinweis gehört zur allgemeinen Aushelfer-Bereitschaft und ist nicht auf
+        ein bestimmtes Spiel beschränkt. Änderungen werden erst mit <strong>Speichern</strong> übernommen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Persönliche Aushelfer-Bereitschaft',
+        description: 'Bitte die Seite Spiele → Aushelfen mit einem verbundenen Spielerprofil aufnehmen.',
+        items: [
+            'Schalter „Als Aushelfer verfügbar“',
+            'Auswahl „Spielerprofil“, falls mehrere Spieler mit dem Benutzer verbunden sind',
+            'Feld „Hinweis für Trainer“',
+            'Schaltfläche „Speichern“'
+        ],
+        purpose: 'Zeigen, wo die allgemeine Bereitschaft und ein Hinweis für Trainer gepflegt werden.'
+    } %}
+
+    <h3>Welche Spiele kommen grundsätzlich infrage?</h3>
+
+    <p>
+        Eine gespeicherte Bereitschaft bedeutet nicht, dass der Spieler bei jedem anderen Spiel angeboten wird.
+        Kaderblick prüft für jedes Spiel, ob der Spieler nach den hinterlegten Aushelfer-Regeln eingesetzt werden darf.
+        Dabei werden unter anderem die aktive Vereinszugehörigkeit, die Mannschaften des Spiels, die Altersklasse,
+        gegebenenfalls das Alter des Spielers und der Wettbewerb berücksichtigt. Ein Spieler wird nicht als Aushelfer
+        für ein Spiel angeboten, wenn er zu diesem Zeitpunkt bereits einer der beiden beteiligten Mannschaften angehört.
+    </p>
+
+    <p>
+        Die allgemeinen Regeln werden zentral gepflegt. Spieler müssen deshalb nicht selbst entscheiden, für welche
+        Altersklasse oder welchen Wettbewerb ihre Bereitschaft gilt. Bei einem konkreten Spiel erscheint die Möglichkeit
+        zum Aushelfen nur, wenn die dort geltenden Regeln erfüllt sind.
+    </p>
+
+    <h3>Bereitschaft später ändern</h3>
+
+    <p>
+        Der Schalter kann jederzeit wieder ausgeschaltet oder der Hinweis geändert werden. Die Änderung betrifft die
+        allgemeine Suche nach Aushelfern für weitere Spiele. Bereits bestehende direkte Anfragen oder bereits abgegebene
+        Angebote zu einem konkreten Spiel werden dadurch nicht zurückgenommen.
+    </p>
+
+    <h2>Einen Spieler direkt für ein Spiel anfragen</h2>
+
+    <p>
+        Wer ein reguläres Spiel anlegen oder bearbeiten darf, kann im Schritt <strong>Aushilfe</strong> zusätzliche
+        Spieler auswählen. Diese Auswahl ist für einzelne Spiele vorgesehen; bei Turnieren wird dieser Schritt nicht
+        angeboten.
+    </p>
+
+    <p>
+        Zuerst werden Heim- und Auswärtsteam sowie die für das Spiel notwendigen Wettbewerbsdaten festgelegt. Danach
+        lädt Kaderblick die Spieler, die nach dem Regelwerk für dieses Spiel infrage kommen. Für die Suche stehen zwei
+        Ansichten zur Verfügung:
+    </p>
+
+    <ul>
+        <li><strong>Nur mit Bereitschaft:</strong> Es werden regelkonforme Spieler angezeigt, die unter „Aushelfen“ ihre Bereitschaft eingeschaltet haben.</li>
+        <li><strong>Alle regelkonformen Spieler:</strong> Es werden auch passende Spieler angezeigt, die keine allgemeine Bereitschaft hinterlegt haben. Diese werden in der Suche entsprechend gekennzeichnet.</li>
+    </ul>
+
+    <p>
+        Bei einem Treffer können neben dem Namen auch die aktuelle Mannschaftszuordnung, die passende Regel und das Alter
+        des Spielers angezeigt werden. Ausgewählte Spieler erscheinen oberhalb der Suche unter
+        <strong>Angefragte Aushilfsspieler</strong>. Ein bereits ausgewählter Spieler bleibt dort auch erhalten, wenn der
+        Suchfilter anschließend zwischen den beiden Ansichten gewechselt wird.
+    </p>
+
+    <p>
+        Vor dem Speichern prüft Kaderblick die Auswahl erneut. Passt ein ausgewählter Spieler wegen Mannschaft,
+        Vereinszugehörigkeit oder Regelwerk nicht zum Spiel, kann das Spiel mit dieser Auswahl nicht gespeichert werden.
+        Der betreffende Aushelfer muss dann aus der Anfrage entfernt oder die Spieldaten müssen korrigiert werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Aushilfsspieler beim Spiel auswählen',
+        description: 'Bitte den Schritt „Aushilfe“ beim Anlegen oder Bearbeiten eines regulären Spiels aufnehmen.',
+        items: [
+            'Bereich „Angefragte Aushilfsspieler“',
+            'Umschaltung „Nur mit Bereitschaft“ / „Alle regelkonformen Spieler“',
+            'Suchfeld „Externe Spieler einplanen“',
+            'mindestens ein Suchergebnis mit den Zusatzangaben zur Einordnung'
+        ],
+        purpose: 'Unterschied zwischen allgemeiner Bereitschaft und einer direkten Anfrage für ein konkretes Spiel zeigen.'
+    } %}
+
+    <h3>Was sieht ein direkt angefragter Spieler?</h3>
+
+    <p>
+        Eine direkte Anfrage wird beim betroffenen Spiel als <strong>Aushilfe angefragt</strong> beziehungsweise
+        <strong>Aushelfen?</strong> gekennzeichnet. In der Termindetailansicht erklärt Kaderblick zusätzlich, dass der
+        Spieler für dieses Spiel als Aushilfe angefragt wurde. Die Rückmeldung erfolgt anschließend über dieselben
+        Teilnahme-Schaltflächen wie bei anderen Terminen.
+    </p>
+
+    <p>
+        Eine Zusage macht die Anfrage für den Spieler verbindlich. Die endgültige Einplanung in Formation und Einsatz
+        bleibt davon getrennt und wird vom Trainer vorgenommen. Eine Absage, „Vielleicht“ oder eine andere verfügbare
+        Rückmeldung wird wie eine normale Terminrückmeldung gespeichert. Auch die Prüfung auf zeitliche Überschneidungen
+        und zu kurze Reisezeiten gilt für diese Rückmeldung.
+    </p>
+
+    <p>
+        Offene Aushilfe-Anfragen können außerdem im Dashboard im Bereich der offenen Teilnahme-Rückmeldungen erscheinen.
+        Dort ist die Anfrage ebenfalls gekennzeichnet und kann ohne Umweg über den vollständigen Kalender beantwortet
+        werden. Weitere Einzelheiten zur Rückmeldung und Konfliktprüfung stehen unter
+        <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a>.
+    </p>
+
+    <h2>Selbst Interesse an einem Spiel anbieten</h2>
+
+    <p>
+        Ein Spieler muss nicht in jedem Fall direkt ausgewählt worden sein. Ist seine allgemeine Bereitschaft aktiviert
+        und erfüllt er die Regeln für ein konkretes Spiel, kann Kaderblick das Spiel mit dem Hinweis
+        <strong>Aushilfe möglich</strong> anzeigen. In der Termindetailansicht steht dann die Schaltfläche
+        <strong>Interesse anbieten</strong> zur Verfügung. Dieselbe Möglichkeit kann im Dashboard bei den offenen
+        Teilnahme-Rückmeldungen erscheinen.
+    </p>
+
+    <p>
+        Das Interesse ist zunächst unverbindlich. Nach dem Absenden lautet der Status
+        <strong>Interesse gemeldet – wartet auf Bestätigung</strong>. Die für das Spiel zuständigen Personen werden über
+        das Angebot informiert. Solange keine Entscheidung getroffen wurde, muss der Spieler keine zusätzliche
+        Teilnahme-Rückmeldung abgeben.
+    </p>
+
+    <p>
+        Für ein bereits abgegebenes Interesse gibt es im aktuellen Stand keine eigene Schaltfläche zum Zurückziehen.
+        Ein zweites Angebot für dasselbe Spiel kann ebenfalls nicht abgegeben werden.
+    </p>
+
+    <h2>Interesse eines Spielers bestätigen oder ablehnen</h2>
+
+    <p>
+        Personen, die das betreffende Spiel bearbeiten dürfen, sehen in dessen Termindetailansicht den Bereich
+        <strong>Aushilfe-Interessenten</strong>. Dort werden die eingegangenen Angebote mit ihrem aktuellen Zustand
+        angezeigt. Solange ein Angebot auf eine Entscheidung wartet, stehen <strong>Bestätigen</strong> und
+        <strong>Ablehnen</strong> zur Verfügung.
+    </p>
+
+    <p>
+        Mit <strong>Bestätigen</strong> wird der Spieler für das Spiel als Aushilfe angenommen. Kaderblick trägt für ihn
+        gleichzeitig eine Zusage zum Termin ein und stellt sicher, dass er auf das Spiel zugreifen kann. Der Spieler
+        erhält eine Benachrichtigung, dass seine Unterstützung bestätigt wurde. In der Termindetailansicht wird sein
+        Status anschließend als <strong>Als Aushilfe bestätigt</strong> angezeigt.
+    </p>
+
+    <p>
+        Mit <strong>Ablehnen</strong> wird das Angebot für dieses Spiel abgelehnt. Der Spieler erhält eine
+        Benachrichtigung, dass für dieses Spiel keine Unterstützung mehr erforderlich ist. Das allgemeine
+        Bereitschaftskennzeichen des Spielers bleibt davon unberührt und kann bei anderen passenden Spielen weiter
+        berücksichtigt werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Aushilfe-Angebot und Entscheidung',
+        description: 'Bitte eine Termindetailansicht eines Spiels aufnehmen, in der ein Spieler Interesse angeboten hat und ein Verantwortlicher über das Angebot entscheiden kann.',
+        items: [
+            'Status des angebotenen Interesses',
+            'Bereich „Aushilfe-Interessenten“',
+            'Schaltflächen „Bestätigen“ und „Ablehnen“ bei einem offenen Angebot'
+        ],
+        purpose: 'Den Unterschied zwischen einem unverbindlichen Interesse und einer bestätigten Aushilfe zeigen.'
+    } %}
+
+    <h2>Direkte Anfrage und eigenes Angebot unterscheiden</h2>
+
+    <p>
+        Bei einer <strong>direkten Anfrage</strong> hat ein Verantwortlicher den Spieler bereits beim Spiel ausgewählt.
+        Der Spieler beantwortet diese Anfrage über die normale Teilnahme-Rückmeldung. Bei einem
+        <strong>eigenen Angebot</strong> meldet der Spieler zunächst nur Interesse; erst die anschließende Bestätigung
+        durch einen Verantwortlichen erzeugt die Zusage zum Spiel.
+    </p>
+
+    <p>
+        Beide Wege beziehen sich immer auf ein konkretes Spiel. Die Einstellung unter <strong>Spiele → Aushelfen</strong>
+        ist davon getrennt: Sie beschreibt lediglich die allgemeine Bereitschaft des gewählten Spielerprofils und dient
+        als Grundlage dafür, bei welchen zukünftigen Spielen der Spieler als möglicher Aushelfer berücksichtigt werden kann.
+    </p>
+
+    <h2>Zusammenhang mit anderen Bereichen</h2>
+
+    <p>
+        Aushilfe-Anfragen und -Angebote werden in den normalen Spiel- und Terminablauf eingebunden. Das konkrete Spiel
+        wird im Kalender geöffnet, Rückmeldungen erscheinen in den Teilnahmeübersichten und angenommene Angebote erhalten
+        automatisch eine Zusage. Offene Vorgänge können zusätzlich über das Dashboard erreichbar sein. Die eigentliche
+        Spielplanung – etwa Startelf, Bank oder taktische Einordnung – erfolgt weiterhin im Match-Plan beziehungsweise in
+        den spielbezogenen Aufstellungen und ist nicht Bestandteil der Aushelfer-Bereitschaft.
+    </p>
+
+    <p>
+        Benachrichtigungen über bestätigte oder abgelehnte Angebote führen zurück zum betroffenen Spiel. Die allgemeinen
+        Einstellungen für Benachrichtigungen werden im Profil verwaltet; ihre Bedienung ist unter
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a> beschrieben.
+    </p>
+{% endblock %}
