@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mein Feedback – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Mein Feedback</h1>
+
+    <p>
+        Über die Feedback-Funktion könnt ihr Fehler melden, Verbesserungsvorschläge einreichen oder eine Frage stellen.
+        Bereits gesendete Rückmeldungen findet ihr anschließend unter <strong>„Mein Feedback“</strong>. Dort seht ihr den
+        Bearbeitungsstand und könnt auf Antworten reagieren.
+    </p>
+
+    <h2>Feedback einreichen</h2>
+
+    <p>
+        Solange ihr angemeldet seid, steht unten rechts die Schaltfläche <strong>„Feedback geben“</strong> zur Verfügung.
+        Sie öffnet das Feedback-Fenster über der Seite, auf der ihr euch gerade befindet.
+    </p>
+
+    <p>
+        Als <strong>Feedback-Typ</strong> stehen <strong>„Fehler melden“</strong>,
+        <strong>„Verbesserungsvorschlag“</strong>, <strong>„Frage“</strong> und <strong>„Sonstiges“</strong> zur Auswahl.
+        Für das Absenden ist eine Nachricht erforderlich. Die Schaltfläche <strong>„Senden“</strong> bleibt deaktiviert,
+        solange das Nachrichtenfeld leer ist.
+    </p>
+
+    <p>
+        Die Seite, von der ihr das Feedback absendet, wird automatisch mit der Rückmeldung gespeichert. Dadurch ist später
+        nachvollziehbar, in welchem Bereich das Problem oder die Frage aufgetreten ist. In den Feedback-Details erscheint diese
+        Seite als anklickbarer Link.
+    </p>
+
+    <h3>Screenshot anhängen</h3>
+
+    <p>
+        Mit <strong>„Screenshot anhängen“</strong> erstellt Kaderblick eine Aufnahme der aktuell geöffneten Seite. Das
+        Feedback-Fenster selbst wird für die Aufnahme ausgeblendet. Anschließend erscheint der Screenshot als Vorschau im
+        Feedback-Fenster. Entfernt ihr den Haken wieder, wird die Aufnahme nicht mitgesendet.
+    </p>
+
+    <p>
+        Kann der Screenshot nicht erstellt werden, zeigt Kaderblick eine Fehlermeldung und entfernt die Auswahl wieder. Das
+        Feedback kann danach weiterhin ohne Screenshot gesendet werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Feedback einreichen',
+        description: 'Das geöffnete Feedback-Fenster auf einer normalen Kaderblick-Seite aufnehmen. Für die Vorschau ausschließlich anonymisierte oder neutrale Inhalte verwenden.',
+        items: [
+            'Auswahl „Feedback-Typ“',
+            'Nachrichtenfeld',
+            'Auswahl „Screenshot anhängen“',
+            'Screenshot-Vorschau',
+            'Schaltflächen „Abbrechen“ und „Senden“'
+        ],
+        purpose: 'Die Angaben beim Einreichen und die optionale Screenshot-Funktion zeigen.'
+    } %}
+
+    <p>
+        Nach erfolgreichem Versand wird das Formular zurückgesetzt und das Feedback-Fenster geschlossen. Die neue Rückmeldung
+        erscheint anschließend unter <strong>„Mein Feedback“</strong>.
+    </p>
+
+    <h2>Eigene Rückmeldungen öffnen</h2>
+
+    <p>
+        Öffnet oben rechts das Benutzermenü und wählt <strong>„Mein Feedback“</strong>. Die Seite enthält ausschließlich
+        Rückmeldungen des aktuell angemeldeten Benutzerkontos. Rückmeldungen anderer Benutzer können dort nicht geöffnet werden.
+    </p>
+
+    <p>
+        Oberhalb der Liste zeigt Kaderblick vier Kennzahlen: <strong>„Eingereicht“</strong> für alle eigenen Rückmeldungen,
+        <strong>„Ausstehend“</strong> für alle noch nicht erledigten Rückmeldungen, <strong>„Erledigt“</strong> sowie
+        <strong>„Neue Antworten“</strong> für Rückmeldungen mit einer noch ungelesenen Antwort.
+    </p>
+
+    <p>
+        Über die Reiter <strong>„Alle“</strong>, <strong>„Ausstehend“</strong> und <strong>„Erledigt“</strong> schränkt ihr die
+        Liste ein. Sobald mindestens eine ungelesene Antwort vorhanden ist, erscheint zusätzlich der Reiter
+        <strong>„Neue Antworten“</strong>. Das Suchfeld filtert nach dem Nachrichtentext und nach dem intern gespeicherten
+        Feedback-Typ.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Die Suche verwendet derzeit nicht zuverlässig die sichtbaren deutschen Typbezeichnungen',
+        text: 'Die Typen werden intern als „bug“, „feature“, „question“ und „other“ gespeichert. Eine Suche nach dem sichtbaren Wort „Fehler“ oder „Verbesserung“ findet deshalb nicht zwingend die entsprechenden Rückmeldungen. Der Nachrichtentext wird unabhängig davon normal durchsucht.'
+    } %}
+
+    <p>
+        Jede Rückmeldung zeigt Typ, Bearbeitungsstatus, Einreichungsdatum und einen Ausschnitt der ursprünglichen Nachricht.
+        Vorhandene Antworten werden mit ihrer Anzahl dargestellt. Bei einer ungelesenen Antwort weist die Karte zusätzlich
+        darauf hin und bietet <strong>„Neue Antwort lesen“</strong> an. Andernfalls öffnet <strong>„Details“</strong> die
+        vollständige Rückmeldung.
+    </p>
+
+    <p>
+        Wurde beim Einreichen ein Screenshot gespeichert, kann er über das Büroklammer-Symbol direkt aus der Übersicht geöffnet
+        werden. Wenn die Rückmeldung später mit einem GitHub-Eintrag verknüpft wurde, erscheint dessen Nummer ebenfalls als
+        anklickbarer Link.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Übersicht „Mein Feedback“',
+        description: 'Die Seite mit mehreren anonymisierten Rückmeldungen aufnehmen. Mindestens eine Rückmeldung sollte eine ungelesene Antwort besitzen.',
+        items: [
+            'Kennzahlen „Eingereicht“, „Ausstehend“, „Erledigt“ und „Neue Antworten“',
+            'Suchfeld und Reiter',
+            'Rückmeldung mit Typ und Status',
+            'Hinweis auf eine ungelesene Antwort',
+            'Schaltfläche „Neue Antwort lesen“ oder „Details“'
+        ],
+        purpose: 'Filter, Bearbeitungsstatus und den Zugang zu neuen Antworten zeigen.'
+    } %}
+
+    <h2>Bearbeitungsstatus verstehen</h2>
+
+    <p>
+        Eine neu eingereichte Rückmeldung beginnt mit dem Status <strong>„Ausstehend“</strong>. Sobald sie von der zuständigen
+        Verwaltung als gelesen behandelt wird oder eine Antwort erhält, erscheint auf der Karte
+        <strong>„In Bearbeitung“</strong>. Wird die Rückmeldung abgeschlossen, wechselt der Status zu
+        <strong>„Erledigt“</strong>.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Der Reiter „Ausstehend“ umfasst auch Rückmeldungen „In Bearbeitung“',
+        text: 'Für den Reiter und die Kennzahl „Ausstehend“ zählt Kaderblick derzeit alle Rückmeldungen, die noch nicht als erledigt markiert wurden. Deshalb können dort sowohl Karten mit dem Status „Ausstehend“ als auch „In Bearbeitung“ erscheinen.'
+    } %}
+
+    <h2>Details und Antworten</h2>
+
+    <p>
+        Die Detailansicht zeigt die vollständige ursprüngliche Nachricht, Typ, Status und Einreichungsdatum. Wenn vorhanden,
+        werden außerdem die beim Absenden gespeicherte Seite, der Screenshot und eine Verknüpfung zu einem GitHub-Eintrag
+        angezeigt.
+    </p>
+
+    <p>
+        Unter <strong>„Verlauf“</strong> stehen die späteren Nachrichten in zeitlicher Reihenfolge. Eigene Antworten werden auf
+        der rechten Seite dargestellt, Antworten der Verwaltung auf der linken Seite. Sobald ihr die Detailansicht öffnet,
+        gelten alle bis dahin ungelesenen Antworten der Verwaltung für diese Rückmeldung als gelesen. Der Hinweis auf eine neue
+        Antwort verschwindet dadurch aus der Übersicht.
+    </p>
+
+    <p>
+        Über das Nachrichtenfeld am Ende des Verlaufs könnt ihr eine Rückfrage oder Ergänzung senden. Eine leere Nachricht kann
+        nicht abgeschickt werden. Neben der Schaltfläche <strong>„Senden“</strong> funktioniert auch
+        <strong>Strg + Enter</strong>. Nach dem Versand wird der Verlauf neu geladen und die eigene Nachricht dort angezeigt.
+    </p>
+
+    <p>
+        Das Antwortfeld bleibt auch bei einer bereits als <strong>„Erledigt“</strong> markierten Rückmeldung verfügbar. Eine
+        eigene Antwort ändert den Status jedoch nicht automatisch zurück auf „In Bearbeitung“. Ob eine erledigte Rückmeldung
+        erneut geöffnet wird, entscheidet anschließend die zuständige Verwaltung.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Feedback-Details mit Nachrichtenverlauf',
+        description: 'Eine anonymisierte Feedback-Detailansicht mit mindestens einer eigenen Nachricht und einer Antwort der Verwaltung aufnehmen.',
+        items: [
+            'Feedback-Typ und Bearbeitungsstatus',
+            'ursprüngliche Nachricht',
+            'Verlauf mit beiden Nachrichtenseiten',
+            'Eingabefeld für eine weitere Nachricht',
+            'Schaltfläche „Senden“'
+        ],
+        purpose: 'Aufbau der Detailansicht und die weitere Kommunikation zu einer Rückmeldung zeigen.'
+    } %}
+
+    <h2>Benachrichtigung über Antworten</h2>
+
+    <p>
+        Eine neue Antwort der Verwaltung kann als Kaderblick-Benachrichtigung erscheinen. In deren Detailansicht führt
+        <strong>„Feedback öffnen“</strong> direkt zur betreffenden Rückmeldung.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: '„Feedback-Antworten“ sind standardmäßig deaktiviert',
+        text: 'Die Benachrichtigungskategorie „Feedback-Antworten“ ist in den aktuellen Standardeinstellungen ausgeschaltet. Ist sie beim Eingang einer Antwort deaktiviert, wird dafür keine Benachrichtigung angelegt. Die Antwort selbst bleibt trotzdem unter „Mein Feedback“ sichtbar. Die Kategorie kann in den Benachrichtigungseinstellungen aktiviert werden.'
+    } %}
+
+    <p>
+        Das reine Markieren einer Rückmeldung als <strong>„Erledigt“</strong> erzeugt derzeit keine eigene Benachrichtigung für
+        den Benutzer. Der geänderte Status wird in <strong>„Mein Feedback“</strong> sichtbar, sobald die Daten dort neu geladen
+        werden. Weitere Informationen zu den Einstellungen findet ihr unter
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a>.
+    </p>
+
+    <h2>Nachträgliche Änderungen und Löschen</h2>
+
+    <p>
+        Eine bereits eingereichte Rückmeldung kann im aktuellen Stand nicht nachträglich bearbeitet oder gelöscht werden.
+        Ergänzungen werden über den Nachrichtenverlauf der jeweiligen Rückmeldung gesendet. Auch der ursprünglich gespeicherte
+        Screenshot lässt sich nach dem Einreichen nicht austauschen oder entfernen.
+    </p>
+{% endblock %}
