@@ -28,7 +28,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Kalender & Termine | abgeschlossen |
 | Spiele | abgeschlossen |
 | Team & Verein | abgeschlossen |
-| Aufgaben | offen |
+| Aufgaben | abgeschlossen |
 | Neuigkeiten & Gemeinschaft | offen |
 | Nachrichten | offen |
 | Benachrichtigungen | offen |
