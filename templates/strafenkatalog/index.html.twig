@@ -1,0 +1,240 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Strafenkatalog – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Strafenkatalog</h1>
+
+    <p>
+        Unter <strong>Team &amp; Verein → Strafenkatalog</strong> werden festgelegte Strafen und Belohnungen angezeigt.
+        Berechtigte Personen können eigene Typen für eine Mannschaft oder einen Verein verwalten. Trainer können
+        daraus Einträge für die von ihnen betreuten Mannschaften vergeben. Jede vergebene Strafe oder Belohnung
+        erscheint anschließend auf dem Deckel des betroffenen Benutzerkontos.
+    </p>
+
+    <h2>Den Katalog lesen</h2>
+
+    <p>
+        Der Reiter <strong>„Katalog“</strong> zeigt zunächst die Anzahl der sichtbaren Strafen und Belohnungen. In der
+        Tabelle stehen Name und gegebenenfalls Beschreibung, Betrag, Typ, Gültigkeitszeitraum und Geltungsbereich.
+        Eine Strafe wird mit einem negativen Betrag dargestellt, eine Belohnung mit einem positiven Betrag.
+    </p>
+
+    <p>
+        <strong>Global</strong> gekennzeichnete Typen sind für alle angemeldeten Benutzer sichtbar. Zusätzlich werden
+        Typen angezeigt, die zu einer aktuell sichtbaren Mannschaft oder einem aktuell sichtbaren Verein des eigenen
+        Kontos gehören. Deshalb kann sich der Katalog zwischen verschiedenen Benutzern unterscheiden.
+    </p>
+
+    <p>
+        Unter <strong>„Gültigkeit“</strong> steht entweder ein Zeitraum oder <strong>„Unbegrenzt“</strong>. Fehlt nur
+        eines der beiden Datumsfelder, bleibt die entsprechende Seite des Zeitraums offen. Inaktive Typen können
+        weiterhin im Katalog stehen; sie können aber nicht neu vergeben werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Strafenkatalog mit Strafe und Belohnung',
+        description: 'Den Reiter „Katalog“ mit mindestens einer Strafe und einer Belohnung aufnehmen.',
+        items: [
+            'Zähler für Strafen und Belohnungen',
+            'Name und Beschreibung eines Eintrags',
+            'Betrag und Typ',
+            'Gültigkeit',
+            'Geltungsbereich',
+            'Aktiv-Schalter und Bearbeitungssymbole, sofern das verwendete Konto diese Rechte besitzt'
+        ],
+        purpose: 'Aufbau des Katalogs und die Bedeutung der einzelnen Angaben zeigen.'
+    } %}
+
+    <h2>Strafen und Belohnungen verwalten</h2>
+
+    <p>
+        Die Schaltfläche <strong>„Neuer Typ“</strong> erscheint nur, wenn das eigene Konto mindestens einen passenden
+        Bereich verwalten darf. Trainer können Typen für ihre aktuell betreuten Mannschaften verwalten.
+        Mannschaftsadministratoren können Typen für ihre verwalteten Mannschaften und Vereinsadministratoren Typen
+        für ihre verwalteten Vereine verwalten. Globale Typen können ausschließlich von der übergeordneten
+        Plattformverwaltung angelegt und verwaltet werden.
+    </p>
+
+    <p>
+        Beim Anlegen werden <strong>Name</strong> und ein <strong>Betrag größer als 0 Euro</strong> benötigt. Eine
+        Beschreibung ist optional. Über <strong>„Typ“</strong> wird festgelegt, ob der Betrag als Strafe oder als
+        Belohnung verwendet wird. Mit <strong>„Gültig ab“</strong> und <strong>„Gültig bis“</strong> kann der Zeitraum
+        eingeschränkt werden. Ohne diese Angaben gilt der Typ zeitlich unbegrenzt.
+    </p>
+
+    <p>
+        Unter <strong>„Geltungsbereich“</strong> wird festgelegt, wo der Typ verwendet werden darf. Ein
+        Mannschaftstyp gilt nur für die ausgewählte Mannschaft. Ein Vereinstyp kann bei Mannschaften dieses Vereins
+        verwendet werden. Die Auswahl <strong>„Global“</strong> steht nur der Plattformverwaltung zur Verfügung. Der
+        Schalter <strong>„Aktiv“</strong> entscheidet, ob der Typ aktuell vergeben werden kann.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neuen Strafentyp anlegen',
+        description: 'Den Dialog „Neuer Strafentyp“ mit ausgefüllten Beispieldaten ohne personenbezogene Angaben aufnehmen.',
+        items: [
+            'Name und Beschreibung',
+            'Betrag',
+            'Auswahl Strafe oder Belohnung',
+            'Gültig ab und Gültig bis',
+            'Geltungsbereich mit zugehöriger Mannschaft oder Verein',
+            'Schalter „Aktiv“'
+        ],
+        purpose: 'Alle Einstellungen zeigen, die beim Anlegen einer Strafe oder Belohnung festgelegt werden.'
+    } %}
+
+    <h3>Bestehenden Typ bearbeiten oder deaktivieren</h3>
+
+    <p>
+        Bei Einträgen aus dem eigenen Verwaltungsbereich stehen ein Bearbeitungssymbol, ein Löschsymbol und der
+        Schalter <strong>„Aktiv“</strong> zur Verfügung. Über das Bearbeitungssymbol lassen sich Name, Beschreibung,
+        Betrag, Typ, Gültigkeitszeitraum und Aktivzustand ändern. Der Aktivschalter in der Tabelle ändert den Zustand
+        unmittelbar. Eine zusätzliche Bestätigung erfolgt dabei nicht.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Der Geltungsbereich lässt sich derzeit nicht nachträglich ändern',
+        text: 'Im Bearbeitungsdialog kann zwar ein anderer Geltungsbereich ausgewählt werden, diese Änderung wird beim Speichern derzeit nicht übernommen. Ein bestehender Typ bleibt deshalb seiner bisherigen Mannschaft, seinem bisherigen Verein oder dem globalen Bereich zugeordnet. Wird ein anderer Bereich benötigt, legt ihr einen neuen Typ mit dem richtigen Geltungsbereich an.'
+    } %}
+
+    <h3>Einen Typ löschen</h3>
+
+    <p>
+        Das Löschsymbol öffnet eine Bestätigung. Gelöscht werden kann ein Typ nur, solange noch keine vergebene Strafe
+        oder Belohnung auf diesen Typ verweist. Wurde er bereits verwendet, lehnt Kaderblick das Löschen ab. Das gilt
+        auch dann, wenn ein zugehöriger Deckel-Eintrag später storniert wurde. In diesem Fall kann der Typ deaktiviert
+        werden, damit er nicht erneut vergeben wird.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Der Löschdialog beschreibt das aktuelle Verhalten nicht vollständig',
+        text: 'Der Bestätigungsdialog weist derzeit darauf hin, dass frühere Einträge ihren Namen behalten würden. Tatsächlich verhindert Kaderblick das Löschen vollständig, sobald der Typ bereits verwendet wurde.'
+    } %}
+
+    <h2>Eine Strafe oder Belohnung vergeben</h2>
+
+    <p>
+        Der Reiter <strong>„Strafe vergeben“</strong> erscheint nur, wenn das Konto für mindestens eine aktuell
+        betreute Mannschaft Strafen und Belohnungen vergeben darf. Dieses Recht ist an die Trainerzuordnung gebunden.
+        Eine Verwaltungsberechtigung für eine Mannschaft oder einen Verein allein blendet diesen Reiter nicht ein.
+    </p>
+
+    <p>
+        Über <strong>„Strafe / Belohnung vergeben“</strong> öffnet sich der Vergabedialog. Bei mehreren betreuten
+        Mannschaften wird zuerst die Mannschaft ausgewählt; bei genau einer verfügbaren Mannschaft wird sie
+        automatisch verwendet. Anschließend werden die Person, der Strafentyp und das Datum festgelegt. Das Datum ist
+        zunächst auf den aktuellen Tag gesetzt und kann geändert werden. Eine Notiz ist optional. Vor dem Speichern
+        zeigt Kaderblick noch einmal Person, Typ und Betrag der vorgesehenen Buchung an.
+    </p>
+
+    <p>
+        Im Feld <strong>„Spieler“</strong> stehen die aktuell zugeordneten Benutzerkonten der ausgewählten Mannschaft.
+        Die Bezeichnung des Feldes ist derzeit ungenau: Je nach Mannschaft können dort neben Spielern auch Trainer,
+        Mannschafts- oder Vereinsverantwortliche, Unterstützer, Staff oder Funktionäre erscheinen. Entscheidend ist,
+        ob das Benutzerkonto aktuell zur Mannschaft gehört und von Kaderblick für diese Auswahl berücksichtigt wird.
+    </p>
+
+    <p>
+        Im Feld <strong>„Strafentyp“</strong> werden aktive Einträge getrennt nach <strong>„Strafen“</strong> und
+        <strong>„Belohnungen“</strong> angeboten. Nach <strong>„Vergeben“</strong> wird eine Strafe als Belastung auf
+        den Deckel der ausgewählten Person gebucht. Eine Belohnung wird als Gutschrift gebucht und vermindert damit
+        einen offenen Betrag beziehungsweise erhöht ein vorhandenes Guthaben.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Strafe oder Belohnung vergeben',
+        description: 'Den Dialog „Strafe / Belohnung vergeben“ mit ausgewählter Mannschaft, Person und einem Strafentyp aufnehmen.',
+        items: [
+            'Mannschaftsauswahl, sofern mehrere Mannschaften vorhanden sind',
+            'Feld „Spieler“',
+            'Feld „Strafentyp“ mit Strafen und Belohnungen',
+            'Datum',
+            'optionale Notiz',
+            'Zusammenfassung mit Person, Typ und Betrag',
+            'Schaltfläche „Vergeben“'
+        ],
+        purpose: 'Den vollständigen Ablauf der Vergabe und die vor dem Speichern sichtbare Zusammenfassung zeigen.'
+    } %}
+
+    <h3>Geltungsbereich und Gültigkeit bei der Vergabe</h3>
+
+    <p>
+        Beim Speichern prüft Kaderblick den gewählten Typ erneut. Ein Mannschaftstyp kann nur für genau diese
+        Mannschaft vergeben werden. Ein Vereinstyp kann nur für eine Mannschaft verwendet werden, die zu diesem
+        Verein gehört. Globale Typen können unabhängig von der Mannschaft verwendet werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Die Auswahlliste wird derzeit nicht vollständig vorgefiltert',
+        text: 'Im Vergabedialog können aktive Typen erscheinen, die nicht zur ausgewählten Mannschaft passen oder deren Gültigkeitszeitraum bereits abgelaufen beziehungsweise noch nicht begonnen hat. Solche Vergaben werden erst beim Speichern abgelehnt.'
+    } %}
+
+    <p>
+        Der Gültigkeitszeitraum wird beim Vergeben gegen den <strong>aktuellen Tag</strong> geprüft. Das im Dialog
+        gewählte Feld <strong>„Datum“</strong> bestimmt das Buchungsdatum auf dem Deckel, nicht die Prüfung des
+        Gültigkeitszeitraums. Ein heute gültiger Typ kann deshalb mit einem abweichenden Buchungsdatum gespeichert
+        werden. Umgekehrt lässt sich ein heute abgelaufener Typ nicht dadurch verwenden, dass als Buchungsdatum ein
+        früherer Tag innerhalb seines damaligen Gültigkeitszeitraums gewählt wird.
+    </p>
+
+    <h2>Vergebene Strafen und Belohnungen nachvollziehen</h2>
+
+    <p>
+        Im Reiter <strong>„Strafe vergeben“</strong> steht unterhalb der Schaltfläche der Vergabeverlauf. Angezeigt
+        werden Datum, Person, Mannschaft, Strafe oder Belohnung, Betrag, die vergebende Person und eine vorhandene
+        Notiz. Die neuesten Buchungsdaten stehen zuerst. Es werden höchstens die 100 neuesten Einträge geladen.
+    </p>
+
+    <p>
+        Trainer sehen dort die Einträge der Mannschaften, für die sie aktuell Strafen vergeben dürfen. Die
+        Plattformverwaltung kann den Verlauf aller Mannschaften sehen. Der Vergabeverlauf selbst bietet keine
+        Schaltflächen zum Bearbeiten oder Stornieren einzelner Einträge.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Verlauf vergebener Strafen und Belohnungen',
+        description: 'Den Reiter „Strafe vergeben“ mit mehreren bereits vergebenen Einträgen aufnehmen.',
+        items: [
+            'Schaltfläche „Strafe / Belohnung vergeben“',
+            'Datum und Person',
+            'Mannschaft',
+            'Strafe beziehungsweise Belohnung mit Betrag',
+            'Spalte „Vergeben von“',
+            'Notiz'
+        ],
+        purpose: 'Den Vergabeverlauf und die dort verfügbaren Informationen zeigen.'
+    } %}
+
+    <h2>Zusammenhang mit „Mein Deckel“</h2>
+
+    <p>
+        Jede Vergabe erzeugt unmittelbar einen Eintrag unter <a href="{{ path('app_vereine_teams') }}">Mein Deckel</a>
+        der betroffenen Person. Dort ist der Vorgang als <strong>„Strafe“</strong> oder <strong>„Belohnung“</strong>
+        gekennzeichnet und enthält Mannschaft, Betrag sowie eine vorhandene Notiz. Strafen erhöhen den verbrauchten
+        Betrag; Belohnungen werden als Gutschrift berücksichtigt.
+    </p>
+
+    <p>
+        Die betroffene Person erhält außerdem eine Benachrichtigung mit Typ, Betrag, Mannschaft und gegebenenfalls
+        Notiz. Die Benachrichtigung führt zu <strong>„Mein Deckel“</strong>. Sie gehört zur Kategorie
+        <strong>„Strafen &amp; Belohnungen“</strong>, die standardmäßig eingeschaltet ist und in den
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungseinstellungen</a> geändert werden kann.
+    </p>
+
+    <p>
+        Eine noch nicht durch eine Zahlung ausgeglichene Strafe oder Belohnung kann im aktuellen Stand über die
+        Storno-Funktion von <strong>„Mein Deckel“</strong> ausgeglichen werden. Dabei bleibt der ursprüngliche Vorgang
+        erhalten und es entsteht eine Gegenbuchung. Ist der Eintrag bereits durch eine Zahlung ausgeglichen, muss
+        zuerst die zugehörige Zahlung durch die zuständige Kassenverwaltung storniert werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Ein Storno wird im Vergabeverlauf derzeit nicht gekennzeichnet',
+        text: 'Wird eine Strafe oder Belohnung über „Mein Deckel“ oder die Kassenverwaltung storniert, bleibt der ursprüngliche Eintrag im Vergabeverlauf des Strafenkatalogs unverändert sichtbar. Die Tabelle zeigt dort derzeit keinen Storno-Status. Für den tatsächlichen finanziellen Stand ist deshalb der Deckel beziehungsweise die Kassenverwaltung maßgeblich.'
+    } %}
+{% endblock %}
