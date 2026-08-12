@@ -26,7 +26,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Anmelden & Registrieren | abgeschlossen |
 | Dashboard | abgeschlossen |
 | Kalender & Termine | abgeschlossen |
-| Spiele | offen |
+| Spiele | abgeschlossen |
 | Team & Verein | offen |
 | Aufgaben | offen |
 | Neuigkeiten & Gemeinschaft | offen |
