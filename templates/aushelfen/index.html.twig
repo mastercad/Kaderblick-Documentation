@@ -24,13 +24,16 @@
         Mit <strong>Als Aushelfer verfügbar</strong> wird festgelegt, ob der Spieler bei passenden Spielen als möglicher
         Aushelfer berücksichtigt werden soll. Ist dem Benutzerkonto genau ein Spieler zugeordnet, verwendet Kaderblick
         dieses Profil automatisch. Bei mehreren verbundenen Spielern erscheint zusätzlich die Auswahl
-        <strong>Spielerprofil</strong>; dort muss festgelegt werden, für welchen Spieler die Bereitschaft gilt.
+        <strong>Spielerprofil</strong>; dort muss festgelegt werden, für welchen Spieler die Bereitschaft gilt. Die
+        gespeicherte Bereitschaft kann immer nur einem dieser Spielerprofile zugeordnet sein.
     </p>
 
     <p>
         Im Feld <strong>Hinweis für Trainer</strong> kann eine freiwillige Zusatzinformation hinterlegt werden, zum
-        Beispiel zeitliche Einschränkungen. Der Hinweis gehört zur allgemeinen Aushelfer-Bereitschaft und ist nicht auf
-        ein bestimmtes Spiel beschränkt. Änderungen werden erst mit <strong>Speichern</strong> übernommen.
+        Beispiel eine zeitliche Einschränkung. Der Hinweis wird zusammen mit der Bereitschaft gespeichert. Im aktuellen
+        Stand wird er jedoch weder in der Suche nach Aushilfsspielern noch in der Liste eingegangener Interessen angezeigt;
+        Trainer können diesen Text dort derzeit nicht einsehen. Änderungen werden erst mit <strong>Speichern</strong>
+        übernommen.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -42,7 +45,7 @@
             'Feld „Hinweis für Trainer“',
             'Schaltfläche „Speichern“'
         ],
-        purpose: 'Zeigen, wo die allgemeine Bereitschaft und ein Hinweis für Trainer gepflegt werden.'
+        purpose: 'Zeigen, wo die allgemeine Bereitschaft und der gespeicherte Hinweis gepflegt werden.'
     } %}
 
     <h3>Welche Spiele kommen grundsätzlich infrage?</h3>
@@ -203,8 +206,8 @@
 
     <p>
         Beide Wege beziehen sich immer auf ein konkretes Spiel. Die Einstellung unter <strong>Spiele → Aushelfen</strong>
-        ist davon getrennt: Sie beschreibt lediglich die allgemeine Bereitschaft des gewählten Spielerprofils und dient
-        als Grundlage dafür, bei welchen zukünftigen Spielen der Spieler als möglicher Aushelfer berücksichtigt werden kann.
+        ist davon getrennt: Sie beschreibt die allgemeine Bereitschaft des gewählten Spielerprofils und dient als
+        Grundlage dafür, bei welchen passenden Spielen der Spieler als möglicher Aushelfer berücksichtigt werden kann.
     </p>
 
     <h2>Zusammenhang mit anderen Bereichen</h2>
@@ -218,8 +221,8 @@
     </p>
 
     <p>
-        Benachrichtigungen über bestätigte oder abgelehnte Angebote führen zurück zum betroffenen Spiel. Die allgemeinen
-        Einstellungen für Benachrichtigungen werden im Profil verwaltet; ihre Bedienung ist unter
+        Benachrichtigungen über bestätigte oder abgelehnte Angebote führen zurück zum betroffenen Spiel. Wie
+        Benachrichtigungen geöffnet und verwaltet werden und wie Push-Benachrichtigungen eingerichtet werden, ist unter
         <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a> beschrieben.
     </p>
 {% endblock %}
