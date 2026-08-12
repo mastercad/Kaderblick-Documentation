@@ -1,121 +1,342 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vereine & Teams – docs.kaderblick.de{% endblock %}
+{% block title %}Team & Verein – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>🏢 Vereine & Teams</h1>
+    <h1>Team &amp; Verein</h1>
+
     <p>
-        Das Fundament von Kaderblick: Vereinsstruktur mit Teams, Altersklassen und Ligen.
+        Unter <strong>„Team &amp; Verein“</strong> stehen drei unterschiedliche Übersichten zur Verfügung:
+        <strong>„Mein Team“</strong> zeigt Kader, Trainingsnachweise, kommende Termine und offene Aufgaben,
+        <strong>„Mein Verein“</strong> fasst die Saison aller Mannschaften des Vereins zusammen und
+        <strong>„Mein Deckel“</strong> zeigt persönliche Buchungen, Zahlungen und den aktuellen Saldo.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '🏟️', title: 'Verein', desc: 'Das Dach für alle Teams, Spieler und Trainer. Mehrere Vereine gleichzeitig möglich.' },
-            { icon: '👥', title: 'Teams', desc: 'Mannschaften anlegen und verwalten (z.&nbsp;B. 1. Mannschaft, U17, Alte Herren).' },
-            { icon: '🎂', title: 'Altersklassen', desc: 'Orientiert am deutschen Jugendfußball mit Stichtag 1. Januar.' },
-            { icon: '🏆', title: 'Ligen', desc: 'Offizielle Spielklassen eintragen und Teams zuordnen.' },
-            { icon: '🔗', title: 'fussball.de', desc: 'Spielergebnisse automatisch mit fussball.de synchronisieren.' },
-        ]
-    } %}
+    <h2>Mein Team</h2>
 
-    {# ─── Der Verein ─── #}
-    <h2>Der Verein</h2>
     <p>
-        Ganz oben steht der <strong>Verein</strong> – das Dach für alle Teams, Spieler und Trainer.
-        Die Plattform kann von mehreren Vereinen gleichzeitig genutzt werden.
+        <strong>„Mein Team“</strong> öffnet zunächst die Mannschaft, der euer Konto zugeordnet ist. Wenn euer Konto
+        Zugriff auf mehrere Mannschaften hat, erscheinen oberhalb der Mannschaftsinformationen eigene Reiter. Ein
+        Wechsel des Reiters ändert Kader, Trainingsnachweise und die angezeigten Mannschaftsdaten auf die gewählte
+        Mannschaft.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/vereine-teams/verein-uebersicht.png',
-        alt: 'Vereinsübersicht in Kaderblick',
-        caption: 'Die Vereinsübersicht zeigt die Struktur auf einen Blick.'
-    } %}
-
-    {# ─── Teams verwalten ─── #}
-    <h2>Teams verwalten</h2>
     <p>
-        Ein <strong>Team</strong> ist die aktive Spielgemeinschaft (z.&nbsp;B. „1. Mannschaft",
-        „U17", „Alte Herren").
+        Im Kopfbereich stehen Mannschaftsname, Altersgruppe, eine vorhandene Liga und die Zahl der Spieler. Ist für
+        die Mannschaft ein Banner hinterlegt, wird es darüber angezeigt. Konten mit entsprechender Berechtigung sehen
+        am Banner Schaltflächen zum Hochladen beziehungsweise Ersetzen und zum Löschen. JPG-, PNG- und WebP-Dateien
+        können über die Dateiauswahl oder durch Ablegen auf dem Bannerbereich übernommen werden. Beim Löschen verlangt
+        Kaderblick eine Bestätigung.
     </p>
 
-    <h3>Neues Team anlegen (nur Admins)</h3>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Teams öffnen', text: 'Im Menü auf <strong>„Teams"</strong> klicken.' },
-            { title: 'Neues Team erstellen', text: 'Auf <strong>„Neues Team"</strong> klicken.' },
-            { title: 'Daten eingeben', text: 'Name, <strong>Altersklasse</strong> (Pflicht), Liga (optional) eintragen.' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Team erscheint sofort in der Übersicht.' },
-        ]
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Übersicht „Mein Team“',
+        description: 'Eine Mannschaft in „Mein Team“ aufnehmen. Bei einem Konto mit mehreren Mannschaften sollen die Mannschaftsreiter sichtbar sein.',
+        items: [
+            'Überschrift „Mein Team“',
+            'Mannschaftsreiter, sofern mehrere Mannschaften verfügbar sind',
+            'Teambanner oder Bannerbereich',
+            'Mannschaftsname, Altersgruppe, Liga und Spielerzahl',
+            'Beginn des Bereichs „Kader“ sowie „Nächste Termine“'
+        ],
+        purpose: 'Aufbau der Mannschaftsübersicht und Wechsel zwischen mehreren Mannschaften zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/vereine-teams/team-anlegen.png',
-        alt: 'Team anlegen Formular',
-        caption: 'Ein neues Team wird mit Name und Altersklasse angelegt.'
+    <h3>Kader und Trainer</h3>
+
+    <p>
+        Im Bereich <strong>„Kader“</strong> werden die aktuellen Spieler und Trainer der gewählten Mannschaft
+        zusammengeführt. Bei Spielern steht links die Trikotnummer; fehlt sie, erscheint ein Strich. Unter dem Namen
+        steht die hinterlegte Hauptposition oder <strong>„Keine Position“</strong>. Das eigene Spielerprofil ist mit
+        <strong>„Du“</strong> gekennzeichnet. Ist das Konto mit einem anderen Spieler verbunden, wird dort die
+        Bezeichnung dieser Verbindung angezeigt.
+    </p>
+
+    <p>
+        Trainer erscheinen im selben Bereich unterhalb der Spieler. Unter dem Namen steht die konkrete Aufgabe im
+        Trainerteam, sofern eine hinterlegt ist; andernfalls steht dort <strong>„Trainer“</strong>. Auch ein eigenes
+        Trainerprofil wird mit <strong>„Du“</strong> gekennzeichnet. Spieler sind nach ihrer Trikotnummer sortiert,
+        Trainer nach ihrem Namen.
+    </p>
+
+    <h3>Spielerdokumente</h3>
+
+    <p>
+        Neben einem Spieler erscheint die Schaltfläche <strong>„Dokumente“</strong>, wenn euer Konto dessen Dokumente
+        verwalten darf. Das gilt unter anderem für das eigene Spielerprofil, für entsprechend berechtigte Verbindungen
+        zu einem Spieler, für zuständige Trainer sowie für die zuständige Verwaltung. Fehlt diese Berechtigung, wird
+        die Schaltfläche nicht angezeigt.
+    </p>
+
+    <p>
+        Die Dokumentenansicht zeigt die vorhandenen Dokumente mit Bezeichnung, Dokumenttyp und Verein; bei Dokumenten
+        mit Ablaufdatum wird zusätzlich <strong>„Gültig bis“</strong> angezeigt. Ein Dokument kann direkt im Browser
+        geöffnet werden. Wenn für das jeweilige Dokument eine Verwaltungsberechtigung besteht, kann es außerdem
+        gelöscht werden.
+    </p>
+
+    <p>
+        Über <strong>„Dokument hochladen“</strong> können PDF-, JPG-, PNG- und WebP-Dateien hinterlegt werden. Beim
+        normalen Dokumenten-Upload wählt ihr den Verein und den Dokumenttyp. Zusätzlich können eine eigene
+        Bezeichnung, Ausstellungsdatum, Ablaufdatum und Notizen eingetragen werden. Nach dem Speichern erscheint das
+        Dokument in der Liste des Spielers.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kader mit Spielerdokumenten',
+        description: 'Den Kader einer Mannschaft mit mindestens einem Spieler aufnehmen, bei dem die Schaltfläche „Dokumente“ sichtbar ist. Zusätzlich den geöffneten Dokumentendialog aufnehmen.',
+        items: [
+            'Trikotnummer, Spielername und Hauptposition im Kader',
+            'Schaltfläche „Dokumente“',
+            'Liste vorhandener Dokumente im geöffneten Dialog',
+            'Schaltfläche „Dokument hochladen“ und die verfügbaren Angaben des Upload-Dialogs'
+        ],
+        purpose: 'Zugang zu den Spielerdokumenten und die dort verfügbaren Angaben zeigen.'
     } %}
+
+    <h3>Nächste Termine</h3>
+
+    <p>
+        <strong>„Nächste Termine“</strong> zeigt bis zu fünf anstehende Termine der Mannschaft aus den kommenden
+        30 Tagen. Zu jedem Eintrag stehen Terminart, Datum, Uhrzeit und – sofern hinterlegt – der Ort. Ein Klick auf
+        einen Termin öffnet dieselbe Detailansicht, die auch im <a href="{{ path('app_kalender') }}">Kalender</a>
+        verwendet wird. Änderungen oder eine Absage, die dort vorgenommen werden, werden anschließend auch in
+        <strong>„Mein Team“</strong> aktualisiert.
+    </p>
+
+    <h3>Meine Aufgaben</h3>
+
+    <p>
+        Die Karte <strong>„Meine Aufgaben“</strong> zeigt die aktuell offenen Aufgaben des angemeldeten Kontos. Neben
+        der Überschrift steht die Zahl der offenen Aufgaben. Bei jedem Eintrag werden Titel, eine vorhandene
+        Beschreibung und das Fälligkeitsdatum angezeigt. Die Einträge dienen in <strong>„Mein Team“</strong> als
+        Übersicht; zum Bearbeiten oder Erledigen einer Aufgabe verwendet ihr den Bereich
+        <a href="{{ path('app_aufgaben') }}">Meine Aufgaben</a>.
+    </p>
+
+    <h2>Trainingsnachweise</h2>
+
+    <p>
+        Trainingsnachweise erscheinen in <strong>„Mein Team“</strong>, sobald für die gewählte Mannschaft mindestens
+        eine aktive Anforderung vorhanden ist. Trainer der Mannschaft und entsprechend berechtigte
+        Verwaltungsnutzer sehen stattdessen die Kontrollansicht und können neue Anforderungen anlegen. Der gesamte
+        Bereich lässt sich ein- und ausklappen; Kaderblick merkt sich den gewählten Zustand auf dem verwendeten Gerät.
+    </p>
+
+    <h3>Einen eigenen Trainingsnachweis einreichen</h3>
+
+    <p>
+        Unter <strong>„Deine Trainingsnachweise“</strong> stehen die für den verbundenen Spieler geltenden
+        Anforderungen. Angezeigt werden die Bezeichnung sowie – sofern festgelegt – Distanz und Fälligkeitsdatum. Ist
+        noch kein Nachweis vorhanden, kann die Anforderung über <strong>„Nachweise anzeigen“</strong> geöffnet und eine
+        Datei hochgeladen werden. Für Trainingsnachweise werden PDF-, JPG-, PNG- und WebP-Dateien akzeptiert. Die
+        Anforderung und der Spieler sind dabei bereits festgelegt; eine eigene Bezeichnung für die Datei kann optional
+        ergänzt werden.
+    </p>
+
+    <p>
+        Ist Strava für Kaderblick eingerichtet, steht zusätzlich <strong>„Mit Strava senden“</strong> zur Verfügung.
+        Bei der ersten Verwendung wird zunächst die Verbindung zu Strava hergestellt. Anschließend zeigt Kaderblick
+        die verfügbaren Aktivitäten mit Distanz, Dauer und – falls vorhanden – durchschnittlicher Herzfrequenz. Mit
+        <strong>„Senden“</strong> wird die gewählte Aktivität als Nachweis für genau diese Anforderung übernommen. Ein
+        bereits eingereichter Strava-Nachweis wird mit seiner Quelle und den Aktivitätswerten angezeigt; bei einem
+        Datei-Upload erscheint der Name der hochgeladenen Datei.
+    </p>
+
+    <p>
+        Offene Trainingsnachweise können außerdem vom <a href="{{ path('app_dashboard') }}">Dashboard</a> aus direkt
+        geöffnet werden. Der dortige Hinweis führt unmittelbar zum betreffenden Spieler und zur konkreten Anforderung.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Eigene Trainingsnachweise',
+        description: 'Die Ansicht „Deine Trainingsnachweise“ mit mindestens einer offenen und einer bereits erledigten Anforderung aufnehmen.',
+        items: [
+            'Bezeichnung der Anforderungen',
+            'Distanz und Fälligkeitsdatum bei einer entsprechend angelegten Anforderung',
+            'Schaltflächen „Mit Strava senden“ und „Nachweise anzeigen“ bei einer offenen Anforderung',
+            'Status beziehungsweise vorhandener Nachweis bei einer erledigten Anforderung'
+        ],
+        purpose: 'Unterschied zwischen offener Anforderung und bereits eingereichtem Trainingsnachweis zeigen.'
+    } %}
+
+    <h3>Trainingsnachweise kontrollieren</h3>
+
+    <p>
+        In der Kontrollansicht stehen oberhalb der Einträge die Gesamtzahl der erwarteten und eingereichten Nachweise,
+        die noch fehlenden Nachweise, die fälligen Anforderungen und die vollständig erledigten Anforderungen. Über
+        <strong>„Nach Läufen“</strong> und <strong>„Nach Spielern“</strong> kann dieselbe Übersicht entweder nach
+        Anforderung oder nach Person betrachtet werden. Das Suchfeld <strong>„Spieler oder Lauf suchen“</strong>
+        durchsucht beide Arten von Einträgen.
+    </p>
+
+    <p>
+        In der Ansicht <strong>„Nach Läufen“</strong> zeigt jede Anforderung ihren Einreichungsstand, die Zahl der noch
+        fehlenden Spieler und den Fortschritt in Prozent. Über <strong>„Details“</strong> werden die Gruppen
+        <strong>„Fehlen“</strong>, <strong>„Eingereicht“</strong> und – falls vorhanden –
+        <strong>„Entschuldigt“</strong> sichtbar. Eingereichte Dateien lassen sich über
+        <strong>„Dokument prüfen“</strong> öffnen; die Prüfung erfolgt dort ohne Bearbeitungs- oder Löschmöglichkeit.
+    </p>
+
+    <p>
+        <strong>„Nach Spielern“</strong> fasst dagegen alle Anforderungen einer Person zusammen. Spieler ohne eine
+        einzige Einreichung, Spieler mit teilweise erledigten Anforderungen und vollständig erledigte Spieler werden
+        getrennt dargestellt. Vollständig erledigte Spieler sind zunächst ausgeblendet und können über
+        <strong>„Alle zeigen“</strong> eingeblendet werden. Für einzelne Spieler lassen sich die zugehörigen offenen
+        und erledigten Anforderungen aufklappen.
+    </p>
+
+    <p>
+        Ein fehlender Spieler kann für eine einzelne Anforderung oder für alle aktuell offenen Anforderungen
+        entschuldigt werden. Als Gründe stehen <strong>Krankheit</strong>, <strong>Urlaub</strong>,
+        <strong>Verletzung</strong>, <strong>Nicht im Team</strong> und <strong>Sonstiges</strong> zur Verfügung; eine
+        Notiz ist optional. Eine bereits gesetzte Entschuldigung kann in der Kontrollansicht wieder aufgehoben werden.
+    </p>
+
+    <p>
+        Über <strong>„Anforderung anlegen“</strong> wird ein neuer Trainingsnachweis für die Mannschaft erstellt. Die
+        Bezeichnung ist verpflichtend. Distanz in Kilometern, Fälligkeitsdatum und Beschreibung können zusätzlich
+        angegeben werden. Nach dem Anlegen erscheint die Anforderung unmittelbar in der Übersicht der betroffenen
+        Spieler und in der Kontrollansicht.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Trainingsnachweise kontrollieren',
+        description: 'Die Kontrollansicht mit mehreren Trainingsnachweisen aufnehmen. Sinnvoll ist eine Anforderung mit fehlenden, eingereichten und entschuldigten Spielern.',
+        items: [
+            'Kennzahlen „Gesamt“, „Fehlen“, „Fällig“ und „Erledigt“',
+            'Umschaltung „Nach Läufen“ und „Nach Spielern“',
+            'Suchfeld „Spieler oder Lauf suchen“',
+            'Fortschritt einer Anforderung und Schaltfläche „Details“',
+            'aufgeklappte Gruppen für fehlende, eingereichte und entschuldigte Spieler'
+        ],
+        purpose: 'Kontrollmöglichkeiten und die beiden unterschiedlichen Auswertungsansichten zeigen.'
+    } %}
+
+    <h2>Mein Verein</h2>
+
+    <p>
+        <strong>„Mein Verein“</strong> zeigt eine Saisonübersicht des Vereins, der über eure Spieler- oder
+        Trainerzuordnung ermittelt wird. Ist darüber kein Verein vorhanden, erscheint keine Saisonübersicht. Oben
+        stehen Vereinsname und – sofern hinterlegt – das Vereinslogo. Über <strong>„Saison“</strong> kann zwischen der
+        aktuellen und den vier vorherigen Spielzeiten gewechselt werden. Eine Saison umfasst dabei den Zeitraum vom
+        1. Juli bis zum 30. Juni des Folgejahres.
+    </p>
+
+    <p>
+        Unter <strong>„Teams“</strong> werden alle Mannschaften dieses Vereins aufgeführt. Jede Mannschaftskarte zeigt
+        Mannschaftsname, Altersgruppe und eine vorhandene Liga. Die Saisonwerte sind mit <strong>Sp</strong> für
+        absolvierte Spiele, <strong>S</strong> für Siege, <strong>U</strong> für Unentschieden, <strong>N</strong> für
+        Niederlagen, <strong>Tore</strong> für erzielte und erhaltene Tore sowie <strong>Pkt</strong> für Punkte
+        angegeben. Für die Punkte werden drei Punkte je Sieg und ein Punkt je Unentschieden gerechnet. Berücksichtigt
+        werden abgeschlossene Spiele der ausgewählten Saison.
+    </p>
+
+    <p>
+        Unter <strong>„Form“</strong> stehen die Ergebnisse der bis zu fünf zuletzt abgeschlossenen Spiele der
+        Mannschaft als <strong>S</strong>, <strong>U</strong> oder <strong>N</strong>. Darunter nennt
+        <strong>„Nächstes Spiel“</strong> den nächsten noch nicht abgeschlossenen zukünftigen Spieltermin mit Datum und
+        den beiden Mannschaften. Ist kein solcher Termin vorhanden, erscheint <strong>„Kein Spiel geplant“</strong>.
+    </p>
+
+    <p>
+        Am Ende der Seite steht die Torschützenliste für die ausgewählte Saison. Sie enthält bis zu zehn Spieler des
+        Vereins und zeigt Rang, Spielername, Mannschaft und Zahl der Tore. Die Liste wird aus den erfassten
+        Spielereignissen der Vereinsmannschaften gebildet. <strong>„Mein Verein“</strong> ist eine reine Übersicht;
+        Mannschaftsdaten oder Spielergebnisse werden dort nicht bearbeitet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Saisonübersicht „Mein Verein“',
+        description: 'Die Vereinsübersicht mit mindestens zwei Mannschaften und einer Torschützenliste aufnehmen.',
+        items: [
+            'Vereinsname und Vereinslogo, sofern vorhanden',
+            'Auswahl „Saison“',
+            'Mannschaftskarte mit Sp, S, U, N, Tore und Pkt',
+            'Formanzeige und nächstes Spiel',
+            'Beginn der Torschützenliste mit Spieler, Team und Toren'
+        ],
+        purpose: 'Saisonwerte der Mannschaften und vereinsweite Torschützenliste zeigen.'
+    } %}
+
+    <h2>Mein Deckel</h2>
+
+    <p>
+        <strong>„Mein Deckel“</strong> zeigt die persönlichen Buchungen und Zahlungen des angemeldeten Kontos. Oben
+        stehen <strong>„Mein Saldo“</strong>, <strong>„Verbraucht“</strong> und <strong>„Bezahlt“</strong>. Ein negativer
+        Saldo bedeutet, dass noch Geld offen ist; bei null ist alles ausgeglichen, ein positiver Saldo wird als Guthaben
+        angezeigt. Zahlungen werden in dieser Ansicht nicht selbst erfasst, sondern erscheinen dort, nachdem sie für
+        den betreffenden Team- oder Vereinskontext verbucht wurden.
+    </p>
+
+    <h3>Eine Buchung auf den eigenen Deckel setzen</h3>
+
+    <p>
+        Unter <strong>„Verfügbare Artikel“</strong> stehen die für das eigene Team beziehungsweise den eigenen Verein
+        freigegebenen Katalogeinträge mit Bezeichnung, Kategorie und Preis. Ein Klick auf einen Artikel öffnet
+        <strong>„Auf Deckel buchen“</strong> bereits mit diesem Artikel. Derselbe Dialog kann auch über die gleichnamige
+        Schaltfläche geöffnet werden.
+    </p>
+
+    <p>
+        Mit <strong>„Aus Katalog“</strong> wählt ihr einen vorhandenen Artikel. Über
+        <strong>„Freie Buchung“</strong> können stattdessen eine eigene Bezeichnung und ein eigener Betrag eingetragen
+        werden. In beiden Fällen werden Menge und Datum festgelegt; eine Notiz ist optional. Der errechnete
+        Gesamtbetrag wird vor dem Buchen angezeigt.
+    </p>
+
+    <p>
+        Ist ein Katalogeintrag bereits fest einer Mannschaft oder einem Verein zugeordnet, übernimmt die Buchung diesen
+        Bezug. Bei einem allgemein verfügbaren Artikel oder einer freien Buchung muss der passende Eintrag unter
+        <strong>„Kontext (Team / Verein)“</strong> gewählt werden, wenn für das Konto mehrere Möglichkeiten bestehen.
+        Gibt es genau eine mögliche Mannschaft oder genau einen möglichen Verein, wird diese Zuordnung automatisch
+        verwendet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: '„Mein Deckel“ und neue Buchung',
+        description: 'Die Deckelübersicht mit Saldo-Karten und verfügbaren Artikeln aufnehmen. Zusätzlich den Dialog „Auf Deckel buchen“ mit einer ausgewählten Buchung aufnehmen.',
+        items: [
+            '„Mein Saldo“, „Verbraucht“ und „Bezahlt“',
+            'Bereich „Verfügbare Artikel“',
+            'Schaltfläche „Auf Deckel buchen“',
+            'Umschaltung „Aus Katalog“ und „Freie Buchung“',
+            'Menge, Datum, optionaler Kontext und Gesamtbetrag im Buchungsdialog'
+        ],
+        purpose: 'Saldo und vollständigen Ablauf einer eigenen Deckel-Buchung zeigen.'
+    } %}
+
+    <h3>Buchungen und Zahlungen nachvollziehen</h3>
+
+    <p>
+        <strong>„Mein Deckel-Verlauf“</strong> führt Buchungen und Zahlungen gemeinsam in zeitlicher Reihenfolge auf.
+        Bei einer Buchung stehen Datum, Bezeichnung, Menge und Betrag. Zusätzlich können Kategorie, Mannschaft oder
+        Verein sowie eine hinterlegte Notiz erscheinen. Einträge aus dem Strafensystem werden als
+        <strong>„Strafe“</strong> oder <strong>„Belohnung“</strong> gekennzeichnet. Bereits durch Zahlungen ausgeglichene
+        Einträge tragen den Status <strong>„ausgeglichen“</strong>, stornierte Einträge den Status
+        <strong>„storniert“</strong>.
+    </p>
+
+    <p>
+        Zahlungen erscheinen als <strong>„Zahlung erhalten“</strong>; Auszahlungen oder entsprechende Korrekturen
+        werden getrennt bezeichnet. Wenn eine Zahlung konkrete offene Buchungen ausgeglichen hat, steht unter der
+        Zahlung <strong>„Ausgleich für“</strong> mit den betroffenen Einträgen und Beträgen. Zahlungen werden innerhalb
+        derselben Mannschaft beziehungsweise desselben Vereins zuerst den ältesten noch offenen Buchungen zugeordnet.
+    </p>
+
+    <h3>Eine offene Buchung stornieren</h3>
+
+    <p>
+        Eine noch nicht ausgeglichene eigene Buchung kann über das Löschen-Symbol storniert werden. Die Bestätigung
+        weist darauf hin, dass die Buchung durch eine Gegenbuchung ausgeglichen wird; der ursprüngliche Vorgang bleibt
+        damit im Verlauf nachvollziehbar. Bereits ausgeglichene, bereits stornierte und selbst als Storno angelegte
+        Einträge können über diese Schaltfläche nicht erneut storniert werden. Bei einer ausgeglichenen Buchung muss
+        zuerst die zugehörige Zahlung durch die zuständige Kassenverwaltung storniert werden.
+    </p>
 
     {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Gut zu wissen',
-        text: 'Team bearbeiten über das Stift-Icon. Team löschen mit Sicherheitsabfrage (löscht auch alle Zuordnungen).'
+        type: 'warning',
+        title: 'Bearbeiten einer bestehenden Deckel-Buchung',
+        text: 'Im aktuellen Stand ist im Verlauf eine Schaltfläche „Bearbeiten“ sichtbar. Änderungen aus diesem Dialog können derzeit nicht erfolgreich gespeichert werden. Für eine noch offene falsche Buchung verwendet ihr deshalb die Stornierung und legt anschließend eine neue Buchung mit den richtigen Angaben an.'
     } %}
-
-    {# ─── Altersklassen ─── #}
-    <h2>Altersklassen</h2>
-    <p>
-        Orientiert am deutschen Jugendfußball, Stichtag 1. Januar:
-    </p>
-    <ul>
-        <li><strong>F-Junioren</strong> — 6–7 Jahre</li>
-        <li><strong>E-Junioren</strong> — 8–9 Jahre</li>
-        <li><strong>D-Junioren</strong> — 10–11 Jahre</li>
-        <li><strong>C-Junioren</strong> — 12–13 Jahre</li>
-        <li><strong>B-Junioren</strong> — 14–15 Jahre</li>
-        <li><strong>A-Junioren</strong> — 16–17 Jahre</li>
-        <li><strong>U19</strong> — 18–19 Jahre</li>
-        <li><strong>U21</strong> — 20–21 Jahre</li>
-        <li><strong>U23</strong> — 22–23 Jahre</li>
-        <li><strong>Senioren</strong> — 18+ Jahre</li>
-        <li><strong>Ü32, Ü40, Ü50</strong> — Freizeit-/Hobbyligen</li>
-    </ul>
-
-    {# ─── Ligen ─── #}
-    <h2>Ligen verwalten</h2>
-    <p>
-        Offizielle Ligen (Kreisliga A, Bezirksliga, etc.) können eingetragen und Teams
-        zugeordnet werden.
-    </p>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/vereine-teams/ligen.png',
-        alt: 'Ligenverwaltung',
-        caption: 'Ligen anlegen und Teams zuordnen.'
-    } %}
-
-    {# ─── fussball.de ─── #}
-    <h2>Verknüpfung mit fussball.de</h2>
-    <p>
-        Spielergebnisse können automatisch mit <strong>fussball.de</strong> synchronisiert werden.
-        Dazu muss der Admin einmalig die fussball.de-ID des Teams einrichten.
-    </p>
-
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Die fussball.de-ID findet ihr in der URL eurer Mannschaftsseite auf fussball.de.'
-    } %}
-
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
-
-    <h3>Warum sehe ich ein Team nicht?</h3>
-    <p>Ihr seht nur Teams, denen ihr zugeordnet seid. Sprecht euren Trainer oder Admin an.</p>
-
-    <h3>Kann ein Spieler in mehreren Teams sein?</h3>
-    <p>Ja, das ist problemlos möglich.</p>
-
-    <h3>Kann ich die Altersklasse ändern?</h3>
-    <p>Nur Administratoren können Altersklassen über das Bearbeiten-Symbol ändern.</p>
 {% endblock %}
