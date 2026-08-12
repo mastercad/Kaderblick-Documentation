@@ -45,7 +45,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Bereich | Stand |
 |---|---|
 | Aushelfen | abgeschlossen |
-| fussball.de Import | offen |
+| fussball.de Import | abgeschlossen |
 | Team Size Guide | offen |
 | Spieler & Teams im Trainerbereich | offen |
 | Beobachtungsliste | offen |
