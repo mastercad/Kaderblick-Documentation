@@ -1,183 +1,289 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Spieler – docs.kaderblick.de{% endblock %}
+{% block title %}Spieler & Teams – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>⚽ Spieler</h1>
+    <h1>Spieler &amp; Teams im Trainerbereich</h1>
+
     <p>
-        Der Spieler-Bereich umfasst die komplette Verwaltung aller Kadermitglieder —
-        von Profildaten bis hin zu individuellen Statistiken. Hier erfährst du, wie du
-        Spieler anlegst, bearbeitest und deren Leistungen im Blick behältst.
+        Die Bereiche <strong>„Spieler“</strong> und <strong>„Teams“</strong> erscheinen im Trainerbereich, wenn das
+        angemeldete Konto aktuell als Trainer einer Mannschaft zugeordnet ist. Die dort angezeigten Daten richten sich
+        nach den Mannschaften, für die das Konto als Trainer oder zusätzlich als zuständige Verwaltung geführt wird.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '👤', title: 'Spielerprofil', desc: 'Vorname, Nachname, Geburtsdatum, Hauptposition, Alternativpositionen, starker Fuß, Größe, Gewicht und Nationalitäten.' },
-            { icon: '📊', title: 'Statistiken', desc: 'Tore, Assists, Spielteilnahmen – automatisch gesammelt und in Berichte integriert.' },
-            { icon: '📷', title: 'Profilbild', desc: 'Individuelles Foto hochladen – wird in der Aufstellung und im Profil angezeigt.' },
-            { icon: '🏷️', title: 'Positionen & Rollen', desc: 'Hauptposition (Pflicht) und optionale Alternativpositionen zuweisen.' },
-            { icon: '👥', title: 'Team-Zuordnung', desc: 'Mit Zeitraum (Von–Bis), Trikotnummer und Rolle.' },
-            { icon: '🏟️', title: 'Vereins-Zuordnung', desc: 'Start-/Enddatum für die vollständige Vereinskarriere.' },
-            { icon: '🔗', title: 'Benutzerkonto', desc: 'Spieler mit einem Kaderblick-Account verknüpfen.' },
-        ]
-    } %}
+    <h2>Spielerübersicht</h2>
 
-    {# ─── Screenshot der Übersicht ─── #}
-    <h2>Die Spielerübersicht</h2>
     <p>
-        Die Übersichtsseite zeigt alle Kadermitglieder in einer Kartenansicht.
-        Du siehst auf einen Blick: Name, Position, Trikotnummer und Profilbild.
-    </p>
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spieler/spieler-uebersicht.svg',
-        alt: 'Spielerübersicht in Kaderblick',
-        caption: 'Die Spielerübersicht zeigt alle Kadermitglieder in einer übersichtlichen Kartenansicht.'
-    } %}
-
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Du kannst die Ansicht über das Suchfeld oben filtern — z.&nbsp;B. nach Name oder Position.'
-    } %}
-
-    {# ─── Schritt-für-Schritt: Spieler anlegen ─── #}
-    <h2>Spieler anlegen</h2>
-    <p>So legst du einen neuen Spieler im System an:</p>
-
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            {
-                title: 'Spielerbereich öffnen',
-                text: 'Klicke in der Seitenleiste auf <strong>Spieler</strong>.'
-            },
-            {
-                title: 'Neuen Spieler hinzufügen',
-                text: 'Klicke oben rechts auf den Button <strong>+ Spieler hinzufügen</strong>.',
-                image: 'images/docs/spieler/spieler-anlegen-button.svg'
-            },
-            {
-                title: 'Pflichtfelder ausfüllen',
-                text: 'Fülle mindestens die folgenden Felder aus: <strong>Vorname</strong>, <strong>Nachname</strong>, <strong>Position</strong> und <strong>Trikotnummer</strong>.'
-            },
-            {
-                title: 'Profilbild hochladen (optional)',
-                text: 'Klicke auf den Bildbereich rechts, um ein Foto hochzuladen. Unterstützte Formate: JPG, PNG (max. 2&nbsp;MB).'
-            },
-            {
-                title: 'Speichern',
-                text: 'Klicke auf <strong>Speichern</strong>. Der neue Spieler erscheint sofort in der Übersicht.'
-            }
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spieler/spieler-formular.svg',
-        alt: 'Formular zum Anlegen eines Spielers',
-        caption: 'Das Spieler-Formular mit allen Pflicht- und optionalen Feldern.'
-    } %}
-
-    {# ─── Spieler bearbeiten ─── #}
-    <h2>Spieler bearbeiten</h2>
-    <p>
-        Um die Daten eines bestehenden Spielers zu ändern, klicke in der Übersicht
-        auf die Spielerkarte. Es öffnet sich das Profil mit einem
-        <strong>Bearbeiten</strong>-Button.
+        Unter <strong>„Spieler“</strong> zeigt Kaderblick die Spieler der Mannschaften, die im eigenen Zuständigkeitsbereich
+        liegen. Die Auswahl <strong>„Saison“</strong> bestimmt, aus welcher Spielzeit die Mannschaftszuordnungen berücksichtigt
+        werden. Eine Zuordnung wird für die gewählte Saison berücksichtigt, wenn ihr Zeitraum diese Saison zumindest teilweise
+        überschneidet. Ist das Konto nur für eine Mannschaft zuständig, wird diese Mannschaft beim Öffnen automatisch als
+        Filter gesetzt.
     </p>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Gut zu wissen',
-        text: 'Änderungen an Stammdaten (Name, Geburtsdatum) werden sofort übernommen. Positionswechsel wirken sich erst auf zukünftige Aufstellungen aus.'
+    <p>
+        Über <strong>„Team filtern“</strong> lässt sich die Liste auf eine einzelne Mannschaft einschränken. Bei aktivem
+        Mannschaftsfilter zeigt Kaderblick zusätzlich die Anzahl der gefundenen Spieler. Das Suchfeld
+        <strong>„Spieler suchen…“</strong> durchsucht Vor- und Nachnamen. Bei einem reinen Trainerkonto bleiben auch bei einer
+        anderen Saison nur Mannschaften innerhalb des aktuellen Trainer-Zuständigkeitsbereichs erreichbar.
+    </p>
+
+    <p>
+        Jede Zeile enthält den Spielernamen, vorhandene Vereinszuordnungen, Mannschaftszuordnungen und Nationalitäten. Bei
+        Mannschaftszuordnungen werden Mannschaftsname, Trikotnummer, Altersgruppe und Zuordnungstyp zusammen angezeigt. Hat ein
+        Spieler mehrere passende Mannschaftszuordnungen, zeigt die Liste zunächst die zuletzt liegende Zuordnung und daneben
+        die Anzahl weiterer Einträge. Über den Pfeil vor der Zuordnung werden die übrigen Einträge ein- oder ausgeblendet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Spielerübersicht im Trainerbereich',
+        description: 'Die Seite „Spieler“ mit einem Trainerkonto aufnehmen. Sinnvoll ist eine Mannschaft mit mehreren Spielern und mindestens einem Spieler mit mehreren Team-Zuordnungen.',
+        items: [
+            'Auswahl „Saison“',
+            'Feld „Team filtern“ und Spieleranzahl bei aktivem Filter',
+            'Suchfeld „Spieler suchen…“',
+            'Spalten Name, Verein, Teams und Nationalitäten',
+            'aufgeklappte weitere Team-Zuordnungen bei einem Spieler',
+            'Aktionen am rechten Rand einer Spielerzeile'
+        ],
+        purpose: 'Filter, Tabellenaufbau und die Aktionen direkt an einem Spieler zeigen.'
     } %}
 
-    {# ─── Team-Zuordnung ─── #}
-    <h2>Team-Zuordnung</h2>
+    <h3>Spieler öffnen und weitere Aktionen</h3>
+
     <p>
-        Spieler werden mit <strong>Zeitraum (Von–Bis)</strong>, <strong>Trikotnummer</strong> und
-        <strong>Rolle</strong> einem Team zugeordnet. Ein leeres Enddatum bedeutet: aktuell aktiv.
-        Ehemalige Zugehörigkeiten bleiben als Historie erhalten.
+        Ein Klick auf eine Spielerzeile oder auf die Detailaktion öffnet die Spieleransicht. Dort sind die zugeordneten
+        Mannschaften und Nationalitäten sowie die für das eigene Konto zugänglichen Spielerdokumente zusammengefasst. Vorhandene
+        Dokumente lassen sich öffnen. Wenn das Konto diese Dokumente verwalten darf, stehen dort zusätzlich Hochladen und Löschen
+        zur Verfügung. Die ausführlichen Abläufe für Spielerdokumente sind im Bereich
+        <a href="{{ path('app_vereine_teams') }}">Team &amp; Verein</a> beschrieben.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spieler/team-zuordnung.png',
-        alt: 'Team-Zuordnung eines Spielers',
-        caption: 'Team-Zuordnung mit Zeitraum, Trikotnummer und Rolle.'
-    } %}
-
-    {# ─── Vereins-Zuordnung ─── #}
-    <h2>Vereins-Zuordnung</h2>
     <p>
-        Neben der Team-Zuordnung gibt es die Vereins-Zuordnung mit Start- und
-        Enddatum – für die vollständige Vereinskarriere eines Spielers.
-    </p>
-
-    {# ─── Benutzerkonto verknüpfen ─── #}
-    <h2>Spieler mit Benutzerkonto verknüpfen</h2>
-    <p>
-        Über <a href="{{ path('app_admin') }}">Administration → Nutzerzuordnungen</a>
-        kann ein Spieler mit einem Kaderblick-Benutzerkonto verknüpft werden.
-        Danach sieht der Spieler seine Spiele, Statistiken, Termine und Aufgaben.
-    </p>
-
-    {# ─── Statistiken ─── #}
-    <h2>Spieler-Statistiken</h2>
-    <p>
-        Im Profil jedes Spielers findest du einen <strong>Statistik-Tab</strong>.
-        Dort werden alle relevanten Leistungsdaten zusammengefasst:
-    </p>
-    <ul>
-        <li><strong>Einsätze</strong> — Anzahl der Spiele (Startelf + Einwechslungen)</li>
-        <li><strong>Tore</strong> — Erzielte Treffer pro Saison</li>
-        <li><strong>Assists</strong> — Torvorlagen</li>
-        <li><strong>Spielminuten</strong> — Gesamte Einsatzzeit</li>
-        <li><strong>Bewertungen</strong> — Durchschnittliche Spielerbewertung</li>
-    </ul>
-
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Statistiken werden automatisch aktualisiert, sobald ein Spielergebnis eingetragen wird. Du musst nichts manuell berechnen.'
-    } %}
-
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
-
-    <h3>Kann ich einen Spieler mehreren Mannschaften zuordnen?</h3>
-    <p>
-        Ja. Ein Spieler kann gleichzeitig in mehreren Mannschaften sein — z.&nbsp;B. in
-        der U17 und im Fördertraining. Die Zuordnung erfolgt im Spielerprofil unter
-        <strong>Mannschaften</strong>.
-    </p>
-
-    <h3>Was passiert, wenn ich einen Spieler lösche?</h3>
-    <p>
-        Gelöschte Spieler werden zunächst archiviert und können 30 Tage lang
-        wiederhergestellt werden. Danach werden die Daten endgültig entfernt.
-        Historische Statistiken bleiben anonymisiert erhalten.
+        Direkt in der Spielerübersicht steht außerdem <strong>„Spieler-Highlight teilen“</strong> zur Verfügung. Daneben kann
+        der Spieler über das Lesezeichen-Symbol zur Beobachtungsliste hinzugefügt beziehungsweise wieder daraus entfernt werden.
+        Die Beobachtungsliste verändert keine Mannschaftszuordnung und keine Spielerdaten; sie dient ausschließlich der eigenen
+        Merkliste.
     </p>
 
     {% include 'components/callout.html.twig' with {
         type: 'warning',
-        title: 'Achtung',
-        text: 'Das Löschen eines Spielers kann nur von Nutzern mit <strong>Trainer-</strong> oder <strong>Admin-Rolle</strong> durchgeführt werden.'
+        title: 'Aktuelle Einschränkung der Spieler-Detailansicht',
+        text: 'Die aktuelle Detailansicht erhält einige ihrer vorgesehenen Angaben nicht vollständig. E-Mail und Geburtsdatum können dort leer erscheinen, der Bereich „Lizenzen“ zeigt derzeit keine hinterlegten Lizenzdaten, und bei den Team-Hinweisen kann die Liga fehlen. Zum Prüfen und Ändern der tatsächlich gespeicherten Spielerdaten verwendet ihr „Bearbeiten“.'
     } %}
 
-    <h3>Spieler nicht in der Aufstellung? </h3>
+    <h2>Vorhandenen Spieler einer Mannschaft zuordnen</h2>
+
     <p>
-        Prüft die Teamzuordnung – nur Spieler mit einem gültigen Zeitraum erscheinen in der
-        <a href="{{ path('app_aufstellungen') }}">Aufstellung</a>.
+        <strong>„Neuer Spieler“</strong> öffnet zunächst den Dialog <strong>„Spieler anlegen / zuordnen“</strong>. Bevor ein
+        neuer Datensatz angelegt wird, bietet Kaderblick dort die Suche nach bereits vorhandenen Spielern an. Die Suche beginnt
+        ab zwei eingegebenen Zeichen und berücksichtigt auch Spieler aus früheren Saisons. In den Treffern stehen neben dem Namen
+        – sofern vorhanden – Geburtsdatum und bisherige Mannschaften. So lässt sich ein vorhandener Spieler weiterverwenden,
+        anstatt dieselbe Person ein zweites Mal anzulegen.
     </p>
 
-    <h3>Spieler existiert schon?</h3>
     <p>
-        Legt den Spieler nicht erneut an, sondern aktualisiert die bestehende Zuordnung.
+        Wird ein vorhandener Spieler ausgewählt, lädt Kaderblick dessen Daten in denselben Bearbeitungsdialog. Unter
+        <strong>„Team-Zuordnungen“</strong> kann anschließend eine weitere Zuordnung ergänzt werden. Für jede Zuordnung werden
+        Mannschaft, Zuordnungstyp, Trikotnummer und Startdatum eingetragen; das Enddatum ist optional. Ein leeres Enddatum lässt
+        die Zuordnung ohne festgelegtes Ende weiterlaufen. Nach <strong>„Speichern“</strong> wird der Spieler in der gewählten
+        Mannschaft berücksichtigt, sobald der Zeitraum der Zuordnung passt.
     </p>
 
-    <h3>Welche Bildformate werden für Profilbilder unterstützt?</h3>
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Vorhandenen Spieler suchen und zuordnen',
+        description: 'Den Dialog „Spieler anlegen / zuordnen“ direkt nach „Neuer Spieler“ aufnehmen und einen Suchbegriff mit mehreren Treffern verwenden.',
+        items: [
+            'Bereich „Besteht dieser Spieler bereits?“',
+            'Suchfeld „Spieler suchen (Name)“',
+            'Treffer mit Name sowie vorhandenen Zusatzangaben',
+            'Schaltfläche „Neuen Spieler anlegen“'
+        ],
+        purpose: 'Den Unterschied zwischen dem Zuordnen einer vorhandenen Person und dem Anlegen eines neuen Spielers zeigen.'
+    } %}
+
+    <h2>Neuen Spieler anlegen</h2>
+
     <p>
-        JPG und PNG, maximal 2&nbsp;MB. Das Bild wird automatisch zugeschnitten und
-        auf eine einheitliche Größe skaliert.
+        Wird in der vorgeschalteten Suche <strong>„Neuen Spieler anlegen“</strong> gewählt, beginnt der Dialog mit leeren
+        Spielerdaten. Eingetragen werden Vorname und Nachname, optional Geburtsdatum und E-Mail-Adresse sowie der starke Fuß,
+        die Hauptposition und bei Bedarf mehrere alternative Positionen. Vorname, Nachname, starker Fuß und Hauptposition sind
+        in der Oberfläche als Pflichtangaben vorgesehen.
+    </p>
+
+    <p>
+        Unter <strong>„Zugehörigkeiten“</strong> können Vereins-, Mannschafts- und Nationalitätszuordnungen ergänzt werden.
+        Für eine neue Mannschaftszuordnung sind Mannschaft, Typ, Trikotnummer und Startdatum vorgesehen; ein Enddatum kann
+        zusätzlich gesetzt werden. Beim Anlegen einer neuen Mannschaftszuordnung lässt sich über die Mannschaftsauswahl auch
+        unmittelbar ein neues Team anlegen und anschließend für die Zuordnung verwenden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Neue Spieler immer einer Mannschaft zuordnen',
+        text: 'Der aktuelle Dialog lässt einen neuen Spieler auch ohne Team-Zuordnung speichern. Ein solcher Spieler erscheint danach nicht in der normalen Spielerübersicht des Trainers und kann dort auch nicht über die Suche wiedergefunden werden. Legt deshalb vor dem ersten Speichern mindestens eine passende Team-Zuordnung an.'
+    } %}
+
+    <h2>Spielerdaten und Zuordnungen bearbeiten</h2>
+
+    <p>
+        Bei einem Spieler aus dem eigenen Zuständigkeitsbereich öffnet <strong>„Bearbeiten“</strong> denselben Dialog. Ob alle
+        Angaben geändert werden können, hängt davon ab, ob der Spieler ausschließlich aktiven Mannschaften zugeordnet ist, für
+        die das Konto als Trainer oder Verwaltung zuständig ist.
+    </p>
+
+    <p>
+        Liegen alle aktiven Mannschaftszuordnungen im eigenen Zuständigkeitsbereich, können Stammdaten, Vereinszuordnungen,
+        Nationalitäten und Mannschaftszuordnungen bearbeitet werden. Zu den Stammdaten gehören Name, Geburtsdatum,
+        E-Mail-Adresse, starker Fuß, Hauptposition und alternative Positionen. Vereins- und Nationalitätszuordnungen bestehen
+        jeweils aus der Auswahl sowie Start- und optionalem Enddatum.
+    </p>
+
+    <p>
+        Gehört derselbe Spieler gleichzeitig zu einer weiteren aktiven Mannschaft außerhalb des eigenen Zuständigkeitsbereichs,
+        schaltet Kaderblick auf einen eingeschränkten Bearbeitungsmodus. Stammdaten, Vereinszuordnungen und Nationalitäten sind
+        dann nur lesbar. Bei den Mannschaftszuordnungen lassen sich ausschließlich die Einträge bearbeiten oder entfernen, die
+        eigene Mannschaften betreffen; andere Zuordnungen bleiben sichtbar, sind aber gesperrt. Neue Zuordnungen zu erreichbaren
+        Mannschaften können weiterhin ergänzt werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Spieler bearbeiten',
+        description: 'Den Bearbeitungsdialog eines Spielers mit mehreren Team-Zuordnungen aufnehmen. Wenn möglich einen Spieler verwenden, bei dem der eingeschränkte Bearbeitungsmodus sichtbar ist.',
+        items: [
+            'Stammdaten mit Hauptposition und alternativen Positionen',
+            'Hinweis zum eingeschränkten Bearbeitungsmodus, sofern vorhanden',
+            'Verein-Zuordnungen',
+            'mehrere Team-Zuordnungen mit Team, Typ, Trikotnummer, Start und Ende',
+            'Nationalitäten und Schaltfläche „Speichern“'
+        ],
+        purpose: 'Unterschied zwischen Stammdaten und zeitlich begrenzten Zugehörigkeiten sowie den eingeschränkten Bearbeitungsmodus zeigen.'
+    } %}
+
+    <h3>Spieler löschen</h3>
+
+    <p>
+        In der Tabellenzeile kann bei Spielern der eigenen Mannschaft ein Löschsymbol erscheinen. Der aktuelle Serverstand
+        erlaubt das endgültige Löschen eines Spielers jedoch nicht allein aufgrund einer Trainerzuordnung. Bei einem reinen
+        Trainerkonto endet der Versuch deshalb nach der Bestätigung mit einer Fehlermeldung. In der Spieler-Detailansicht wird
+        die Löschschaltfläche für ein solches Trainerkonto nicht angeboten. Eine vorhandene Mannschaftszuordnung sollte daher
+        über <strong>„Bearbeiten“</strong> zeitlich beendet oder – wenn sie vollständig entfernt werden soll – aus den
+        Mannschaftszuordnungen gelöscht werden.
+    </p>
+
+    <h2>Teams im Trainerbereich</h2>
+
+    <p>
+        Unter <strong>„Teams“</strong> zeigt Kaderblick die Mannschaften, denen das angemeldete Konto aktuell als Spieler,
+        Trainer oder zuständige Verwaltung zugeordnet ist. Für Trainer sind damit insbesondere die aktuell betreuten
+        Mannschaften sichtbar. Das Suchfeld <strong>„Team suchen…“</strong> berücksichtigt Mannschaftsname, Altersgruppe und
+        Liga. In der Tabelle stehen Mannschaftsname, Altersgruppe und Liga; ein Klick auf die Zeile öffnet die Detailansicht.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Saison-Auswahl bei Teams',
+        text: 'Die sichtbare Saison-Auswahl auf der Teams-Seite wird im aktuellen Stand nicht auf die Ergebnisliste angewendet. Ein Wechsel der Saison ändert deshalb derzeit nicht, welche Teams in dieser Übersicht erscheinen.'
+    } %}
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Teams im Trainerbereich',
+        description: 'Die Seite „Teams“ mit einem Trainerkonto aufnehmen. Mindestens zwei Mannschaften sind hilfreich, damit Suche und Tabellenstruktur erkennbar sind.',
+        items: [
+            'Auswahl „Saison“',
+            'Suchfeld „Team suchen…“',
+            'Spalten Name, Altersgruppe und Liga',
+            'Aktionen für Details, Bearbeiten und Löschen an einer Mannschaft'
+        ],
+        purpose: 'Mannschaftsliste und direkte Verwaltungsaktionen des Trainerbereichs zeigen.'
+    } %}
+
+    <h2>Team öffnen und bearbeiten</h2>
+
+    <p>
+        Die Detailansicht zeigt den Mannschaftsnamen und – falls vorhanden – das Teambanner. Trainer der Mannschaft können das
+        Team über <strong>„Bearbeiten“</strong> öffnen. Die Berechtigung zum Ändern des Teambanners ist davon getrennt: Ein reines
+        Trainerkonto darf das Banner nicht ändern. Bannersteuerungen erscheinen nur bei zusätzlicher Verwaltungs- oder
+        Unterstützerberechtigung für diese Mannschaft.
+    </p>
+
+    <p>
+        Im Bearbeitungsdialog sind <strong>Name</strong>, <strong>Altersgruppe</strong> und <strong>Liga</strong> die zentralen
+        Mannschaftsangaben. Alle drei müssen für das Speichern gesetzt sein. Für Altersgruppe und Liga beginnt die gezielte
+        Suche nach zwei eingegebenen Zeichen. Die Felder <strong>„Halbzeit-Dauer“</strong> und
+        <strong>„Halbzeit-Pause“</strong> legen Vorgaben für neu erstellte Spiele dieser Mannschaft fest. Bleiben sie leer,
+        verwendet Kaderblick 45 Minuten pro Halbzeit und 15 Minuten Pause als Standardwerte. Die Halbzeit-Dauer kann zwischen
+        1 und 90 Minuten, die Pause zwischen 0 und 60 Minuten eingestellt werden.
+    </p>
+
+    <p>
+        Im selben Dialog stehen Felder für <strong>fussball.de ID</strong> und <strong>fussball.de URL</strong> sowie die
+        Schaltfläche <strong>„fussball.de-Daten laden“</strong>. Im aktuellen Stand werden Änderungen dieser beiden Felder beim
+        normalen Speichern des Teams nicht übernommen; die Schaltfläche zum Laden der Daten führt ebenfalls noch keine Aktion
+        aus. Für den eigentlichen Import von fussball.de-Daten verwendet ihr den Bereich
+        <a href="{{ path('app_fussball_de_import') }}">fussball.de Import</a>.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Aktuelle Einschränkung der Team-Detailansicht',
+        text: 'Die Detailansicht enthält zusätzlich vorgesehene Felder für englischen Namen, Beschreibung, Code, Stichtag sowie Mindest- und Höchstalter. Der aktuelle Datenabruf dieser Ansicht liefert diese Angaben jedoch nicht mit, weshalb sie leer beziehungsweise unvollständig erscheinen können.'
+    } %}
+
+    <h3>Team-Motivation</h3>
+
+    <p>
+        Bei einem bereits bestehenden Team befindet sich im Bearbeitungsdialog der aufklappbare Bereich
+        <strong>„Team-Motivation“</strong>. Dort können vorhandene Plattform-Sprüche für die Mannschaft ein- oder ausgeschaltet
+        werden. Zusätzlich lassen sich eigene Teamsprüche mit bis zu 280 Zeichen anlegen. Eigene Teamsprüche können später auch
+        wieder gelöscht werden; Plattform-Sprüche bleiben erhalten und werden nur aktiviert oder deaktiviert. Aus den aktiven
+        Sprüchen wird beim Team-Briefing ein Spruch ausgewählt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Team bearbeiten und Team-Motivation',
+        description: 'Den Bearbeitungsdialog eines bestehenden Teams aufnehmen und den Bereich „Team-Motivation“ aufklappen.',
+        items: [
+            'Name, Altersgruppe und Liga',
+            'Spielzeiten-Vorgaben',
+            'aufgeklappter Bereich „Team-Motivation“',
+            'mindestens ein Plattform-Spruch mit Schalter',
+            'Feld „Eigener Motivationsspruch“ und Schaltfläche „Hinzufügen“'
+        ],
+        purpose: 'Die Mannschaftseinstellungen und die getrennte Verwaltung der Motivationssprüche zeigen.'
+    } %}
+
+    <h2>Neues Team anlegen</h2>
+
+    <p>
+        Über <strong>„Neues Team“</strong> kann ein Trainer ein Team mit Name, Altersgruppe und Liga anlegen. Der gleiche
+        Anlegedialog ist erreichbar, wenn bei einer neuen Spieler-Team-Zuordnung nach einer noch nicht vorhandenen Mannschaft
+        gesucht und dort die Anlegefunktion verwendet wird.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Neues Team wird nicht automatisch dem Trainer zugeordnet',
+        text: 'Beim Anlegen über die Teams-Seite wird im aktuellen Stand nur das Team selbst erstellt. Eine Trainerzuordnung entsteht dabei nicht automatisch. Da die Teams-Seite auf die aktuellen eigenen Zuordnungen begrenzt ist, kann das neue Team nach dem Speichern aus dieser Übersicht verschwinden, bis eine passende Zuordnung eingerichtet wurde.'
+    } %}
+
+    <h2>Team löschen</h2>
+
+    <p>
+        Für eine aktuell betreute Mannschaft bietet der Trainerbereich eine Löschaktion an. Vor dem Löschen fragt Kaderblick mit
+        <strong>„Team löschen?“</strong> nach einer Bestätigung. Nach <strong>„Löschen“</strong> wird das Team entfernt. Diese
+        Aktion ist deshalb nicht mit dem Beenden einer einzelnen Spieler- oder Trainerzuordnung gleichzusetzen. Soll nur eine
+        Person die Mannschaft verlassen, wird stattdessen deren zeitliche Zuordnung angepasst.
+    </p>
+
+    <h2>Zusammenhänge mit anderen Bereichen</h2>
+
+    <p>
+        Mannschaftszuordnungen bestimmen unter anderem, welche Spieler in
+        <a href="{{ path('app_vereine_teams') }}">Mein Team</a>, in den
+        <a href="{{ path('app_aufstellungen') }}">Aufstellungen</a> und bei spielbezogenen Kaderauswahlen zur Verfügung stehen.
+        Trikotnummer, Hauptposition und alternative Positionen werden an mehreren dieser Stellen wiederverwendet. Die
+        Spielzeiten-Vorgaben eines Teams wirken beim Anlegen neuer Spiele, während die Größenangaben der verbundenen Spieler und
+        Trainer im <a href="{{ path('app_team_size_guide') }}">Team Size Guide</a> zusammengeführt werden.
     </p>
 {% endblock %}
