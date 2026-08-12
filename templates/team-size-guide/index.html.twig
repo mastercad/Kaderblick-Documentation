@@ -95,8 +95,13 @@
     {% include 'components/callout.html.twig' with {
         type: 'warning',
         title: 'Erfolgsanzeige bestätigt nicht die tatsächliche Zustellung',
-        text: 'Die Erinnerung wird ausschließlich als Push-Benachrichtigung verschickt. Sie erreicht eine Person daher nur, wenn für deren Konto Push eingerichtet ist und die dafür verwendeten Systembenachrichtigungen zugelassen sind. Die Bestätigung im Team Size Guide zählt eine ausgewählte Person derzeit auch dann als erinnert, wenn keine Push-Nachricht zugestellt werden konnte. Außerdem verwendet die Bestätigung die Bezeichnung „Spieler“, auch wenn Trainer oder Supporter ausgewählt waren.'
+        text: 'Die Erinnerung wird ausschließlich als Push-Benachrichtigung der Kategorie „System- und Verwaltungshinweise“ verschickt. Diese Kategorie ist standardmäßig ausgeschaltet. Eine Person erhält die Erinnerung daher nur, wenn Push für ihr Konto eingerichtet und „System- und Verwaltungshinweise“ im Profil unter „Benachrichtigungen“ aktiviert sind. Die Bestätigung im Team Size Guide zählt eine ausgewählte Person derzeit auch dann als erinnert, wenn keine Push-Nachricht zugestellt werden konnte. Außerdem verwendet die Bestätigung die Bezeichnung „Spieler“, auch wenn Trainer oder Supporter ausgewählt waren.'
     } %}
+
+    <p>
+        Die Einrichtung und die persönlichen Kategorien für Push-Benachrichtigungen sind unter
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a> beschrieben.
+    </p>
 
     <h3>Zusätzlich eine Aufgabe anlegen</h3>
 
