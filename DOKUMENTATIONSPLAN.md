@@ -47,7 +47,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Aushelfen | abgeschlossen |
 | fussball.de Import | abgeschlossen |
 | Team Size Guide | abgeschlossen |
-| Spieler & Teams im Trainerbereich | offen |
+| Spieler & Teams im Trainerbereich | abgeschlossen |
 | Beobachtungsliste | offen |
 | Quick-Event Konfiguration | offen |
 | Weitere außerhalb der Hauptnavigation erreichbare Benutzerbereiche | noch zu prüfen |
