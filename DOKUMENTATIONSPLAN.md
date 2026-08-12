@@ -36,7 +36,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Aufstellungen | abgeschlossen |
 | Auswertungen | abgeschlossen |
 | Fahrgemeinschaften | abgeschlossen |
-| Verwaltung | offen |
+| Verwaltung | abgeschlossen |
 | Weitere aktuelle Bereiche | offen |
 
 ## Vorgehen je Bereich
