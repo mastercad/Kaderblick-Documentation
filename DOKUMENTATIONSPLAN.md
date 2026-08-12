@@ -49,7 +49,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Team Size Guide | abgeschlossen |
 | Spieler & Teams im Trainerbereich | abgeschlossen |
 | Beobachtungsliste | abgeschlossen |
-| Quick-Event Konfiguration | offen |
+| Quick-Event Konfiguration | abgeschlossen |
 | Weitere außerhalb der Hauptnavigation erreichbare Benutzerbereiche | noch zu prüfen |
 
 ## Vorgehen je Bereich
