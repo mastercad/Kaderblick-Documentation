@@ -1,122 +1,652 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration – docs.kaderblick.de{% endblock %}
+{% block title %}Verwaltung – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>⚙️ Administration</h1>
+    <h1>Verwaltung</h1>
+
     <p>
-        Werkzeugkasten für Vereinsverantwortliche – nur mit Admin-Rolle zugänglich.
+        Unter <strong>Administration</strong> werden die Bereiche angezeigt, für die euer Benutzerkonto
+        Verwaltungsrechte besitzt. Team-Administratoren und Vereinsadministratoren arbeiten dabei nur in ihrem
+        jeweiligen Zuständigkeitsbereich. Superadministratoren erhalten zusätzlich die plattformweiten Stammdaten,
+        Systemeinstellungen und Kontrollbereiche.
+    </p>
+
+    <p>
+        Auch innerhalb einer Verwaltungsseite richten sich die verfügbaren Aktionen nach der jeweiligen Zuständigkeit.
+        Ein Datensatz kann deshalb sichtbar sein, obwohl die Schaltflächen zum Bearbeiten oder Löschen fehlen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Administration in der Navigation',
+        description: 'Bitte die vollständig aufgeklappte Administration eines Superadministrators aufnehmen. Beispieldaten verwenden.',
+        items: [
+            'Bereiche Stammdaten, Verwaltung und Zuweisungen',
+            'mehrere Einträge aus jedem Bereich',
+            'die Bezeichnung Administration in der Navigation'
+        ],
+        purpose: 'Aufbau und Gliederung der Verwaltungsnavigation zeigen.'
+    } %}
+
+    <h2>Vereine verwalten</h2>
+
+    <p>
+        Die Vereinsübersicht zeigt <strong>Name</strong>, <strong>Stadion</strong> und <strong>Website</strong>.
+        Über die Suche lässt sich die Liste nach einem Verein eingrenzen; bei größeren Beständen wird sie auf mehrere
+        Seiten verteilt. Ein Klick auf eine Tabellenzeile oder auf die Detailaktion öffnet die Vereinsdetails.
+    </p>
+
+    <p>
+        Beim Bearbeiten stehen unter anderem Name und Kurzname, Stadion, Vereinsfarben, Ansprechpartner,
+        Gründungsjahr, Website, E-Mail-Adresse, Telefonnummer, Logo-Adresse sowie die Kennung und Adresse bei
+        fussball.de zur Verfügung. Außerdem wird eine Sportstätte ausgewählt. Fehlt die benötigte Sportstätte,
+        kann sie aus der Auswahl heraus neu angelegt und anschließend direkt dem Verein zugeordnet werden.
+    </p>
+
+    <p>
+        Einen vorhandenen Verein können nur Personen bearbeiten oder löschen, deren Verwaltungsbereich diesen Verein
+        umfasst. Das <strong>Anlegen eines neuen Vereins</strong> ist im aktuellen Stand ausschließlich für
+        Superadministratoren freigegeben.
     </p>
 
     {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Hinweis',
-        text: 'Diese Funktionen sind ausschließlich für Benutzer mit der <strong>Admin-Rolle</strong> sichtbar und zugänglich.'
-    } %}
-
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '👥', title: 'Benutzerkonten', desc: 'Übersicht aller Konten: aktivieren, deaktivieren, Rollen vergeben.' },
-            { icon: '🔗', title: 'Verknüpfungen', desc: 'Benutzer mit Spieler- oder Trainerprofilen verknüpfen.' },
-            { icon: '🏷️', title: 'Stammdaten', desc: 'Positionen, Altersklassen, Ligen und Vereine zentral pflegen.' },
-            { icon: '📬', title: 'Feedback', desc: 'Nutzerrückmeldungen lesen und bearbeiten.' },
-        ]
-    } %}
-
-    {# ─── Benutzerkonten ─── #}
-    <h2>Benutzerkonten verwalten</h2>
-    <p>
-        In der Benutzerübersicht seht ihr alle registrierten Konten. Ihr könnt:
-    </p>
-    <ul>
-        <li>Konten <strong>aktivieren oder deaktivieren</strong></li>
-        <li><strong>Rollen vergeben</strong> (z.&nbsp;B. Admin-Rolle)</li>
-        <li>Den Verifizierungsstatus prüfen</li>
-    </ul>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/admin/benutzeruebersicht.png',
-        alt: 'Benutzerübersicht im Admin-Bereich',
-        caption: 'Alle Benutzerkonten im Überblick – mit Status und Rollen.'
-    } %}
-
-    {# ─── Verknüpfungen ─── #}
-    <h2>Benutzer mit Spieler/Trainer verknüpfen</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Benutzer öffnen', text: 'Klickt in der Benutzerübersicht auf den gewünschten Account.' },
-            { title: 'Verknüpfung bearbeiten', text: 'Klickt auf <strong>„Verknüpfung bearbeiten"</strong>.' },
-            { title: 'Profil zuordnen', text: 'Wählt das entsprechende <a href="' ~ path('app_spieler') ~ '">Spieler</a>- oder <a href="' ~ path('app_trainer') ~ '">Trainerprofil</a> aus.' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Mitglied sieht ab sofort seine persönlichen Daten.' },
-        ]
+        type: 'warning',
+        title: '„Neuer Verein“ kann trotz fehlender Berechtigung sichtbar sein',
+        text: 'Die Schaltfläche zum Anlegen eines Vereins kann derzeit auch in einem eingeschränkten Administrationsbereich erscheinen. Das Speichern eines neuen Vereins wird dort jedoch nicht zugelassen; anlegen können ihn nur Superadministratoren.'
     } %}
 
     {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Wichtig',
-        text: 'Ohne Verknüpfung sieht ein Benutzer keine Spieler-/Trainerstatistiken, persönliche Spiele oder zugewiesene Aufgaben.'
+        type: 'warning',
+        title: 'fussball.de-Daten werden hier derzeit nicht geladen',
+        text: 'Im Vereinsformular ist eine Schaltfläche „fussball.de-Daten laden“ sichtbar. Im aktuellen Stand führt diese Schaltfläche keine Aktion aus. Die fussball.de-Kennung und -Adresse können dagegen gespeichert werden.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/admin/verknuepfung.png',
-        alt: 'Benutzer-Spieler Verknüpfung',
-        caption: 'Einen Benutzer-Account mit einem Spielerprofil verknüpfen.'
-    } %}
+    <h2>Teams verwalten</h2>
 
-    {# ─── Stammdaten ─── #}
-    <h2>Stammdaten verwalten</h2>
-    <p>Im Admin-Bereich pflegt ihr die zentralen Stammdaten der Plattform:</p>
-    <ul>
-        <li>🏷️ <strong>Positionen</strong> — Spielerpositionen definieren</li>
-        <li>🎂 <strong>Altersklassen</strong> — Altersgruppen für den Jugendfußball</li>
-        <li>🏆 <strong>Ligen</strong> — Offizielle Spielklassen</li>
-        <li>🏟️ <strong>Vereine</strong> — Vereinsdaten und Strukturen</li>
-    </ul>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/admin/stammdaten.png',
-        alt: 'Stammdaten-Verwaltung',
-        caption: 'Zentrale Stammdaten wie Positionen, Altersklassen und Ligen pflegen.'
-    } %}
-
-    {# ─── Feedback ─── #}
-    <h2>Feedback verwalten</h2>
     <p>
-        Nutzer können über die <strong>Feedback-Funktion</strong> in der App Rückmeldungen
-        und Verbesserungswünsche einreichen. Als Admin könnt ihr:
+        In der Teamübersicht könnt ihr nach einem Team suchen und die angezeigte Saison auswählen. Die Tabelle zeigt
+        den Teamnamen sowie die zugeordnete Altersgruppe und den Wettbewerb. Vorhandene Teams können über die
+        Detailansicht geöffnet und – soweit für dieses Team erlaubt – bearbeitet oder gelöscht werden.
     </p>
-    <ul>
-        <li>Eingegangenes Feedback lesen</li>
-        <li>Status setzen (<strong>offen</strong> / <strong>bearbeitet</strong>)</li>
-    </ul>
 
-    {# ─── Systembereiche ─── #}
-    <h2>Übersicht der Admin-Bereiche</h2>
-    <ul>
-        <li><strong>Benutzer</strong> — Konten, Rollen, Verknüpfungen</li>
-        <li><strong>Stammdaten</strong> — Positionen, Altersklassen, Ligen, Vereine</li>
-        <li><strong>Feedback</strong> — Nutzerrückmeldungen</li>
-        <li><strong>Teams</strong> — Teams erstellen und bearbeiten</li>
-        <li><strong>Vereine</strong> — Vereinsdaten pflegen</li>
-    </ul>
-
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
-
-    <h3>Ein Mitglied kann sich nicht einloggen – was tun?</h3>
-    <p>Prüft, ob das Konto aktiv und verifiziert ist.</p>
-
-    <h3>Wie vergebe ich einem Benutzer mehr Rechte?</h3>
-    <p>Öffnet den Benutzer-Detail und weist dort die gewünschte Rolle zu.</p>
-
-    <h3>Ein Spieler sieht keine Statistiken – warum?</h3>
-    <p>Die Verknüpfung zwischen Benutzerkonto und Spielerprofil fehlt wahrscheinlich.</p>
-
-    <h3>Kann ich einen Benutzer komplett löschen?</h3>
     <p>
-        Benutzer können nur <strong>deaktiviert</strong> werden. Eine vollständige Löschung
-        ist über den technischen Support möglich.
+        Im Teamformular werden der Name, die Altersgruppe und der Wettbewerb gepflegt. Zusätzlich können die
+        fussball.de-Kennung und -Adresse hinterlegt werden. Die Felder <strong>Halbzeitdauer</strong> und
+        <strong>Halbzeitpause</strong> legen die Vorgaben fest, die beim späteren Anlegen neuer Spiele dieses Teams
+        verwendet werden.
+    </p>
+
+    <p>
+        Bei bereits vorhandenen Teams können außerdem das Teambanner und die für dieses Team verfügbaren
+        Motivationssprüche verwaltet werden. Die Bearbeitungs- und Löschmöglichkeiten richten sich nach der
+        tatsächlichen Teamzuständigkeit. Auch aktuell zugeordnete Trainer können Teams verwalten, für die ihnen diese
+        Möglichkeit im aktuellen Stand eingeräumt wird.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'fussball.de-Daten werden im Teamformular derzeit nicht geladen',
+        text: 'Auch im Teamformular ist „fussball.de-Daten laden“ sichtbar, ohne dass die Schaltfläche im aktuellen Stand eine Aktion ausführt. Kennung und Adresse können unabhängig davon gespeichert werden.'
+    } %}
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Teamverwaltung',
+        description: 'Bitte die Teamübersicht mit Saisonfilter und anschließend ein geöffnetes Teamformular aufnehmen.',
+        items: [
+            'Suche und Saisonfilter',
+            'Teamname, Altersgruppe und Wettbewerb in der Übersicht',
+            'Teamname, Altersgruppe und Wettbewerb im Formular',
+            'Vorgaben für Halbzeitdauer und Halbzeitpause'
+        ],
+        purpose: 'Übersicht und zentrale Teamangaben miteinander verbinden.'
+    } %}
+
+    <h2>Spieler verwalten</h2>
+
+    <p>
+        Die Spielerübersicht kann nach Namen durchsucht und nach Saison und Team gefiltert werden. Ist nur ein Team
+        für den angemeldeten Benutzer verfügbar, wird dieses Team automatisch vorausgewählt. Neben dem Namen werden
+        Verein, Teamzuordnungen und Nationalitäten angezeigt. Weitere Teamzuordnungen lassen sich innerhalb eines
+        Eintrags aufklappen. Spieler können außerdem direkt aus dieser Übersicht zur Beobachtungsliste hinzugefügt
+        oder wieder daraus entfernt werden.
+    </p>
+
+    <p>
+        Beim Anlegen eines Spielers kann zunächst geprüft werden, ob die Person bereits vorhanden ist. Ab zwei
+        eingegebenen Buchstaben werden passende bestehende Spieler gesucht. Wird ein vorhandener Spieler gewählt,
+        öffnet Kaderblick dessen Daten, statt einen zweiten Datensatz für dieselbe Person anzulegen.
+    </p>
+
+    <p>
+        Zu den persönlichen Angaben gehören Vorname, Nachname, Geburtsdatum und E-Mail-Adresse. Für den sportlichen
+        Bereich werden starker Fuß, Hauptposition und bei Bedarf mehrere alternative Positionen gepflegt. Darüber
+        hinaus können zeitlich begrenzte Vereins-, Team- und Nationalitätszuordnungen hinterlegt werden. Bei einer
+        Teamzuordnung werden der Zuordnungstyp, die Trikotnummer sowie Beginn und optionales Ende der Zuordnung
+        festgelegt.
+    </p>
+
+    <p>
+        Nicht jede Person mit Zugriff auf die Spielerverwaltung darf sämtliche Angaben ändern. Wenn ein Spieler zwar
+        für eine benötigte Teamzuordnung verwendet werden darf, aber außerhalb des eigenen vollständigen
+        Verwaltungsbereichs liegt, erscheinen Teile des Formulars nur zur Ansicht. So kann beispielsweise eine
+        zeitweilige Zuordnung zu einem eigenen Team möglich sein, ohne dass damit sämtliche Stammdaten des Spielers
+        verändert werden dürfen.
+    </p>
+
+    <h2>Trainer verwalten</h2>
+
+    <p>
+        Die Trainerübersicht bietet eine Namenssuche und einen Teamfilter. Angezeigt werden Name, Verein,
+        Teamzuordnungen, Trainerlizenzen und Nationalitäten. Wie bei Spielern kann die Beobachtungsliste direkt aus
+        der Übersicht geändert werden. Detail-, Bearbeiten- und Löschen-Aktionen erscheinen entsprechend der
+        jeweiligen Zuständigkeit.
+    </p>
+
+    <p>
+        Im Trainerformular werden Vorname, Nachname, E-Mail-Adresse und Geburtsdatum gepflegt. Vereinszuordnungen
+        enthalten Verein, Beginn und optionales Ende. Teamzuordnungen enthalten zusätzlich die Art der Tätigkeit im
+        Team. Trainerlizenzen und Nationalitäten können ebenfalls mit Beginn und optionalem Ende hinterlegt werden.
+        Fehlt eine benötigte Trainerlizenz oder Nationalität, kann das entsprechende Anlegefenster direkt aus der
+        Auswahl geöffnet werden, sofern die erforderliche Berechtigung dafür vorhanden ist.
+    </p>
+
+    <h2>Spielstätten verwalten</h2>
+
+    <p>
+        Die Spielstättenübersicht lässt sich nach Name, Adresse oder Stadt durchsuchen. Angezeigt werden Name,
+        Adresse, Stadt sowie die hinterlegten Koordinaten. Je nach Berechtigung können Spielstätten angelegt,
+        bearbeitet oder gelöscht werden.
+    </p>
+
+    <p>
+        Im Formular stehen Name, Adresse, Stadt, Kapazität, Ausstattung, Koordinaten, Flutlicht und Belag zur
+        Verfügung. Für die Koordinaten kann <strong>„Koordinaten von OpenStreetMap holen“</strong> verwendet werden.
+        Kaderblick sucht dabei anhand der eingegebenen Angaben. Bei einem eindeutigen Treffer werden die Koordinaten
+        übernommen; bei mehreren Treffern wird eine Auswahl angeboten.
+    </p>
+
+    <h2>Benutzer und Zuordnungen verwalten</h2>
+
+    <p>
+        Der Bereich <strong>Benutzer</strong> unter <strong>Zuweisungen</strong> enthält die Reiter
+        <strong>Benutzer &amp; Zuordnungen</strong>, <strong>Registrierungsanfragen</strong> und
+        <strong>Supporter-Anfragen</strong>. Superadministratoren sehen zusätzlich <strong>Demo-Anfragen</strong>.
+    </p>
+
+    <h3>Benutzerübersicht</h3>
+
+    <p>
+        Die Benutzerübersicht kann nach Name oder E-Mail-Adresse durchsucht werden. Zu jedem Konto werden
+        Bestätigungsstatus, Aktivstatus und eine vorhandene Kontosperre angezeigt. In derselben Übersicht stehen auch
+        die aktuellen Zuordnungen des Benutzers: Beziehungen zu Spielern und Trainern, Staff- und
+        Funktionärszuordnungen, Team-Unterstützung, Vereins-Spielplan sowie Team- und Vereinsadministration. Bei
+        zeitlich begrenzten Zuordnungen wird der Zeitraum mit angezeigt.
+    </p>
+
+    <p>
+        Über <strong>„Zuordnung bearbeiten“</strong> können einem Benutzer mehrere Beziehungen zu Spielern und
+        Trainern zugewiesen werden. Für jede Beziehung lassen sich die angebotenen Einzelrechte festlegen. Dazu
+        gehören – abhängig von der jeweiligen Beziehungsart – beispielsweise Ansehen und Bearbeiten eines Profils,
+        Training, Spiele, Dokumente, Anwesenheit, Nachrichten, Statistiken, Gesundheits- oder medizinische Daten und
+        Finanzinformationen. Die tatsächlich angebotenen Rechte werden im Zuordnungsfenster angezeigt.
+    </p>
+
+    <p>
+        Im selben Fenster können, soweit der eigene Verwaltungsbereich dies erlaubt, auch Staff- und
+        Funktionärszuordnungen sowie Team-Unterstützung, Vereins-Spielplan und Team- oder Vereinsadministration
+        gepflegt werden. Für zeitlich begrenzte Aufgaben lassen sich Beginn und Ende setzen. Ein Enddatum darf nicht
+        vor dem Startdatum liegen.
+    </p>
+
+    <p>
+        Superadministratoren haben in der Benutzerübersicht zusätzliche Kontofunktionen. Sie können die Basisrolle
+        zwischen <strong>Gast</strong>, <strong>Benutzer</strong> und <strong>Super-Administrator</strong> ändern,
+        Konten aktivieren oder deaktivieren, gesperrte Konten entsperren, eine neue Bestätigungs-E-Mail versenden und
+        Benutzerkonten löschen. Das Löschen muss bestätigt werden und kann laut Bestätigungsdialog nicht rückgängig
+        gemacht werden. Team-Unterstützung sowie Team- und Vereinsadministration werden nicht über diese Basisrolle,
+        sondern über die jeweiligen Zuordnungen vergeben.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Benutzer und Zuordnungen',
+        description: 'Bitte die Benutzerübersicht mit einem Beispielkonto und anschließend das geöffnete Fenster „Zuordnung bearbeiten“ aufnehmen. Nur fiktive Daten verwenden.',
+        items: [
+            'Status des Benutzerkontos',
+            'mehrere unterschiedliche Zuordnungen',
+            'Schaltfläche „Zuordnung bearbeiten“',
+            'Spieler- oder Trainerbeziehung mit Rechteauswahl',
+            'zeitlich begrenzte Verwaltungs- oder Unterstützungszuordnung'
+        ],
+        purpose: 'Kontostatus, persönliche Verknüpfungen und Verwaltungszuordnungen voneinander abgrenzen.'
+    } %}
+
+    <h3>Registrierungsanfragen</h3>
+
+    <p>
+        Registrierungsanfragen entstehen, wenn ein Benutzer eine Zuordnung zu einem Spieler oder Trainer beantragt.
+        Die Übersicht kann nach Benutzer durchsucht und nach <strong>Offen</strong>, <strong>Genehmigt</strong> und
+        <strong>Abgelehnt</strong> gefiltert werden. Angezeigt werden Antragsteller, Zielperson, gewünschte Beziehung,
+        eine vorhandene Anmerkung und der Bearbeitungsstatus.
+    </p>
+
+    <p>
+        Bei einem offenen Antrag führt <strong>„Genehmigen“</strong> zur beantragten Benutzerverknüpfung.
+        <strong>„Ablehnen“</strong> kann mit einem optionalen Ablehnungsgrund abgeschlossen werden. Bereits bearbeitete
+        Anträge zeigen, wann und durch wen sie verarbeitet wurden.
+    </p>
+
+    <h3>Supporter-Anfragen</h3>
+
+    <p>
+        Supporter-Anfragen werden ebenfalls nach Status und Benutzer durchsucht. Ein offener Antrag zeigt den
+        Benutzer, die betroffene Mannschaft und eine vorhandene Anmerkung. Er kann genehmigt oder mit optionalem
+        Grund abgelehnt werden. Wird der Bereich aus einer Benachrichtigung geöffnet, hebt Kaderblick den betreffenden
+        Antrag mit <strong>„Aus Benachrichtigung“</strong> hervor.
+    </p>
+
+    <h3>Demo-Anfragen</h3>
+
+    <p>
+        Dieser Reiter ist nur für Superadministratoren sichtbar. Die Übersicht unterscheidet
+        <strong>Offen</strong>, <strong>Demo gesendet</strong>, <strong>Kontaktiert</strong> und
+        <strong>Abgelehnt</strong>. Neben Name und E-Mail-Adresse können Verein, Liga, Altersgruppe, Telefonnummer
+        und Nachricht einer Anfrage angezeigt werden.
+    </p>
+
+    <p>
+        Bei einer offenen Anfrage sendet <strong>„Demo-Zugang senden“</strong> die Zugangsdaten und aktualisiert den
+        Status. Über <strong>„Ablehnen“</strong> kann ein optionaler Hinweis hinterlegt werden. Bearbeitete Anfragen
+        zeigen Bearbeitungszeitpunkt und Bearbeiter. Auch hier kann ein aus einer Benachrichtigung aufgerufener Antrag
+        gezielt hervorgehoben werden.
+    </p>
+
+    <h2>Staff-Zuordnungen verwalten</h2>
+
+    <p>
+        Die Staff-Verwaltung ist in <strong>Team-Staff</strong> und <strong>Vereins-Staff</strong> getrennt. Eine
+        Zuordnung verbindet einen Benutzer mit einem Team oder Verein. Zusätzlich kann eine konkrete Funktion gewählt
+        und ein Zeitraum mit Beginn und Ende festgelegt werden. Bestehende Zuordnungen lassen sich bearbeiten oder
+        nach einer Bestätigung endgültig löschen.
+    </p>
+
+    <h2>Funktionärs-Zuordnungen verwalten</h2>
+
+    <p>
+        Die Funktionärsverwaltung arbeitet entsprechend mit den Reitern <strong>Team-Funktionäre</strong> und
+        <strong>Vereins-Funktionäre</strong>. Beim Anlegen werden Benutzer, Team beziehungsweise Verein, eine optionale
+        Funktion und bei Bedarf der Gültigkeitszeitraum gewählt. Bearbeiten verändert die bestehende Zuordnung;
+        Löschen entfernt sie nach einer Bestätigung endgültig.
+    </p>
+
+    <h2>Weitere bereits dokumentierte Verwaltungsbereiche</h2>
+
+    <p>
+        <strong>Neuigkeiten Management</strong>, <strong>Aufgaben</strong> und <strong>Aufstellungen</strong> verwenden
+        dieselben Funktionen, die in den jeweiligen Benutzerkapiteln beschrieben sind. Kaderblick blendet solche
+        Verwaltungsverweise in der Navigation teilweise aus, wenn derselbe Bereich bereits an anderer Stelle für den
+        angemeldeten Benutzer erreichbar ist.
+    </p>
+
+    <h2>Plattformweite Stammdaten</h2>
+
+    <p>
+        Die folgenden Stammdaten erscheinen in der Administration nur für Superadministratoren. Änderungen wirken
+        sich auf die entsprechenden Auswahlfelder in der gesamten Plattform aus und sollten deshalb nur vorgenommen
+        werden, wenn die neue oder geänderte Bezeichnung tatsächlich allgemein gelten soll.
+    </p>
+
+    <h3>Altersgruppen</h3>
+
+    <p>
+        Eine Altersgruppe enthält Name, optionalen englischen Namen, Code und Beschreibung. Zusätzlich können
+        Mindest- und Höchstalter sowie ein Stichtag im Format <strong>MM-TT</strong> hinterlegt werden. Vorhandene
+        Altersgruppen lassen sich suchen, bearbeiten und – soweit zulässig – löschen.
+    </p>
+
+    <h3>Wettbewerbe</h3>
+
+    <p>
+        Wettbewerbe sind nach <strong>Ligen</strong>, <strong>Pokalen</strong>, <strong>Freundschaftsspielen</strong>
+        und <strong>Testspielen</strong> getrennt. Innerhalb einer dieser Oberkategorien wird eine konkrete
+        Bezeichnung angelegt. Die Übersicht zeigt zusätzlich, wie viele Spiele dem jeweiligen Eintrag zugeordnet sind.
+        Einträge lassen sich suchen, bearbeiten und nach einer Bestätigung löschen.
+    </p>
+
+    <h3>Positionen</h3>
+
+    <p>
+        Spielerpositionen bestehen aus Name, optionalem Kurznamen und einer Beschreibung. Die Suche berücksichtigt
+        alle drei Angaben. Diese Positionen werden anschließend unter anderem in Spielerprofilen und Aufstellungen
+        verwendet.
+    </p>
+
+    <h3>Füße</h3>
+
+    <p>
+        Unter <strong>Füße</strong> werden die auswählbaren Angaben zum starken Fuß verwaltet. Jeder Eintrag besitzt
+        einen Namen und optional einen Kurznamen. Die Einträge stehen anschließend in den Spielerdaten zur Auswahl.
+    </p>
+
+    <h3>Beläge</h3>
+
+    <p>
+        Beläge beziehungsweise Oberflächenarten besitzen einen Namen und eine Beschreibung. Sie werden bei
+        Spielstätten verwendet und können in der Stammdatenverwaltung gesucht, angelegt, bearbeitet und gelöscht
+        werden.
+    </p>
+
+    <h3>Ereignistypen</h3>
+
+    <p>
+        Ein Spielereignistyp besitzt einen Namen, einen Code, eine Farbe, ein Symbol und die Kennzeichnung
+        <strong>„Systemtyp“</strong>. Farbe und Symbol bestimmen die Darstellung des Ereignisses in der
+        Spielereignisübersicht. Da Ereignistypen mit Spielereignissen und weiteren Regeln zusammenhängen, sollte ein
+        bestehender Eintrag nicht lediglich wegen einer gewünschten anderen Bezeichnung neu angelegt werden.
+    </p>
+
+    <h3>Nationalitäten</h3>
+
+    <p>
+        Nationalitäten bestehen aus Name und optionalem ISO-Code. Sie werden unter anderem in Spieler- und
+        Trainerdaten verwendet. Die Übersicht kann nach Name oder ISO-Code durchsucht werden.
+    </p>
+
+    <h3>Trainerlizenzen</h3>
+
+    <p>
+        Trainerlizenzen werden mit Name, Beschreibung und Ländercode geführt. Sie stehen anschließend bei den
+        zeitlich begrenzten Lizenzzuordnungen eines Trainers zur Verfügung.
+    </p>
+
+    <h3>Kameras</h3>
+
+    <p>
+        Die Kameraübersicht zeigt Name, Ersteller und Erstellungsdatum. Kameras können gesucht und – entsprechend der
+        verfügbaren Berechtigung – angelegt, bearbeitet oder gelöscht werden. Diese Einträge werden bei den
+        videobezogenen Funktionen von Kaderblick verwendet.
+    </p>
+
+    <h3>Videotypen</h3>
+
+    <p>
+        Ein Videotyp besitzt einen Namen und einen Sortierwert. Der Sortierwert legt die Reihenfolge fest; niedrigere
+        Werte stehen vor höheren. Die Oberfläche nennt als Beispiele etwa <strong>„1.Halbzeit“</strong> oder
+        <strong>„Vorbereitung“</strong>. Die Übersicht zeigt außerdem Ersteller und Erstellungsdatum.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Plattformweite Stammdaten',
+        description: 'Bitte einen Stammdatenbereich mit Suche und Einträgen sowie ein geöffnetes Bearbeitungsfenster aufnehmen.',
+        items: [
+            'Stammdaten-Navigation',
+            'Suchfeld und Tabellenansicht',
+            'Bearbeiten- und Löschen-Aktionen',
+            'ein geöffnetes Formular mit mehreren konkreten Feldern'
+        ],
+        purpose: 'Das gemeinsame Bedienmuster der Stammdatenverwaltung zeigen.'
+    } %}
+
+    <h2>Feedback bearbeiten</h2>
+
+    <p>
+        Die plattformweite Feedback-Verwaltung ist nur für Superadministratoren verfügbar. Rückmeldungen werden als
+        <strong>Bug</strong>, <strong>Verbesserung</strong>, <strong>Frage</strong> oder <strong>Sonstiges</strong>
+        gekennzeichnet. Zusätzlich können GitHub-Einträge in derselben Übersicht erscheinen. Der Bearbeitungsstand ist
+        <strong>Neu</strong>, <strong>In Bearbeitung</strong> oder <strong>Erledigt</strong>.
+    </p>
+
+    <p>
+        Neue Rückmeldungen können auf <strong>„In Bearbeitung“</strong> gesetzt werden. Während der Bearbeitung stehen
+        die Detailbearbeitung und <strong>„Erledigen“</strong> zur Verfügung; erledigte Einträge können wieder geöffnet
+        werden. Karten zeigen unter anderem Absender, Zeitpunkt, Nachricht, eine vorhandene Adresse und gegebenenfalls
+        einen beigefügten Screenshot. Kommentare und ungelesene Antworten werden an der Rückmeldung kenntlich gemacht.
+        Eine nicht bereits verknüpfte Rückmeldung kann außerdem über <strong>„Als GitHub Issue“</strong> in einen
+        entsprechenden Eintrag überführt werden.
+    </p>
+
+    <h2>Titel und Erfahrungspunkte kontrollieren</h2>
+
+    <p>
+        Die <strong>Titel &amp; XP Übersicht</strong> zeigt Titel auf Plattform-, Liga-, Pokal- und Teamebene sowie die
+        Ränge Gold, Silber und Bronze. Bei einem Titel kann die zugehörige Benutzerliste geöffnet werden. Für einzelne
+        Benutzer lässt sich die Erfahrungspunkte-Aufschlüsselung mit Karriere-Level, Saison-Level, vorhandenen Titeln
+        und der Verteilung der Punkte nach den zugrunde liegenden Aktionen anzeigen.
+    </p>
+
+    <h3>XP-Konfiguration</h3>
+
+    <p>
+        In der XP-Konfiguration werden die Regeln für Erfahrungspunkte nach <strong>Plattform</strong>,
+        <strong>Sport</strong> und <strong>Spielereignissen</strong> verwaltet. Jede Regel zeigt Bezeichnung,
+        Punktwert und Aktivstatus. Eine Regel kann direkt ein- oder ausgeschaltet werden. Beim Bearbeiten stehen
+        Bezeichnung, Beschreibung, Punktwert, Kategorie, zeitliche Wiederholungsbegrenzung sowie tägliche und
+        monatliche Höchstgrenzen zur Verfügung. Vom System vorgegebene Regeln sind mit <strong>„System“</strong>
+        gekennzeichnet.
+    </p>
+
+    <h2>Spielereignisse ohne Spielerzuordnung korrigieren</h2>
+
+    <p>
+        Unter <strong>Unbekannte Ereignisse</strong> werden Spielereignisse aufgeführt, denen noch kein Spieler
+        zugeordnet ist. Die Tabelle zeigt Ereignistyp, Spiel, Datum, Minute und Team. Öffnet im betreffenden Eintrag die
+        Spielerauswahl, wählt den passenden Spieler und bestätigt mit <strong>„Zuweisen“</strong>. Nach erfolgreicher
+        Zuordnung verschwindet der Eintrag aus der offenen Liste.
+    </p>
+
+    <h2>Karten-Regeln verwalten</h2>
+
+    <p>
+        Karten-Regeln legen fest, wann Verwarnungen und Sperren berücksichtigt werden. Eine Regel kann für Liga,
+        Pokal, Turnier oder Freundschaftsspiel gelten und auf alle Personen, nur Spieler oder nur Trainer beschränkt
+        werden. Eine optionale Wettbewerbsnummer grenzt sie auf einen konkreten Wettbewerb ein; bleibt sie leer, gilt
+        die Regel allgemein für diesen Wettbewerbtyp.
+    </p>
+
+    <p>
+        Für gelbe Karten werden Warnschwelle, Sperrschwelle und die Zahl der gesperrten Spiele festgelegt. Für rote
+        sowie gelb-rote Karten gibt es eigene Sperrdauern. Zusätzlich kann festgelegt werden, ob der Zähler nach einer
+        Sperre zurückgesetzt wird und in welchem Zeitraum die Regel gültig ist. Die Verwaltung unterscheidet aktuelle,
+        zukünftige und historische Regeln.
+    </p>
+
+    <h2>Aushelfer-Regeln verwalten</h2>
+
+    <p>
+        Die Aushelfer-Regeln bestimmen, aus welchen Altersgruppen Spieler für eine andere Altersgruppe berücksichtigt
+        werden dürfen. Eine Regel kann Ziel- und Quell-Altersgruppe, Wettbewerb oder konkreten Wettbewerb,
+        Mindest- und Maximalalter sowie einen Gültigkeitszeitraum enthalten. Zusätzlich wird festgelegt, ob eine zuvor
+        erklärte Bereitschaft erforderlich ist und ob die Regel das Aushelfen erlaubt oder ausschließt.
+    </p>
+
+    <p>
+        Die Übersicht ist in <strong>Aktuell</strong>, <strong>Zukünftig</strong> und <strong>Historisch</strong>
+        aufgeteilt. Regeln können neu angelegt, bearbeitet und gelöscht werden.
+    </p>
+
+    <h2>Poster-Vorlagen verwalten</h2>
+
+    <p>
+        Die Poster-Vorlagen zeigen eine Vorschau, den Vorlagennamen, die Art des Posters und die unterstützten Formate.
+        Als Arten stehen <strong>Spielankündigung</strong>, <strong>Spielergebnis</strong>,
+        <strong>Event-Ankündigung</strong>, <strong>Spieler-Highlight</strong> und <strong>Universal</strong> zur
+        Verfügung. Vorhandene Vorlagen können bearbeitet oder gelöscht werden. Das Löschen einer Vorlage verändert
+        bereits erzeugte Poster nicht.
+    </p>
+
+    <p>
+        Im Vorlageneditor werden Name, Posterart und unterstützte Formate festgelegt. Links können vorgegebene
+        Platzhalter oder eigener Text hinzugefügt und der Hintergrund eingestellt werden. In der Mitte wird das Poster
+        aufgebaut; ein ausgewähltes Element erhält rechts seine bearbeitbaren Eigenschaften und kann dort auch
+        entfernt werden. Die Vorschau kann für die unterstützten Formate geöffnet werden. Beim Verlassen mit
+        ungespeicherten Änderungen fragt Kaderblick nach, bevor der Entwurf verworfen wird.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Poster-Vorlageneditor',
+        description: 'Bitte eine Vorlage mit mehreren Elementen im geöffneten Editor aufnehmen. Fiktive Vereins- und Spieldaten verwenden.',
+        items: [
+            'Vorlagenname, Posterart und Formatauswahl',
+            'Werkzeuge für Platzhalter, Text und Hintergrund',
+            'Posterfläche mit mehreren Elementen',
+            'Eigenschaften des ausgewählten Elements',
+            'Vorschau- und Speichern-Aktion'
+        ],
+        purpose: 'Aufteilung des Editors und die Stellen für Inhalt, Gestaltung und Speicherung zeigen.'
+    } %}
+
+    <h2>Nutzeraktivität auswerten</h2>
+
+    <p>
+        Die Nutzeraktivität zeigt die Anzahl aller Benutzer, heute aktive Benutzer, Benutzer mit Aktivität in den
+        letzten sieben Tagen und Konten ohne bisherige Aktivität. Der zeitliche Verlauf kann für heute, sieben oder
+        dreißig Tage, drei oder sechs Monate sowie ein Jahr angezeigt werden.
+    </p>
+
+    <p>
+        Die Benutzerliste kann nach Name oder E-Mail-Adresse durchsucht und nach Name, E-Mail-Adresse oder letzter
+        Aktivität sortiert werden. Zu jedem Eintrag werden Rollen, letzte Aktivität und ein daraus abgeleiteter Status
+        angezeigt. Bei einer vorhandenen letzten Aktivität ist zusätzlich der genaue Zeitpunkt abrufbar.
+    </p>
+
+    <h2>Nutzungsanalyse auswerten</h2>
+
+    <p>
+        Die Nutzungsanalyse verarbeitet ausschließlich aggregierte Nutzungsdaten von Benutzern, die der Analyse
+        zugestimmt haben. Als Zeitraum stehen 7, 30, 90, 180 oder 365 Tage zur Auswahl. Die Zusammenfassung zeigt
+        Seitenaufrufe, aktive Benutzer, Sitzungen und die aktive sichtbare Nutzungszeit.
+    </p>
+
+    <p>
+        Weitere Ansichten zeigen den zeitlichen Verlauf, häufig und selten besuchte Bereiche, Nutzung nach Rolle,
+        konkrete organisatorische Inhalte, aufgerufene Unterbereiche und Funktionen sowie häufige Übergänge zwischen
+        Bereichen. Diese Übersichten sind zusammengefasst; individuelle Benutzerverläufe werden dort nicht angezeigt.
+    </p>
+
+    <h2>System-Einstellungen ändern</h2>
+
+    <p>
+        Unter <strong>System-Einstellungen</strong> steuert der Superadministrator derzeit vier plattformweite
+        Verhaltensweisen. Beim <strong>Verknüpfungsanfrage-Dialog</strong> entscheidet der Schalter, ob neue Benutzer
+        nach dem ersten Anmelden selbst eine Zuordnung zu einem Spieler oder Trainer beantragen. Ist er ausgeschaltet,
+        erfolgt die Zuordnung durch die Verwaltung.
+    </p>
+
+    <p>
+        <strong>„Zwei-Faktor-Authentifizierung verpflichtend“</strong> sperrt Benutzer ohne Zwei-Faktor-Anmeldung im
+        aktuellen Stand nicht aus. Die Einstellung blendet für diese Benutzer einen Hinweis mit Zugang zu den
+        Sicherheitseinstellungen ein. Bereits eingerichtete Benutzer sind davon nicht betroffen.
+    </p>
+
+    <p>
+        Für Push-Benachrichtigungen stehen <strong>Alle Benutzer</strong>, <strong>Nur an mich
+        (Wartungsmodus)</strong> und <strong>Deaktiviert</strong> zur Auswahl. Im Wartungsmodus werden nur
+        Superadministratoren per Push benachrichtigt. Zusätzlich legt <strong>Vorausschau-Zeitraum für anstehende
+        Spiele</strong> zwischen 1 und 30 Tagen fest, wie weit <strong>Mein Spieltag</strong> zukünftige Spiele als
+        Reiter berücksichtigt; voreingestellt sind sieben Tage.
+    </p>
+
+    <h2>System-Wartung</h2>
+
+    <p>
+        Die System-Wartung ist in die Reiter <strong>Spielstatistiken</strong>, <strong>Cron-Jobs</strong>,
+        <strong>Datenbank</strong> und <strong>System-Alerts</strong> gegliedert.
+    </p>
+
+    <h3>Spielstatistiken</h3>
+
+    <p>
+        Die Übersicht unterscheidet alle Spiele, Spiele mit vorhandenen Statistiken, Spiele mit fehlenden Statistiken
+        und Spiele ohne Aufstellung. Die jeweilige Kennzahl dient gleichzeitig als Filter. Fehlende beziehungsweise
+        inkonsistente Statistiken können gesammelt neu berechnet werden. Bei einem einzelnen Spiel mit vorhandener
+        Aufstellung ist die Neuberechnung auch direkt in der Tabellenzeile möglich.
+    </p>
+
+    <h3>Cron-Jobs</h3>
+
+    <p>
+        Unter <strong>Cron-Jobs</strong> werden die regelmäßig ausgeführten automatischen Hintergrundaufgaben mit
+        letztem Lauf, erwarteter Häufigkeit und aktuellem Zustand angezeigt. Bei verspäteten oder fehlerhaften
+        Aufgaben lassen sich Details und eine vorhandene Fehlermeldung öffnen. Eine Aufgabe kann manuell gestartet
+        werden; solange sie läuft, steht zusätzlich eine Aktion zum Stoppen zur Verfügung. Während eines laufenden
+        Vorgangs aktualisiert Kaderblick den Zustand automatisch.
+    </p>
+
+    <h3>Datenbank</h3>
+
+    <p>
+        Im Reiter <strong>Datenbank</strong> können vollständige Datensicherungen erstellt, heruntergeladen und wieder
+        eingespielt werden. Vorhandene Sicherungen zeigen Dateiname, Erstellungszeitpunkt und Größe. Eine vorhandene
+        Sicherungsdatei mit der Endung <strong>.sql</strong> kann außerdem per Dateiauswahl oder Ziehen in den
+        vorgesehenen Bereich hochgeladen werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Wiederherstellen ersetzt den aktuellen Datenbestand',
+        text: 'Vor dem Wiederherstellen verlangt Kaderblick eine Bestätigung. Beim Einspielen werden die aktuellen Daten durch den Stand der gewählten Sicherung überschrieben. Auch das Löschen einer Sicherung muss bestätigt werden und ist anschließend nicht rückgängig zu machen.'
+    } %}
+
+    <h3>System-Alerts</h3>
+
+    <p>
+        System-Alerts werden in <strong>Offen</strong> und <strong>Erledigt</strong> getrennt. Die Oberfläche
+        unterscheidet unter anderem Server-Fehler, Login-Fehler, Scan- beziehungsweise Hack-Versuche, Probleme mit
+        Hintergrundverarbeitung, Festplatten-Warnungen, Ausfälle automatischer Aufgaben und Brute-Force-Versuche.
+        Filter ermöglichen die Einschränkung auf bestimmte Kategorien.
+    </p>
+
+    <p>
+        Ein Eintrag zeigt die Kategorie, eine vorhandene Wiederholungszahl, die Meldung und den letzten Zeitpunkt.
+        Je nach Ereignis werden zusätzliche Angaben wie Adresse oder aufgerufener Pfad angezeigt. Ein offener Eintrag
+        kann mit optionaler Notiz als erledigt markiert werden. Erledigte Meldungen lassen sich wieder öffnen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'System-Wartung',
+        description: 'Bitte die System-Wartung mit den vier Reitern aufnehmen; zusätzlich eine Ansicht mit mehreren Statusangaben, jedoch ohne sensible Adressen oder Fehlermeldungen.',
+        items: [
+            'Reiter Spielstatistiken, Cron-Jobs, Datenbank und System-Alerts',
+            'mehrere unterschiedliche Statusangaben',
+            'eine sichtbare, ungefährliche Verwaltungsaktion'
+        ],
+        purpose: 'Gliederung der Wartungsfunktionen und deren Statusdarstellung zeigen.'
+    } %}
+
+    <h2>Abrechnung</h2>
+
+    <p>
+        Die plattformweite Abrechnung ist nur für Superadministratoren verfügbar. Die Zusammenfassung zeigt die Zahl
+        aller Teams, bezahlte Teams, Teams in Testphase, überfällige oder gesperrte Teams, Teams ohne Abonnement sowie
+        den derzeit aktiven monatlichen Betrag.
+    </p>
+
+    <p>
+        Unter <strong>Teams &amp; Zahlungen</strong> kann nach Team, Verein oder Zahler gesucht sowie nach
+        Zahlungsstatus und Verein gefiltert werden. Die Tabelle unterscheidet unter anderem <strong>Bezahlt</strong>,
+        <strong>Zahlung offen</strong>, <strong>Gesperrt</strong>, <strong>Testphase</strong>,
+        <strong>Ohne Abo</strong>, <strong>Abschluss läuft</strong>, <strong>Pausiert</strong> und
+        <strong>Gekündigt</strong>. Zusätzlich werden Zahler, Gültigkeit und monatlicher Betrag angezeigt. Eine zweite
+        Übersicht fasst Abonnements nach Zahler zusammen und zeigt die zugehörigen Teams.
+    </p>
+
+    <p>
+        Im Reiter <strong>Testphasen</strong> kann eine Testphase für die gesamte Plattform, einen Verein oder ein
+        einzelnes Team angelegt werden. Beginn, optionales Ende und ein Grund können hinterlegt werden. Vorhandene
+        Freistellungen beziehungsweise Testphasen können anschließend wieder deaktiviert werden.
+    </p>
+
+    <h2>Derzeit sichtbare Verwaltungswege ohne erreichbare Zielseite</h2>
+
+    <p>
+        In der aktuellen Administration gibt es einen Eintrag <strong>„Datenkonsistenz“</strong>. Für diesen Eintrag
+        ist derzeit keine eigene Zielseite eingebunden; der Aufruf führt deshalb nicht zu einer nutzbaren
+        Datenkonsistenz-Verwaltung.
+    </p>
+
+    <p>
+        Unter <strong>Zuweisungen</strong> kann für Superadministratoren außerdem <strong>„Videos“</strong> angezeigt
+        werden. Auch die dort hinterlegte Upload-Adresse ist im aktuellen Stand nicht als erreichbare Seite
+        eingebunden. Videos werden deshalb über die bereits vorhandenen spiel- und videobezogenen Funktionen
+        verwaltet, nicht über diesen Verwaltungslink.
     </p>
 {% endblock %}
