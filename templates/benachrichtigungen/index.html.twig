@@ -3,86 +3,231 @@
 {% block title %}Benachrichtigungen – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>🔔 Benachrichtigungen</h1>
+    <h1>Benachrichtigungen</h1>
+
     <p>
-        In-App und Push – damit ihr nichts Wichtiges verpasst.
+        Benachrichtigungen informieren über Vorgänge, die das eigene Konto betreffen. Dazu gehören unter anderem
+        neue Nachrichten und Vereinsneuigkeiten, Änderungen an Terminen und Teilnahmen, Umfragen,
+        Mitfahrgelegenheiten sowie Einträge auf dem eigenen Deckel. Welche Arten angezeigt und als Push gesendet
+        werden, lässt sich im Profil festlegen.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '🔔', title: 'Glocken-Symbol', desc: 'Zeigt ungelesene Benachrichtigungen mit Zahlenbadge an.' },
-            { icon: '📱', title: 'Push-Benachrichtigungen', desc: 'Auch wenn Kaderblick geschlossen ist – als PWA auf dem Smartphone.' },
-            { icon: '📋', title: 'Verschiedene Typen', desc: 'Nachrichten, Termine, Aufgaben, News, Umfragen und mehr.' },
-        ]
-    } %}
+    <h2>Benachrichtigungszentrum öffnen</h2>
 
-    {# ─── Glocken-Symbol ─── #}
-    <h2>Das Glocken-Symbol</h2>
     <p>
-        Oben rechts in der App seht ihr das <strong>Glocken-Symbol</strong> mit einem
-        <strong>Zahlenbadge</strong> für ungelesene Benachrichtigungen. Ein Klick öffnet die Liste –
-        ein Klick auf eine einzelne Benachrichtigung springt direkt zum betreffenden Bereich.
+        Das Glockensymbol befindet sich nach der Anmeldung oben in der Kopfleiste. Die Zahl am Symbol zeigt die
+        Anzahl der ungelesenen Benachrichtigungen. Ab mehr als 99 ungelesenen Einträgen wird am Symbol
+        <strong>99+</strong> angezeigt. Die Anzahl ungelesener Benachrichtigungen erscheint zusätzlich vor dem Titel
+        des geöffneten Browser-Tabs.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/benachrichtigungen/glocke.png',
-        alt: 'Glocken-Symbol mit Benachrichtigungen',
-        caption: 'Das Glocken-Symbol zeigt die Anzahl ungelesener Benachrichtigungen.'
-    } %}
-
-    {# ─── Typen ─── #}
-    <h2>Benachrichtigungstypen</h2>
-    <ul>
-        <li>💬 <strong>Neue Nachricht</strong> — Jemand hat euch geschrieben</li>
-        <li>📅 <strong>Neuer Termin</strong> — Ein neuer Termin wurde angelegt</li>
-        <li>✅ <strong>Teilnahme-Bestätigung</strong> — Jemand hat zu-/abgesagt</li>
-        <li>📋 <strong>Aufgabe zugewiesen</strong> — Ihr habt eine neue Aufgabe erhalten</li>
-        <li>📰 <strong>Neue News</strong> — Ein neuer Beitrag wurde veröffentlicht</li>
-        <li>📊 <strong>Neue Umfrage</strong> — Eine Umfrage wartet auf eure Teilnahme</li>
-    </ul>
-
-    {# ─── Push ─── #}
-    <h2>Push-Benachrichtigungen (PWA)</h2>
     <p>
-        Damit ihr auch benachrichtigt werdet, wenn Kaderblick nicht geöffnet ist:
+        Nach einem Klick auf die Glocke öffnet sich das Benachrichtigungszentrum. Die Einträge sind in
+        <strong>Heute</strong>, <strong>Gestern</strong> und <strong>Früher</strong> gegliedert. Ungelesene Einträge sind
+        hervorgehoben. Angezeigt werden jeweils die neuesten gespeicherten Benachrichtigungen; beim Laden werden
+        höchstens 50 Einträge abgerufen.
     </p>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Kaderblick installieren', text: 'Fügt Kaderblick zum Startbildschirm hinzu (siehe <a href="' ~ path('app_erste_schritte') ~ '">Erste Schritte</a>).' },
-            { title: 'Benachrichtigungen erlauben', text: 'Wenn die App fragt, ob sie Benachrichtigungen senden darf: <strong>Erlauben</strong> klicken.' },
-            { title: 'Fertig', text: 'Ab sofort erhaltet ihr Push-Benachrichtigungen direkt auf euer Smartphone.' },
-        ]
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Geöffnetes Benachrichtigungszentrum',
+        description: 'Bitte eine angemeldete Ansicht mit geöffneter Benachrichtigungsliste aufnehmen.',
+        items: [
+            'Glockensymbol mit Anzahl ungelesener Benachrichtigungen',
+            'Bereiche Heute, Gestern und Früher',
+            'mindestens ein ungelesener und ein gelesener Eintrag',
+            'Schaltflächen Alle als gelesen markieren und Alle löschen'
+        ],
+        purpose: 'Aufbau der Liste und Kennzeichnung ungelesener Einträge zeigen.'
     } %}
+
+    <h2>Eine Benachrichtigung lesen und den zugehörigen Bereich öffnen</h2>
+
+    <p>
+        Ein Klick auf einen Eintrag öffnet zunächst die Detailansicht der Benachrichtigung. Dabei wird der Eintrag
+        als gelesen markiert. In der Detailansicht stehen Titel, Art der Benachrichtigung, Datum und Uhrzeit sowie
+        der vollständige Nachrichtentext. Je nach Benachrichtigung werden weitere Angaben eingeblendet, zum Beispiel
+        Absender, Termin, Datum, Ort oder Teilnahmestatus.
+    </p>
+
+    <p>
+        Führt die Benachrichtigung zu einem anderen Bereich von Kaderblick, erscheint in der Detailansicht eine
+        passende Schaltfläche. Bei allgemeinen Verknüpfungen heißt sie <strong>Öffnen</strong>; bei Umfragen erscheint
+        beispielsweise <strong>Zur Umfrage</strong>, bei Rückmeldungen zum eigenen Feedback
+        <strong>Feedback öffnen</strong>. Ein Klick darauf schließt die Detailansicht und öffnet den verknüpften
+        Bereich. Nicht jede Benachrichtigung enthält eine solche Verknüpfung.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Detailansicht einer Benachrichtigung',
+        description: 'Bitte eine Benachrichtigung mit zusätzlichen Angaben und einer Schaltfläche zum zugehörigen Bereich öffnen.',
+        items: [
+            'Titel der Benachrichtigung',
+            'Art der Benachrichtigung und Zeitpunkt',
+            'vollständiger Nachrichtentext',
+            'zusätzliche Angaben',
+            'Schaltfläche zum Öffnen des zugehörigen Bereichs'
+        ],
+        purpose: 'Zeigen, welche Informationen nach dem Öffnen eines Eintrags verfügbar sind.'
+    } %}
+
+    <h2>Ungelesene Benachrichtigungen verwalten</h2>
+
+    <p>
+        Das Öffnen eines einzelnen Eintrags markiert genau diesen Eintrag als gelesen. Über die Schaltfläche
+        <strong>Alle als gelesen markieren</strong> im Kopf des Benachrichtigungszentrums werden sämtliche
+        ungelesenen Benachrichtigungen des eigenen Kontos als gelesen gespeichert. Danach verschwindet die Zahl am
+        Glockensymbol, sofern keine neue ungelesene Benachrichtigung hinzukommt.
+    </p>
 
     {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: '<strong>Android:</strong> Chrome-Browser nutzen. <strong>iPhone:</strong> Safari-Browser nutzen. Push-Benachrichtigungen funktionieren nur mit der PWA-Installation.'
+        type: 'warning',
+        title: '„Alle löschen“ löscht die Benachrichtigungen derzeit nicht dauerhaft',
+        text: 'Die Schaltfläche „Alle löschen“ leert die angezeigte Liste nur in der aktuell geöffneten App. Die gespeicherten Benachrichtigungen werden dabei nicht entfernt und können nach einem erneuten Laden von Kaderblick wieder erscheinen. Eine dauerhafte Einzel- oder Gesamtlöschung ist in der aktuellen Oberfläche nicht vorhanden.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/benachrichtigungen/push-einrichten.png',
-        alt: 'Push-Benachrichtigungen einrichten',
-        caption: 'Push-Benachrichtigungen auf dem Smartphone aktivieren.'
-    } %}
+    <h2>Kurzmeldungen während Kaderblick geöffnet ist</h2>
 
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
-
-    <h3>Ich bekomme keine Benachrichtigungen – was tun?</h3>
     <p>
-        Prüft eure Browser-Einstellungen. Für Kaderblick muss die Berechtigung
-        „Benachrichtigungen" auf „Erlauben" stehen.
+        Neue Benachrichtigungen können während der Nutzung zusätzlich für einige Sekunden oben rechts eingeblendet
+        werden. Diese Kurzmeldung enthält Titel und Nachrichtentext und verschwindet nach etwa fünf Sekunden oder
+        kann über das Schließen-Symbol ausgeblendet werden. Das Schließen dieser Kurzmeldung entfernt die eigentliche
+        Benachrichtigung nicht aus dem Benachrichtigungszentrum und markiert sie auch nicht als gelesen.
     </p>
 
-    <h3>Push-Benachrichtigungen kommen verspätet an.</h3>
-    <p>Die PWA-Installation liefert die schnellsten Benachrichtigungen.</p>
+    <h2>Festlegen, welche Benachrichtigungen angezeigt werden</h2>
 
-    <h3>Kann ich Benachrichtigungen löschen?</h3>
     <p>
-        Benachrichtigungen werden automatisch als gelesen markiert, wenn ihr darauf klickt.
-        Manuelle Löschung ist ebenfalls möglich.
+        Öffnet euer Profil und wechselt zum Reiter <strong>Benachrichtigungen</strong>. Dort sind die verfügbaren
+        Kategorien nach Themen gruppiert. Jeder Schalter wird unmittelbar nach der Änderung gespeichert. Ein
+        ausgeschalteter Schalter betrifft sowohl das Benachrichtigungszentrum als auch den Push-Versand: Neue
+        Benachrichtigungen dieser Kategorie werden nicht angezeigt und nicht versendet.
+    </p>
+
+    <p>
+        Wird eine Kategorie ausgeschaltet, verschwinden auch bereits gespeicherte Benachrichtigungen dieser Kategorie
+        aus der angezeigten Liste. Nach einer späteren Aktivierung können zuvor gespeicherte Einträge wieder sichtbar
+        werden, sofern sie noch vorhanden sind. Benachrichtigungen, die während der ausgeschalteten Zeit neu angefallen
+        wären, werden für diese Kategorie nicht nachträglich erzeugt.
+    </p>
+
+    <h3>Kommunikation</h3>
+
+    <p>
+        <strong>Nachrichten</strong> informiert über neue private Nachrichten und ist standardmäßig aktiviert.
+        <strong>Vereinsnews</strong> informiert über neue Neuigkeiten und Beiträge und ist ebenfalls standardmäßig
+        aktiviert. <strong>Feedback-Antworten</strong> betrifft Statusänderungen zu eingereichtem Feedback und ist
+        standardmäßig ausgeschaltet.
+    </p>
+
+    <h3>Termine &amp; Spiele</h3>
+
+    <p>
+        <strong>Eigener Teilnahmestatus</strong> betrifft Änderungen am eigenen Anwesenheitsstatus.
+        <strong>Spieler-Rückmeldungen</strong> informiert über Zu- und Absagen sowie Änderungen im eigenen
+        Verantwortungsbereich. <strong>Terminänderungen</strong> umfasst neue, geänderte oder gelöschte Termine und
+        Trainingsserien. Für abgesagte Termine gibt es zusätzlich <strong>Veranstaltungsabsagen</strong>; wenn ein
+        abgesagter Termin wieder stattfindet, greift <strong>Veranstaltungsreaktivierung</strong>. Diese fünf
+        Kategorien sind standardmäßig aktiviert.
+    </p>
+
+    <h3>Mannschaft</h3>
+
+    <p>
+        <strong>Mitfahrgelegenheiten</strong> informiert über Angebote, Änderungen und Absagen von Fahrgemeinschaften.
+        <strong>Mitfahrt gebucht</strong> betrifft Buchungen und Stornierungen eigener Mitfahrgelegenheiten.
+        <strong>Umfragen</strong> informiert über neue Umfragen und Erinnerungen. <strong>Strafen &amp; Belohnungen</strong>
+        betrifft neue Einträge auf dem eigenen Deckel. Alle vier Kategorien sind standardmäßig aktiviert.
+    </p>
+
+    <h3>Sonstiges</h3>
+
+    <p>
+        <strong>System- und Verwaltungshinweise</strong> umfasst technische, administrative und sonstige Hinweise.
+        Diese Kategorie ist standardmäßig ausgeschaltet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Benachrichtigungseinstellungen im Profil',
+        description: 'Bitte im Profil den Reiter Benachrichtigungen mit mehreren sichtbaren Kategorien aufnehmen.',
+        items: [
+            'Gruppen Kommunikation, Termine & Spiele, Mannschaft und Sonstiges',
+            'Bezeichnung und Beschreibung mehrerer Kategorien',
+            'aktive und ausgeschaltete Schalter',
+            'Hinweis zum Push-Status, falls Push auf diesem Gerät noch nicht aktiv ist'
+        ],
+        purpose: 'Zeigen, wo einzelne Benachrichtigungsarten ein- und ausgeschaltet werden.'
+    } %}
+
+    <h2>Push-Benachrichtigungen aktivieren</h2>
+
+    <p>
+        Die Kategorien im Reiter <strong>Benachrichtigungen</strong> legen fest, was Kaderblick anzeigen und versenden
+        darf. Damit diese Meldungen zusätzlich außerhalb der geöffneten Kaderblick-Seite als Push ankommen können,
+        muss Push im verwendeten Browser aktiviert sein.
+    </p>
+
+    <p>
+        Den aktuellen Zustand findet ihr im Profil unter <strong>Einstellungen</strong> im Abschnitt
+        <strong>Push-Benachrichtigungen</strong>. Kaderblick unterscheidet dort unter anderem zwischen
+        <strong>Aktiv</strong>, <strong>Eingeschränkt</strong>, <strong>Nicht funktionsfähig</strong>,
+        <strong>Nicht unterstützt</strong>, <strong>Blockiert</strong> und <strong>Nicht aktiviert</strong>.
+        Erkannte Probleme werden direkt in diesem Abschnitt mit einem Hinweis angezeigt.
+    </p>
+
+    <p>
+        Steht der Status auf <strong>Nicht aktiviert</strong> oder lässt sich die vorhandene Einrichtung erneuern,
+        verwendet die Schaltfläche <strong>Push aktivieren</strong>. Der Browser fragt dabei nach der Erlaubnis für
+        Benachrichtigungen. Diese Erlaubnis muss bestätigt werden. Wurde sie zuvor im Browser ausdrücklich blockiert,
+        kann Kaderblick sie nicht selbst wieder einschalten; in diesem Fall muss die Berechtigung für Kaderblick in den
+        Einstellungen des Browsers geändert werden.
+    </p>
+
+    <p>
+        Im selben Abschnitt stehen <strong>Test-Push senden</strong> und <strong>Erneut prüfen</strong> zur Verfügung.
+        Mit dem Test lässt sich kontrollieren, ob eine Push-Benachrichtigung tatsächlich zugestellt wird. Nach einer
+        Änderung der Browserberechtigung oder nach Problemen mit der Zustellung aktualisiert <strong>Erneut prüfen</strong>
+        den angezeigten Zustand.
+    </p>
+
+    <p>
+        Auch im Profil-Reiter <strong>Benachrichtigungen</strong> wird gewarnt, wenn Push auf dem aktuell verwendeten
+        Gerät nicht aktiv ist. Soweit der Browser Push unterstützt und die Berechtigung nicht blockiert wurde, kann
+        die Aktivierung auch direkt über diesen Hinweis gestartet werden.
+    </p>
+
+    <p>
+        Die Push-Aktivierung gilt für den Browser beziehungsweise das Gerät, auf dem sie durchgeführt wurde. Wer
+        Kaderblick auf einem weiteren Gerät ebenfalls per Push erreichen möchte, richtet Push dort zusätzlich ein.
+        Kaderblick selbst setzt für diesen Ablauf keine gesonderte Installation voraus; ob der verwendete Browser die
+        benötigten Push-Funktionen bereitstellt, wird bei der Statusprüfung angezeigt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Push-Status und Test im Profil',
+        description: 'Bitte im Profil unter Einstellungen den Abschnitt Push-Benachrichtigungen aufnehmen.',
+        items: [
+            'aktueller Push-Status',
+            'gegebenenfalls eingeblendeter Problemhinweis',
+            'Schaltfläche Push aktivieren, sofern verfügbar',
+            'Test-Push senden',
+            'Erneut prüfen'
+        ],
+        purpose: 'Aktivierung und Prüfung von Push-Benachrichtigungen zeigen.'
+    } %}
+
+    <h2>Wenn Benachrichtigungen fehlen</h2>
+
+    <p>
+        Fehlt eine Benachrichtigung bereits im Benachrichtigungszentrum, prüft zuerst im Profil unter
+        <strong>Benachrichtigungen</strong>, ob die zugehörige Kategorie eingeschaltet ist. Eine ausgeschaltete
+        Kategorie verhindert nicht nur Push, sondern auch die Anzeige in Kaderblick.
+    </p>
+
+    <p>
+        Ist die Benachrichtigung in Kaderblick vorhanden, kommt aber nicht als Push an, prüft im Profil unter
+        <strong>Einstellungen → Push-Benachrichtigungen</strong> den Status. Bei <strong>Blockiert</strong> muss die
+        Browserberechtigung geändert werden. Bei <strong>Nicht aktiviert</strong> kann Push dort eingerichtet werden.
+        Mit <strong>Test-Push senden</strong> lässt sich die Zustellung anschließend unabhängig von einer neuen
+        Nachricht, einem Termin oder einer anderen Aktion prüfen.
     </p>
 {% endblock %}
