@@ -29,6 +29,7 @@ abstract class BaseController extends AbstractController
             'app_spiele' => ['label' => 'Spiele', 'icon' => '🏟️'],
             'app_mein_spieltag' => ['label' => 'Mein Spieltag', 'icon' => '🗓️'],
             'app_aushelfen' => ['label' => 'Aushelfen', 'icon' => '🤝'],
+            'app_fussball_de_import' => ['label' => 'fussball.de Import', 'icon' => '📥'],
             'app_kalender' => ['label' => 'Kalender & Termine', 'icon' => '📅'],
             'app_aufstellungen' => ['label' => 'Aufstellungen', 'icon' => '📋'],
             'app_turniere' => ['label' => 'Turniere', 'icon' => '🏆'],
