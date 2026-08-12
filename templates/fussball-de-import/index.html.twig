@@ -1,0 +1,306 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}fussball.de Import – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>fussball.de Import</h1>
+
+    <p>
+        Über <strong>Spiele → fussball.de Import</strong> können Daten der aktuell geöffneten fussball.de-Seite in
+        Kaderblick übernommen werden. Dafür wird eine Browser-Erweiterung verwendet. Nach der Übertragung werden die
+        erkannten Teams, Spieler, Mannschaftszuordnungen, Spiele, Aufstellungen und Spielereignisse zuerst in einer
+        Importprüfung angezeigt. Änderungen werden erst übernommen, nachdem offene Zuordnungen geklärt und die
+        Entscheidungen bestätigt wurden.
+    </p>
+
+    <h2>Browser-Erweiterung installieren</h2>
+
+    <p>
+        Unter <strong>Spiele → fussball.de Import</strong> öffnet Kaderblick die Seite
+        <strong>fussball.de Import-Erweiterung</strong>. Dort werden Google Chrome, Microsoft Edge und Mozilla Firefox
+        als vorgesehene Browser angezeigt. Kaderblick erkennt den aktuell verwendeten Browser und hebt ihn entsprechend
+        hervor.
+    </p>
+
+    <p>
+        Ob für einen Browser bereits ein offizieller Installationslink zur Verfügung steht, wird direkt auf dieser Seite
+        angezeigt. Ist ein Link hinterlegt, führt <strong>Erweiterung installieren</strong> beziehungsweise
+        <strong>Installieren</strong> zur jeweiligen Installationsseite. Ist für den verwendeten Browser noch kein Link
+        hinterlegt, ist die Installation dort als <strong>Noch nicht verfügbar</strong> beziehungsweise
+        <strong>Noch nicht veröffentlicht</strong> gekennzeichnet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Installationsseite für den fussball.de Import',
+        description: 'Bitte Spiele → fussball.de Import in einem Browser aufnehmen, der von der Seite erkannt wird.',
+        items: [
+            'Überschrift „fussball.de Import-Erweiterung“',
+            'erkannter Browser',
+            'Installationsstatus des Browsers',
+            'Schaltfläche „Mit Kaderblick verbinden“'
+        ],
+        purpose: 'Installation und anschließende Verbindung der Erweiterung zeigen.'
+    } %}
+
+    <h2>Erweiterung mit dem Kaderblick-Konto verbinden</h2>
+
+    <p>
+        Nach der Installation wird die Erweiterung einmal mit dem angemeldeten Kaderblick-Konto verbunden. Dazu kann
+        auf der Installationsseite <strong>Mit Kaderblick verbinden</strong> gewählt werden. Auf der folgenden Seite
+        startet <strong>Erweiterung verbinden</strong> die Verbindung. Bei erfolgreicher Verbindung erscheint die
+        Meldung, dass anschließend zu fussball.de gewechselt und die aktuelle Seite übertragen werden kann.
+    </p>
+
+    <p>
+        Derselbe Verbindungsweg kann aus dem Fenster der Browser-Erweiterung über
+        <strong>Mit Kaderblick verbinden</strong> geöffnet werden. Die dort zusätzlich sichtbaren Felder
+        <strong>Kaderblick-Adresse</strong> und <strong>API-Token</strong> ermöglichen eine manuelle Verbindung, falls
+        der normale Verbindungsweg nicht verwendet werden kann. Für die übliche Einrichtung ist keine manuelle Eingabe
+        dieser Werte erforderlich.
+    </p>
+
+    <p>
+        Die Verbindung gehört zum jeweils angemeldeten Kaderblick-Konto. Für die Verbindungsseite und die spätere
+        Importprüfung muss der Benutzer in Kaderblick angemeldet sein.
+    </p>
+
+    <h2>Eine fussball.de-Seite übertragen</h2>
+
+    <p>
+        Die Erweiterung liest ausschließlich die fussball.de-Seite, die im Browser gerade geöffnet ist. Sie wechselt
+        nicht selbstständig zu weiteren Seiten. Für einen Spielimport sollte deshalb die fussball.de-Seite des
+        betreffenden Spiels beziehungsweise Spielberichts geöffnet sein, auf der die gewünschten Daten tatsächlich
+        sichtbar beziehungsweise enthalten sind.
+    </p>
+
+    <p>
+        Anschließend wird die Browser-Erweiterung geöffnet und <strong>Aktuelle Seite übertragen</strong> gewählt.
+        Während der Übertragung zeigt die Erweiterung nacheinander an, dass die Seite gelesen und die Daten an Kaderblick
+        übertragen werden. Nach erfolgreicher Übertragung öffnet sie automatisch die zugehörige
+        <strong>Importprüfung</strong> in Kaderblick.
+    </p>
+
+    <p>
+        Ist im Browser keine fussball.de-Seite geöffnet, verweigert die Erweiterung die Übertragung. Wurde eine
+        fussball.de-Seite bereits vor dem Laden oder Installieren der Erweiterung geöffnet und kann nicht gelesen werden,
+        fordert die Erweiterung dazu auf, die Seite neu zu laden und die Übertragung erneut zu starten.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Aktuelle fussball.de-Seite übertragen',
+        description: 'Bitte das geöffnete Fenster der Kaderblick-Import-Erweiterung über einer fussball.de-Spielseite aufnehmen.',
+        items: [
+            'Schaltfläche „Aktuelle Seite übertragen“',
+            'Verbindungsstatus beziehungsweise gespeicherte Verbindung',
+            'im Hintergrund erkennbar eine fussball.de-Seite des gewünschten Spiels'
+        ],
+        purpose: 'Den eigentlichen Start einer Übertragung von fussball.de nach Kaderblick zeigen.'
+    } %}
+
+    <h2>Welche Daten in der Importprüfung erscheinen können</h2>
+
+    <p>
+        Kaderblick wertet den Inhalt der übertragenen Seite aus und stellt nur die dort erkannten Daten zur Prüfung
+        bereit. Je nach Inhalt der fussball.de-Seite können dazu die beteiligten Teams, das Spiel mit Datum, Ergebnis und
+        Wettbewerb, Spieler, Rückennummern und Mannschaftszuordnungen, die Aufstellung sowie Ereignisse aus dem
+        Spielverlauf gehören. Eine einzelne Übertragung muss nicht alle diese Daten enthalten.
+    </p>
+
+    <p>
+        Bereits bekannte Einträge werden nach Möglichkeit wiedererkannt. Deshalb bedeutet eine Übertragung nicht
+        automatisch, dass für jedes gefundene Team, jeden Spieler oder jedes Spiel ein neuer Eintrag angelegt wird.
+        Die Importprüfung zeigt für jeden Fund gesondert, ob Kaderblick ihn erkannt hat, aktualisieren würde, neu anlegen
+        würde, überspringt oder eine Entscheidung benötigt.
+    </p>
+
+    <h2>Importprüfung lesen</h2>
+
+    <p>
+        Oben in der <strong>Importprüfung</strong> stehen der aktuelle Zustand des Imports sowie Zähler für
+        <strong>Anlegen</strong>, <strong>Aktualisieren</strong>, <strong>Zuordnen</strong> und
+        <strong>Entscheidungen offen</strong>. Darunter folgt für jeden erkannten Eintrag eine eigene Karte. Sie nennt
+        den betroffenen Bereich, die vorgesehene Aktion und unter <strong>Was Kaderblick tun würde</strong> die konkrete
+        Folge der Übernahme.
+    </p>
+
+    <p>
+        Bei einer geplanten Aktualisierung werden vorhandener und neuer Wert gegenübergestellt. Bei einer notwendigen
+        Entscheidung erscheint zusätzlich <strong>Deine Entscheidung</strong>. Solange Pflichtangaben fehlen, ist die
+        betreffende Karte mit <strong>Angaben fehlen</strong> gekennzeichnet; eine vollständige Entscheidung wird als
+        <strong>bereit</strong> markiert. Erst wenn alle notwendigen Entscheidungen vollständig sind, können die
+        Entscheidungen für den Import bestätigt werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Importprüfung mit offenen Entscheidungen',
+        description: 'Bitte eine Importprüfung aufnehmen, die sowohl automatisch erkannte Einträge als auch mindestens eine noch zu klärende Zuordnung enthält.',
+        items: [
+            'Zähler für Anlegen, Aktualisieren, Zuordnen und offene Entscheidungen',
+            'eine Karte mit „Was Kaderblick tun würde“',
+            'eine Karte mit „Deine Entscheidung“ und dem Status „Angaben fehlen“ oder „bereit“',
+            'Schaltflächen „Entscheidungen bestätigen“ und „Übernehmen“'
+        ],
+        purpose: 'Aufbau der Prüfung und den Unterschied zwischen automatischer Erkennung und notwendiger Benutzerentscheidung zeigen.'
+    } %}
+
+    <h2>Teams prüfen und zuordnen</h2>
+
+    <p>
+        Ein bereits passendes Team kann von Kaderblick anhand seiner fussball.de-Zuordnung oder seines Namens erkannt
+        werden. Stimmen die vorhandenen Daten bereits, ist keine Entscheidung erforderlich. Erkennt Kaderblick bei einem
+        bestehenden Team eine abweichende Altersgruppe oder eine neue fussball.de-Zuordnung, wird die geplante
+        Aktualisierung in der Prüfung angezeigt.
+    </p>
+
+    <p>
+        Für ein nicht erkanntes Team stehen je nach Import die Entscheidungen <strong>Anlegen</strong>,
+        <strong>Bestehend zuordnen</strong> und <strong>Überspringen</strong> zur Verfügung. Beim Anlegen muss eine
+        Altersgruppe ausgewählt werden, wenn sie nicht eindeutig aus den importierten Angaben abgeleitet werden konnte.
+        Ein Team, das innerhalb desselben Imports neu angelegt werden soll, kann anschließend bereits als Heim- oder
+        Auswärtsteam des importierten Spiels verwendet werden.
+    </p>
+
+    <h2>Spieler prüfen und zuordnen</h2>
+
+    <p>
+        Wird genau ein vorhandener Spieler passend erkannt, ordnet Kaderblick den importierten Spieler diesem Eintrag
+        ohne zusätzliche Entscheidung zu. Gibt es mehrere mögliche Treffer, muss der richtige Spieler gewählt, ein neuer
+        Spieler angelegt oder der Eintrag übersprungen werden. Die Suche nach einem vorhandenen Spieler beginnt nach der
+        Eingabe von mindestens zwei Zeichen und zeigt zur Unterscheidung vorhandene Mannschaftszuordnungen an.
+    </p>
+
+    <p>
+        Soll ein neuer Spieler angelegt werden, benötigt Kaderblick eine <strong>Hauptposition</strong>. Eine auf der
+        fussball.de-Seite erkannte Rückennummer kann außerdem in die Mannschaftszuordnung einfließen. Das Anlegen oder
+        Ändern eines Spielers ist nur möglich, wenn das angemeldete Konto dafür die entsprechenden Rechte besitzt.
+    </p>
+
+    <h2>Mannschaftszuordnung und Rückennummer prüfen</h2>
+
+    <p>
+        Aufstellungsdaten können gleichzeitig eine Mannschaftszuordnung eines Spielers liefern. Sind Spieler und Team
+        bereits eindeutig bekannt, kann Kaderblick eine fehlende Zuordnung anlegen. Ist Spieler oder Team nicht eindeutig,
+        stehen je nach Fund die Zuordnung zu einem vorhandenen Spieler und Team, das Anlegen eines Spielers oder das
+        Überspringen zur Auswahl.
+    </p>
+
+    <p>
+        Weicht die importierte Rückennummer von einer aktiven Zuordnung ab, zeigt die Importprüfung diese Änderung an.
+        Bei der Übernahme beendet Kaderblick die bisherige Zuordnung mit der alten Rückennummer am aktuellen Tag und legt
+        ab diesem Tag eine neue Zuordnung mit der importierten Rückennummer an. Dadurch bleibt die bisherige Zuordnung
+        erhalten, wird aber nicht einfach rückwirkend überschrieben.
+    </p>
+
+    <h2>Ein Spiel anlegen oder einem vorhandenen Spiel zuordnen</h2>
+
+    <p>
+        Ein vorhandenes Spiel kann über seine fussball.de-Zuordnung oder über die Paarung am Spieltag erkannt werden.
+        Erkannte Änderungen wie Ergebnis oder Wettbewerb werden in der Prüfung angezeigt. Sind Heim- und Auswärtsergebnis
+        auf der übertragenen Seite vorhanden, werden beide Werte übernommen; ein Spiel mit vollständigem Ergebnis wird
+        dabei als beendet behandelt.
+    </p>
+
+    <p>
+        Wird kein bestehendes Spiel erkannt, kann es <strong>angelegt</strong>, einem
+        <strong>bestehenden Spiel zugeordnet</strong> oder <strong>übersprungen</strong> werden. Für ein neues Spiel
+        müssen Heimteam, Auswärtsteam und Spieltyp feststehen. Fehlen Datum oder Uhrzeit in den übertragenen Daten,
+        müssen sie in der Importprüfung ergänzt werden, damit das Spiel als Termin in Kaderblick angelegt werden kann.
+        Bei der Zuordnung zu einem vorhandenen Spiel kann über eine Suche ab zwei Zeichen nach den beteiligten Teams oder
+        der fussball.de-Kennung gesucht werden.
+    </p>
+
+    <p>
+        Bei einem Ligaspiel kann eine vorhandene Liga gewählt oder ein neuer Liganame eingegeben werden. Bei einem
+        Pokalspiel gilt dasselbe für den Pokal. Ein neu eingegebener Wettbewerb ist in der Auswahl mit
+        <strong>wird angelegt</strong> gekennzeichnet und entsteht erst beim endgültigen Übernehmen des Imports.
+    </p>
+
+    <p>
+        Ein neu angelegtes Spiel erhält gleichzeitig den zugehörigen Kalendereintrag und erscheint danach in den normalen
+        Spiel- und Kalenderbereichen von Kaderblick. Für ein bestehendes Spiel gelten beim Import dieselben Rechte wie bei
+        einer normalen Bearbeitung des Spiels.
+    </p>
+
+    <h2>Importierte Aufstellung und Match-Plan</h2>
+
+    <p>
+        Enthält die übertragene Seite eine Aufstellung, werden die erkannten Spieler zunächst den passenden Spielern und
+        Mannschaften in Kaderblick zugeordnet. Gehört die Aufstellung zu einem eindeutig zugeordneten Spiel, wird sie beim
+        Übernehmen zusätzlich in dessen Match-Plan eingetragen. Dafür ist die Berechtigung zum Verwalten des Match-Plans
+        dieses Spiels erforderlich.
+    </p>
+
+    <p>
+        Kaderblick verwendet für den Match-Plan die Mannschaft, zu der innerhalb der übernommenen Aufstellung die meisten
+        Einträge gehören. Als Startspieler gekennzeichnete Spieler werden bis zu elf Plätzen in der Startformation
+        zugeordnet; weitere Spieler landen auf der Bank. Die Positionen auf dem Feld werden dabei automatisch angeordnet
+        und entsprechen nicht einer von fussball.de übernommenen taktischen Formation.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Vorhandene Startformation wird ersetzt',
+        text: 'Wird eine Aufstellung zu einem Spiel übernommen, ersetzt sie die Startphase des vorhandenen Match-Plans dieses Spiels. Spätere bereits vorhandene Phasen bleiben bestehen. Vor dem Übernehmen sollte deshalb geprüft werden, ob im Match-Plan bereits eine eigene Startformation vorbereitet wurde.'
+    } %}
+
+    <p>
+        Weitere Informationen zur anschließenden Arbeit mit dem Match-Plan und gespeicherten Aufstellungen stehen unter
+        <a href="{{ path('app_aufstellungen') }}">Aufstellungen</a> und
+        <a href="{{ path('app_spiele') }}">Spiele</a>.
+    </p>
+
+    <h2>Spielereignisse prüfen</h2>
+
+    <p>
+        Ereignisse wie Tore, Karten oder Wechsel werden aus dem auf der übertragenen fussball.de-Seite erkannten
+        Spielverlauf für das betreffende Spiel vorbereitet. Ist ein gleichartiges Ereignis zum gleichen Zeitpunkt bereits
+        vorhanden, wird es nicht erneut angelegt. Kann das Spiel oder der Ereignistyp nicht eindeutig erkannt werden,
+        verlangt die Importprüfung eine Zuordnung oder erlaubt das Überspringen.
+    </p>
+
+    <p>
+        Kann bei einem erkannten Tor der Spieler nicht sicher bestimmt werden, wird das Ereignis zunächst zum
+        Überspringen vorgeschlagen. Für eine Übernahme muss dann der betreffende Spieler ausgewählt werden. Spieler und
+        Spiel können in solchen Entscheidungsfeldern über eine Suche ab zwei Zeichen gefunden werden. Ein Ereignis wird
+        erst mit dem endgültigen Übernehmen des Imports tatsächlich in das Spiel geschrieben.
+    </p>
+
+    <h2>Entscheidungen bestätigen und Import übernehmen</h2>
+
+    <p>
+        Sind alle notwendigen Zuordnungen vollständig, wird zuerst <strong>Entscheidungen bestätigen</strong> gewählt.
+        Dieser Schritt speichert die getroffenen Entscheidungen für den Import und schaltet anschließend
+        <strong>Übernehmen</strong> frei. Die eigentlichen Teams, Spieler, Spiele, Zuordnungen, Aufstellungen und
+        Ereignisse werden erst mit <strong>Übernehmen</strong> geändert oder angelegt.
+    </p>
+
+    <p>
+        Die Bestätigung ist deshalb von der Übernahme getrennt. Ein bereits bestätigter Import lässt sich in der
+        aktuellen Importprüfung nicht wieder in den vorherigen Bearbeitungszustand zurücksetzen. Vor
+        <strong>Entscheidungen bestätigen</strong> sollten insbesondere manuelle Zuordnungen und die Folgen angezeigter
+        Aktualisierungen geprüft werden.
+    </p>
+
+    <p>
+        Beim endgültigen Übernehmen prüft Kaderblick die normalen Berechtigungen für alle betroffenen Daten erneut. Eine
+        sichtbare Importprüfung allein bedeutet daher nicht, dass das Konto jedes dort vorgeschlagene Team, jeden Spieler,
+        jedes Spiel oder jeden Match-Plan ändern darf. Fehlt eine erforderliche Berechtigung oder ist eine notwendige
+        Zuordnung ungültig, wird die Übernahme abgelehnt und der Import nicht teilweise gespeichert.
+    </p>
+
+    <h2>Bereits vorhandene Daten erneut von fussball.de übertragen</h2>
+
+    <p>
+        Derselbe fussball.de-Inhalt kann später erneut übertragen werden. Kaderblick versucht vorhandene Teams, Spieler,
+        Spiele und Ereignisse wiederzuerkennen und zeigt nur die daraus entstehenden Änderungen in der Importprüfung an.
+        Ein bereits vorhandenes Spiel kann dadurch beispielsweise ein neues Ergebnis oder eine aktualisierte
+        Wettbewerbszuordnung erhalten, ohne dass ein zweites Spiel angelegt werden muss.
+    </p>
+
+    <p>
+        Diese Erkennung ersetzt die Prüfung nicht. Besonders bei Spielern mit gleichem oder ähnlichem Namen sowie bei
+        nicht eindeutig erkannten Teams oder Spielen muss die vorgeschlagene Zuordnung kontrolliert werden. Mit
+        <strong>Überspringen</strong> kann ein einzelner noch zu entscheidender Fund aus der Übernahme ausgeschlossen
+        werden, ohne den gesamten Import zu verwerfen.
+    </p>
+{% endblock %}
