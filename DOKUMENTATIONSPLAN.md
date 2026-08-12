@@ -30,7 +30,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Team & Verein | abgeschlossen |
 | Aufgaben | abgeschlossen |
 | Neuigkeiten & Gemeinschaft | abgeschlossen |
-| Nachrichten | offen |
+| Nachrichten | abgeschlossen |
 | Benachrichtigungen | offen |
 | Profil & Benutzerzuordnung | offen |
 | Aufstellungen | offen |
