@@ -78,15 +78,9 @@
     <p>
         Über die Reiter <strong>„Alle“</strong>, <strong>„Ausstehend“</strong> und <strong>„Erledigt“</strong> schränkt ihr die
         Liste ein. Sobald mindestens eine ungelesene Antwort vorhanden ist, erscheint zusätzlich der Reiter
-        <strong>„Neue Antworten“</strong>. Das Suchfeld filtert nach dem Nachrichtentext und nach dem intern gespeicherten
-        Feedback-Typ.
+        <strong>„Neue Antworten“</strong>. Das Suchfeld durchsucht den Nachrichtentext. Die sichtbaren Bezeichnungen der
+        Feedback-Typen werden bei der Suche derzeit nicht durchgängig berücksichtigt.
     </p>
-
-    {% include 'components/callout.html.twig' with {
-        type: 'warning',
-        title: 'Die Suche verwendet derzeit nicht zuverlässig die sichtbaren deutschen Typbezeichnungen',
-        text: 'Die Typen werden intern als „bug“, „feature“, „question“ und „other“ gespeichert. Eine Suche nach dem sichtbaren Wort „Fehler“ oder „Verbesserung“ findet deshalb nicht zwingend die entsprechenden Rückmeldungen. Der Nachrichtentext wird unabhängig davon normal durchsucht.'
-    } %}
 
     <p>
         Jede Rückmeldung zeigt Typ, Bearbeitungsstatus, Einreichungsdatum und einen Ausschnitt der ursprünglichen Nachricht.
