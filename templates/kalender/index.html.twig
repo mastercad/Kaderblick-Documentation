@@ -97,6 +97,23 @@
         nicht bearbeitet werden.
     </p>
 
+    <h3>Kaderblick-Kalender in einer anderen Kalender-App verwenden</h3>
+
+    <p>
+        Ebenfalls im Profil unter <strong>Kalender</strong> befindet sich <strong>„Kalender exportieren“</strong>. Nach
+        <strong>„Feed-Links generieren“</strong> stellt Kaderblick drei abonnierbare Kalender bereit:
+        <strong>„Mein Kalender (persönlich)“</strong>, <strong>„Vereinskalender“</strong> und
+        <strong>„Plattformkalender (öffentlich)“</strong>. Zu jedem Kalender kann der normale Link oder ein Webcal-Link
+        kopiert und anschließend in einer Kalender-App wie Google Calendar, Apple Calendar oder Outlook als Abonnement
+        eingetragen werden. Änderungen in Kaderblick werden über dieses Abonnement weitergegeben.
+    </p>
+
+    <p>
+        Die erzeugten Links enthalten einen persönlichen Zugang und sollten nicht veröffentlicht werden. Mit
+        <strong>„Links widerrufen“</strong> werden bestehende Abonnements über diese Links ungültig. Über
+        <strong>„Links neu generieren“</strong> können neue Links erstellt werden.
+    </p>
+
     <h3>Feiertage anzeigen</h3>
 
     <p>
@@ -107,15 +124,16 @@
 
     {% include 'components/bildplatzhalter.html.twig' with {
         title: 'Persönliche Kalendereinstellungen im Profil',
-        description: 'Profil im Reiter „Kalender“ aufnehmen. Der Bereich „Meine Spiele und Termine“ und darunter der Beginn der Kalender-Integrationen sollten sichtbar sein.',
+        description: 'Profil im Reiter „Kalender“ aufnehmen. Der Bereich „Meine Spiele und Termine“ und darunter die Kalender-Integrationen sollten sichtbar sein.',
         items: [
             'aktuelle Mannschaft',
             'Zusätzliche Mannschaften',
             'Ganze Vereine',
             'Schaltfläche „Auswahl speichern“',
+            'Bereich „Kalender exportieren“',
             'Bereich „Externe Kalender einbinden“'
         ],
-        purpose: 'Zeigen, wo zusätzliche Mannschaften, Vereine und externe Kalender für die Kalenderansicht festgelegt werden.'
+        purpose: 'Zeigen, wo zusätzliche Termine, Kalenderabonnements und externe Kalender verwaltet werden.'
     } %}
 
     <h2>Einen Termin öffnen</h2>
@@ -132,6 +150,12 @@
         Ist für den Ort eine Adresse oder Position hinterlegt, ist der Ortsname anklickbar und öffnet den Ort in Google Maps.
         Dasselbe gilt für einen Treffpunkt, wenn dieser aus den hinterlegten Orten ausgewählt wurde. Ein frei eingegebener
         Treffpunkt wird lediglich als Text angezeigt.
+    </p>
+
+    <p>
+        Bei einem zukünftigen, nicht abgesagten Kaderblick-Termin kann in der Detailansicht zusätzlich
+        <strong>„Event-Poster teilen“</strong> angeboten werden. Darüber wird der Termin an die Poster-Erstellung zum
+        Teilen übergeben.
     </p>
 
     <h3>Wetter zum Termin</h3>
@@ -212,18 +236,18 @@
     <h3>Alternative Wege zur Rückmeldung</h3>
 
     <p>
-        Dieselbe Teilnahme kann auch außerhalb der großen Kalenderseite geändert werden. Auf dem Dashboard öffnen die
-        Kacheln <strong>Kalender</strong> und <strong>Anstehende Termine</strong> dieselbe Termindetailansicht. Eine
-        Dashboard-Kachel für schnelle Rückmeldungen erlaubt außerdem eine direkte Statusänderung ohne vorheriges Öffnen des
-        Termins. Dort wird keine zusätzliche Nachricht abgefragt. Eine später aus der Termindetailansicht abgegebene Antwort
-        ersetzt den zuvor gespeicherten Status.
+        Auf dem Dashboard öffnen die Kacheln <strong>Kalender</strong> und <strong>Anstehende Termine</strong> ebenfalls
+        die Termindetailansicht. Eine Dashboard-Kachel für schnelle Rückmeldungen erlaubt bei den dort angebotenen Terminen
+        eine direkte Änderung des eigenen Status, ohne den Termin vorher zu öffnen. Dort wird keine zusätzliche Nachricht
+        abgefragt. Wenn für mehrere verbundene Personen geantwortet werden soll, verwendet ihr die Termindetailansicht mit
+        der Auswahl der betreffenden Personen.
     </p>
 
     <p>
-        Benachrichtigungen zu einem Termin können ebenfalls direkt zu dessen Detailansicht im Kalender führen. Änderungen
-        an der Teilnahme werden in der Rückmeldungsübersicht des Termins unmittelbar berücksichtigt. Zuständige Personen
-        erhalten entsprechend ihrer Benachrichtigungseinstellungen eine Mitteilung über Rückmeldungen; die antwortende
-        Person selbst wird dabei nicht als Empfänger ihrer eigenen Rückmeldung behandelt.
+        Benachrichtigungen zu einem Termin können direkt zu dessen Detailansicht im Kalender führen. Änderungen an der
+        Teilnahme werden in der Rückmeldungsübersicht des Termins berücksichtigt. Bei einer Rückmeldung kann Kaderblick die
+        für die Mannschaft oder den Verein zuständigen Trainer sowie Verwaltungs- und Unterstützerpersonen benachrichtigen;
+        die antwortende Person erhält keine Benachrichtigung über ihre eigene Antwort.
     </p>
 
     <h2>Wer Termine anlegen und verwalten kann</h2>
@@ -393,8 +417,7 @@
         Bei <strong>Vereinstreffen</strong> und der Terminart <strong>Event</strong> folgt auf die Basisdaten der Schritt
         <strong>„Berechtigungen“</strong>. Dort werden Ort und Sichtbarkeit festgelegt. Die Sichtbarkeit kann
         <strong>Öffentlich</strong>, auf bestimmte Vereine, auf bestimmte Mannschaften oder auf bestimmte Benutzer begrenzt
-        werden. Bei einer eingeschränkten Sichtbarkeit wählt ihr anschließend die betreffenden Einträge aus. Treffpunkt und
-        Treffzeit können zusätzlich hinterlegt werden.
+        werden. Bei einer eingeschränkten Sichtbarkeit wählt ihr anschließend die betreffenden Einträge aus.
     </p>
 
     <p>
@@ -468,6 +491,6 @@
         Fahrgemeinschaften werden an einen konkreten Termin gebunden und aus dessen Detailansicht geöffnet. Auf dem
         <a href="{{ path('app_dashboard') }}">Dashboard</a> können Kalendertermine und anstehende Termine ebenfalls
         geöffnet und Teilnahme-Rückmeldungen teilweise direkt abgegeben werden. Einstellungen für zusätzlich verfolgte
-        Mannschaften, externe Kalender und Kalenderexporte befinden sich im persönlichen Profil.
+        Mannschaften, Feiertage, externe Kalender und Kalenderabonnements befinden sich im persönlichen Profil.
     </p>
 {% endblock %}
