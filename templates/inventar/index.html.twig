@@ -1,0 +1,232 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inventar – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Inventar</h1>
+
+    <p>
+        Unter <strong>Team &amp; Verein → Inventar</strong> wird Ausrüstung einer Mannschaft oder eines Vereins verwaltet.
+        Ein Artikel enthält seine Gesamtmenge, die aktuell verfügbare Menge und laufende Ausleihen. Zusätzlich können
+        Kategorie, Einheit, Zustand, Beschreibung und interne Notizen hinterlegt werden.
+    </p>
+
+    <p>
+        Der Menüeintrag wird derzeit für Trainer, als Zeugwart erkannte Benutzer sowie Verwaltungsberechtigte angezeigt.
+        Welche Mannschaften und Vereine tatsächlich im Inventar verfügbar sind, richtet sich nach den eigenen
+        Zuordnungen. Einige Staff- oder Funktionärskonten können den Bereich über einen direkten Link ebenfalls öffnen,
+        obwohl <strong>Inventar</strong> bei ihnen nicht im Menü erscheint.
+    </p>
+
+    <h2>Mannschaft oder Verein auswählen</h2>
+
+    <p>
+        Gehören mehrere zugängliche Mannschaften oder Vereine zum eigenen Konto, stehen oberhalb des Inventars
+        entsprechende Auswahlfelder zur Verfügung. Wird eine Mannschaft ausgewählt, zeigt der Reiter
+        <strong>„Artikel“</strong> nur deren Inventar. Wird stattdessen ein Verein gewählt, werden die direkt diesem
+        Verein zugeordneten Artikel angezeigt. Mannschafts- und Vereinsauswahl schließen sich gegenseitig aus.
+    </p>
+
+    <p>
+        Bei genau einer verfügbaren Mannschaft wird sie automatisch verwendet. Bei mehreren Mannschaften wählt
+        Kaderblick zunächst eine direkt zugeordnete Mannschaft; ist keine solche Zuordnung vorhanden, wird der erste
+        verfügbare Eintrag verwendet. Sind keine Mannschaften, aber Vereine vorhanden, wird der erste Verein ausgewählt.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Der Reiter „Ausgeliehen“ wird nicht durch diese Auswahl gefiltert',
+        text: 'Die Mannschafts- und Vereinsauswahl wirkt derzeit nur auf den Reiter „Artikel“. Unter „Ausgeliehen“ werden immer alle aktiven Ausleihen aus sämtlichen Inventaren angezeigt, auf die das eigene Konto Zugriff hat.'
+    } %}
+
+    <h2>Artikelübersicht</h2>
+
+    <p>
+        Im Reiter <strong>„Artikel“</strong> werden die Einträge nach Kategorie zusammengefasst und alphabetisch
+        angeordnet. Ein Artikel ohne Kategorie erscheint unter <strong>„Sonstiges“</strong>. Auf jeder Karte stehen der
+        Name, eine vorhandene Kategorie, der Zustand und die zugehörige Mannschaft beziehungsweise der Verein. Darunter
+        zeigt Kaderblick, wie viel von der Gesamtmenge noch verfügbar und wie viel aktuell ausgeliehen ist.
+    </p>
+
+    <p>
+        Eine vorhandene Beschreibung wird direkt auf der Karte gekürzt angezeigt. Aktive Ausleihen stehen ebenfalls
+        auf der jeweiligen Artikelkarte: Entleiher, Menge und – wenn eingetragen – das vorgesehene Rückgabedatum.
+        Überfällige Rückgaben werden hervorgehoben und zusätzlich mit einem Warnsymbol gekennzeichnet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Inventarübersicht mit mehreren Artikeln',
+        description: 'Den Reiter „Artikel“ mit ausgewählter Mannschaft und mindestens zwei Kategorien aufnehmen. Mindestens ein Artikel sollte teilweise ausgeliehen sein.',
+        items: [
+            'Mannschafts- oder Vereinsauswahl',
+            'Reiter „Artikel“ und „Ausgeliehen“',
+            'Kategorieüberschriften',
+            'Artikelname und Zustand',
+            'Anzeige verfügbar / Gesamtmenge',
+            'mindestens eine aktive Ausleihe auf einer Artikelkarte',
+            'Schaltflächen für Ausleihen, Bearbeiten und Löschen bei einem berechtigten Konto'
+        ],
+        purpose: 'Aufbau der Inventarübersicht und die Verfügbarkeitsanzeige zeigen.'
+    } %}
+
+    <h2>Einen Artikel anlegen</h2>
+
+    <p>
+        Wenn das eigene Konto das ausgewählte Inventar verwalten darf, steht im Reiter <strong>„Artikel“</strong> die
+        Schaltfläche <strong>„Neuer Artikel“</strong> zur Verfügung. Der neue Artikel wird der aktuell ausgewählten
+        Mannschaft beziehungsweise dem aktuell ausgewählten Verein zugeordnet.
+    </p>
+
+    <p>
+        Der <strong>Name</strong> ist erforderlich. Die <strong>Kategorie</strong> kann aus den Vorschlägen
+        <strong>Bälle</strong>, <strong>Trikots</strong>, <strong>Torwart-Ausrüstung</strong>,
+        <strong>Trainingsequipment</strong>, <strong>Medizin</strong>, <strong>Büro</strong>,
+        <strong>Elektronik</strong> und <strong>Sonstiges</strong> gewählt oder frei eingetragen werden. Für den
+        <strong>Zustand</strong> stehen <strong>gut</strong>, <strong>mittel</strong> und <strong>schlecht</strong> zur
+        Verfügung; das Feld kann auch leer bleiben.
+    </p>
+
+    <p>
+        Mit <strong>Gesamtmenge</strong> wird festgelegt, wie viele Einheiten vorhanden sind. Die Menge kann auch 0
+        betragen. Als <strong>Einheit</strong> stehen <strong>Stück</strong>, <strong>Paar</strong>,
+        <strong>Set</strong> und <strong>Satz</strong> zur Auswahl. Beschreibung und Notizen sind optional.
+        Die Beschreibung kann bis zu 500 Zeichen enthalten und erscheint gekürzt auf der Artikelkarte. Die Notizen
+        können ebenfalls bis zu 500 Zeichen enthalten, werden in der Übersicht derzeit jedoch nicht angezeigt; sie
+        sind erst wieder sichtbar, wenn der Artikel bearbeitet wird.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neuen Inventarartikel anlegen',
+        description: 'Den Dialog „Neuer Artikel“ mit beispielhaften, nicht personenbezogenen Angaben aufnehmen.',
+        items: [
+            'Name',
+            'Kategorie',
+            'Zustand',
+            'Gesamtmenge',
+            'Einheit',
+            'Beschreibung',
+            'Notizen',
+            'Schaltfläche „Speichern“'
+        ],
+        purpose: 'Alle Angaben zeigen, die beim Erfassen eines Inventarartikels verfügbar sind.'
+    } %}
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Bei einer übergeordneten Gesamtauswahl keinen Artikel anlegen',
+        text: 'Die Plattformverwaltung kann eine Ansicht ohne konkrete Mannschaft oder konkreten Verein öffnen. Wird in diesem Zustand ein Artikel angelegt, erhält er derzeit keine Zuordnung. Er erscheint unmittelbar nach dem Speichern zwar in der geöffneten Ansicht, kann nach einem erneuten Laden aber wieder verschwinden. Wählt deshalb vor dem Anlegen immer eine konkrete Mannschaft oder einen konkreten Verein.'
+    } %}
+
+    <h2>Artikel bearbeiten</h2>
+
+    <p>
+        Über das Stiftsymbol einer Artikelkarte werden dieselben Angaben wie beim Anlegen geöffnet. Name, Kategorie,
+        Gesamtmenge, Einheit, Zustand, Beschreibung und Notizen können geändert werden. Die Zuordnung zu Mannschaft
+        oder Verein lässt sich in diesem Dialog dagegen nicht wechseln. Soll ein Artikel in einem anderen Inventar
+        geführt werden, gibt es dafür derzeit keine Verschiebefunktion.
+    </p>
+
+    <p>
+        Die verfügbare Menge wird aus der Gesamtmenge abzüglich aller noch offenen Ausleihen berechnet. Beim Bearbeiten
+        verhindert Kaderblick derzeit nicht, dass die Gesamtmenge unter die bereits ausgeliehene Menge gesetzt wird.
+        In diesem Fall zeigt der Artikel weiterhin die tatsächliche Zahl der ausgeliehenen Einheiten, während die
+        verfügbare Menge bei 0 bleibt. Vor einer Verringerung der Gesamtmenge sollten deshalb vorhandene Ausleihen
+        geprüft werden.
+    </p>
+
+    <h2>Artikel ausleihen</h2>
+
+    <p>
+        Das Taschensymbol auf einer Artikelkarte öffnet die Ausleihe. Es ist nur verfügbar, solange mindestens eine
+        Einheit des Artikels frei ist. Im Dialog steht die aktuell verfügbare Menge. Anschließend werden der
+        <strong>Name des Entleihers</strong> und die ausgeliehene <strong>Menge</strong> eingetragen. Die Menge muss
+        mindestens 1 betragen und darf die aktuell verfügbare Menge nicht überschreiten.
+    </p>
+
+    <p>
+        Ein <strong>Rückgabedatum</strong> und eine <strong>Notiz</strong> sind optional. Die Notiz kann bis zu 300
+        Zeichen enthalten. Nach <strong>„Ausleihen“</strong> sinkt die verfügbare Menge des Artikels sofort. Die neue
+        Ausleihe erscheint sowohl auf der Artikelkarte als auch im Reiter <strong>„Ausgeliehen“</strong>.
+    </p>
+
+    <p>
+        Der Entleiher wird derzeit als frei eingegebener Name gespeichert. Es gibt in diesem Dialog keine Auswahl aus
+        Spielern, Trainern oder Benutzerkonten. Die Ausleihe wird deshalb nicht automatisch mit einem Kaderblick-Konto
+        der betreffenden Person verknüpft und erzeugt keine persönliche Inventaransicht oder Benachrichtigung.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Artikel ausleihen',
+        description: 'Den Ausleihdialog eines Artikels mit noch verfügbarer Menge aufnehmen.',
+        items: [
+            'Artikelname im Dialogtitel',
+            'aktuell verfügbare Menge',
+            'Entleiher',
+            'Menge',
+            'optionales Rückgabedatum',
+            'optionale Notiz',
+            'Schaltfläche „Ausleihen“'
+        ],
+        purpose: 'Die Angaben einer neuen Ausleihe und die Mengenbegrenzung zeigen.'
+    } %}
+
+    <h2>Aktive Ausleihen überwachen</h2>
+
+    <p>
+        Der Reiter <strong>„Ausgeliehen“</strong> enthält alle noch nicht zurückgegebenen Ausleihen aus den Inventaren,
+        auf die das eigene Konto Zugriff hat. Die Tabelle zeigt Artikel, Entleiher, Menge, Zeitpunkt der Ausleihe,
+        Rückgabedatum und eine vorhandene Notiz. Neuere Ausleihen stehen zuerst.
+    </p>
+
+    <p>
+        Ist ein Rückgabedatum überschritten, wird die Zeile hervorgehoben. Der aktuelle Stand behandelt eine Ausleihe
+        bereits noch am angegebenen Rückgabetag als überfällig, sobald dieser Datumswert zeitlich hinter der aktuellen
+        Uhrzeit liegt; die Frist wird nicht bis zum Ende des Kalendertages verlängert.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Aktive Ausleihen',
+        description: 'Den Reiter „Ausgeliehen“ mit mehreren laufenden Ausleihen aufnehmen. Eine davon sollte als überfällig markiert sein.',
+        items: [
+            'Artikel',
+            'Entleiher',
+            'Menge',
+            'Ausgeliehen am',
+            'Rückgabe bis',
+            'Notiz',
+            'Markierung einer überfälligen Ausleihe',
+            'Schaltfläche zum Markieren der Rückgabe bei einem berechtigten Konto'
+        ],
+        purpose: 'Die zentrale Übersicht laufender und überfälliger Ausleihen zeigen.'
+    } %}
+
+    <h2>Eine Rückgabe erfassen</h2>
+
+    <p>
+        Berechtigte Personen können eine laufende Ausleihe über das grüne Häkchen als zurückgegeben markieren. Diese
+        Schaltfläche steht sowohl direkt an der Ausleihe auf der Artikelkarte als auch im Reiter
+        <strong>„Ausgeliehen“</strong> zur Verfügung. Nach dem Markieren wird die ausgeliehene Menge wieder verfügbar
+        und die Ausleihe aus beiden Ansichten entfernt.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Rückgaben werden ohne Bestätigung gespeichert',
+        text: 'Das grüne Häkchen markiert die Ausleihe unmittelbar als zurückgegeben. Es gibt in der aktuellen Oberfläche weder einen Bestätigungsdialog noch eine Funktion zum Rückgängigmachen. Außerdem zeigt das Inventar derzeit keinen Verlauf bereits abgeschlossener Ausleihen an.'
+    } %}
+
+    <h2>Einen Artikel löschen</h2>
+
+    <p>
+        Das Papierkorbsymbol öffnet einen Bestätigungsdialog. Nach der Bestätigung wird der Artikel endgültig gelöscht.
+        Dabei werden auch sämtliche zugehörigen Ausleihdaten entfernt – sowohl laufende als auch bereits abgeschlossene
+        Ausleihen. Das Löschen eines Artikels ist deshalb nicht mit dem bloßen Entfernen aus der aktuellen Übersicht
+        gleichzusetzen.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Löschen entfernt auch die Ausleihhistorie',
+        text: 'Ein gelöschter Artikel und seine zugehörigen Ausleihen können über das Inventar nicht wiederhergestellt werden. Falls laufende Ausleihen noch nachvollzogen werden müssen, sollten sie vor dem Löschen geprüft werden.'
+    } %}
+{% endblock %}
