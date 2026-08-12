@@ -33,6 +33,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'Beobachtungsliste' => ['/beobachtungsliste', 'Beobachtungsliste'];
         yield 'Strafenkatalog' => ['/strafenkatalog', 'Strafenkatalog'];
         yield 'Inventar' => ['/inventar', 'Inventar'];
+        yield 'Kassenbuch' => ['/kassenbuch', 'Kassenbuch'];
         yield 'Quick-Event-Konfiguration' => ['/quick-event-konfiguration', 'Quick-Event-Konfiguration'];
         yield 'Spiele' => ['/spiele', 'Spiele'];
         yield 'Mein Spieltag' => ['/mein-spieltag', 'Mein Spieltag'];
