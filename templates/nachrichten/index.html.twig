@@ -3,80 +3,366 @@
 {% block title %}Nachrichten – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>💬 Nachrichten</h1>
+    <h1>Nachrichten</h1>
+
     <p>
-        Direktnachrichten und Gruppenunterhaltungen innerhalb von Kaderblick –
-        ohne externe Messenger.
+        Im Nachrichtenfenster verwaltet ihr empfangene und gesendete Nachrichten. Eine Nachricht kann an einzelne
+        Personen, eine eigene Empfängergruppe oder an ausgewählte Mannschaften und Vereine gerichtet werden.
+        Antworten werden der ursprünglichen Nachricht als gemeinsamer Verlauf zugeordnet.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '✉️', title: 'Direktnachrichten', desc: 'Eins-zu-eins-Nachrichten an andere Mitglieder senden.' },
-            { icon: '👥', title: 'Gruppenunterhaltungen', desc: 'Teamchat, Elternchat, Trainerchat und eigene Gruppen.' },
-            { icon: '🔔', title: 'Benachrichtigungen', desc: 'In-App und Push (bei installierter PWA) bei neuen Nachrichten.' },
-        ]
-    } %}
+    <h2>Nachrichten öffnen und ungelesene Nachrichten erkennen</h2>
 
-    {# ─── Direktnachrichten ─── #}
-    <h2>Direktnachrichten</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Nachrichten öffnen', text: 'Im Menü auf <strong>„Nachrichten"</strong> klicken.' },
-            { title: 'Neue Nachricht', text: 'Auf <strong>„Neue Nachricht"</strong> klicken.' },
-            { title: 'Empfänger wählen', text: 'Den gewünschten Empfänger suchen und auswählen.' },
-            { title: 'Schreiben & senden', text: 'Nachricht verfassen und absenden.' },
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/nachrichten/direktnachricht.png',
-        alt: 'Direktnachricht senden',
-        caption: 'Eine Direktnachricht an ein anderes Mitglied verfassen.'
-    } %}
-
-    {# ─── Gruppenunterhaltungen ─── #}
-    <h2>Gruppenunterhaltungen</h2>
     <p>
-        Erstellt Gruppen für euer Team, Eltern oder Trainer. Gebt der Gruppe einen
-        <strong>Namen</strong> und fügt die gewünschten <strong>Mitglieder</strong> hinzu.
+        In der Navigation öffnet das Briefumschlag-Symbol das Nachrichtenfenster. Eine Zahl am Symbol zeigt an,
+        wie viele empfangene Nachrichten für euch noch als ungelesen gelten. Diese Anzeige ist von der allgemeinen
+        Benachrichtigungsanzeige getrennt.
     </p>
-    <ul>
-        <li><strong>Teamchat</strong> — Alle Spieler eines Teams</li>
-        <li><strong>Elternchat</strong> — Für Eltern der Jugendspieler</li>
-        <li><strong>Trainerchat</strong> — Austausch unter Trainern</li>
-    </ul>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/nachrichten/gruppenchat.png',
-        alt: 'Gruppenunterhaltung',
-        caption: 'Der Teamchat für schnelle Absprachen.'
+    <p>
+        Wenn auf eurem <a href="{{ path('app_dashboard') }}">Dashboard</a> die Kachel <strong>Nachrichten</strong>
+        eingerichtet ist, könnt ihr eine dort angezeigte Nachricht ebenfalls direkt öffnen. Die Kachel zeigt den
+        Betreff, den Absender und den Sendezeitpunkt der aufgeführten Nachrichten.
+    </p>
+
+    <p>
+        Sobald ihr eine empfangene Nachricht öffnet, wird sie als gelesen markiert. Eine zu genau dieser Nachricht
+        gehörende Benachrichtigung wird dabei ebenfalls als gelesen gesetzt und die Zahl ungelesener Nachrichten
+        wird aktualisiert.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Nachrichtenfenster mit Posteingang und geöffneter Nachricht',
+        description: 'Bitte das Nachrichtenfenster am Computer mit mehreren Einträgen im Posteingang und einer geöffneten Nachricht aufnehmen.',
+        items: [
+            'Überschrift Nachrichten mit Zähler für ungelesene Nachrichten',
+            'Reiter Posteingang und Gesendet',
+            'Suchfeld',
+            'Schaltflächen für chronologische Ansicht und Konversationsansicht',
+            'mindestens eine ungelesene und eine gelesene Nachricht in der Liste',
+            'geöffnete Nachricht mit Betreff, Absender, Zeitpunkt, Empfängern und Nachrichtentext'
+        ],
+        purpose: 'Aufbau des Nachrichtenfensters und die wichtigsten Bedienelemente zeigen.'
     } %}
 
-    {# ─── Benachrichtigungen ─── #}
-    <h2>Benachrichtigungen</h2>
+    <h2>Posteingang und gesendete Nachrichten</h2>
+
     <p>
-        Bei neuen Nachrichten erhaltet ihr eine <strong>In-App-Benachrichtigung</strong>.
-        Wenn ihr Kaderblick als PWA installiert habt, bekommt ihr auch
-        <strong>Push-Benachrichtigungen</strong> auf euer Smartphone.
+        In der <strong>chronologischen Ansicht</strong> stehen oben die Reiter <strong>Posteingang</strong> und
+        <strong>Gesendet</strong>. Im Posteingang seht ihr Nachrichten, deren Empfänger ihr seid. Unter
+        <strong>Gesendet</strong> stehen Nachrichten, die ihr selbst begonnen habt. Ungelesene Einträge werden in
+        der Liste hervorgehoben.
+    </p>
+
+    <p>
+        Ein Listeneintrag zeigt Absender beziehungsweise Empfänger, den Betreff, einen kurzen Ausschnitt aus dem
+        Nachrichtentext und den Sendezeitpunkt. Kaderblick lädt zunächst bis zu 30 Einträge. Sind weitere vorhanden,
+        erscheint unter der Liste die Schaltfläche <strong>Weitere laden</strong>.
+    </p>
+
+    <h3>Nachrichten suchen</h3>
+
+    <p>
+        Das Suchfeld filtert die aktuell angezeigte Nachrichtenliste nach <strong>Betreff</strong> und
+        <strong>Absender</strong>. Der vollständige Nachrichtentext, Empfängernamen und Antworttexte innerhalb einer
+        Unterhaltung werden nicht durchsucht. Im Bereich <strong>Gesendet</strong> ist deshalb vor allem die Suche
+        nach dem Betreff relevant.
+    </p>
+
+    <h3>Alle empfangenen Nachrichten als gelesen markieren</h3>
+
+    <p>
+        Wenn im Posteingang die Schaltfläche <strong>Alle als gelesen markieren</strong> angezeigt wird, setzt sie
+        sämtliche für euch empfangenen Nachrichten auf gelesen. Das betrifft auch ungelesene Antworten innerhalb
+        von Unterhaltungen.
+    </p>
+
+    <h2>Chronologische Ansicht und Konversationsansicht</h2>
+
+    <p>
+        Über die beiden Symbole neben der Nachrichtenliste wechselt ihr zwischen <strong>Chronologisch</strong> und
+        <strong>Als Threads anzeigen</strong>. Die zweite Einstellung ist die Konversationsansicht. Die gewählte
+        Ansicht bleibt für die nächste Verwendung gespeichert.
+    </p>
+
+    <p>
+        Die chronologische Ansicht trennt Posteingang und gesendete Nachrichten. Sie führt dabei jeweils die
+        <strong>erste Nachricht einer Unterhaltung</strong> als Listeneintrag. Antworten auf diese Nachricht werden
+        nicht als zusätzliche Einträge im Posteingang oder unter Gesendet aufgeführt.
+    </p>
+
+    <p>
+        In der Konversationsansicht werden selbst begonnene und empfangene Unterhaltungen gemeinsam angezeigt.
+        Bei einer Unterhaltung mit Antworten erscheint eine Schaltfläche zum Aufklappen sowie die Zahl der
+        vorhandenen Antworten. Nach dem Aufklappen seht ihr die Nachrichten des Verlaufs in ihrer zeitlichen
+        Reihenfolge. Eigene Nachrichten werden im Verlauf mit <strong>Ich</strong> gekennzeichnet. Bei einer noch
+        nicht gelesenen Antwort erscheint an der zusammengeklappten Unterhaltung zusätzlich ein Hinweis auf
+        ungelesene Antworten.
     </p>
 
     {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Installiert Kaderblick als App auf eurem Smartphone, um keine Nachricht zu verpassen. Mehr dazu unter <a href="' ~ path('app_erste_schritte') ~ '">Erste Schritte</a>.'
+        type: 'info',
+        title: 'Antworten auf selbst begonnene Unterhaltungen',
+        text: 'Wenn ihr eine Unterhaltung selbst begonnen habt, bleibt ihre erste Nachricht in der chronologischen Ansicht unter „Gesendet“. Eingehende Antworten darauf findet ihr im vollständigen Verlauf der Konversationsansicht. Das ist insbesondere dann relevant, wenn der Briefumschlag ungelesene Nachrichten meldet, im Posteingang aber kein neuer Eintrag erscheint.'
     } %}
 
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Konversationsansicht mit aufgeklapptem Verlauf',
+        description: 'Bitte die Nachrichtenansicht im Modus „Als Threads anzeigen“ mit mindestens einer aufgeklappten Unterhaltung aufnehmen.',
+        items: [
+            'Schaltfläche für die aktive Konversationsansicht',
+            'eine Unterhaltung mit Antwortzähler',
+            'aufgeklappte Antworten unter der ersten Nachricht',
+            'Kennzeichnung einer eigenen Nachricht mit Ich',
+            'falls möglich ein Hinweis auf eine ungelesene Antwort'
+        ],
+        purpose: 'Unterschied zwischen der chronologischen Liste und einem vollständigen Nachrichtenverlauf zeigen.'
+    } %}
 
-    <h3>Gibt es Lesebestätigungen?</h3>
-    <p>Nein, aktuell werden keine Lesebestätigungen angezeigt.</p>
+    <h2>Eine Nachricht lesen</h2>
 
-    <h3>Kann ich aus einer Gruppe austreten?</h3>
-    <p>Wendet euch an den Gruppenadministrator.</p>
+    <p>
+        Beim Öffnen einer Nachricht zeigt die Detailansicht den <strong>Betreff</strong>, den
+        <strong>Absender</strong>, Datum und Uhrzeit, die Empfänger und den vollständigen Nachrichtentext. Wurde die
+        Nachricht über eine Mannschaft oder einen Verein verschickt, kann bei den Empfängern zusätzlich die
+        verwendete Zielgruppe wie <strong>Nur Spieler</strong>, <strong>Nur Trainer</strong> oder
+        <strong>Nur Eltern</strong> erscheinen. Bei älteren Nachrichten können stattdessen nur die einzelnen
+        Empfängernamen angezeigt werden.
+    </p>
 
-    <h3>Gibt es eine Suchfunktion?</h3>
-    <p>Aktuell könnt ihr durch Scrollen in der Unterhaltung navigieren.</p>
+    <p>
+        Antworten, die über die Antwortfunktion erstellt wurden, enthalten unter dem neuen Text die vorherige
+        Nachricht. Kaderblick stellt diesen Teil in der Detailansicht getrennt als
+        <strong>Ursprüngliche Nachricht</strong> dar.
+    </p>
+
+    <p>
+        Der Gelesen-/Ungelesen-Status ist für eure eigene Nachrichtenansicht bestimmt. Kaderblick zeigt dem Absender
+        keine Lesebestätigung dafür an, ob ein Empfänger die Nachricht bereits geöffnet hat.
+    </p>
+
+    <h2>Auf eine Nachricht antworten</h2>
+
+    <p>
+        Bei einer empfangenen Nachricht steht <strong>Antworten</strong> zur Verfügung, solange der Absender aktuell
+        zu euren erreichbaren Kontakten gehört oder eine plattformweite Verwaltungsberechtigung besitzt. Kaderblick
+        trägt den Absender als festen Empfänger ein, ergänzt den Betreff um <strong>Re:</strong> und übernimmt die
+        ursprüngliche Nachricht unterhalb eures neuen Textes. Beginnt der Betreff bereits mit <strong>Re:</strong>,
+        wird dieser Zusatz nicht erneut vorangestellt.
+    </p>
+
+    <p>
+        Wurde eine Nachricht an mehrere Personen geschickt, erscheint zusätzlich <strong>Allen antworten</strong>.
+        Dabei werden der Absender und die ursprünglichen Empfänger als feste Empfängerliste übernommen. Die so
+        versendete Antwort bleibt Teil derselben Unterhaltung.
+    </p>
+
+    <p>
+        Ist der Absender einer älteren Nachricht inzwischen nicht mehr über einen gemeinsamen aktiven Mannschafts-
+        oder Vereinsbezug erreichbar, kann die Nachricht weiterhin gelesen werden; die direkte Antwortfunktion wird
+        dann jedoch nicht angeboten.
+    </p>
+
+    <h2>Eine Nachricht weiterleiten oder erneut senden</h2>
+
+    <p>
+        <strong>Weiterleiten</strong> öffnet einen neuen Entwurf mit dem bisherigen Nachrichtentext und einem Betreff,
+        der mit <strong>Fw:</strong> beginnt. Empfänger sind dabei noch nicht festgelegt und können neu gewählt werden.
+    </p>
+
+    <p>
+        Bei einer von euch gesendeten Nachricht steht statt der Antwortfunktion <strong>Erneut senden</strong> zur
+        Verfügung. Dabei werden die bisherigen Empfänger, der Betreff und der Nachrichtentext übernommen. Anders als
+        bei einer Antwort ist die Empfängerliste nicht gesperrt und kann vor dem erneuten Versand geändert werden.
+        Eine bereits gesendete Nachricht selbst kann nicht nachträglich bearbeitet werden.
+    </p>
+
+    <h2>Eine Nachricht wieder als ungelesen markieren</h2>
+
+    <p>
+        In der Detailansicht einer empfangenen Nachricht setzt <strong>Ungelesen</strong> den Nachrichtenstatus wieder
+        auf ungelesen. Die Nachricht wird dadurch erneut in der Nachrichtenanzeige berücksichtigt. Eine bereits als
+        gelesen markierte Benachrichtigung wird dadurch jedoch nicht ebenfalls wieder auf ungelesen gesetzt.
+    </p>
+
+    <h2>Nachrichten löschen</h2>
+
+    <p>
+        Vor dem Löschen einer Nachricht verlangt Kaderblick eine Bestätigung. Die Wirkung unterscheidet sich danach,
+        ob ihr die Nachricht empfangen oder selbst gesendet habt.
+    </p>
+
+    <p>
+        Löscht ihr eine <strong>empfangene</strong> Nachricht, wird sie aus eurem eigenen Nachrichtenbestand entfernt.
+        Andere Empfänger behalten ihre Nachricht. Löscht ihr dagegen eine <strong>selbst gesendete</strong> Nachricht,
+        wird diese Nachricht vollständig entfernt und steht anschließend auch den Empfängern nicht mehr zur Verfügung.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Gesendete Nachrichten werden beim Löschen vollständig entfernt',
+        text: 'Die Löschfunktion unter „Gesendet“ ist kein reines Aufräumen des eigenen Postausgangs. Eine von euch gesendete Nachricht wird beim Löschen insgesamt entfernt. Der Vorgang kann nicht rückgängig gemacht werden.'
+    } %}
+
+    <h2>Eine neue Nachricht verfassen</h2>
+
+    <p>
+        Über <strong>Neue Nachricht</strong> öffnet ihr das Nachrichtenformular. Am Computer bleibt die
+        Nachrichtenliste links sichtbar; auf dem Smartphone wechselt das Fenster vollständig zum Formular. Für den
+        Versand sind mindestens ein Empfängerziel, ein <strong>Betreff</strong> und ein
+        <strong>Nachrichtentext</strong> erforderlich. Datei- oder Bildanhänge werden im aktuellen Nachrichtenformular
+        nicht angeboten.
+    </p>
+
+    <p>
+        Empfängerziele können kombiniert werden. Ihr könnt beispielsweise einzelne Personen auswählen und zusätzlich
+        eine Mannschaft oder eine eigene Empfängergruppe hinzufügen. Personen, die über mehrere gewählte Ziele
+        erreicht werden, erhalten die Nachricht nur einmal.
+    </p>
+
+    <h3>Einzelne Personen auswählen</h3>
+
+    <p>
+        Im Feld <strong>An</strong> sucht ihr nach Personen und könnt mehrere auswählen. Angeboten werden Benutzer,
+        mit denen ihr über eine aktuell aktive Mannschaft oder einen aktuell aktiven Verein verbunden seid. Neben
+        dem Namen kann Kaderblick den Zusammenhang anzeigen, zum Beispiel <strong>Spieler · Mannschaftsname</strong>
+        oder <strong>Trainer · Vereinsname</strong>. Dadurch lassen sich gleichnamige Personen unterscheiden.
+    </p>
+
+    <p>
+        Benutzer mit plattformweiter Verwaltungsberechtigung können alle aktiven und bestätigten Benutzer auswählen.
+        Für andere Benutzer richtet sich die Personenauswahl nach den gemeinsamen aktuellen Mannschafts- und
+        Vereinsbezügen.
+    </p>
+
+    <h3>Eine eigene Empfängergruppe verwenden</h3>
+
+    <p>
+        Über <strong>+ Gruppe</strong> blendet ihr die Gruppenauswahl ein. Dort stehen die Empfängergruppen zur
+        Verfügung, die ihr selbst angelegt habt. Eine Gruppe ist eine wiederverwendbare Empfängerliste: Beim Senden
+        erhalten die derzeit in der Gruppe hinterlegten Mitglieder jeweils die Nachricht.
+    </p>
+
+    <p>
+        Empfängergruppen sind keine gemeinsamen Gruppen-Chats. Andere Mitglieder sehen die Gruppe nicht als eigenen
+        Gesprächsraum und können aus ihr weder selbst austreten noch sie verwalten. Antworten auf eine über eine
+        Gruppe versendete Nachricht werden wie andere Antworten dem jeweiligen Nachrichtenverlauf zugeordnet.
+    </p>
+
+    <h3>Eine Mannschaft als Empfängerziel verwenden</h3>
+
+    <p>
+        Über <strong>+ Team</strong> könnt ihr eine oder mehrere Mannschaften hinzufügen. Zur Auswahl stehen eure
+        aktuell verbundenen Mannschaften. Für jede Mannschaft legt ihr anschließend fest, welche Personengruppe die
+        Nachricht erhalten soll: <strong>Spieler</strong>, <strong>Trainer</strong>, <strong>Eltern</strong> oder
+        <strong>Alle</strong>. Mehrere der einzelnen Gruppen können miteinander kombiniert werden.
+    </p>
+
+    <h3>Einen Verein als Empfängerziel verwenden</h3>
+
+    <p>
+        <strong>+ Verein</strong> funktioniert entsprechend für eure aktuell verbundenen Vereine. Auch hier könnt ihr
+        die Nachricht auf Spieler, Trainer oder Eltern begrenzen. Benutzer mit plattformweiter Verwaltungsberechtigung
+        können bei der Mannschafts- und Vereinsauswahl auf alle verfügbaren Einträge zugreifen.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: '„Alle“ umfasst derzeit Spieler und Trainer, nicht Eltern',
+        text: 'Bei einem Team- oder Vereinsziel erreicht die Auswahl „Alle“ im aktuellen Stand Spieler und Trainer. Eltern werden nur über die ausdrückliche Auswahl „Eltern“ einbezogen. Spieler, Trainer und Eltern lassen sich derzeit nicht gemeinsam über einen einzigen Team- oder Vereinsfilter auswählen; dafür sind getrennte Nachrichten, eine eigene Empfängergruppe oder zusätzliche einzelne Empfänger erforderlich.'
+    } %}
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neue Nachricht mit verschiedenen Empfängerzielen',
+        description: 'Bitte das Formular „Neue Nachricht“ aufnehmen. Neben einer einzelnen Person sollte mindestens ein Team eingeblendet sein, bei dem die Zielgruppen-Auswahl sichtbar ist.',
+        items: [
+            'Feld An mit ausgewählter Person und ihrem Zusammenhang',
+            'Schaltflächen + Gruppe, + Team und + Verein soweit für das Beispielkonto verfügbar',
+            'ausgewählte Mannschaft mit den Zielgruppen Spieler, Trainer, Eltern und Alle',
+            'Betreff',
+            'Nachrichtentext',
+            'Schaltfläche Senden'
+        ],
+        purpose: 'Die verschiedenen Möglichkeiten zur Empfängerauswahl und die Zielgruppen einer Mannschaft zeigen.'
+    } %}
+
+    <h2>Wann die interne Kommunikation verfügbar ist</h2>
+
+    <p>
+        Für die normale Personensuche sowie die Mannschafts- und Vereinsauswahl benötigt euer Benutzerkonto einen
+        aktiven Bezug zu mindestens einem Spieler oder Trainer mit einer aktuellen Mannschafts- oder
+        Vereinszuordnung. Fehlt ein solcher Bezug, zeigt das Nachrichtenformular den Hinweis
+        <strong>Kein Zugriff auf die interne Kommunikation</strong> und der Versand ist in der aktuellen Oberfläche
+        nicht möglich.
+    </p>
+
+    <p>
+        Diese Einschränkung betrifft nicht bereits empfangene Nachrichten, die weiterhin im eigenen Nachrichtenbestand
+        vorhanden sind. Benutzer mit plattformweiter Verwaltungsberechtigung verfügen über eine erweiterte
+        Empfängerauswahl.
+    </p>
+
+    <h2>Nachricht senden und Entwurf verwerfen</h2>
+
+    <p>
+        <strong>Senden</strong> prüft, ob Betreff, Nachrichtentext und mindestens ein Empfängerziel vorhanden sind.
+        Nach erfolgreichem Versand zeigt Kaderblick die Bestätigung <strong>Nachricht gesendet!</strong>. Danach könnt
+        ihr über <strong>Weitere Nachricht</strong> einen neuen Entwurf beginnen oder über
+        <strong>Zum Postausgang</strong> in den Bereich <strong>Gesendet</strong> wechseln.
+    </p>
+
+    <p>
+        Wenn ihr einen begonnenen Entwurf verlasst, fragt Kaderblick vor dem Verwerfen nach, sobald bereits ein
+        Betreff oder Nachrichtentext eingetragen oder ein Team beziehungsweise Verein als Ziel gewählt wurde. Die
+        reine Auswahl einzelner Personen oder einer Empfängergruppe löst diese Rückfrage im aktuellen Stand nicht aus.
+    </p>
+
+    <h2>Eigene Empfängergruppen verwalten</h2>
+
+    <p>
+        Blendet beim Verfassen einer Nachricht <strong>+ Gruppe</strong> ein und öffnet anschließend
+        <strong>Gruppen verwalten</strong>. In dieser Verwaltung seht ihr ausschließlich eure eigenen
+        Empfängergruppen mit der jeweiligen Mitgliederzahl.
+    </p>
+
+    <p>
+        Über <strong>Neue Gruppe</strong> legt ihr einen Gruppennamen fest und wählt die gewünschten Mitglieder aus
+        euren erreichbaren Kontakten. Ein Gruppenname ist erforderlich. Beim späteren Bearbeiten könnt ihr den Namen
+        ändern sowie Mitglieder hinzufügen oder entfernen. Änderungen wirken auf zukünftige Nachrichten, bei denen
+        ihr die Gruppe auswählt.
+    </p>
+
+    <p>
+        Das Löschen einer Empfängergruppe erfolgt in der aktuellen Gruppenverwaltung direkt über das Löschsymbol,
+        ohne zusätzliche Bestätigungsabfrage. Bereits über diese Gruppe versendete Nachrichten bleiben bei ihren
+        Empfängern erhalten; gelöscht wird die wiederverwendbare Gruppe für zukünftige Nachrichten.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Empfängergruppen verwalten',
+        description: 'Bitte die Gruppenverwaltung mit mindestens zwei Beispielgruppen und geöffnetem Formular zum Bearbeiten oder Anlegen einer Gruppe aufnehmen.',
+        items: [
+            'Schaltfläche Neue Gruppe',
+            'Gruppenname',
+            'Mitgliederauswahl',
+            'Mitgliederzahl einer vorhandenen Gruppe',
+            'Schaltflächen zum Bearbeiten und Löschen'
+        ],
+        purpose: 'Zeigen, dass Empfängergruppen persönliche Verteilerlisten sind und wo ihre Mitglieder verwaltet werden.'
+    } %}
+
+    <h2>Nachrichten und Benachrichtigungen</h2>
+
+    <p>
+        Beim Versand erzeugt Kaderblick für die Empfänger zusätzlich eine Benachrichtigung vom Typ
+        <strong>Nachrichten</strong>, sofern diese Benachrichtigung in den persönlichen Einstellungen aktiviert ist.
+        Die Benachrichtigung enthält den Absender und den Betreff und verweist auf die betreffende Nachricht. Die
+        Nachricht selbst wird unabhängig davon zugestellt, ob diese zusätzliche Benachrichtigung aktiviert ist.
+    </p>
+
+    <p>
+        Weitere Einstellungen dazu sind unter
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a> beschrieben. Das Briefumschlag-Symbol
+        und sein Zähler richten sich dagegen unmittelbar nach dem Gelesen-/Ungelesen-Status der Nachrichten.
+    </p>
 {% endblock %}
