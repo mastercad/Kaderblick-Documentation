@@ -1,0 +1,287 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quick-Event-Konfiguration – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Quick-Event-Konfiguration</h1>
+
+    <p>
+        Unter <strong>„Quick-Event Konfiguration“</strong> legt ihr fest, welche Schaltflächen in der Fernbedienung für
+        laufende Spiele angezeigt werden. Eine Konfiguration bestimmt die Reihenfolge der Schaltflächen, die zugehörigen
+        Ereignistypen, die angezeigten Bezeichnungen und zusätzliche Auswahlmöglichkeiten bei längerem Drücken.
+    </p>
+
+    <p>
+        Für Trainer erscheint der Bereich in der Trainer-Navigation. Supporter und Superadministratoren dürfen die Seite
+        ebenfalls verwenden. Andere Benutzer erhalten beim direkten Aufruf eine Meldung, dass der Zugriff nicht erlaubt ist.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Übersicht der Quick-Event-Konfigurationen',
+        description: 'Die Seite „Quick-Event-Konfigurationen“ mit mindestens zwei eigenen Konfigurationen und einer geteilten Konfiguration aufnehmen.',
+        items: [
+            'Schaltfläche „Neue Konfiguration“',
+            'eine aktive eigene Konfiguration mit Kennzeichnung „Aktiv“',
+            'eine weitere eigene Konfiguration',
+            'Bereich „Mit mir geteilt“',
+            'Aktionen zum Aktivieren, Teilen, Kopieren, Bearbeiten und Löschen'
+        ],
+        purpose: 'Aufbau der Übersicht und die unterschiedlichen Aktionen für eigene und geteilte Konfigurationen zeigen.'
+    } %}
+
+    <h2>Eigene und geteilte Konfigurationen</h2>
+
+    <p>
+        Eigene Konfigurationen stehen im oberen Teil der Seite. Jede Zeile zeigt den Namen, die Anzahl der enthaltenen
+        Schaltflächen und das Datum der letzten Änderung. Eine aktive Konfiguration ist zusätzlich mit
+        <strong>„Aktiv“</strong> gekennzeichnet. Wurde die Konfiguration mit anderen Personen geteilt, zeigt
+        <strong>„Geteilt“</strong> die Anzahl der Freigaben.
+    </p>
+
+    <p>
+        Konfigurationen, die ein anderer Benutzer mit euch geteilt hat, stehen unter <strong>„Mit mir geteilt“</strong>.
+        Diese Einträge können nicht direkt verändert oder aktiviert werden. Ihr könnt daraus eine eigene Kopie erstellen.
+        Beim Bearbeiten einer geteilten Konfiguration erstellt Kaderblick automatisch zuerst eine eigene Kopie und öffnet
+        anschließend diese Kopie im Editor.
+    </p>
+
+    <h2>Neue Konfiguration anlegen</h2>
+
+    <p>
+        Über <strong>„Neue Konfiguration“</strong> öffnet ihr den Editor. Ein Name ist erforderlich. Eine neue
+        Konfiguration beginnt mit der derzeitigen Standardbelegung. Sie enthält die drei Schaltflächen für den Spielstatus
+        <strong>„1. Halbzeit starten“</strong>, <strong>„Spielunterbrechung“</strong> und
+        <strong>„Spielabbruch“</strong> sowie die Spielereignisse <strong>„Tor“</strong>, <strong>„Schuss“</strong>,
+        <strong>„Ecke“</strong>, <strong>„Vorlage“</strong>, <strong>„Karte“</strong>, <strong>„Wechsel“</strong>
+        und <strong>„Foul“</strong>.
+    </p>
+
+    <p>
+        Die Vorschau im oberen Teil des Editors entspricht der Aufteilung der späteren Fernbedienung. Schaltflächen für den
+        Spielstatus stehen unter <strong>„MATCH-STATUS“</strong>, die übrigen unter <strong>„SPIELEREVENTS“</strong>.
+        Änderungen werden erst übernommen, wenn ihr den gesamten Dialog mit <strong>„Speichern“</strong> abschließt.
+        <strong>„Abbrechen“</strong> verwirft die Änderungen seit dem Öffnen des Dialogs.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Editor einer Quick-Event-Konfiguration',
+        description: 'Den Dialog „Konfiguration bearbeiten“ mit einer typischen Belegung aufnehmen. Eine Kachel soll ausgewählt sein, sodass der Bereich „Button bearbeiten“ sichtbar ist.',
+        items: [
+            'Namensfeld',
+            'Live-Vorschau mit „MATCH-STATUS“ und „SPIELEREVENTS“',
+            'Verschiebegriff an den Kacheln',
+            'ausgewählte Kachel',
+            'Feld „Bezeichnung“',
+            'Auswahl „Ereignistyp“',
+            'Bereich „Long-Press-Optionen“',
+            'Schaltflächen „Abbrechen“ und „Speichern“'
+        ],
+        purpose: 'Die Bearbeitung einer Konfiguration und die Lage der wichtigsten Einstellungen zeigen.'
+    } %}
+
+    <h2>Schaltfläche bearbeiten</h2>
+
+    <p>
+        Ein Klick oder Tippen auf eine Kachel öffnet darunter <strong>„Button bearbeiten“</strong>. Im Feld
+        <strong>„Bezeichnung“</strong> ändert ihr den Text, der auf der Schaltfläche erscheinen soll. Unter
+        <strong>„Ereignistyp“</strong> legt ihr fest, welches Spielereignis beim Verwenden der Schaltfläche erfasst wird.
+    </p>
+
+    <p>
+        Die Ereignistyp-Auswahl zeigt die vorhandenen Ereignisse nach Gruppen. Über das Suchfeld könnt ihr nach dem Namen
+        oder der internen Kurzbezeichnung des Ereignisses suchen. Farbe und Symbol der Kachel werden durch den ausgewählten
+        Ereignistyp bestimmt und können im Konfigurationseditor nicht unabhängig davon eingestellt werden.
+    </p>
+
+    <p>
+        Wenn ihr einen anderen Ereignistyp auswählt, setzt Kaderblick die Bezeichnung der Schaltfläche zunächst auf den Namen
+        dieses Ereignistyps. Soll die Kachel anschließend einen abweichenden Text tragen, ändert ihr die
+        <strong>Bezeichnung</strong> danach erneut.
+    </p>
+
+    <p>
+        Über den Papierkorb im Bearbeitungsbereich löscht ihr die ausgewählte Schaltfläche aus der Konfiguration. Einen
+        zusätzlichen Bestätigungsdialog gibt es dabei nicht. Solange der Konfigurationsdialog noch geöffnet ist, wird die
+        Löschung erst mit <strong>„Speichern“</strong> dauerhaft übernommen.
+    </p>
+
+    <h2>Schaltflächen hinzufügen und anordnen</h2>
+
+    <p>
+        Die Kachel <strong>„Hinzufügen“</strong> ergänzt eine neue Schaltfläche. Sie wird zunächst als normales
+        Spielereignis angelegt und verwendet als Ausgangspunkt den Ereignistyp <strong>„Tor“</strong>. Danach könnt ihr
+        Ereignistyp und Bezeichnung wie bei jeder anderen Kachel ändern.
+    </p>
+
+    <p>
+        Neue Kacheln werden derzeit immer dem Bereich <strong>„SPIELEREVENTS“</strong> zugeordnet. Im Editor gibt es keine
+        Einstellung, mit der eine neu angelegte Kachel nachträglich in <strong>„MATCH-STATUS“</strong> verschoben oder eine
+        vorhandene Status-Kachel in eine normale Ereigniskachel umgewandelt werden kann.
+    </p>
+
+    <p>
+        Innerhalb eines Bereichs könnt ihr Kacheln am Verschiebegriff mit Maus oder Finger an eine andere Position ziehen.
+        Im geöffneten Bearbeitungsbereich stehen zusätzlich Pfeile für <strong>„Nach oben“</strong> und
+        <strong>„Nach unten“</strong> zur Verfügung. Die Zugehörigkeit zu <strong>„MATCH-STATUS“</strong> oder
+        <strong>„SPIELEREVENTS“</strong> bleibt dabei bestehen.
+    </p>
+
+    <h2>Zusätzliche Auswahl bei längerem Drücken</h2>
+
+    <p>
+        Zu einer Schaltfläche können mehrere <strong>Long-Press-Optionen</strong> hinterlegt werden. Diese erscheinen in der
+        Fernbedienung, wenn die Schaltfläche ungefähr eine halbe Sekunde gedrückt gehalten wird. Ein kurzes Antippen löst
+        weiterhin das Hauptereignis der Schaltfläche aus.
+    </p>
+
+    <p>
+        Über das Plus im Bereich <strong>„Long-Press-Optionen“</strong> fügt ihr einen Eintrag hinzu. Ein neuer Eintrag
+        beginnt derzeit mit dem Ereignistyp <strong>„Gelbe Karte“</strong>. Nach der Auswahl des Eintrags könnt ihr seine
+        Bezeichnung und seinen Ereignistyp ändern. Das kleine rote Kreuz entfernt die jeweilige Zusatzoption wieder.
+    </p>
+
+    <p>
+        Die Standardbelegung verwendet diese Zusatzoptionen beispielsweise für verschiedene Torarten, Pfosten und Latte,
+        rote beziehungsweise gelb-rote Karten, verletzungsbedingte Wechsel und Elfmeter-Fouls. Ihr könnt diese Einträge
+        vollständig ersetzen, ergänzen oder entfernen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Long-Press-Optionen einer Kachel',
+        description: 'Im Quick-Event-Editor eine Kachel mit mehreren Zusatzoptionen auswählen und eine dieser Optionen zur Bearbeitung öffnen.',
+        items: [
+            'Überschrift „Long-Press-Optionen“ mit Anzahl',
+            'mehrere Zusatzoptionen',
+            'Plus zum Hinzufügen',
+            'rotes Kreuz zum Entfernen',
+            'geöffnete Bearbeitung mit Bezeichnung und Ereignistyp'
+        ],
+        purpose: 'Zeigen, wie zusätzliche Ereignisse für langes Drücken eingerichtet werden.'
+    } %}
+
+    <h2>Besonderheiten der Spielstatus-Schaltflächen</h2>
+
+    <p>
+        Die Standardkonfiguration enthält spezielle Schaltflächen für Halbzeiten, Spielunterbrechungen und Spielabbruch.
+        In der laufenden Fernbedienung passt Kaderblick die Beschriftung der Halbzeit-Schaltfläche automatisch an den
+        aktuellen Spielzustand an. Sie wechselt nacheinander zwischen <strong>„1. Halbzeit starten“</strong>,
+        <strong>„1. Halbzeit beenden“</strong>, <strong>„2. Halbzeit starten“</strong> und
+        <strong>„2. Halbzeit beenden“</strong>. Während einer Unterbrechung wird dort
+        <strong>„Spiel fortsetzen“</strong> angezeigt.
+    </p>
+
+    <p>
+        Auch <strong>„Spielunterbrechung“</strong> wechselt während einer laufenden Unterbrechung automatisch zu
+        <strong>„Spielunterbrechung beenden“</strong>. Eine im Konfigurationseditor eingetragene eigene Bezeichnung für diese
+        beiden speziellen Schaltflächen wird deshalb in der laufenden Fernbedienung durch den zum Spielzustand passenden Text
+        ersetzt.
+    </p>
+
+    <h2>Konfiguration aktivieren</h2>
+
+    <p>
+        Eine eigene Konfiguration wird erst durch <strong>„Aktivieren“</strong> zur verwendeten allgemeinen Belegung der
+        Quick-Event-Fernbedienung. Es kann derzeit nur eine Konfiguration gleichzeitig aktiv sein. Das Aktivieren einer
+        Konfiguration deaktiviert jede zuvor aktive Konfiguration.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Aktivieren wirkt derzeit nicht nur auf das eigene Konto',
+        text: 'Die aktive Quick-Event-Konfiguration ist im aktuellen Stand systemweit und nicht an einen bestimmten Trainer, eine Mannschaft oder einen Verein gebunden. Wenn ein berechtigter Benutzer eine eigene Konfiguration aktiviert, wird die bisher aktive Konfiguration für alle Benutzer deaktiviert. Benutzer ohne zusätzlich gespeicherte persönliche Belegung erhalten anschließend diese neue aktive Konfiguration.'
+    } %}
+
+    <p>
+        Über <strong>„Deaktivieren“</strong> könnt ihr die aktive Konfiguration wieder ausschalten. Ist danach keine andere
+        Konfiguration aktiv, verwendet die Fernbedienung für Benutzer ohne persönliche Belegung wieder die Standardbelegung.
+        Wird eine aktive Konfiguration gelöscht, entsteht derselbe Zustand.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Eine persönliche Belegung kann Vorrang haben',
+        text: 'Für einzelne Benutzerkonten kann bereits eine persönliche Quick-Event-Belegung gespeichert sein. Diese hat Vorrang vor der hier aktivierten Konfiguration. In der aktuellen Oberfläche gibt es auf der Seite „Quick-Event-Konfigurationen“ keine Möglichkeit, eine solche persönliche Belegung anzuzeigen oder zurückzusetzen. Bei einem betroffenen Konto kann sich die Fernbedienung deshalb trotz Aktivierung einer anderen Konfiguration nicht ändern.'
+    } %}
+
+    <h2>Konfiguration kopieren</h2>
+
+    <p>
+        Das Kopiersymbol erstellt eine neue eigene Konfiguration mit derselben Belegung. Der Name erhält den Zusatz
+        <strong>„(Kopie)“</strong>. Die Kopie ist nicht automatisch aktiv und übernimmt keine Freigaben des Originals.
+        Sie kann unabhängig bearbeitet, geteilt und später aktiviert werden.
+    </p>
+
+    <p>
+        Bei einer unter <strong>„Mit mir geteilt“</strong> aufgeführten Konfiguration gibt es zwei Wege: Das Kopiersymbol
+        erstellt die eigene Kopie direkt; das Bearbeitungssymbol erstellt ebenfalls zuerst eine Kopie und öffnet diese
+        anschließend sofort im Editor. Das geteilte Original bleibt in beiden Fällen unverändert.
+    </p>
+
+    <h2>Konfiguration teilen</h2>
+
+    <p>
+        Eigene Konfigurationen können über das Teilen-Symbol für andere Trainer, Assistenten oder Supporter freigegeben
+        werden. Im Suchfeld werden ab zwei eingegebenen Zeichen passende freigabefähige Benutzer gesucht. Angezeigt werden
+        höchstens zwanzig Treffer. Ihr könnt mehrere Personen auswählen und die Freigabe anschließend mit
+        <strong>„Teilen speichern“</strong> übernehmen.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Die Auswahl ersetzt alle bisherigen Freigaben',
+        text: 'Beim Speichern wird die bisherige Freigabeliste vollständig durch die aktuell ausgewählten Personen ersetzt. Der Dialog lädt bereits freigegebene Personen derzeit nicht automatisch in die Auswahl. Wenn ihr eine Freigabe ergänzt oder ändert, müsst ihr daher alle Personen erneut auswählen, die weiterhin Zugriff behalten sollen. Speichert ihr den Dialog ohne Auswahl, werden sämtliche Freigaben entfernt.'
+    } %}
+
+    <p>
+        Ein Empfänger kann die freigegebene Konfiguration ansehen und als eigene Kopie übernehmen. Änderungen am eigenen
+        Exemplar wirken sich nicht auf das Original aus. Ebenso ändern spätere Änderungen am Original eine bereits erstellte
+        Kopie nicht.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Freigabe selbst entfernen funktioniert bei regulären Trainerkonten derzeit nicht',
+        text: 'Unter „Mit mir geteilt“ ist die Aktion „Aus geteilten entfernen“ sichtbar. Bei einem regulären Trainerkonto wird diese Änderung im aktuellen Stand jedoch vom Server abgelehnt. Die Freigabe muss deshalb vom Eigentümer der Konfiguration über den Teilen-Dialog entfernt werden. Konten mit erweiterten Support- oder Superadministrator-Rechten sind davon nicht betroffen.'
+    } %}
+
+    <h2>Konfiguration bearbeiten oder löschen</h2>
+
+    <p>
+        Das Stiftsymbol öffnet eine eigene Konfiguration mit ihrem aktuellen Namen und ihrer aktuellen Belegung. Änderungen
+        werden mit <strong>„Speichern“</strong> übernommen. Ist die Konfiguration bereits aktiv, bleiben die Änderungen an
+        derselben aktiven Konfiguration bestehen; eine erneute Aktivierung ist nicht erforderlich.
+    </p>
+
+    <p>
+        Das Papierkorbsymbol öffnet bei eigenen Konfigurationen zunächst eine Bestätigung. Nach dem Löschen ist die
+        Konfiguration nicht mehr verfügbar. Freigaben auf diese Konfiguration entfallen ebenfalls. War die gelöschte
+        Konfiguration aktiv, gibt es anschließend keine aktive allgemeine Konfiguration, bis eine andere aktiviert wird.
+    </p>
+
+    <h2>Auswirkung auf ein laufendes Spiel</h2>
+
+    <p>
+        Die konfigurierte Belegung wird in der Quick-Event-Fernbedienung eines laufenden Spiels verwendet. Auf der
+        Spieldetailseite erscheint die Schaltfläche <strong>„Fernbedienung öffnen“</strong> nur während des laufenden
+        Terminzeitraums. Ohne Berechtigung zum Erfassen von Spielereignissen führt sie stattdessen zur Möglichkeit, die
+        entsprechende Unterstützung zu beantragen.
+    </p>
+
+    <p>
+        Spielstatus-Schaltflächen speichern das zugehörige Statusereignis unmittelbar. Bei normalen Spielereignissen folgt
+        nach der Auswahl die Spielerwahl; dort kann das Ereignis auch ohne Spieler gespeichert werden. Bei Wechselereignissen
+        führt Kaderblick durch die Auswahl des auszuwechselnden und des einzuwechselnden Spielers. Als Zeitpunkt wird die
+        aktuelle Spielzeit verwendet.
+    </p>
+
+    <p>
+        Nach erfolgreichem Speichern kehrt die Fernbedienung sofort zur Ereignisauswahl zurück. Für acht Sekunden erscheint
+        <strong>„Rückgängig“</strong>; damit kann das gerade erfasste Ereignis wieder entfernt werden. Weitere Einzelheiten zur
+        Ereigniserfassung und zum Spielverlauf stehen unter <a href="{{ path('app_spiele') }}">Spiele</a>.
+    </p>
+
+    <p>
+        Eine Änderung der Quick-Event-Konfiguration verändert keine bereits gespeicherten Spielereignisse. Sie beeinflusst
+        ausschließlich, welche Schaltflächen und Zusatzoptionen bei der weiteren Schnellerfassung angeboten werden.
+    </p>
+{% endblock %}
