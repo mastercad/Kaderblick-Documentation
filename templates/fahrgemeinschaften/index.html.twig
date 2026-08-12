@@ -3,71 +3,218 @@
 {% block title %}Fahrgemeinschaften – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>🚗 Fahrgemeinschaften</h1>
+    <h1>Fahrgemeinschaften</h1>
+
     <p>
-        Fahrten zu Terminen koordinieren – besonders praktisch für Auswärtsspiele.
+        Mitfahrgelegenheiten gehören immer zu einem konkreten Mannschaftstermin. Angebote, Buchungen und freie Plätze
+        werden deshalb direkt beim betreffenden Termin verwaltet.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '🚗', title: 'Fahrt anbieten', desc: 'Freie Plätze, Treffpunkt, Abfahrtszeit und Hinweis angeben.' },
-            { icon: '🙋', title: 'Mitfahren', desc: 'Angebotene Fahrten einsehen und sich als Mitfahrer anmelden.' },
-            { icon: '❌', title: 'Stornieren', desc: 'Als Mitfahrer abmelden oder als Fahrer die Fahrt löschen.' },
-            { icon: '📅', title: 'Termingebunden', desc: 'Fahrgemeinschaften sind immer an einen Kalender-Termin gebunden.' },
-        ]
-    } %}
+    <h2>Mitfahrgelegenheiten eines Termins öffnen</h2>
 
-    {# ─── Fahrt anbieten ─── #}
-    <h2>Fahrt anbieten</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Termin öffnen', text: 'Öffnet den gewünschten <a href="' ~ path('app_kalender') ~ '">Termin</a> in der Detailansicht.' },
-            { title: 'Fahrt anbieten', text: 'Klickt auf <strong>„Fahrt anbieten"</strong>.' },
-            { title: 'Details eingeben', text: '<strong>Freie Plätze</strong> (1–8), <strong>Treffpunkt</strong>, <strong>Abfahrtszeit</strong>, optionaler Hinweis.' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Angebot wird für alle Teilnehmer sichtbar.' },
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/fahrgemeinschaften/fahrt-anbieten.png',
-        alt: 'Fahrt anbieten Formular',
-        caption: 'Eine Fahrt mit freien Plätzen und Treffpunkt anbieten.'
-    } %}
-
-    {# ─── Mitfahren ─── #}
-    <h2>Mitfahren</h2>
     <p>
-        In der Termindetailansicht seht ihr alle angebotenen Fahrten.
-        Klickt auf <strong>„Mitfahren"</strong>, um euch als Mitfahrer anzumelden.
-        Fahrer und Mitfahrer sehen sich gegenseitig.
+        Öffnet den Termin im <a href="{{ path('app_kalender') }}">Kalender</a>. Neben der Uhrzeit befindet sich bei
+        Terminen, für die ihr auf Fahrgemeinschaften zugreifen könnt, ein Auto-Symbol. Seine Darstellung zeigt bereits,
+        ob Fahrten vorhanden sind:
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/fahrgemeinschaften/mitfahren.png',
-        alt: 'Mitfahrgelegenheit buchen',
-        caption: 'Sich als Mitfahrer bei einer angebotenen Fahrt anmelden.'
-    } %}
-
-    {# ─── Stornieren ─── #}
-    <h2>Stornieren</h2>
     <ul>
-        <li><strong>Als Mitfahrer:</strong> Klickt auf „Abmelden" – euer Platz wird wieder frei.</li>
-        <li><strong>Als Fahrer:</strong> Klickt auf „Fahrt löschen" – alle Mitfahrer werden automatisch abgemeldet und benachrichtigt.</li>
+        <li><strong>Grau:</strong> Für den Termin ist noch keine Mitfahrgelegenheit eingetragen.</li>
+        <li><strong>Rot:</strong> Es gibt Angebote, aber alle eingetragenen Plätze sind belegt.</li>
+        <li><strong>Grün:</strong> Mindestens eine Mitfahrgelegenheit hat noch einen freien Platz.</li>
     </ul>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'warning',
-        title: 'Achtung',
-        text: 'Wenn ihr als Fahrer die Fahrt löscht, werden alle Mitfahrer automatisch abgemeldet. Informiert eure Mitfahrer rechtzeitig!'
+    <p>
+        Ein Klick auf das Auto-Symbol öffnet die vollständige Übersicht. Für jedes Angebot werden der Fahrer, die
+        Gesamtzahl der Plätze, freie und belegte Plätze, eine vorhandene Notiz sowie die bereits eingetragenen Mitfahrer
+        angezeigt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Fahrgemeinschaften in der Termindetailansicht',
+        description: 'Bitte einen Mannschaftstermin mit geöffneten Termindetails aufnehmen. Das Auto-Symbol neben Uhrzeit und Wetter sowie anschließend die geöffnete Übersicht der Mitfahrgelegenheiten sollen erkennbar sein.',
+        items: [
+            'Auto-Symbol neben den Termininformationen',
+            'mindestens ein Fahrtangebot mit Fahrer',
+            'Gesamtzahl, freie und belegte Plätze',
+            'optionale Notiz',
+            'Mitfahrerliste'
+        ],
+        purpose: 'Zugang zu den Fahrgemeinschaften und Aufbau eines Angebots zeigen.'
     } %}
 
-    {# ─── Grundprinzip ─── #}
-    <h2>Grundprinzip</h2>
+    <h3>Wer sieht Fahrgemeinschaften?</h3>
+
     <p>
-        Fahrgemeinschaften sind immer an einen
-        <a href="{{ path('app_kalender') }}">Kalender-Termin</a> gebunden.
-        Pro Termin können <strong>beliebig viele</strong> Fahrgemeinschaften angeboten werden.
+        Das Auto-Symbol wird nur angezeigt, wenn der Termin einer Mannschaft zugeordnet ist und euer Benutzerkonto zu
+        einer beteiligten Mannschaft gehört. Dazu zählen nicht nur Spieler und Trainer selbst: Auch Benutzer, die über
+        eine bestehende Spieler- oder Trainerzuordnung mit der Mannschaft verbunden sind, können dazugehören. Zusätzlich
+        können entsprechende Mannschafts- oder Vereinsberechtigungen den Zugriff ermöglichen.
+    </p>
+
+    <p>
+        Bei rein öffentlichen, ausschließlich vereinsweiten oder nur für einzelne Benutzer freigegebenen Terminen ohne
+        zugeordnete Mannschaft steht die Fahrgemeinschaftsfunktion nicht zur Verfügung.
+    </p>
+
+    <h2>Eine Mitfahrgelegenheit anbieten</h2>
+
+    <p>
+        Öffnet die Fahrgemeinschaftsübersicht des Termins und wählt <strong>„Mitfahrgelegenheit anbieten“</strong>.
+        Diese Schaltfläche steht bei einem abgesagten Termin nicht zur Verfügung.
+    </p>
+
+    <p>
+        Im Formular gebt ihr die <strong>Anzahl der angebotenen Plätze</strong> an. Mindestens ein Platz ist erforderlich.
+        Zusätzlich könnt ihr eine <strong>Notiz</strong> eintragen. Für Treffpunkt, Abfahrtszeit oder andere Absprachen
+        gibt es keine eigenen Felder; solche Angaben gehören bei Bedarf in die Notiz.
+    </p>
+
+    <p>
+        Mit <strong>„Anbieten“</strong> wird die Fahrt gespeichert und sofort in der Übersicht des Termins angezeigt.
+        Das Angebot enthält euren Namen als Fahrer. Das Anbieten einer Fahrgemeinschaft ist außerdem mit dem
+        Erfahrungspunkte-System verknüpft; ob und in welcher Höhe dafür Punkte vergeben werden, richtet sich nach den
+        aktuell hinterlegten Regeln.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Mitfahrgelegenheit anbieten',
+        description: 'Bitte den Dialog „Mitfahrgelegenheit anbieten“ aufnehmen.',
+        items: [
+            'Feld „Anzahl Plätze“',
+            'Feld „Notiz (optional)“',
+            'Schaltflächen „Abbrechen“ und „Anbieten“'
+        ],
+        purpose: 'Die tatsächlich erforderlichen Angaben beim Erstellen eines Angebots zeigen.'
+    } %}
+
+    <h3>Ein vorhandenes Angebot ändern</h3>
+
+    <p>
+        Für ein bereits gespeichertes Fahrtangebot gibt es derzeit keine Bearbeitungsfunktion. Wenn sich die Zahl der
+        Plätze oder die Notiz ändern soll, müsst ihr das vorhandene Angebot zurückziehen und anschließend neu anlegen.
+        Bestehende Buchungen des zurückgezogenen Angebots gehen dabei verloren.
+    </p>
+
+    <h2>Einen Platz buchen</h2>
+
+    <p>
+        Bei einem fremden Angebot erscheint <strong>„Platz buchen“</strong>, solange mindestens ein Platz frei ist und ihr
+        in genau diesem Angebot noch nicht als Mitfahrer eingetragen seid. Beim eigenen Fahrtangebot wird die
+        Schaltfläche nicht angezeigt.
+    </p>
+
+    <p>
+        Die Buchung wird unmittelbar ausgeführt. Danach erscheint euer Name in der Mitfahrerliste und die Zahl der freien
+        Plätze verringert sich um eins. Der Fahrer erhält eine Benachrichtigung über die Buchung; für euch selbst wird eine
+        Bestätigung erzeugt. Die Benachrichtigung führt wieder zum betreffenden Termin und öffnet dort die
+        Fahrgemeinschaften.
+    </p>
+
+    <p>
+        Eine Fahrgemeinschaft ist unabhängig von eurer Rückmeldung zum Termin. Einen Platz zu buchen setzt euren
+        Teilnahmestatus nicht auf <strong>„Zugesagt“</strong>; umgekehrt reserviert eine Zusage zum Termin keinen Platz in
+        einer Fahrgemeinschaft.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Mehrere Buchungen beim selben Termin sind derzeit möglich',
+        text: 'Kaderblick verhindert eine doppelte Buchung derselben Fahrt. Es wird derzeit aber nicht geprüft, ob ihr für denselben Termin bereits einen Platz in einer anderen Mitfahrgelegenheit gebucht habt. Prüft deshalb bei mehreren Angeboten, ob ihr bereits als Mitfahrer eingetragen seid.'
+    } %}
+
+    <h2>Eine eigene Buchung stornieren</h2>
+
+    <p>
+        Wenn ihr in einer Fahrt als Mitfahrer eingetragen seid, könnt ihr die Buchung auf zwei Wegen entfernen: über das
+        Papierkorb-Symbol direkt neben eurem Namen oder über die Schaltfläche <strong>„Buchung stornieren“</strong> unter
+        dem Angebot. Beide Wege haben dasselbe Ergebnis.
+    </p>
+
+    <p>
+        Die Stornierung erfolgt unmittelbar. Euer Name wird aus der Mitfahrerliste entfernt und der Platz wird wieder
+        frei. Der Fahrer wird über die Stornierung benachrichtigt; für euch selbst wird ebenfalls eine Bestätigung erzeugt.
+        Der Teilnahmestatus des Termins bleibt unverändert.
+    </p>
+
+    <h2>Mitfahrer aus dem eigenen Angebot entfernen</h2>
+
+    <p>
+        Als Fahrer seht ihr neben den eingetragenen Mitfahrern ein Symbol zum Entfernen. Damit könnt ihr einen einzelnen
+        Mitfahrer aus eurem Angebot nehmen. Der Platz wird anschließend wieder freigegeben. Der entfernte Benutzer erhält
+        eine Benachrichtigung; der Fahrer erhält eine Bestätigung über das Entfernen.
+    </p>
+
+    <p>
+        Auch dieser Vorgang wird ohne zusätzlichen Bestätigungsdialog ausgeführt.
+    </p>
+
+    <h2>Ein eigenes Fahrtangebot zurückziehen</h2>
+
+    <p>
+        Bei einem von euch angebotenen Fahrtangebot befindet sich oben rechts ein Papierkorb-Symbol mit der Bedeutung
+        <strong>„Mitfahrgelegenheit zurückziehen“</strong>. Das Angebot wird beim Anklicken unmittelbar entfernt; ein
+        zusätzlicher Bestätigungsdialog erscheint derzeit nicht.
+    </p>
+
+    <p>
+        Beim Zurückziehen werden auch alle zu diesem Angebot gehörenden Buchungen entfernt. Bereits eingetragene Mitfahrer
+        werden über das zurückgezogene Angebot benachrichtigt. Zusätzlich können weitere Benutzer der zugehörigen
+        Mannschaft eine entsprechende Benachrichtigung erhalten.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Eigenes Angebot und eigene Buchung verwalten',
+        description: 'Bitte eine Fahrgemeinschaftsübersicht aufnehmen, in der der angemeldete Benutzer Fahrer eines Angebots und Mitfahrer eines anderen Angebots ist. Beispieldaten verwenden.',
+        items: [
+            'Papierkorb zum Zurückziehen des eigenen Angebots',
+            'Symbol zum Entfernen eines Mitfahrers aus dem eigenen Angebot',
+            'Schaltfläche „Buchung stornieren“ bei der eigenen Mitfahrt',
+            'freie und belegte Plätze'
+        ],
+        purpose: 'Die unterschiedlichen Aktionen für Fahrer und Mitfahrer voneinander abgrenzen.'
+    } %}
+
+    <h2>Abgesagte Termine</h2>
+
+    <p>
+        Wird ein Termin abgesagt, bleiben bereits eingetragene Fahrgemeinschaften in der Übersicht sichtbar. Sie können
+        dort jedoch nur noch angesehen werden. Bei einem abgesagten Termin können keine neuen Angebote angelegt und keine
+        Plätze gebucht werden. Eigene Buchungen können dort ebenfalls nicht storniert, Mitfahrer nicht entfernt und
+        eigene Angebote nicht zurückgezogen werden.
+    </p>
+
+    <p>
+        Wird der Termin wieder reaktiviert, stehen die Fahrgemeinschaftsaktionen wieder entsprechend der eigenen
+        Berechtigung zur Verfügung.
+    </p>
+
+    <h2>Fahrgemeinschaften am Spieltag</h2>
+
+    <p>
+        Bei einem Spiel zeigt die Spieltagsansicht einen eigenen Bereich <strong>„Fahrgemeinschaften“</strong>. Dort seht
+        ihr vorhandene Angebote mit Fahrer, Notiz, Mitfahrern und der Zahl der noch freien Plätze. Seid ihr selbst Fahrer
+        oder Mitfahrer einer angezeigten Fahrt, wird dies am Angebot gekennzeichnet.
+    </p>
+
+    <p>
+        Über <strong>„Verwalten“</strong> wechselt ihr zum zugehörigen Kalendereintrag. Der Termin und die
+        Fahrgemeinschaftsübersicht werden dort direkt geöffnet. Buchen, Stornieren, Anbieten und Zurückziehen erfolgen
+        somit in derselben Fahrgemeinschaftsübersicht wie beim direkten Weg über den Kalender.
+    </p>
+
+    <h2>Benachrichtigungen zu Fahrgemeinschaften</h2>
+
+    <p>
+        Kaderblick unterscheidet in den Benachrichtigungseinstellungen zwischen <strong>„Mitfahrgelegenheiten“</strong>
+        für neue und zurückgezogene Angebote und <strong>„Mitfahrt gebucht“</strong> für Buchungen und Stornierungen.
+        Beide Bereiche sind in den Standardeinstellungen aktiviert.
+    </p>
+
+    <p>
+        Eine Benachrichtigung zu einer Fahrgemeinschaft enthält einen Zugang zum betroffenen Termin. Mit
+        <strong>„Öffnen“</strong> gelangt ihr zum Kalender; dort wird der Termin zusammen mit den Fahrgemeinschaften
+        geöffnet. Wenn ihr eine dieser Benachrichtigungskategorien in eurem Profil deaktiviert, gelten die allgemeinen
+        Regeln für deaktivierte Benachrichtigungen.
     </p>
 {% endblock %}
