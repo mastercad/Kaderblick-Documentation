@@ -1,0 +1,333 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kassenbuch – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Kassenbuch</h1>
+
+    <p>
+        Unter <strong>Team &amp; Verein → Kassenbuch</strong> werden die Einnahmen und Ausgaben einer Mannschaft oder
+        eines Vereins geführt. Für jedes zugängliche Team beziehungsweise jeden zugänglichen Verein gibt es ein eigenes
+        Kassenbuch. Sind mehrere vorhanden, wird oberhalb der Seite über <strong>„Team / Verein“</strong> zwischen ihnen
+        gewechselt.
+    </p>
+
+    <p>
+        Der Bereich erscheint nur bei Konten, die für mindestens ein Kassenbuch zuständig sind. Dazu gehören im
+        aktuellen Stand insbesondere zuständige Kassenwarte, Trainer für ihre eigenen Mannschaften sowie Mannschafts-
+        und Vereinsadministratoren. Ein Vereinsadministrator oder Vereinskassenwart erhält zusätzlich Zugriff auf die
+        Kassenbücher der zugehörigen Mannschaften. Für diese Bereiche legt Kaderblick ein Kassenbuch automatisch an,
+        falls noch keines vorhanden ist.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kassenbuch mit Mannschafts- und Vereinsauswahl',
+        description: 'Die Kassenbuchseite mit einem Konto aufnehmen, das Zugriff auf mindestens zwei Kassenbücher hat. Der Reiter „Buchungen“ soll geöffnet sein.',
+        items: [
+            'Auswahl „Team / Verein“',
+            'Kassenstand, Einnahmen gesamt und Ausgaben gesamt',
+            'Reiter „Buchungen“, „Deckel-Übersicht“ und „Katalog“',
+            'Jahresauswahl',
+            'Schaltflächen für Export, Einstellungen, Umbuchen und neue Buchung',
+            'mehrere Buchungen in der Tabelle'
+        ],
+        purpose: 'Aufbau des Kassenbuchs und Wechsel zwischen mehreren Mannschafts- und Vereinskassen zeigen.'
+    } %}
+
+    <h2>Kassenstand und Jahresauswahl</h2>
+
+    <p>
+        Oberhalb der Buchungen stehen <strong>Kassenstand</strong>, <strong>Einnahmen gesamt</strong> und
+        <strong>Ausgaben gesamt</strong>. In der Einstellung <strong>„Alle“</strong> berücksichtigt der Kassenstand auch
+        den hinterlegten Eröffnungssaldo. Einnahmen und Ausgaben zeigen die Summe aller entsprechenden Buchungen.
+    </p>
+
+    <p>
+        Über <strong>„Jahr“</strong> kann die Ansicht auf ein einzelnes Kalenderjahr eingeschränkt werden. Die Tabelle,
+        die Summenzeile und die drei Kennzahlen beziehen sich dann ausschließlich auf Buchungen mit einem Datum in
+        diesem Jahr. Der dabei angezeigte <strong>„Kassenstand [Jahr]“</strong> ist derzeit lediglich die Differenz aus
+        Einnahmen und Ausgaben dieses Jahres. Ein Eröffnungssaldo und Überträge aus vorherigen Jahren werden in dieser
+        Jahresansicht nicht eingerechnet. Für den tatsächlichen Gesamtbestand ist deshalb die Einstellung
+        <strong>„Alle“</strong> maßgeblich.
+    </p>
+
+    <p>
+        Die Buchungen stehen mit der neuesten Buchung zuerst in der Tabelle. Angezeigt werden Datum, Beschreibung,
+        optionale Kategorie, Einnahme oder Ausgabe sowie der Kassenstand nach der jeweiligen Buchung. Wenn bekannt,
+        steht unter der Beschreibung zusätzlich die Person, die den Eintrag angelegt hat. Zunächst werden bis zu 50
+        Buchungen dargestellt; weitere Einträge können darunter in Schritten von jeweils bis zu 50 nachgeladen werden.
+    </p>
+
+    <h2>Einnahme oder Ausgabe erfassen</h2>
+
+    <p>
+        <strong>„Buchung hinzufügen“</strong> öffnet den Dialog für eine neue Einnahme oder Ausgabe. Zuerst wird die
+        Buchungsart gewählt. Danach werden ein positiver Betrag, das Buchungsdatum und eine Beschreibung eingetragen.
+        Eine Kategorie ist optional.
+    </p>
+
+    <p>
+        Für Einnahmen stehen die Kategorien <strong>Mitgliedsbeiträge</strong>, <strong>Sponsoring</strong>,
+        <strong>Spenden</strong>, <strong>Veranstaltungseinnahmen</strong>, <strong>Strafen</strong>,
+        <strong>Deckel-Zahlungen</strong> und <strong>Sonstiges</strong> zur Verfügung. Für Ausgaben sind
+        <strong>Spielbetrieb</strong>, <strong>Ausrüstung / Material</strong>,
+        <strong>Hallenmiete / Platzmiete</strong>, <strong>Reisekosten</strong>, <strong>Verbandsgebühren</strong>,
+        <strong>Versicherungen</strong>, <strong>Verwaltung</strong>, <strong>Deckel-Auszahlungen</strong> und
+        <strong>Sonstiges</strong> vorgesehen. Wird zwischen Einnahme und Ausgabe gewechselt, wird eine zuvor gewählte
+        Kategorie zurückgesetzt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neue Kassenbuch-Buchung',
+        description: 'Den Dialog „Neue Buchung“ mit einer beispielhaften Ausgabe aufnehmen.',
+        items: [
+            'Auswahl „Einnahme“ und „Ausgabe“',
+            'Betrag',
+            'Datum',
+            'Beschreibung',
+            'Kategorie',
+            'Schaltfläche „Speichern“'
+        ],
+        purpose: 'Alle Angaben einer normalen Einnahmen- oder Ausgabenbuchung zeigen.'
+    } %}
+
+    <h2>Normale Buchungen bearbeiten oder löschen</h2>
+
+    <p>
+        Über das Stiftsymbol einer normalen Buchung können Betrag, Buchungsart, Datum, Beschreibung und Kategorie
+        nachträglich geändert werden. Der Kassenstand und die Summen werden anschließend anhand der geänderten Daten neu
+        berechnet.
+    </p>
+
+    <p>
+        Das Papierkorbsymbol löscht eine normale Buchung nach einer Bestätigung endgültig. Dabei wird keine
+        Gegenbuchung angelegt; der ursprüngliche Eintrag verschwindet aus dem Kassenbuch und die Summen ändern sich
+        entsprechend. Für Umbuchungen und automatisch aus Deckel-Zahlungen entstandene Einträge gelten deshalb andere
+        Verfahren, die weiter unten beschrieben sind.
+    </p>
+
+    <h2>Name und Eröffnungssaldo einstellen</h2>
+
+    <p>
+        Über das Zahnradsymbol werden <strong>Kassenbuch-Name</strong> und <strong>Eröffnungssaldo</strong> geändert.
+        Der Eröffnungssaldo ist für einen Anfangsbestand oder einen Übertrag aus einem vorherigen Zeitraum vorgesehen
+        und darf positiv oder negativ sein. Er fließt in den gesamten Kassenstand ein, erscheint jedoch nicht als
+        normale Buchung in der Tabelle.
+    </p>
+
+    <p>
+        Eine Änderung des Eröffnungssaldos wirkt unmittelbar auf den Gesamt-Kassenstand. Sie verändert keine bereits
+        vorhandene Buchung. Wie oben beschrieben, wird der Eröffnungssaldo bei einer auf ein einzelnes Jahr gefilterten
+        Ansicht derzeit nicht in den dort ausgewiesenen Jahres-Kassenstand eingerechnet.
+    </p>
+
+    <h2>Zwischen Kassenbüchern umbuchen</h2>
+
+    <p>
+        <strong>„Umbuchen“</strong> ist verfügbar, wenn für das aktuell ausgewählte Kassenbuch mindestens ein zulässiges
+        Ziel vorhanden ist. Kaderblick bietet nur Kassenbücher an, auf die das eigene Konto ebenfalls Zugriff hat und
+        die organisatorisch miteinander verbunden sind. Möglich sind Umbuchungen zwischen einer Mannschaft und ihrem
+        Verein sowie zwischen Mannschaften, die demselben Verein zugeordnet sind. Nicht verbundene Kassenbücher werden
+        nicht als Ziel angeboten.
+    </p>
+
+    <p>
+        Im Umbuchungsdialog werden Ziel-Kassenbuch, positiver Betrag, Datum und eine Beschreibung angegeben. Beim
+        Speichern entstehen gleichzeitig zwei gekoppelte Buchungen: im Ausgangs-Kassenbuch eine Ausgabe und im
+        Ziel-Kassenbuch eine Einnahme. Beide sind als <strong>„Umbuchung“</strong> gekennzeichnet und tragen eine
+        gemeinsame Referenz. Dadurch bleibt auf beiden Seiten nachvollziehbar, dass die beiden Einträge zusammengehören.
+    </p>
+
+    <p>
+        Eine Umbuchung kann nicht wie eine normale Buchung bearbeitet oder gelöscht werden. Über
+        <strong>„Storno“</strong> wird stattdessen eine Gegenumbuchung angelegt. Das ursprüngliche Buchungspaar bleibt
+        erhalten und wird als storniert gekennzeichnet; die Gegenumbuchung erhält eine eigene Referenz. Beim Stornieren
+        können ein Storno-Datum und eine optionale Notiz angegeben werden. Eine bereits stornierte Umbuchung und eine
+        Storno-Umbuchung können nicht erneut storniert werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Umbuchung zwischen zwei Kassenbüchern',
+        description: 'Den Dialog „Umbuchung erfassen“ mit einem Mannschaftskassenbuch als Ausgang und einem verbundenen Vereinskassenbuch als Ziel aufnehmen.',
+        items: [
+            'Ausgang unter „Von“',
+            'Ziel-Kassenbuch',
+            'Betrag',
+            'Datum',
+            'Beschreibung',
+            'Hinweis auf die zwei gekoppelten Buchungen',
+            'Schaltfläche „Umbuchen“'
+        ],
+        purpose: 'Zeigen, dass eine Umbuchung gleichzeitig eine Ausgabe und eine zugehörige Einnahme erzeugt.'
+    } %}
+
+    <h2>Kassenbuch als CSV-Datei exportieren</h2>
+
+    <p>
+        Das Download-Symbol im Reiter <strong>„Buchungen“</strong> exportiert das aktuell ausgewählte Kassenbuch als
+        CSV-Datei. Enthalten sind Datum, Beschreibung, Kategorie, Einnahme, Ausgabe, laufender Kassenstand, Ersteller und
+        vorhandene Referenzen. Ein von 0 abweichender Eröffnungssaldo wird als eigene Zeile vor den Buchungen
+        ausgegeben. Die Buchungen stehen in der Exportdatei chronologisch vom ältesten zum neuesten Eintrag.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Der Jahresfilter gilt nicht für den Export',
+        text: 'Der CSV-Export enthält derzeit immer das gesamte ausgewählte Kassenbuch. Auch wenn in der Ansicht ein einzelnes Jahr gewählt ist, werden alle vorhandenen Buchungen exportiert.'
+    } %}
+
+    <h2>Deckel-Übersicht</h2>
+
+    <p>
+        Der Reiter <strong>„Deckel-Übersicht“</strong> zeigt die persönlichen Deckel der Mitglieder im Kontext des
+        aktuell ausgewählten Teams oder Vereins. Die Tabelle enthält Name, Team beziehungsweise Verein,
+        <strong>Verbraucht</strong>, <strong>Bezahlt</strong> und den daraus resultierenden <strong>Saldo</strong>.
+        Auch Personen ohne bisherige Buchung können in dieser Übersicht erscheinen, wenn sie dem ausgewählten Bereich
+        angehören.
+    </p>
+
+    <p>
+        Mit dem Pfeil am Zeilenanfang werden die einzelnen Deckel-Buchungen und Zahlungen einer Person aufgeklappt.
+        Buchungen können dort zusätzlich als <strong>Strafe</strong>, <strong>Belohnung</strong>,
+        <strong>Korrektur</strong>, <strong>Storno</strong>, <strong>storniert</strong> oder
+        <strong>ausgeglichen</strong> gekennzeichnet sein. Zahlungen und Auszahlungen erscheinen in einem eigenen
+        Abschnitt derselben Detailansicht.
+    </p>
+
+    <p>
+        Diese Verwaltungsansicht ergänzt <a href="{{ path('app_vereine_teams') }}">Mein Deckel</a>: Dort sieht eine
+        Person ihre eigenen Deckel-Buchungen und Zahlungen. Im Kassenbuch werden dagegen die Deckel der Mitglieder des
+        ausgewählten Verantwortungsbereichs verwaltet. Strafen und Belohnungen aus dem
+        <a href="{{ path('app_strafenkatalog') }}">Strafenkatalog</a> erscheinen ebenfalls als Deckel-Buchungen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Deckel-Übersicht im Kassenbuch',
+        description: 'Den Reiter „Deckel-Übersicht“ mit mehreren Personen aufnehmen. Bei einer Person sollen die Details aufgeklappt sein.',
+        items: [
+            'Benutzer und Kontext',
+            'Spalten „Verbraucht“, „Bezahlt“ und „Saldo“',
+            'Schaltflächen „Verbrauch“ und „Ausgleichen“',
+            'aufgeklappte Buchungen und Zahlungen',
+            'mindestens eine Statuskennzeichnung wie „ausgeglichen“, „Korrektur“ oder „Storno“'
+        ],
+        purpose: 'Verwaltung mehrerer persönlicher Deckel und deren Buchungsverlauf zeigen.'
+    } %}
+
+    <h3>Verbrauch für eine Person buchen</h3>
+
+    <p>
+        <strong>„Verbrauch“</strong> öffnet eine Buchung für die ausgewählte Person und den in der Zeile angegebenen
+        Team- oder Vereinskontext. Als Artikel stehen aktive Katalogeinträge zur Verfügung, die allgemein gelten oder
+        genau zu diesem Team beziehungsweise Verein gehören. Alternativ kann <strong>„Freie Buchung“</strong> gewählt
+        werden; dann werden Bezeichnung und Preis selbst eingetragen. Menge und Datum sind erforderlich, eine Notiz ist
+        optional.
+    </p>
+
+    <p>
+        Eine solche Verbrauchsbuchung verändert ausschließlich den persönlichen Deckel. Sie erzeugt keine zusätzliche
+        Einnahme oder Ausgabe im eigentlichen Kassenbuch. Erst eine später erfasste Zahlung oder Auszahlung wird – wenn
+        ein passendes Kassenbuch vorhanden ist – automatisch auch dort verbucht.
+    </p>
+
+    <h3>Deckel-Buchung korrigieren</h3>
+
+    <p>
+        Über das Stiftsymbol einer aufgeklappten Deckel-Buchung wird keine bestehende Buchung überschrieben, sondern
+        eine separate Korrekturbuchung angelegt. <strong>„Gutschrift“</strong> verringert den offenen Betrag,
+        <strong>„Nachbelastung“</strong> erhöht ihn. Neben dem positiven Korrekturbetrag können Datum, eine eigene
+        Bezeichnung und eine Notiz angegeben werden. Ohne eigene Bezeichnung ergänzt Kaderblick automatisch
+        <strong>„Gutschrift:“</strong> beziehungsweise <strong>„Nachbelastung:“</strong> vor der Bezeichnung der
+        ursprünglichen Buchung.
+    </p>
+
+    <h3>Deckel-Buchung stornieren</h3>
+
+    <p>
+        Das Storno-Symbol legt eine Gegenbuchung auf dem Deckel an; die ursprüngliche Buchung bleibt im Verlauf
+        erhalten. Bereits stornierte Buchungen und Storno-Buchungen können nicht erneut storniert werden. Ist eine
+        Deckel-Buchung bereits durch eine Zahlung ausgeglichen, ist das Storno ebenfalls gesperrt. In diesem Fall muss
+        zuerst die zugehörige Zahlung storniert werden.
+    </p>
+
+    <h3>Zahlung oder Auszahlung erfassen</h3>
+
+    <p>
+        <strong>„Ausgleichen“</strong> öffnet die Zahlungserfassung für die ausgewählte Person. Bei einem negativen
+        Saldo wird der offene Betrag bereits als Vorschlag für <strong>„Zahlung erhalten“</strong> eingesetzt.
+        Alternativ kann <strong>„Auszahlung / Korrektur“</strong> gewählt werden. Eingetragen werden ein positiver
+        Betrag, das Datum und optional eine Notiz.
+    </p>
+
+    <p>
+        Eine erhaltene Zahlung wird auf die ältesten noch offenen positiven Deckel-Buchungen desselben Team- oder
+        Vereinskontexts verteilt. Sie kann eine Buchung vollständig oder teilweise ausgleichen. Ausgeglichene
+        Buchungen werden entsprechend gekennzeichnet.
+    </p>
+
+    <p>
+        Eine erhaltene Zahlung wird gleichzeitig als Einnahme mit der Kategorie <strong>„Deckel-Zahlungen“</strong> in
+        das zugehörige Kassenbuch geschrieben. Eine <strong>„Auszahlung / Korrektur“</strong> wird dort als Ausgabe mit
+        der Kategorie <strong>„Deckel-Auszahlungen“</strong> geführt. Dadurch sind der persönliche Deckel und der
+        tatsächliche Geldfluss im Mannschafts- oder Vereinskassenbuch miteinander verknüpft.
+    </p>
+
+    <p>
+        Das Storno-Symbol an einer Zahlung löscht sie nicht. Kaderblick erzeugt eine Gegenbuchung auf dem Deckel und,
+        wenn die ursprüngliche Zahlung mit einem Kassenbuch verknüpft war, auch eine passende Gegenbuchung im
+        Kassenbuch. Das Storno erhält das aktuelle Datum. Bereits stornierte Zahlungen und Storno-Zahlungen können nicht
+        erneut storniert werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Deckel-Zahlungen im Buchungsreiter über den Deckel korrigieren',
+        text: 'Automatisch aus einer Deckel-Zahlung oder Auszahlung entstandene Kassenbuchzeilen dürfen nicht direkt geändert oder gelöscht werden. In der aktuellen Oberfläche können die Bearbeiten- und Löschen-Symbole bei solchen Zeilen trotzdem sichtbar sein; der Speichervorgang wird dann abgelehnt. Storniert oder korrigiert wird die zugrunde liegende Zahlung in der „Deckel-Übersicht“.'
+    } %}
+
+    <h2>Katalog für Deckel-Buchungen</h2>
+
+    <p>
+        Im Reiter <strong>„Katalog“</strong> werden wiederkehrende Artikel für Deckel-Buchungen verwaltet. Die Tabelle
+        zeigt Name, optionale Kategorie, Geltungsbereich, Preis und Status. Über <strong>„Artikel hinzufügen“</strong>
+        werden Name und Preis festgelegt; als Kategorien stehen <strong>Getränke</strong>, <strong>Essen</strong> und
+        <strong>Sonstiges</strong> zur Auswahl. Eine Kategorie kann auch leer bleiben.
+    </p>
+
+    <p>
+        Ein Artikel kann einer zugänglichen Mannschaft oder einem zugänglichen Verein zugeordnet werden. Team und
+        Verein schließen sich gegenseitig aus. Plattformweit verwaltete Artikel können außerdem ohne solche Zuordnung
+        bestehen und gelten dann allgemein. Mit <strong>„Aktiv (für Nutzer buchbar)“</strong> wird festgelegt, ob der
+        Artikel bei neuen Deckel-Buchungen angeboten wird.
+    </p>
+
+    <p>
+        Beim Bearbeiten können Name, Preis, Kategorie, Status und Geltungsbereich geändert werden. Eine Preisänderung
+        verändert bereits vorhandene Deckel-Buchungen nicht; dort bleibt der Preis erhalten, der zum Zeitpunkt der
+        Buchung galt. Ein Katalogartikel kann nur gelöscht werden, solange noch keine Deckel-Buchung darauf verweist.
+        Ist er bereits verwendet worden, verhindert Kaderblick das Löschen. Soll er nicht mehr angeboten werden, kann
+        er stattdessen deaktiviert werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Deckel-Katalog verwalten',
+        description: 'Den Reiter „Katalog“ und zusätzlich den Dialog „Artikel hinzufügen“ aufnehmen.',
+        items: [
+            'Tabelle mit Artikel, Kategorie, Team / Verein, Preis und Status',
+            'Schaltfläche „Artikel hinzufügen“',
+            'Name und Preis im Dialog',
+            'Kategorie',
+            'Mannschafts- beziehungsweise Vereinsauswahl',
+            'Schalter „Aktiv (für Nutzer buchbar)“'
+        ],
+        purpose: 'Verwaltung wiederverwendbarer Artikel und ihres Geltungsbereichs zeigen.'
+    } %}
+
+    <h2>Zusammenhang mit Abrechnung &amp; Abo</h2>
+
+    <p>
+        Oberhalb des Kassenbuchs befindet sich <strong>„Abrechnung &amp; Abo“</strong>. Dieser Bereich behandelt nicht
+        die einzelnen Einnahmen und Ausgaben des Mannschafts- oder Vereinskassenbuchs, sondern die Abrechnung der
+        Kaderblick-Nutzung. Die dort verfügbaren Funktionen werden im eigenen Kapitel zu Abrechnung und Abo beschrieben.
+    </p>
+{% endblock %}
