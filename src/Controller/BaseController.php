@@ -31,6 +31,7 @@ abstract class BaseController extends AbstractController
             'app_aushelfen' => ['label' => 'Aushelfen', 'icon' => '🤝'],
             'app_fussball_de_import' => ['label' => 'fussball.de Import', 'icon' => '📥'],
             'app_kalender' => ['label' => 'Kalender & Termine', 'icon' => '📅'],
+            'app_team_size_guide' => ['label' => 'Team Size Guide', 'icon' => '👕'],
             'app_aufstellungen' => ['label' => 'Aufstellungen', 'icon' => '📋'],
             'app_turniere' => ['label' => 'Turniere', 'icon' => '🏆'],
             'app_video_analyse' => ['label' => 'Videos & Analyse', 'icon' => '🎬'],
