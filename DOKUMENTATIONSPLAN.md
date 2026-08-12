@@ -51,7 +51,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Beobachtungsliste | abgeschlossen |
 | Quick-Event Konfiguration | abgeschlossen |
 | Mein Feedback | abgeschlossen |
-| Strafenkatalog | offen |
+| Strafenkatalog | abgeschlossen |
 | Inventar | offen |
 | Kassenbuch | offen |
 | Abrechnung & Abo | offen |
