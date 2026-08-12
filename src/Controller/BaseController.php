@@ -25,6 +25,7 @@ abstract class BaseController extends AbstractController
             'app_authentifizierung' => ['label' => 'Anmelden & Registrieren', 'icon' => '🔐'],
             'app_vereine_teams' => ['label' => 'Vereine & Teams', 'icon' => '🏢'],
             'app_spieler' => ['label' => 'Spieler & Teams', 'icon' => '⚽'],
+            'app_beobachtungsliste' => ['label' => 'Beobachtungsliste', 'icon' => '🔖'],
             'app_trainer' => ['label' => 'Trainer', 'icon' => '🧑‍🏫'],
             'app_spiele' => ['label' => 'Spiele', 'icon' => '🏟️'],
             'app_mein_spieltag' => ['label' => 'Mein Spieltag', 'icon' => '🗓️'],

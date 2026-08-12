@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beobachtungsliste – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Beobachtungsliste</h1>
+
+    <p>
+        Unter <strong>„Beobachtungsliste“</strong> speichert ihr Spieler und Trainer, deren Vereinsstatus ihr weiter verfolgen
+        möchtet. Die Einträge gehören nur zu eurem eigenen Benutzerkonto. Eine Beobachtung verändert weder Vereins- noch
+        Mannschaftszuordnungen der betreffenden Person.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Sichtbarkeit im Menü',
+        text: 'Der Menüeintrag „Beobachtungsliste“ erscheint im Trainerbereich, wenn das angemeldete Konto aktuell als Trainer geführt wird. Die Seite selbst ist in der aktuellen Version jedoch nicht zusätzlich auf Trainerkonten beschränkt.'
+    } %}
+
+    <h2>Einträge in der Beobachtungsliste</h2>
+
+    <p>
+        Neue Einträge stehen zuerst. Bei mehr als zehn Einträgen wird die Liste auf mehrere Seiten verteilt. Das Suchfeld
+        <strong>„In Liste suchen…“</strong> filtert ausschließlich nach dem Namen der beobachteten Person.
+    </p>
+
+    <p>
+        Jede Karte zeigt den Namen, ob es sich um einen Spieler oder Trainer handelt, den angezeigten Vereinsstatus und das Datum,
+        an dem die Person zur Beobachtungsliste hinzugefügt wurde. Bei Spielern kommen die vorhandenen Gesamtwerte für Spiele und
+        Einsatzminuten hinzu. Zusätzlich werden bis zu vier Ereignisarten mit den jeweils höchsten Anzahlen angezeigt. Diese Werte
+        sind nicht auf eine bestimmte Saison eingeschränkt.
+    </p>
+
+    <p>
+        Die Karten selbst öffnen keine Spieler- oder Trainerdetails. Für weitere Spielerdaten verwendet ihr die
+        <a href="{{ path('app_spieler') }}">Spielerübersicht</a>. Trainerdaten werden in der entsprechenden Verwaltungsübersicht
+        angezeigt, sofern euer Konto dafür berechtigt ist.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Beobachtungsliste mit Spieler und Trainer',
+        description: 'Die Seite „Beobachtungsliste“ mit mindestens einem Spieler und einem Trainer aufnehmen.',
+        items: [
+            'Suchfeld „In Liste suchen…“',
+            'Schaltfläche „Hinzufügen“',
+            'eine Spielerkarte mit Vereinsstatus und Statistikangaben',
+            'eine Trainerkarte',
+            'Augen-Symbol für den Beobachtungsmodus',
+            'Papierkorb zum Entfernen'
+        ],
+        purpose: 'Aufbau der Liste, Unterschiede zwischen Spieler- und Trainereinträgen sowie die verfügbaren Aktionen zeigen.'
+    } %}
+
+    <h2>Spieler oder Trainer hinzufügen</h2>
+
+    <p>
+        Über <strong>„Hinzufügen“</strong> öffnet ihr die Suche. Zuerst wählt ihr <strong>„Spieler“</strong> oder
+        <strong>„Trainer“</strong>. Ab zwei eingegebenen Zeichen sucht Kaderblick plattformweit und nicht nur innerhalb der eigenen
+        Mannschaften oder Vereine. Angezeigt werden höchstens zwanzig Treffer mit Name und aktuellem Verein beziehungsweise
+        <strong>„Vereinslos“</strong>.
+    </p>
+
+    <p>
+        Ein leeres Lesezeichen fügt die Person hinzu. Ein gefülltes Lesezeichen bedeutet, dass sie bereits auf eurer Liste steht.
+        Dieselbe Person kann pro Benutzerkonto nur einmal als Spieler beziehungsweise Trainer beobachtet werden. Neu angelegte
+        Beobachtungen werden zunächst als <strong>anonym</strong> gespeichert.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Spieler oder Trainer zur Beobachtungsliste hinzufügen',
+        description: 'Den geöffneten Dialog „Spieler oder Trainer beobachten“ mit mehreren Suchtreffern aufnehmen.',
+        items: [
+            'Auswahl „Spieler“ und „Trainer“',
+            'Suchfeld mit mindestens zwei eingegebenen Zeichen',
+            'Treffer mit Name und Verein',
+            'leeres und gefülltes Lesezeichen, wenn beide Zustände sinnvoll darstellbar sind'
+        ],
+        purpose: 'Auswahl, Suche und Hinzufügen beziehungsweise Entfernen direkt in der Trefferliste zeigen.'
+    } %}
+
+    <h3>Alternative Wege</h3>
+
+    <p>
+        In der <strong>Spielerübersicht</strong> steht das Lesezeichen direkt in der jeweiligen Spielerzeile zur Verfügung.
+        Darüber lässt sich ein Spieler zur selben Beobachtungsliste hinzufügen oder wieder entfernen. In der Trainerübersicht
+        der Verwaltung gibt es dieselbe Aktion für Trainer. Auch über diese Wege neu hinzugefügte Einträge beginnen im anonymen
+        Beobachtungsmodus.
+    </p>
+
+    <h2>Anonym oder sichtbar beobachten</h2>
+
+    <p>
+        Das Augen-Symbol auf einer Karte wechselt den gespeicherten Beobachtungsmodus. Ein durchgestrichenes Auge steht für
+        <strong>anonym beobachten</strong>, ein sichtbares Auge für <strong>sichtbar beobachten</strong>. Durch Antippen oder
+        Anklicken wechselt der Zustand unmittelbar.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Der Modus hat derzeit keine sichtbare Auswirkung für die beobachtete Person',
+        text: 'Im aktuellen Stand gibt es keine Ansicht, in der Spieler oder Trainer sehen können, wer sie beobachtet. Auch beim Modus „sichtbar beobachten“ wird die beobachtete Person nicht darüber benachrichtigt. Der gewählte Modus wird derzeit lediglich am Eintrag gespeichert.'
+    } %}
+
+    <h2>Benachrichtigungen bei Änderungen des Vereinsstatus</h2>
+
+    <p>
+        Die Beobachtungsliste erzeugt nicht bei jeder Änderung einer Person eine Meldung. Benachrichtigt wird ausschließlich,
+        wenn bei einer Vereinszugehörigkeit ein Enddatum neu gesetzt oder ein vorhandenes Enddatum geändert wird.
+    </p>
+
+    <p>
+        Hat die beobachtete Person danach keine weitere aktive oder zukünftige Vereinszugehörigkeit, lautet die Meldung, dass sie
+        jetzt vereinslos ist. Besteht weiterhin eine andere aktive oder zukünftige Vereinszugehörigkeit, meldet Kaderblick einen
+        angekündigten Vereinswechsel und nennt den Verein sowie das eingetragene Enddatum der geänderten Zugehörigkeit.
+    </p>
+
+    <p>
+        Änderungen an Spielstatistiken, Mannschaftszuordnungen oder anderen Personendaten lösen über die Beobachtungsliste keine
+        eigene Meldung aus.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Beobachtungs-Meldungen sind standardmäßig ausgeschaltet',
+        text: 'Diese Meldungen werden derzeit der Benachrichtigungskategorie „System- und Verwaltungshinweise“ zugeordnet. Diese Kategorie ist standardmäßig deaktiviert. Wenn ihr Meldungen aus der Beobachtungsliste erhalten möchtet, aktiviert sie in den Benachrichtigungseinstellungen. Eine Änderung wird nicht rückwirkend nachgeliefert, wenn die Kategorie zum Zeitpunkt der Änderung ausgeschaltet war.'
+    } %}
+
+    <p>
+        Die Einstellungen und die Anzeige gespeicherter Meldungen sind unter
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a> beschrieben. Beobachtungs-Meldungen enthalten im
+        aktuellen Stand keinen direkten Sprung zur Spieler- oder Traineransicht.
+    </p>
+
+    <h2>Beobachtung beenden</h2>
+
+    <p>
+        Über den Papierkorb auf einer Karte entfernt ihr den Eintrag sofort aus der Beobachtungsliste; ein zusätzlicher
+        Bestätigungsdialog erscheint nicht. Danach werden für diese Person keine neuen Beobachtungs-Meldungen mehr erzeugt.
+        Bereits vorhandene Benachrichtigungen bleiben bestehen.
+    </p>
+
+    <p>
+        Im Dialog <strong>„Spieler oder Trainer beobachten“</strong> könnt ihr eine bereits beobachtete Person ebenfalls über das
+        gefüllte Lesezeichen entfernen. Dabei wird der Treffer im Dialog sofort aktualisiert. Die Hauptliste im Hintergrund wird
+        im aktuellen Stand jedoch erst nach einem erneuten Laden der Seite vollständig aktualisiert.
+    </p>
+
+    <h2>Aktuelle Besonderheit der Vereinsanzeige</h2>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Eine laufende Vereinszugehörigkeit mit Enddatum kann als „Vereinslos“ erscheinen',
+        text: 'Auf den Karten der Beobachtungsliste wird derzeit nur eine Vereinszugehörigkeit ohne Enddatum als „Aktuell bei“ angezeigt. Ist bereits ein zukünftiges Enddatum eingetragen und gibt es keine weitere Zugehörigkeit ohne Enddatum, kann die Karte gleichzeitig „Vereinslos“ und den Hinweis „Vereinszugehörigkeit bei … endet …“ zeigen. In der Suche vor dem Hinzufügen kann derselbe Verein noch als aktueller Verein erscheinen.'
+    } %}
+{% endblock %}
