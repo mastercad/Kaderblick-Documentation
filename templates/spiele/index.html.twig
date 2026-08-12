@@ -1,143 +1,387 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Spiele – docs.kaderblick.de{% endblock %}
+{% block title %}Spiele & Turniere – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>🏟️ Spiele</h1>
+    <h1>Spiele &amp; Turniere</h1>
+
     <p>
-        Das Herzstück von Kaderblick: Spielansetzung, Live-Protokoll und Nachbereitung –
-        von der Planung bis zur Ergebniserfassung.
+        Die Übersicht <strong>„Spiele &amp; Turniere“</strong> fasst die Begegnungen der ausgewählten Saison zusammen.
+        Spiele und Turniere werden nach ihrem aktuellen Stand in laufende, anstehende und abgeschlossene Einträge
+        getrennt. Von dort gelangt ihr zu den Spieldetails, zum jeweiligen Turnier sowie zu Funktionen für den
+        Spielverlauf, Videos, den Match-Plan und die Veröffentlichung eines Livetickers, soweit diese für euer Konto
+        freigegeben sind.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📋', title: 'Spielübersicht', desc: 'Laufende, bevorstehende und vergangene Spiele in drei Kategorien.' },
-            { icon: '➕', title: 'Spiel anlegen', desc: 'Heim-/Auswärtsteam, Spieltyp, Spielort und Liga festlegen.' },
-            { icon: '⚽', title: 'Spielereignisse', desc: 'Tore, Karten, Wechsel und Assists mit Spieler und Minute protokollieren.' },
-            { icon: '🔄', title: 'Wechsel', desc: 'Ein-/Auswechslungen mit Minute und optionalem Grund erfassen.' },
-            { icon: '📊', title: 'Automatische Berechnung', desc: 'Spielstand wird live aus den Ereignissen berechnet.' },
-            { icon: '🔗', title: 'fussball.de', desc: 'Automatische Übernahme von Ergebnissen.' },
-        ]
+    <h2>Saison und Mannschaft auswählen</h2>
+
+    <p>
+        Über <strong>„Saison“</strong> legt ihr fest, welcher Spielzeitraum angezeigt wird. Die Auswahl wird als
+        Saisonpaar dargestellt, zum Beispiel 2026/27. Wenn für euch mehrere Mannschaften zur Auswahl stehen, erscheint
+        zusätzlich <strong>„Team filtern“</strong>. Dort könnt ihr eine einzelne Mannschaft oder
+        <strong>„Alle Teams“</strong> wählen. Die zuletzt gewählte Mannschaft merkt sich Kaderblick für den nächsten
+        Aufruf der Spielübersicht.
+    </p>
+
+    <p>
+        Bei einer einzelnen ausgewählten Mannschaft erscheint oben rechts die Schaltfläche
+        <strong>„Spielplan“</strong>. Sie öffnet den Spielplan dieser Mannschaft für die gewählte Saison als PDF. Bei
+        <strong>„Alle Teams“</strong> steht diese Schaltfläche nicht zur Verfügung.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Übersicht „Spiele & Turniere“',
+        description: 'Die Spielübersicht mit ausgewählter Saison und – bei einem Konto mit mehreren Mannschaften – geöffnetem Mannschaftsfilter aufnehmen.',
+        items: [
+            'Überschrift „Spiele & Turniere“',
+            'Auswahl „Saison“',
+            'Auswahl „Team filtern“ mit „Alle Teams“ und mindestens einer Mannschaft',
+            'Schaltfläche „Spielplan“ bei einer einzelnen ausgewählten Mannschaft',
+            'mindestens zwei der Bereiche „Laufende Spiele“, „Anstehende Spiele“ und „Abgeschlossene Spiele“'
+        ],
+        purpose: 'Filter, Spielplan und Gliederung der Übersicht zeigen.'
     } %}
 
-    {# ─── Spielübersicht ─── #}
-    <h2>Die Spielübersicht</h2>
-    <p>
-        Die Spielübersicht unterteilt Spiele in drei Kategorien:
-    </p>
-    <ul>
-        <li><strong>Laufende Spiele</strong> — Aktuell stattfindende Begegnungen</li>
-        <li><strong>Bevorstehende Spiele</strong> — Geplante zukünftige Spiele</li>
-        <li><strong>Vergangene Spiele</strong> — Abgeschlossene Begegnungen mit Ergebnissen</li>
-    </ul>
+    <h2>Laufende, anstehende und abgeschlossene Spiele</h2>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spiele/spieluebersicht.png',
-        alt: 'Spielübersicht in Kaderblick',
-        caption: 'Die Spielübersicht mit laufenden, bevorstehenden und vergangenen Spielen.'
+    <p>
+        Kaderblick ordnet Spiele und Turniere in die Bereiche <strong>„Laufende Spiele“</strong>,
+        <strong>„Anstehende Spiele“</strong> und <strong>„Abgeschlossene Spiele“</strong> ein. Neben der Überschrift
+        jedes Bereichs steht die Anzahl der enthaltenen Einträge. Die Bereiche lassen sich über ihre Überschrift oder
+        den Pfeil am rechten Rand ein- und ausklappen.
+    </p>
+
+    <p>
+        Eine Spielkarte zeigt Heim- und Gastmannschaft, vorhandene Vereins- oder Mannschaftslogos und – sobald ein
+        Ergebnis vorliegt – den aktuellen beziehungsweise abschließenden Spielstand. Zusätzlich werden, soweit für das
+        Spiel vorhanden, Wettbewerb oder Spielart, Datum, Uhrzeit, Spielort und Wetter angezeigt. Bei einem laufenden
+        Spiel ist die Karte mit <strong>„Live“</strong> gekennzeichnet. Abgesagte Spiele tragen deutlich sichtbar den
+        Hinweis <strong>„Abgesagt“</strong>.
+    </p>
+
+    <p>
+        Der Spielort kann direkt aus der Karte geöffnet werden. Ein Klick auf das Wettersymbol zeigt die Wetterdetails
+        zum Spieltermin. Mit einem Klick auf die übrige Spielkarte öffnet ihr die Detailansicht des Spiels.
+    </p>
+
+    <p>
+        Turniere erscheinen in denselben drei Zeitbereichen. Eine Turnierkarte zeigt den Turniernamen, die Zahl der
+        enthaltenen Spiele sowie – soweit vorhanden – Datum, Uhrzeit, Ort und Wetter. Ein Klick auf die Karte öffnet das
+        Turnier. Einzelne Turnierspiele lassen sich anschließend aus der Turnieransicht öffnen; die Zurück-Funktion in
+        deren Spieldetail führt wieder zum Turnier.
+    </p>
+
+    <h2>Spiele anlegen, ändern, absagen oder löschen</h2>
+
+    <p>
+        Die Spielübersicht selbst enthält keine Schaltfläche zum Anlegen eines neuen Spiels. Ein Spiel wird als Termin
+        im <a href="{{ path('app_kalender') }}">Kalender</a> angelegt. Dort werden unter anderem Heim- und
+        Gastmannschaft, Spielart, Wettbewerb, Spielstätte und Spielzeiten festgelegt. Änderungen am Spieltermin,
+        Absagen, Reaktivieren und Löschen erfolgen ebenfalls über den Kalender. Welche dieser Aktionen zur Verfügung
+        stehen, richtet sich nach euren Berechtigungen für die beteiligte Mannschaft beziehungsweise den Verein.
+    </p>
+
+    <p>
+        Nach dem Speichern erscheint das Spiel automatisch in der passenden Saison und Mannschaft der Spielübersicht.
+        Eine Terminabsage wird auch dort am Spiel kenntlich gemacht. Die vollständige Beschreibung des Anlegens und
+        Bearbeitens findet ihr im Abschnitt <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a>.
+    </p>
+
+    <h2>Spieldetails</h2>
+
+    <p>
+        Oben in der Spieldetailansicht stehen Heim- und Gastmannschaft sowie der aktuelle Spielstand. Darunter werden
+        Datum, Uhrzeit, Spielort und Wetter angezeigt. Ist das Spiel einer Liga, einem Pokal oder einer anderen
+        Spielart zugeordnet, steht diese Bezeichnung ebenfalls im oberen Bereich. Während des angesetzten
+        Spielzeitraums wird das Spiel als <strong>„Live“</strong> dargestellt.
+    </p>
+
+    <p>
+        Beim Scrollen bleibt eine kompakte Anzeige mit beiden Mannschaften und dem Spielstand am oberen Rand sichtbar.
+        Je nach Position auf der Seite zeigt sie zusätzlich an, ob ihr euch gerade beim Match-Plan, bei den
+        Spielereignissen oder bei den Videos befindet. Die Abschnitte auf der Detailseite können ein- und ausgeklappt
+        werden; Kaderblick merkt sich diese Auswahl auf dem verwendeten Gerät.
+    </p>
+
+    <p>
+        Wurde jemand für dieses Spiel als Aushilfe angefragt, erscheint in der Detailansicht ein entsprechender Hinweis.
+        Die Anfrage allein bedeutet noch keine feste Aufnahme in den Spielkader; verbindlich wird die Teilnahme erst
+        mit der Zusage zur Aushilfe.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Spieldetail',
+        description: 'Ein zukünftiges oder abgeschlossenes Spiel in der Detailansicht aufnehmen. Der obere Spielbereich und die folgenden Abschnittsüberschriften sollen gemeinsam sichtbar sein.',
+        items: [
+            'Heim- und Gastmannschaft mit Spielstand beziehungsweise Gegenüberstellung',
+            'Datum, Uhrzeit, Spielort und Wetter',
+            'Wettbewerb oder Spielart, sofern beim gewählten Beispiel vorhanden',
+            'Abschnitt „Match-Plan“, sofern für das verwendete Konto sichtbar',
+            'Abschnitt „Spielereignisse“',
+            'Abschnitt „Videos“'
+        ],
+        purpose: 'Aufbau der Spieldetailansicht und die wichtigsten Bereiche zeigen.'
     } %}
 
-    {# ─── Spiel anlegen ─── #}
-    <h2>Spiel anlegen</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Spielbereich öffnen', text: 'Im Menü auf <strong>„Spiele"</strong> klicken.' },
-            { title: 'Neues Spiel erstellen', text: 'Auf <strong>„+ Neues Spiel"</strong> klicken.' },
-            { title: 'Teams festlegen', text: '<strong>Heimteam</strong> und <strong>Auswärtsteam</strong> auswählen (darf nicht das gleiche Team sein).' },
-            { title: 'Details eingeben', text: '<strong>Spieltyp</strong> (Liga / Freundschaft / Pokal / ...), Spielort und Liga.' },
-            { title: 'Termin festlegen', text: 'Datum und Uhrzeit werden über den <a href="' ~ path('app_kalender') ~ '">Kalender</a> gesteuert.' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Das Spiel erscheint in der Übersicht.' },
-        ]
+    <h2>Spielereignisse und Spielstand</h2>
+
+    <p>
+        Im Abschnitt <strong>„Spielereignisse“</strong> wird der Spielverlauf zeitlich geordnet dargestellt. Heim- und
+        Gastmannschaft stehen auf gegenüberliegenden Seiten, die Spielzeit befindet sich in der Mitte. Ereignisse der
+        eigenen Mannschaft werden hervorgehoben. Wechsel zeigen den aus- und eingewechselten Spieler; bei einem
+        verletzungsbedingten Wechsel wird dies zusätzlich gekennzeichnet. Eine beim Ereignis hinterlegte Beschreibung
+        erscheint direkt darunter.
+    </p>
+
+    <p>
+        Beginn und Ende der Halbzeiten werden ebenfalls in der Zeitleiste dargestellt. Sind dafür noch keine eigenen
+        Einträge vorhanden, verwendet Kaderblick die hinterlegten Spielzeiten, um die Markierungen für
+        <strong>1. Halbzeit</strong>, <strong>Halbzeitpause</strong>, <strong>2. Halbzeit</strong> und
+        <strong>Ende</strong> einzuordnen. Auch eine Spielunterbrechung, die Wiederaufnahme nach einer Unterbrechung oder
+        ein Spielabbruch erscheinen als eigene Einträge im Verlauf.
+    </p>
+
+    <p>
+        Der Spielstand wird aus den erfassten Spielereignissen bestimmt. Wird ein für den Spielstand relevantes Ereignis
+        neu angelegt, geändert oder gelöscht, wird der angezeigte Spielstand entsprechend neu berechnet. Dadurch stimmen
+        Ergebnisanzeige, Spielübersicht und Ereignisverlauf miteinander überein.
+    </p>
+
+    <h2>Ein Spielereignis erfassen</h2>
+
+    <p>
+        In der Spieldetailansicht öffnet <strong>„Event hinzufügen“</strong> das Formular für ein neues
+        Spielereignis. Trainer einer beteiligten Mannschaft sowie entsprechend berechtigte Personen aus
+        Mannschaftsverwaltung oder Unterstützung können Spielereignisse erfassen. Fehlt die erforderliche Freigabe,
+        führt Kaderblick statt zum Eingabeformular zur Anfrage für einen Unterstützerzugang.
+    </p>
+
+    <p>
+        Im Formular legt ihr zuerst die Spielzeit fest. Mit <strong>„Jetzt“</strong> wird die seit dem angesetzten
+        Spielbeginn vergangene Zeit übernommen. Alternativ könnt ihr die Minute direkt eingeben oder mit den Minus- und
+        Plus-Schaltflächen verändern. Eine Eingabe im Format Minuten:Sekunden ist ebenfalls möglich. In der Nähe des
+        Halbzeitendes stehen zusätzliche Schaltflächen für die Nachspielzeit zur Verfügung; die daraus entstehende
+        Fußball-Spielzeit wird direkt im Formular angezeigt.
+    </p>
+
+    <p>
+        Anschließend wählt ihr den <strong>„Event-Typ“</strong> und – soweit für diesen Typ erforderlich – die
+        Mannschaft sowie die beteiligte Person. Für Spieler trennt die Auswahl zwischen dem zugesagten
+        <strong>Kader</strong> und <strong>weiteren Spielern</strong> der Mannschaft. Trikotnummern werden mit angezeigt;
+        zusätzlich eingesetzte externe Spieler sind entsprechend gekennzeichnet. Statt eines Spielers kann bei passenden
+        Ereignissen auch ein Trainer ausgewählt werden.
+    </p>
+
+    <p>
+        Bei einem Wechsel wählt ihr zusätzlich den eingewechselten Spieler und könnt einen Wechselgrund angeben. Eine
+        Beschreibung ist bei jedem Ereignis optional. Systemeinträge für den Spielverlauf, beispielsweise Beginn oder
+        Ende einer Halbzeit, benötigen keine Mannschafts- oder Spielerzuordnung. Nach dem Speichern wird der Eintrag in
+        die Zeitleiste übernommen.
+    </p>
+
+    <p>
+        Beim Erfassen mehrerer ähnlicher Ereignisse bietet das Formular das zuletzt gespeicherte Ereignis über
+        <strong>„Wiederholen“</strong> an. Dabei werden Ereignisart, Mannschaft und Person erneut vorausgewählt; die
+        Spielzeit bleibt eine eigene Angabe für den neuen Eintrag.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neues Spielereignis',
+        description: 'Das Formular „Neues Spielereignis“ während eines laufenden Spiels aufnehmen. Als Beispiel eignet sich ein Wechsel, weil dabei die meisten relevanten Felder sichtbar sind.',
+        items: [
+            'Schaltfläche „Jetzt“ und aktuelle Spielzeit',
+            'Eingabe für Minute und gegebenenfalls Nachspielzeit',
+            'Auswahl „Event-Typ“',
+            'Mannschaftsauswahl',
+            'Umschaltung Spieler/Trainer',
+            'Auswahl des aus- und eingewechselten Spielers',
+            'Auswahl „Grund für Wechsel“',
+            'optionale Beschreibung'
+        ],
+        purpose: 'Zeitangabe, Personenbezug und zusätzliche Angaben beim Erfassen eines Spielereignisses zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spiele/spiel-anlegen.png',
-        alt: 'Spiel anlegen Formular',
-        caption: 'Ein neues Spiel mit allen Pflichtfeldern anlegen.'
+    <h2>Schnellerfassung während eines laufenden Spiels</h2>
+
+    <p>
+        Für ein laufendes Spiel gibt es zusätzlich eine auf schnelle Bedienung ausgelegte Erfassung. In der
+        Spielübersicht öffnet ihr sie über <strong>„Spielereignis erfassen“</strong>. In der Spieldetailansicht steht
+        während des Spiels eine zusätzliche schwebende Schaltfläche für dieselbe Funktion zur Verfügung.
+    </p>
+
+    <p>
+        Dort wählt ihr zunächst die Ereignisart und anschließend den betroffenen Spieler. Ein Wechsel führt direkt durch
+        die Auswahl des aus- und des einzuwechselnden Spielers. Die aktuelle Spielzeit wird automatisch verwendet. Ist
+        ein nutzbarer Match-Plan vorhanden, berücksichtigt die Schnellerfassung dessen aktuell eingeplante Spieler und
+        Bank. Andernfalls verwendet sie zunächst den zugesagten Kader und bei Bedarf die aktiven Spieler der Mannschaft.
+    </p>
+
+    <p>
+        Über dieselbe Schnellerfassung können auch Halbzeitbeginn und -ende, eine Spielunterbrechung, die Wiederaufnahme
+        sowie ein Spielabbruch protokolliert werden. Nach einem erfolgreich gespeicherten Ereignis erscheint für acht
+        Sekunden <strong>„Rückgängig“</strong>. Damit lässt sich die gerade vorgenommene Erfassung sofort wieder entfernen.
+    </p>
+
+    <h2>Ereignisse bearbeiten oder löschen</h2>
+
+    <p>
+        Wenn euer Konto für Änderungen an einem Spielereignis berechtigt ist, steht am jeweiligen Eintrag ein Menü mit
+        <strong>„Bearbeiten“</strong> und <strong>„Löschen“</strong> zur Verfügung. Beim Bearbeiten wird dasselbe Formular
+        wie beim Anlegen geöffnet und mit den vorhandenen Angaben gefüllt. Das Löschen muss bestätigt werden. Danach
+        werden Ereignisverlauf und Spielstand neu geladen.
+    </p>
+
+    <h2>Videos an Spielereignissen</h2>
+
+    <p>
+        Sind einem Spielereignis Videoaufnahmen zugeordnet, erscheint unter der Spielzeit ein Kamerasymbol mit der Zahl
+        der verfügbaren Aufnahmen. Darüber klappt ihr die zugehörigen Links auf. Sind mehrere Kameras hinterlegt, werden
+        die Aufnahmen mit der jeweiligen Kamerabezeichnung getrennt angeboten.
+    </p>
+
+    <p>
+        Umgekehrt kann ein neues Spielereignis direkt während der Wiedergabe eines Spielvideos angelegt werden. Kaderblick
+        übernimmt dabei die Position aus dem Video und rechnet sie auf die Spielzeit um. Dadurch muss die Minute nicht
+        erneut aus dem Video abgelesen und manuell übertragen werden.
+    </p>
+
+    <h2>Match-Plan für ein Spiel</h2>
+
+    <p>
+        Trainer einer am Spiel beteiligten Mannschaft können im Abschnitt <strong>„Match-Plan“</strong> die
+        Startformation und weitere Formationen für den Spielverlauf vorbereiten. Folgeformationen können geplante
+        Wechsel oder taktische Umstellungen zu einem bestimmten Zeitpunkt abbilden. Jede gespeicherte Formation lässt
+        sich in einer Vorschau öffnen.
+    </p>
+
+    <p>
+        Der Plan ist für Spieler nicht automatisch sichtbar. Über <strong>„Für Spieler freigeben“</strong> veröffentlicht
+        der Trainer die aktuelle Fassung für die im Match-Plan ausgewählte Mannschaft; mit
+        <strong>„Freigabe aufheben“</strong> wird sie wieder verborgen. Spieler dieser Mannschaft sehen die freigegebene
+        Fassung nur lesend als <strong>„Match-Plan des Trainers“</strong>. Spieler der anderen Mannschaft erhalten dadurch
+        keinen Zugriff auf den Plan.
+    </p>
+
+    <p>
+        Ein im Match-Plan vorbereiteter Wechsel bleibt zunächst eine Planung. Wird der geplante Wechsel später bestätigt,
+        entsteht daraus das entsprechende Spielereignis im tatsächlichen Spielverlauf. Planung und protokollierter
+        Spielverlauf bleiben damit voneinander getrennt, bis der Wechsel wirklich ausgeführt wird.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Match-Plan im Spiel',
+        description: 'Die Match-Plan-Ansicht eines Trainers mit Startformation und mindestens einer Folgeformation aufnehmen.',
+        items: [
+            'Bereich „Match-Plan“ beziehungsweise „Formationen für dieses Spiel“',
+            'Startformation',
+            'mindestens eine weitere Formation mit Zeitangabe',
+            'Schaltflächen für Vorschau und Bearbeitung',
+            'Schaltfläche „Für Spieler freigeben“ oder „Freigabe aufheben“'
+        ],
+        purpose: 'Zusammenhang zwischen Startformation, Folgeformationen und Freigabe für Spieler zeigen.'
     } %}
 
-    {# ─── Spielereignisse ─── #}
-    <h2>Spielereignisse erfassen</h2>
-    <p>
-        Während oder nach dem Spiel könnt ihr folgende Ereignisse protokollieren:
-    </p>
-    <ul>
-        <li>⚽ <strong>Tor</strong> — Mit Spieler und Spielminute</li>
-        <li>🙈 <strong>Eigentor</strong></li>
-        <li>🟨 <strong>Gelbe Karte</strong></li>
-        <li>🟥 <strong>Rote Karte</strong></li>
-        <li>🟨🟥 <strong>Gelb-Rot</strong></li>
-        <li>🔄 <strong>Wechsel</strong> — Ein- und Auswechselspieler mit Minute</li>
-        <li>👟 <strong>Assist</strong> — Torvorlage</li>
-    </ul>
+    <h2>Videos eines Spiels</h2>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Automatische Berechnung',
-        text: 'Der <strong>Spielstand wird automatisch</strong> aus den Spielereignissen berechnet. Ihr müsst kein Ergebnis manuell eintragen!'
+    <p>
+        Im Abschnitt <strong>„Videos“</strong> werden die zum Spiel hinterlegten Aufnahmen angezeigt. Bei einem
+        YouTube-Video öffnet ein Klick auf Vorschaubild oder Videonamen die Wiedergabe. Zusätzlich können Videoart,
+        Länge und verwendete Kamera angezeigt werden. Die Schaltfläche <strong>„Schnittliste“</strong> steht zur
+        Verfügung, sobald mindestens ein Video vorhanden ist.
+    </p>
+
+    <p>
+        Wer Videos für die beteiligten Mannschaften verwalten darf, kann über <strong>„Video hinzufügen“</strong> eine
+        Aufnahme hinterlegen und vorhandene Einträge bearbeiten oder löschen. Beim Anlegen werden ein Name und eine
+        Videoart benötigt. Zusätzlich können YouTube-Link oder Datei-Adresse, Dateipfad, Startposition des Spiels im
+        Video, Sortierung, Kamera und Videolänge angegeben werden. Für Startposition und Länge akzeptiert Kaderblick
+        Sekunden sowie Zeitangaben in Minuten:Sekunden oder Stunden:Minuten:Sekunden.
+    </p>
+
+    <p>
+        Hat ein Benutzer keinen entsprechenden Videozugriff, bietet die geschützte Aktion stattdessen die Anfrage für
+        einen Unterstützerzugang an. Die weiterführenden Möglichkeiten zur Videoauswertung und zum Schneiden werden im
+        Bereich der Videoanalyse behandelt.
+    </p>
+
+    <h2>Spielzeiten</h2>
+
+    <p>
+        Der Abschnitt <strong>„Spielzeiten“</strong> zeigt die Halbzeitdauer und die Dauer der Halbzeitpause. Wurde für
+        eine Halbzeit Nachspielzeit eingetragen, wird sie ebenfalls angezeigt. Diese Angaben werden für die zeitliche
+        Einordnung der Halbzeiten und Spielereignisse verwendet.
+    </p>
+
+    <p>
+        Nur Konten mit der dafür vorgesehenen übergeordneten Verwaltungsberechtigung können diese Werte in der
+        Spieldetailansicht ändern. Bearbeitet werden können die Halbzeitdauer, die Halbzeitpause sowie die Nachspielzeit
+        der ersten und zweiten Halbzeit. Nach dem Speichern wird die Detailansicht mit den neuen Zeiten aktualisiert.
+    </p>
+
+    <h2>Mit Fussball.de synchronisieren</h2>
+
+    <p>
+        Ist beim Spiel eine Fussball.de-Adresse hinterlegt, erscheint im oberen Spielbereich die Schaltfläche
+        <strong>„Mit Fussball.de synchronisieren“</strong>. Damit werden die für dieses Spiel verfügbaren Daten erneut von
+        der verknüpften Fussball.de-Seite eingelesen. Anschließend lädt Kaderblick die Spieldetails neu. Ohne hinterlegte
+        Fussball.de-Adresse wird diese Schaltfläche nicht angezeigt.
+    </p>
+
+    <h2>Spielankündigung oder Ergebnis teilen</h2>
+
+    <p>
+        Bei einem zukünftigen Spiel steht <strong>„Ankündigung teilen“</strong> zur Verfügung. Nach einem abgeschlossenen
+        Spiel mit Ergebnis wechselt die Funktion zu <strong>„Ergebnis teilen“</strong>. Die Schaltfläche befindet sich
+        sowohl an passenden Spielkarten in der Übersicht als auch in der Spieldetailansicht. Während eines laufenden
+        Spiels wird diese Freigabefunktion nicht angeboten.
+    </p>
+
+    <h2>Öffentlicher Liveticker</h2>
+
+    <p>
+        Trainer sowie entsprechend zuständige Personen aus Mannschafts- oder Vereinsverwaltung und Unterstützung können
+        bei einem beteiligten Team den <strong>„Öffentlichen Liveticker“</strong> verwalten. Er kann frühestens
+        <strong>15 Minuten vor Spielbeginn</strong> aktiviert werden und bleibt bis zum Ende des angesetzten Spiels
+        aktivierbar. Für bereits beendete Spiele sowie Spiele ohne Termin oder ohne beide Mannschaften kann kein neuer
+        öffentlicher Liveticker aktiviert werden.
+    </p>
+
+    <p>
+        Nach der Aktivierung erzeugt Kaderblick einen öffentlichen Link. Über <strong>„Ticker öffnen“</strong> lässt sich
+        die öffentliche Ansicht direkt prüfen; <strong>„Link kopieren“</strong> übernimmt die Adresse in die
+        Zwischenablage. Besucher benötigen für diese Ansicht keine Anmeldung und sehen dort Spielstand und
+        Spielereignisse. Spieler-, Trainer-, Video- und Aufstellungsdaten werden nicht veröffentlicht.
+    </p>
+
+    <p>
+        Freitext, der als Beschreibung oder Kommentar eines veröffentlichten Spielereignisses erscheint, ist im
+        Liveticker ebenfalls öffentlich. Personenbezogene Angaben gehören deshalb nicht in solche Freitexte, wenn der
+        Liveticker für das Spiel eingeschaltet ist.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Öffentlicher Liveticker',
+        description: 'Die Liveticker-Steuerung eines berechtigten Kontos bei einem Spiel innerhalb des zulässigen Aktivierungszeitraums aufnehmen.',
+        items: [
+            'Schalter „Öffentlicher Liveticker“',
+            'Hinweis auf die öffentlich sichtbaren Inhalte',
+            'Schaltfläche „Ticker öffnen“ bei aktiviertem Ticker',
+            'Schaltfläche „Link kopieren“ bei aktiviertem Ticker'
+        ],
+        purpose: 'Aktivierung und Weitergabe des öffentlichen Livetickers zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spiele/spielereignisse.png',
-        alt: 'Spielereignisse erfassen',
-        caption: 'Tore, Karten und Wechsel mit Spieler und Minute erfassen.'
-    } %}
+    <h2>Spiel als beendet markieren</h2>
 
-    {# ─── Wechsel ─── #}
-    <h2>Wechsel erfassen</h2>
     <p>
-        Bei einem Wechsel werden <strong>Einwechsel-</strong> und <strong>Auswechselspieler</strong>,
-        die <strong>Minute</strong> und ein optionaler <strong>Grund</strong> erfasst.
+        Konten mit der höchsten Verwaltungsberechtigung sehen bei einem noch nicht abgeschlossenen Spiel die
+        Schaltfläche <strong>„Spiel beenden“</strong>. Vor dem Abschluss muss die Aktion bestätigt werden. Danach wird das
+        Spiel als beendet gekennzeichnet und erscheint entsprechend als abgeschlossenes Spiel.
     </p>
 
-    {# ─── Spiel abschließen ─── #}
-    <h2>Spiel abschließen</h2>
     <p>
-        Markiert ein Spiel als <strong>„Abgeschlossen"</strong> – es wird in die vergangenen Spiele
-        verschoben und die Statistiken werden finalisiert.
+        Bei einem Turnierspiel hat der Abschluss eine zusätzliche Folge: Der Gewinner wird automatisch in die nächste
+        Runde des Turniers übernommen. Ist für die nächste Runde bereits die erforderliche Begegnung vorgesehen, wird
+        diese Zuordnung beim Abschluss des Spiels berücksichtigt.
     </p>
-
-    {# ─── Spieldetailseite ─── #}
-    <h2>Die Spieldetailseite</h2>
-    <p>
-        In der Detailansicht findet ihr:
-    </p>
-    <ul>
-        <li><strong>Ergebnis</strong> — Automatisch berechnet</li>
-        <li><strong>Chronologische Ereignisliste</strong> — Alle Tore, Karten, Wechsel</li>
-        <li><strong>Verknüpfte Videos</strong> — Für die <a href="{{ path('app_video_analyse') }}">Spielanalyse</a></li>
-        <li><strong>Wetterdaten</strong> — Automatisch hinterlegt</li>
-        <li><strong>Teilnahmestatus</strong> — Wer war dabei?</li>
-    </ul>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/spiele/spieldetail.png',
-        alt: 'Spieldetailseite',
-        caption: 'Die vollständige Spieldetailseite mit Ergebnis, Ereignissen und Videos.'
-    } %}
-
-    {# ─── Spielorte ─── #}
-    <h2>Spielorte</h2>
-    <p>
-        Spielorte werden einmalig angelegt und können danach bei jedem Spiel ausgewählt
-        werden.
-    </p>
-
-    {# ─── fussball.de ─── #}
-    <h2>fussball.de-Synchronisation</h2>
-    <p>
-        Ergebnisse können automatisch von <strong>fussball.de</strong> übernommen werden.
-        Die Einrichtung erfolgt einmalig durch den
-        <a href="{{ path('app_admin') }}">Administrator</a>.
-    </p>
-
-    {# ─── Berechtigungen ─── #}
-    <h2>Berechtigungen</h2>
-    <ul>
-        <li><strong>Spieler/Eltern:</strong> Nur Spiele des eigenen Teams einsehen</li>
-        <li><strong>Trainer:</strong> Eigene Teams + Ereignisse nachtragen</li>
-        <li><strong>Admins:</strong> Voller Zugriff auf alle Spiele</li>
-    </ul>
 {% endblock %}
