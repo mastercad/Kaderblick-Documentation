@@ -43,6 +43,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'Umfragen' => ['/umfragen', 'Umfragen'];
         yield 'Wissenspool' => ['/wissenspool', 'Wissenspool'];
         yield 'Hall of Fame' => ['/hall-of-fame', 'Hall of Fame'];
+        yield 'Mein Feedback' => ['/mein-feedback', 'Mein Feedback'];
     }
 
     public function testSidebarShowsActiveState(): void
