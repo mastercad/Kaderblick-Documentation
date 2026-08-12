@@ -40,6 +40,18 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Mein Spieltag | abgeschlossen |
 | Weitere aktuelle Bereiche | offen |
 
+### Weitere aktuelle Bereiche
+
+| Bereich | Stand |
+|---|---|
+| Aushelfen | abgeschlossen |
+| fussball.de Import | offen |
+| Team Size Guide | offen |
+| Spieler & Teams im Trainerbereich | offen |
+| Beobachtungsliste | offen |
+| Quick-Event Konfiguration | offen |
+| Weitere außerhalb der Hauptnavigation erreichbare Benutzerbereiche | noch zu prüfen |
+
 ## Vorgehen je Bereich
 
 1. Aktuelle Seite, sichtbare Bedienelemente und zugehörige Abläufe im aktuellen Kaderblick-Quellcode prüfen.
