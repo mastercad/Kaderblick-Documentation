@@ -26,6 +26,7 @@ abstract class BaseController extends AbstractController
             'app_vereine_teams' => ['label' => 'Vereine & Teams', 'icon' => '🏢'],
             'app_strafenkatalog' => ['label' => 'Strafenkatalog', 'icon' => '⚖️'],
             'app_inventar' => ['label' => 'Inventar', 'icon' => '📦'],
+            'app_kassenbuch' => ['label' => 'Kassenbuch', 'icon' => '💶'],
             'app_spieler' => ['label' => 'Spieler & Teams', 'icon' => '⚽'],
             'app_beobachtungsliste' => ['label' => 'Beobachtungsliste', 'icon' => '🔖'],
             'app_quick_event_konfiguration' => ['label' => 'Quick-Event-Konfiguration', 'icon' => '🎛️'],
