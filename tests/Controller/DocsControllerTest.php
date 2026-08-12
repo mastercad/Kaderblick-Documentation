@@ -34,6 +34,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'Mein Spieltag' => ['/mein-spieltag', 'Mein Spieltag'];
         yield 'Aushelfen' => ['/aushelfen', 'Aushelfen'];
         yield 'fussball.de Import' => ['/fussball-de-import', 'fussball.de Import'];
+        yield 'Team Size Guide' => ['/team-size-guide', 'Team Size Guide'];
         yield 'Aufgaben' => ['/aufgaben', 'Aufgaben'];
         yield 'XP-System' => ['/xp-system', 'XP-System'];
         yield 'Neuigkeiten' => ['/news', 'Neuigkeiten'];
