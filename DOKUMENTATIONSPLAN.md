@@ -50,7 +50,12 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Spieler & Teams im Trainerbereich | abgeschlossen |
 | Beobachtungsliste | abgeschlossen |
 | Quick-Event Konfiguration | abgeschlossen |
-| Weitere außerhalb der Hauptnavigation erreichbare Benutzerbereiche | noch zu prüfen |
+| Mein Feedback | abgeschlossen |
+| Strafenkatalog | offen |
+| Inventar | offen |
+| Kassenbuch | offen |
+| Abrechnung & Abo | offen |
+| Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | noch zu prüfen |
 
 ## Vorgehen je Bereich
 
