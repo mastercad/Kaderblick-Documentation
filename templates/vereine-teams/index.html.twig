@@ -18,7 +18,8 @@
         <strong>„Mein Team“</strong> öffnet zunächst die Mannschaft, der euer Konto zugeordnet ist. Wenn euer Konto
         Zugriff auf mehrere Mannschaften hat, erscheinen oberhalb der Mannschaftsinformationen eigene Reiter. Ein
         Wechsel des Reiters ändert Kader, Trainingsnachweise und die angezeigten Mannschaftsdaten auf die gewählte
-        Mannschaft.
+        Mannschaft. Besteht keine Mannschaftszuordnung, zeigt die Seite <strong>„Kein Team gefunden“</strong> und
+        verweist auf Trainer oder Verwaltung, damit die Zuordnung ergänzt werden kann.
     </p>
 
     <p>
@@ -117,11 +118,23 @@
     <h2>Trainingsnachweise</h2>
 
     <p>
-        Trainingsnachweise erscheinen in <strong>„Mein Team“</strong>, sobald für die gewählte Mannschaft mindestens
-        eine aktive Anforderung vorhanden ist. Trainer der Mannschaft und entsprechend berechtigte
-        Verwaltungsnutzer sehen stattdessen die Kontrollansicht und können neue Anforderungen anlegen. Der gesamte
-        Bereich lässt sich ein- und ausklappen; Kaderblick merkt sich den gewählten Zustand auf dem verwendeten Gerät.
+        Der Bereich für Trainingsnachweise erscheint, wenn aktive Anforderungen vorhanden sind oder euer Konto die
+        Trainingsnachweise der Mannschaft verwalten darf. Spieler und mit ihnen verbundene Konten sehen die für diese
+        Verbindung bestimmten Anforderungen. Trainer der Mannschaft und entsprechend berechtigte Verwaltungsnutzer
+        erhalten die Kontrollansicht.
     </p>
+
+    <p>
+        Der gesamte Bereich lässt sich ein- und ausklappen; Kaderblick merkt sich den gewählten Zustand auf dem
+        verwendeten Gerät. Sind bereits Anforderungen vorhanden, können berechtigte Konten über
+        <strong>„Anforderung anlegen“</strong> weitere hinzufügen.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Erste Trainingsnachweis-Anforderung',
+        text: 'Wenn für eine Mannschaft noch keine Anforderung vorhanden ist, zeigt die aktuelle Ansicht zwar den Bereich „Trainingsnachweise“, dort aber noch keine Schaltfläche zum Anlegen der ersten Anforderung.'
+    } %}
 
     <h3>Einen eigenen Trainingsnachweis einreichen</h3>
 
@@ -272,8 +285,9 @@
     <h3>Eine Buchung auf den eigenen Deckel setzen</h3>
 
     <p>
-        Unter <strong>„Verfügbare Artikel“</strong> stehen die für das eigene Team beziehungsweise den eigenen Verein
-        freigegebenen Katalogeinträge mit Bezeichnung, Kategorie und Preis. Ein Klick auf einen Artikel öffnet
+        Unter <strong>„Verfügbare Artikel“</strong> stehen die für euer Konto nutzbaren Katalogeinträge mit
+        Bezeichnung, Kategorie und Preis. Dazu gehören allgemeine Artikel sowie Einträge, die einer für euch sichtbaren
+        Mannschaft oder einem Verein zugeordnet sind. Ein Klick auf einen Artikel öffnet
         <strong>„Auf Deckel buchen“</strong> bereits mit diesem Artikel. Derselbe Dialog kann auch über die gleichnamige
         Schaltfläche geöffnet werden.
     </p>
@@ -281,15 +295,17 @@
     <p>
         Mit <strong>„Aus Katalog“</strong> wählt ihr einen vorhandenen Artikel. Über
         <strong>„Freie Buchung“</strong> können stattdessen eine eigene Bezeichnung und ein eigener Betrag eingetragen
-        werden. In beiden Fällen werden Menge und Datum festgelegt; eine Notiz ist optional. Der errechnete
-        Gesamtbetrag wird vor dem Buchen angezeigt.
+        werden. Der Betrag darf nicht negativ sein. In beiden Fällen muss die Menge mindestens 1 betragen; außerdem
+        wird das Datum festgelegt und eine Notiz kann ergänzt werden. Der errechnete Gesamtbetrag wird vor dem Buchen
+        angezeigt.
     </p>
 
     <p>
         Ist ein Katalogeintrag bereits fest einer Mannschaft oder einem Verein zugeordnet, übernimmt die Buchung diesen
         Bezug. Bei einem allgemein verfügbaren Artikel oder einer freien Buchung muss der passende Eintrag unter
         <strong>„Kontext (Team / Verein)“</strong> gewählt werden, wenn für das Konto mehrere Möglichkeiten bestehen.
-        Gibt es insgesamt nur eine mögliche Zuordnung, wird sie automatisch verwendet.
+        Gibt es insgesamt nur eine mögliche Zuordnung, wird sie automatisch verwendet. Ohne eine verfügbare Mannschaft
+        oder einen verfügbaren Verein kann keine Deckel-Buchung angelegt werden.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
