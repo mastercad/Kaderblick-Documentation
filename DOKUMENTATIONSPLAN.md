@@ -52,7 +52,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Quick-Event Konfiguration | abgeschlossen |
 | Mein Feedback | abgeschlossen |
 | Strafenkatalog | abgeschlossen |
-| Inventar | offen |
+| Inventar | abgeschlossen |
 | Kassenbuch | offen |
 | Abrechnung & Abo | offen |
 | Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | noch zu prüfen |
