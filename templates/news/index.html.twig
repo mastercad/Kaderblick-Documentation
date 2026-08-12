@@ -1,67 +1,147 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}News – docs.kaderblick.de{% endblock %}
+{% block title %}Neuigkeiten – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>📰 News & Vereinsnachrichten</h1>
+    <h1>Neuigkeiten</h1>
+
     <p>
-        Aktuelle Nachrichten, Ankündigungen und Spielberichte – alles, was im Verein passiert.
+        Unter <strong>Community → Neuigkeiten</strong> stehen die veröffentlichten Mitteilungen, die für euer
+        Benutzerkonto sichtbar sind. Eine Neuigkeit kann für die gesamte Kaderblick-Plattform, für einen Verein
+        oder für eine Mannschaft bestimmt sein. Diese Zuordnung wird direkt an jedem Eintrag angezeigt.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📖', title: 'News lesen', desc: 'News-Liste mit Titel und Vorschautext – Klick für den vollständigen Beitrag.' },
-            { icon: '✍️', title: 'News schreiben', desc: 'Trainer und Admins können Beiträge mit Bildern erstellen und veröffentlichen.' },
-            { icon: '📸', title: 'Bilder & Galerien', desc: 'Fotos und Galerien zu Beiträgen hinzufügen.' },
-            { icon: '🔔', title: 'Benachrichtigungen', desc: 'Automatische Benachrichtigung bei neuen Beiträgen.' },
-        ]
-    } %}
+    <h2>Neuigkeiten in der Übersicht</h2>
 
-    {# ─── Lesen ─── #}
-    <h2>News lesen</h2>
     <p>
-        Die News-Übersicht zeigt alle Beiträge mit <strong>Titel</strong> und <strong>Vorschautext</strong>.
-        Klickt auf einen Beitrag, um den vollständigen Inhalt zu lesen.
+        Die Übersicht zeigt pro Neuigkeit den Titel, einen Ausschnitt aus dem Inhalt, den Verfasser und den
+        Veröffentlichungszeitpunkt. Die Kennzeichnung <strong>Plattform</strong>, <strong>Verein</strong> oder
+        <strong>Team</strong> zeigt, für welchen Bereich der Beitrag veröffentlicht wurde. Bei Vereins- und
+        Mannschaftsbeiträgen steht zusätzlich der Name des betreffenden Vereins beziehungsweise der Mannschaft
+        dabei.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/news/news-uebersicht.png',
-        alt: 'News-Übersicht',
-        caption: 'Die News-Liste mit Titel und Vorschautext.'
+    <p>
+        Ein Klick auf die Karte öffnet die vollständige Neuigkeit. Dort werden der komplette Inhalt, Verfasser und
+        Veröffentlichungszeitpunkt angezeigt. Über <strong>Alle Neuigkeiten</strong> gelangt ihr anschließend wieder
+        zur Übersicht zurück.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Übersicht der Neuigkeiten',
+        description: 'Bitte die Seite „Neuigkeiten“ mit mehreren Beiträgen unterschiedlicher Sichtbarkeit aufnehmen. Namen und Inhalte müssen Beispieldaten sein.',
+        items: [
+            'Titel und Vorschautext eines Beitrags',
+            'Kennzeichnung Plattform, Verein oder Team',
+            'Name des Verfassers',
+            'Veröffentlichungszeitpunkt',
+            'Schaltfläche „Neue Neuigkeit“, sofern sie für das verwendete Konto sichtbar ist'
+        ],
+        purpose: 'Aufbau einer Neuigkeiten-Karte und die Kennzeichnung des Empfängerkreises zeigen.'
     } %}
 
-    {# ─── Inhalte ─── #}
-    <h2>Typische Inhalte</h2>
-    <ul>
-        <li><strong>Spielberichte</strong> — Zusammenfassungen nach dem Spiel</li>
-        <li><strong>Ankündigungen</strong> — Wichtige Vereinsmitteilungen</li>
-        <li><strong>Vereinsfeste</strong> — Einladungen und Rückblicke</li>
-        <li><strong>Fotogalerien</strong> — Bilder von Events und Spielen</li>
-        <li><strong>Trainingsänderungen</strong> — Kurzfristige Planänderungen</li>
-    </ul>
+    <h2>Neuigkeiten auch auf dem Dashboard lesen</h2>
 
-    {# ─── Schreiben ─── #}
-    <h2>News schreiben (nur Berechtigte)</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'News-Bereich öffnen', text: 'Im Menü auf <strong>„News"</strong> klicken.' },
-            { title: 'Neuen Beitrag erstellen', text: 'Auf <strong>„+ Neuer Beitrag"</strong> klicken.' },
-            { title: 'Inhalt verfassen', text: '<strong>Titel</strong>, vollständiger Beitrag mit <strong>Rich Text</strong>, Vorschautext und optional Bilder hochladen.' },
-            { title: 'Veröffentlichen', text: 'Klickt auf <strong>„Veröffentlichen"</strong>. Der Beitrag ist sofort für alle sichtbar.' },
-        ]
+    <p>
+        Wenn die Kachel <strong>Neuigkeiten</strong> auf eurem Dashboard eingerichtet ist, erscheinen dort ebenfalls
+        sichtbare Beiträge mit Titel, Datum und Vorschautext. Ein Klick auf einen Eintrag öffnet den vollständigen
+        Beitrag direkt auf dem Dashboard. Die eigenständige Neuigkeiten-Seite bleibt die vollständige Übersicht.
+    </p>
+
+    <h2>Wer eine Neuigkeit erstellen kann</h2>
+
+    <p>
+        Die Schaltfläche <strong>Neue Neuigkeit</strong> erscheint, wenn euer Benutzerkonto mit mindestens einem
+        Spieler oder Trainer verbunden ist oder ihr über die entsprechende übergeordnete Berechtigung verfügt.
+        Ein normal verbundenes Benutzerkonto kann Neuigkeiten für zugeordnete Vereine oder Mannschaften anlegen.
+        Eine Veröffentlichung für die gesamte <strong>Plattform</strong> ist ausschließlich der systemweiten
+        Verwaltung vorbehalten.
+    </p>
+
+    <p>
+        Welche Vereine und Mannschaften beim Erstellen zur Auswahl stehen, richtet sich nach den Spieler- und
+        Trainerzuordnungen des angemeldeten Benutzerkontos. Dadurch kann eine Neuigkeit nicht beliebig einem
+        fremden Verein oder einer fremden Mannschaft zugeordnet werden.
+    </p>
+
+    <h2>Eine Neuigkeit veröffentlichen</h2>
+
+    <p>
+        Über <strong>Neue Neuigkeit</strong> öffnet ihr das Formular. Der <strong>Titel der Neuigkeit</strong> ist ein
+        Pflichtfeld und kann bis zu 200 Zeichen enthalten. Im Feld <strong>Inhalt</strong> steht ein formatierbarer
+        Textbereich zur Verfügung. Dort können unter anderem Überschriften, Listen, Links und Bilder in den Beitrag
+        eingefügt werden.
+    </p>
+
+    <p>
+        Unter <strong>Sichtbarkeit</strong> legt ihr den Empfängerkreis fest. Bei <strong>Verein</strong> wählt ihr
+        anschließend den betreffenden Verein aus, bei <strong>Team</strong> die betreffende Mannschaft. Die Auswahl
+        <strong>Plattform</strong> darf nur von der systemweiten Verwaltung veröffentlicht werden. Mit
+        <strong>Veröffentlichen</strong> wird die Neuigkeit gespeichert und erscheint unmittelbar in den dafür
+        vorgesehenen Übersichten.
+    </p>
+
+    <p>
+        Beim Veröffentlichen werden die betroffenen Benutzer außerdem über die neue Neuigkeit benachrichtigt. Bei
+        einem Mannschaftsbeitrag betrifft das die mit dieser Mannschaft verbundenen Spieler und Trainer, bei einem
+        Vereinsbeitrag die entsprechenden Benutzer des Vereins. Der Verfasser erhält für den eigenen Beitrag keine
+        zusätzliche Benachrichtigung. Die Benachrichtigung führt direkt zur veröffentlichten Neuigkeit.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neuigkeit erstellen',
+        description: 'Bitte das geöffnete Formular „Neuigkeit erstellen“ mit neutralem Beispielinhalt aufnehmen.',
+        items: [
+            'Titel der Neuigkeit',
+            'formatierbarer Inhaltsbereich',
+            'Schaltfläche „Vorlage“',
+            'Auswahl „Sichtbarkeit“',
+            'zusätzliche Vereins- oder Mannschaftsauswahl',
+            'Schaltfläche „Veröffentlichen“'
+        ],
+        purpose: 'Felder und Empfängerauswahl beim Erstellen einer Neuigkeit zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/news/news-schreiben.png',
-        alt: 'News-Beitrag erstellen',
-        caption: 'Einen News-Beitrag mit Rich Text und Bildern verfassen.'
-    } %}
+    <h2>Eine Vorlage für den Inhalt verwenden</h2>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'info',
-        title: 'Berechtigungen',
-        text: 'Nur <strong>Trainer</strong> und <strong>Administratoren</strong> können News-Beiträge erstellen. Spieler können Beiträge lesen.'
-    } %}
+    <p>
+        Über <strong>Vorlage</strong> könnt ihr einen vorbereiteten Aufbau in den Inhaltsbereich übernehmen. Vor der
+        Übernahme wird die gewählte Vorlage in einer Vorschau angezeigt. Enthält der Editor bereits Text, fragt
+        Kaderblick vor dem Ersetzen noch einmal nach. Nach dem Einfügen lässt sich der Vorlagentext wie normaler
+        Inhalt ändern und ergänzen.
+    </p>
+
+    <h2>Eine eigene Neuigkeit bearbeiten</h2>
+
+    <p>
+        Bei einer selbst erstellten Neuigkeit erscheinen in der Übersicht und in der Detailansicht Schaltflächen zum
+        Bearbeiten und Löschen. Die systemweite Verwaltung kann diese Funktionen ebenfalls bei fremden Beiträgen
+        verwenden. Beim Bearbeiten können <strong>Titel</strong> und <strong>Inhalt</strong> geändert werden. Die beim
+        Erstellen festgelegte Sichtbarkeit und der zugeordnete Verein beziehungsweise die Mannschaft lassen sich in
+        diesem Dialog nicht nachträglich ändern.
+    </p>
+
+    <p>
+        Auch beim Bearbeiten kann über <strong>Vorlage</strong> ein vorbereiteter Inhalt eingesetzt werden. Wird eine
+        Vorlage auf einen bereits gefüllten Editor angewendet, weist Kaderblick darauf hin, dass der vorhandene
+        Inhalt dadurch ersetzt wird.
+    </p>
+
+    <h2>Eine Neuigkeit löschen</h2>
+
+    <p>
+        Das Löschen muss in einem Bestätigungsfenster bestätigt werden. Danach wird die Neuigkeit aus der Übersicht
+        entfernt. Gleichzeitig werden die zu dieser Neuigkeit erzeugten Kaderblick-Benachrichtigungen entfernt, so
+        dass sie nicht mehr zu einem gelöschten Beitrag führen.
+    </p>
+
+    <h2>Welche Neuigkeiten sichtbar sind</h2>
+
+    <p>
+        Plattformweite Neuigkeiten sind für angemeldete Benutzer sichtbar. Vereins- und Mannschaftsbeiträge werden
+        anhand der vorhandenen Spieler- und Trainerzuordnungen angezeigt. Der Verfasser kann den eigenen Beitrag
+        weiterhin sehen. Wird eine Neuigkeit über einen direkten Link aufgerufen, obwohl sie für das angemeldete
+        Benutzerkonto nicht freigegeben ist oder nicht mehr existiert, zeigt Kaderblick statt des Inhalts den Hinweis
+        <strong>Nachricht nicht verfügbar</strong> und bietet die Rückkehr zur Übersicht an.
+    </p>
 {% endblock %}
