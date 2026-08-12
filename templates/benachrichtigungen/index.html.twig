@@ -16,16 +16,15 @@
 
     <p>
         Das Glockensymbol befindet sich nach der Anmeldung oben in der Kopfleiste. Die Zahl am Symbol zeigt die
-        Anzahl der ungelesenen Benachrichtigungen. Ab mehr als 99 ungelesenen Einträgen wird am Symbol
-        <strong>99+</strong> angezeigt. Die Anzahl ungelesener Benachrichtigungen erscheint zusätzlich vor dem Titel
-        des geöffneten Browser-Tabs.
+        Anzahl der aktuell ungelesenen Benachrichtigungen. Dieselbe Anzahl erscheint zusätzlich vor dem Titel des
+        geöffneten Browser-Tabs.
     </p>
 
     <p>
         Nach einem Klick auf die Glocke öffnet sich das Benachrichtigungszentrum. Die Einträge sind in
         <strong>Heute</strong>, <strong>Gestern</strong> und <strong>Früher</strong> gegliedert. Ungelesene Einträge sind
-        hervorgehoben. Angezeigt werden jeweils die neuesten gespeicherten Benachrichtigungen; beim Laden werden
-        höchstens 50 Einträge abgerufen.
+        hervorgehoben. Beim Laden von Kaderblick werden die 50 neuesten gespeicherten Benachrichtigungen abgerufen;
+        neue Einträge können während der laufenden Sitzung zusätzlich hinzukommen.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -142,8 +141,10 @@
     <h3>Sonstiges</h3>
 
     <p>
-        <strong>System- und Verwaltungshinweise</strong> umfasst technische, administrative und sonstige Hinweise.
-        Diese Kategorie ist standardmäßig ausgeschaltet.
+        <strong>System- und Verwaltungshinweise</strong> ist standardmäßig ausgeschaltet. In diese Kategorie fallen
+        Hinweise, die keiner der vorherigen Fachkategorien zugeordnet sind. Dazu gehören im aktuellen Stand unter
+        anderem Benachrichtigungen über neue Benutzerregistrierungen und Zuordnungsanträge für zuständige
+        Administratoren sowie Rückmeldungen zu genehmigten Zuordnungs- oder Supporter-Anfragen.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -198,8 +199,7 @@
     <p>
         Die Push-Aktivierung gilt für den Browser beziehungsweise das Gerät, auf dem sie durchgeführt wurde. Wer
         Kaderblick auf einem weiteren Gerät ebenfalls per Push erreichen möchte, richtet Push dort zusätzlich ein.
-        Kaderblick selbst setzt für diesen Ablauf keine gesonderte Installation voraus; ob der verwendete Browser die
-        benötigten Push-Funktionen bereitstellt, wird bei der Statusprüfung angezeigt.
+        Ob Push auf dem aktuellen Gerät unterstützt wird, zeigt der Status im Profil.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
