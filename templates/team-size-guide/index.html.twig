@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Team Size Guide – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Team Size Guide</h1>
+
+    <p>
+        Unter <strong>Trainer → Team Size Guide</strong> öffnet Kaderblick die Seite <strong>Kleidergrößen</strong>.
+        Dort werden die gespeicherten Ausrüstungsgrößen der aktuell verfügbaren Mannschaften zusammengeführt. Neben
+        Spielern werden auch Trainer und Supporter berücksichtigt, sofern für die jeweilige Person ein passendes
+        Benutzerprofil mit der Mannschaft verbunden ist.
+    </p>
+
+    <h2>Mannschaft auswählen und Größenübersicht lesen</h2>
+
+    <p>
+        Stehen mehrere Mannschaften zur Verfügung, wählt ihr die gewünschte Mannschaft oben rechts im Feld
+        <strong>Team</strong>. Kaderblick wählt beim Öffnen zunächst die erste verfügbare Mannschaft. In der Auswahl
+        steht hinter jedem Mannschaftsnamen die Anzahl der Personen, die in dieser Größenübersicht berücksichtigt
+        werden.
+    </p>
+
+    <p>
+        Die Mannschaftskarte zeigt zuerst die Anzahl der Spieler, Trainer und Supporter. Darunter folgt eine Tabelle
+        mit den Spalten <strong>Hose</strong>, <strong>Trikot</strong>, <strong>Jacke</strong>,
+        <strong>Schuh</strong> und <strong>Stutzen</strong>. Spieler stehen am Anfang der Tabelle; Trainer und
+        Supporter werden in eigenen Abschnitten darunter angezeigt. Ist für eine Größe kein Wert hinterlegt, erscheint
+        an dieser Stelle ein Strich. Auf schmalen Bildschirmen lässt sich die Tabelle seitlich verschieben.
+    </p>
+
+    <p>
+        Berücksichtigt werden nur derzeit aktive Mannschaftszuordnungen. Die Größen stammen aus den Benutzerprofilen.
+        Ein Spieler oder Trainer erscheint deshalb nur mit eigenen Ausrüstungsdaten, wenn ein Benutzerkonto direkt mit
+        dieser Person verknüpft ist. Größen einer Bezugsperson werden nicht als Größen des Spielers übernommen.
+        Supporter können als eigener Eintrag erscheinen, wenn sie mit einem aktiven Spieler oder Trainer der Mannschaft
+        verbunden sind.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kleidergrößen einer Mannschaft',
+        description: 'Bitte die Seite Trainer → Team Size Guide mit einer ausgewählten Mannschaft aufnehmen. In der Tabelle sollte mindestens eine fehlende Größenangabe sichtbar sein.',
+        items: [
+            'Mannschaftsauswahl oben rechts',
+            'Mannschaftskopf mit Anzahl der Spieler, Trainer und gegebenenfalls Supporter',
+            'Größentabelle mit den fünf Ausrüstungsspalten',
+            'eine fehlende Angabe als Strich',
+            'Bereich „Größenverteilung“ unter der Tabelle'
+        ],
+        purpose: 'Aufbau der Mannschaftsübersicht sowie den Unterschied zwischen Einzelwerten und zusammengefasster Größenverteilung zeigen.'
+    } %}
+
+    <h2>Größenverteilung für die Mannschaft</h2>
+
+    <p>
+        Unter der Personentabelle fasst Kaderblick die Größen für <strong>Hosen</strong>, <strong>Trikots</strong>,
+        <strong>Trainingsjacken</strong>, <strong>Schuhe</strong> und <strong>Stutzen</strong> zusammen. Ein Eintrag wie
+        <strong>M × 6</strong> bedeutet beispielsweise, dass sechs der aufgeführten Personen bei diesem Artikel die
+        Größe M hinterlegt haben. Fehlen bei einer Ausrüstungsart Angaben, steht darunter zusätzlich, wie viele
+        Personen für diesen Artikel noch keine Größe angegeben haben.
+    </p>
+
+    <p>
+        Die zugrunde liegenden Werte werden im eigenen Profil unter <strong>Ausrüstung</strong> gepflegt. Dort stehen
+        Trikot, Shorts, Trainingsjacke, Stutzen beziehungsweise Socken und die EU-Schuhgröße zur Verfügung. Weitere
+        Informationen dazu findet ihr unter <a href="{{ path('app_profil') }}">Profil &amp; Benutzerzuordnung</a>.
+        Der Team Size Guide liest die gespeicherten Größen beim Öffnen der Seite ein. Wurde eine Größe währenddessen
+        im Profil geändert, muss die Seite anschließend neu geladen oder erneut geöffnet werden, damit der neue Wert
+        in der Übersicht erscheint.
+    </p>
+
+    <h2>Fehlende Ausrüstungsgrößen erinnern</h2>
+
+    <p>
+        Sobald bei mindestens einer aufgeführten Person eine der fünf Ausrüstungsangaben fehlt, erscheint im
+        Mannschaftskopf <strong>Erinnerung senden</strong> mit der Anzahl der betroffenen Personen. Sind alle Angaben
+        vollständig, ist diese Schaltfläche nicht verwendbar.
+    </p>
+
+    <p>
+        Nach dem Öffnen der Erinnerung zeigt Kaderblick alle Personen mit unvollständigen Angaben und nennt darunter
+        jeweils die fehlenden Größen. Spieler und Trainer sind zunächst für die Erinnerung ausgewählt. Supporter werden
+        zwar ebenfalls aufgeführt, sind beim Öffnen des Dialogs aber zunächst abgewählt. Über die Häkchen könnt ihr jede
+        Person einzeln ein- oder ausschließen. Die Schaltfläche am unteren Rand zeigt, wie viele Personen mit der
+        aktuellen Auswahl benachrichtigt werden.
+    </p>
+
+    <p>
+        Für jede ausgewählte Person sendet Kaderblick eine Push-Benachrichtigung mit dem Titel
+        <strong>Ausrüstungsdaten unvollständig</strong>. In der Nachricht werden die noch fehlenden Angaben genannt.
+        Die Erinnerung führt beim Öffnen nicht direkt in den Ausrüstungsreiter des Profils, sondern öffnet Kaderblick
+        ohne einen speziellen Zielbereich.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Erfolgsanzeige bestätigt nicht die tatsächliche Zustellung',
+        text: 'Die Erinnerung wird ausschließlich als Push-Benachrichtigung verschickt. Sie erreicht eine Person daher nur, wenn für deren Konto Push eingerichtet ist und die dafür verwendeten Systembenachrichtigungen zugelassen sind. Die Bestätigung im Team Size Guide zählt eine ausgewählte Person derzeit auch dann als erinnert, wenn keine Push-Nachricht zugestellt werden konnte. Außerdem verwendet die Bestätigung die Bezeichnung „Spieler“, auch wenn Trainer oder Supporter ausgewählt waren.'
+    } %}
+
+    <h3>Zusätzlich eine Aufgabe anlegen</h3>
+
+    <p>
+        Im Erinnerungsdialog kann zusätzlich <strong>Aufgabe im Kalender anlegen</strong> aktiviert werden. Danach
+        lässt sich ein <strong>Fälligkeitsdatum</strong> auswählen; beim Öffnen des Dialogs ist zunächst ein Datum
+        sieben Tage in der Zukunft eingetragen. Für jede tatsächlich ausgewählte Person mit fehlenden Größen legt
+        Kaderblick dann eine eigene offene Aufgabe <strong>Ausrüstungsdaten vervollständigen</strong> an. In der
+        Aufgabenbeschreibung stehen die fehlenden Angaben.
+    </p>
+
+    <p>
+        Die Aufgabe wird der jeweiligen Person zugewiesen und mit dem gewählten Fälligkeitsdatum angelegt. Sie ist mit
+        einem entsprechenden Kalendereintrag verbunden und kann anschließend über die normalen Aufgaben- und
+        Kalenderbereiche verfolgt werden. Die Aufgabe wird unabhängig davon angelegt, ob die zusätzliche
+        Push-Benachrichtigung auf einem Gerät tatsächlich zugestellt werden konnte. Weitere Informationen zur
+        Aufgabenverwaltung stehen unter <a href="{{ path('app_aufgaben') }}">Aufgaben</a>.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Erinnerung für fehlende Größen',
+        description: 'Bitte den geöffneten Dialog „Erinnerung senden“ mit Spielern, einem Trainer und – falls vorhanden – einem Supporter aufnehmen. Die Option für die zusätzliche Aufgabe sollte aktiviert sein.',
+        items: [
+            'Personen mit den jeweils fehlenden Angaben',
+            'ausgewählte und abgewählte Häkchen',
+            'Kennzeichnung für Trainer beziehungsweise Supporter',
+            'Schalter „Aufgabe im Kalender anlegen“',
+            'Fälligkeitsdatum',
+            'Schaltfläche mit der Anzahl der zu benachrichtigenden Personen'
+        ],
+        purpose: 'Auswahl der Empfänger und die optionale Verknüpfung mit einer Aufgabe zeigen.'
+    } %}
+
+    <h2>Bestellung zusammenstellen</h2>
+
+    <p>
+        Über <strong>Bestellung erstellen</strong> öffnet sich die Auswahl für eine Bestellübersicht. Auf dem
+        Smartphone verwendet dieser Dialog den gesamten Bildschirm. Für jede Person werden die fünf möglichen Artikel
+        angezeigt. Ein Artikel kann nur ausgewählt werden, wenn für diese Person die zugehörige Größe hinterlegt ist;
+        bei einer fehlenden Größe ist die Schaltfläche deaktiviert und mit <strong>Größe fehlt</strong> gekennzeichnet.
+    </p>
+
+    <p>
+        Unter <strong>Schnellauswahl</strong> wählt <strong>Alles fürs Team</strong> sämtliche verfügbaren Artikel für
+        alle Personen aus. Mit <strong>Nur Trikots</strong>, <strong>Nur Hosen</strong>,
+        <strong>Nur Jacken</strong>, <strong>Nur Stutzen</strong> oder <strong>Nur Schuhe</strong> wird die bisherige
+        Auswahl durch genau diese Ausrüstungsart für alle Personen ersetzt, bei denen eine passende Größe vorhanden ist.
+        <strong>Auswahl leeren</strong> entfernt die gesamte Auswahl wieder.
+    </p>
+
+    <p>
+        Über <strong>Name suchen …</strong> kann die Personenliste eingegrenzt werden. Ein Klick auf die Zeile einer
+        Person wählt alle bei ihr verfügbaren Artikel aus beziehungsweise entfernt sie wieder. Einzelne Artikel lassen
+        sich darunter unabhängig davon an- und abwählen. Unter dem Namen steht, wie viele der verfügbaren Artikel für
+        diese Person ausgewählt sind. Am unteren Rand zeigt Kaderblick fortlaufend die Gesamtzahl der ausgewählten
+        Artikel und der betroffenen Personen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Bestellung zusammenstellen',
+        description: 'Bitte den Dialog „Bestellung zusammenstellen“ mit mehreren Personen aufnehmen. Bei einer Person sollten einzelne Artikel gewählt sein und mindestens ein Artikel wegen fehlender Größe deaktiviert sein.',
+        items: [
+            'Schnellauswahl für das gesamte Team und einzelne Ausrüstungsarten',
+            'Namenssuche',
+            'Personenkarte mit Rolle und Auswahlstand',
+            'ein ausgewählter Artikel mit hinterlegter Größe',
+            'ein deaktivierter Artikel mit „Größe fehlt“',
+            'Artikel- und Personenzähler sowie „Bestell-PDF erstellen“'
+        ],
+        purpose: 'Schnellauswahl, individuelle Artikelauswahl und Voraussetzung einer vorhandenen Größe zeigen.'
+    } %}
+
+    <h2>Bestell-PDF erstellen</h2>
+
+    <p>
+        Sobald mindestens ein Artikel ausgewählt ist, kann <strong>Bestell-PDF erstellen</strong> verwendet werden.
+        Kaderblick erzeugt eine PDF-Datei für die ausgewählte Mannschaft und öffnet sie in einem neuen Browser-Tab.
+        Die PDF enthält den Mannschaftsnamen, Erstellungszeitpunkt, die Anzahl der ausgewählten Personen und Artikel,
+        die Bestellmengen je Größe sowie eine nach Namen sortierte Übersicht der ausgewählten Artikel für jede Person.
+        Nicht ausgewählte Artikel erscheinen dort nicht als Bestellung.
+    </p>
+
+    <p>
+        Die Zusammenstellung im Dialog wird nicht als Bestellung in Kaderblick gespeichert. Beim erneuten Öffnen beginnt
+        die Auswahl wieder leer. Ebenso wird durch das Erstellen der PDF <strong>keine Bestellung an einen Händler oder
+        Ausrüster versendet</strong>. Die Datei dient als Bestellübersicht und kann anschließend im Browser gespeichert,
+        ausgedruckt oder auf dem gewünschten Weg weitergegeben werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Fehlende Größen werden nicht automatisch bestellt',
+        text: 'Artikel ohne hinterlegte Größe können im aktuellen Bestelldialog nicht ausgewählt werden. Sollen sie in die Bestellübersicht aufgenommen werden, muss die betreffende Person ihre Größe zuerst im Profil unter „Ausrüstung“ speichern und der Team Size Guide anschließend neu geladen werden.'
+    } %}
+
+    <h2>Welche Mannschaften verfügbar sind</h2>
+
+    <p>
+        Der Menüpunkt <strong>Team Size Guide</strong> befindet sich im Trainerbereich und wird dort für Konten
+        angezeigt, die in Kaderblick als Trainer geführt werden. Die Mannschaftsauswahl enthält die aktuell betreuten
+        Mannschaften. Besitzt das Konto zusätzlich Verwaltungsrechte für weitere Mannschaften, können auch diese
+        Mannschaften in der Größenübersicht enthalten sein. Zukünftige oder bereits beendete Mannschaftszuordnungen
+        werden für die Personenliste nicht berücksichtigt.
+    </p>
+
+    <p>
+        Liefert Kaderblick für das Konto keine verfügbare Mannschaft, erscheint statt der Größenübersicht der Hinweis
+        <strong>Keine Teamdaten verfügbar</strong> mit dem Zusatz, dass keine Mannschaft als Trainer zugeordnet ist.
+    </p>
+{% endblock %}
