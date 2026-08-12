@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hall of Fame – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Hall of Fame</h1>
+
+    <p>
+        Die <strong>Community → Hall of Fame</strong> zeigt die aktuelle Saison-Level-Rangliste und aktive
+        Auszeichnungen. Die Seite ist öffentlich erreichbar. In der Rangliste und bei den Titelträgern erscheinen
+        jedoch nur Benutzer, die die Anzeige in ihren Profileinstellungen freigegeben haben.
+    </p>
+
+    <h2>Saison-Level-Rangliste</h2>
+
+    <p>
+        Im ersten Bereich stehen bis zu 20 Benutzer der aktuellen Saison. Sortiert wird zuerst nach dem Saison-Level
+        und bei gleichem Level nach den in dieser Saison gesammelten XP. Angezeigt werden Platzierung, Name und Avatar,
+        Saison-XP und Saison-Level. Wenn Karriere-XP vorhanden sind, stehen sie zusätzlich neben den Saison-XP.
+    </p>
+
+    <p>
+        In diese Rangliste werden nur Benutzer aufgenommen, die selbst als Spieler oder Trainer mit ihrem
+        Benutzerkonto verbunden sind, die Veröffentlichung in der Hall of Fame aktiviert haben und in der aktuellen
+        Saison bereits XP besitzen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Saison-Level-Rangliste',
+        description: 'Bitte den oberen Bereich der Hall of Fame mit neutralen Testbenutzern aufnehmen.',
+        items: [
+            'Überschrift „Saison-Level-Rangliste“ und aktuelle Saison',
+            'Platzierungen',
+            'Avatare und Namen',
+            'Saison-XP und gegebenenfalls Karriere-XP',
+            'Saison-Level'
+        ],
+        purpose: 'Aufbau und Sortierung der Saisonrangliste zeigen.'
+    } %}
+
+    <h2>Titelträger</h2>
+
+    <p>
+        Unterhalb der Rangliste stehen die aktuell gültigen Titel. Kaderblick unterscheidet
+        <strong>Torschützenkönig</strong>, <strong>Vorlagenkönig</strong> und <strong>Einsatzrekord</strong>.
+        Zu jedem Titel wird zusätzlich der Rang <strong>Gold</strong>, <strong>Silber</strong> oder
+        <strong>Bronze</strong> angezeigt.
+    </p>
+
+    <p>
+        Die Titel sind nach ihrem Geltungsbereich gruppiert. Zuerst erscheinen plattformweite Titel, danach Titel aus
+        einer Liga oder einem Pokal und anschließend Titel einer Mannschaft. Bei Wettbewerben wird zusätzlich die
+        zugehörige Saison angezeigt, sofern sie für den Titel hinterlegt ist. Innerhalb einer Gruppe stehen Gold,
+        Silber und Bronze in dieser Reihenfolge.
+    </p>
+
+    <p>
+        Titelträger werden nur angezeigt, wenn der ausgezeichnete Spieler mit dem eigenen Benutzerkonto verbunden ist
+        und die Veröffentlichung in der Hall of Fame aktiviert wurde. Der zum Titel gehörende Avatarrahmen wird auch
+        in der Hall of Fame dargestellt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Titelträger in der Hall of Fame',
+        description: 'Bitte den Bereich „Titelträger“ mit neutralen Testdaten aufnehmen. Sinnvoll sind mehrere Gruppen und unterschiedliche Ränge.',
+        items: [
+            'mindestens eine Plattform-, Wettbewerbs- oder Mannschaftsgruppe',
+            'Name und Avatar eines Titelträgers',
+            'Titelbezeichnung',
+            'Rang Gold, Silber oder Bronze',
+            'Saisonangabe bei einem Wettbewerb, sofern vorhanden'
+        ],
+        purpose: 'Gruppierung und Darstellung der aktiven Titel zeigen.'
+    } %}
+
+    <h2>Eigene Anzeige ein- oder ausschalten</h2>
+
+    <p>
+        Ob eure Daten in der Hall of Fame erscheinen dürfen, legt ihr im eigenen Profil fest. Öffnet dort
+        <strong>Einstellungen</strong> und sucht den Abschnitt <strong>Hall of Fame</strong>. Mit dem Schalter
+        <strong>In der Hall of Fame anzeigen</strong> gebt ihr die Veröffentlichung frei oder nehmt sie wieder zurück.
+    </p>
+
+    <p>
+        Ist der Schalter ausgeschaltet, erscheint euer Benutzerkonto weder in der öffentlichen Saison-Level-Rangliste
+        noch als Titelträger. Das Ausschalten entfernt keine erspielten XP oder Titel; es betrifft ausschließlich die
+        öffentliche Anzeige in der Hall of Fame.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Hall-of-Fame-Einstellung im Profil',
+        description: 'Bitte im eigenen Profil den Bereich „Einstellungen“ so aufnehmen, dass der Abschnitt „Hall of Fame“ vollständig sichtbar ist. Keine realen personenbezogenen Daten verwenden.',
+        items: [
+            'Abschnitt „Hall of Fame“',
+            'Schalter „In der Hall of Fame anzeigen“'
+        ],
+        purpose: 'Stelle zeigen, an der die öffentliche Anzeige ein- und ausgeschaltet wird.'
+    } %}
+{% endblock %}
