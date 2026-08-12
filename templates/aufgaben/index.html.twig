@@ -3,98 +3,243 @@
 {% block title %}Aufgaben – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>✅ Aufgaben</h1>
+    <h1>Aufgaben</h1>
+
     <p>
-        Wer macht was und bis wann? Aufgaben verteilen, wiederkehrende Pflichten
-        organisieren und den Status im Blick behalten.
+        Im Bereich <strong>Aufgaben</strong> seht ihr einzelne und wiederkehrende Aufgaben mit ihren Zuweisungen.
+        Jede Zuweisung gehört zu einer Person und einem Datum. Bei wiederkehrenden Aufgaben kann deshalb dieselbe
+        Aufgabe mehrere Termine und mehrere verantwortliche Personen enthalten.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📝', title: 'Aufgabe anlegen', desc: 'Titel, Beschreibung, Fälligkeitsdatum und Personen zuweisen.' },
-            { icon: '🔁', title: 'Wiederkehrende Aufgaben', desc: 'Täglich, wöchentlich oder monatlich – automatisch neue Einträge.' },
-            { icon: '⚽', title: 'Automatische Spielaufgaben', desc: 'Typ „Vor jedem Spiel" mit Rotationssystem für faire Verteilung.' },
-            { icon: '📊', title: 'Status-Tracking', desc: 'Offen → In Bearbeitung → Erledigt.' },
-            { icon: '⭐', title: 'XP-Verknüpfung', desc: 'Bei Erledigung können XP-Punkte vergeben werden.' },
-        ]
-    } %}
+    <h2>Die drei Aufgabenansichten</h2>
 
-    {# ─── Aufgabe anlegen ─── #}
-    <h2>Aufgabe anlegen</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Aufgabenbereich öffnen', text: 'Im Menü auf <strong>„Aufgaben"</strong> klicken.' },
-            { title: 'Neue Aufgabe erstellen', text: 'Auf <strong>„+ Neue Aufgabe"</strong> klicken.' },
-            { title: 'Details eingeben', text: '<strong>Titel</strong>, Beschreibung (optional) und <strong>Fälligkeitsdatum</strong> eintragen.' },
-            { title: 'Personen zuweisen', text: 'Wählt die verantwortlichen Personen aus – sie werden automatisch <a href="' ~ path('app_benachrichtigungen') ~ '">benachrichtigt</a>.' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>.' },
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/aufgaben/aufgabe-anlegen.png',
-        alt: 'Aufgabe anlegen Formular',
-        caption: 'Eine neue Aufgabe mit Titel, Fälligkeitsdatum und Zuweisung erstellen.'
-    } %}
-
-    {# ─── Wiederkehrende Aufgaben ─── #}
-    <h2>Wiederkehrende Aufgaben</h2>
     <p>
-        Für regelmäßige Pflichten könnt ihr <strong>wiederkehrende Aufgaben</strong> anlegen:
-    </p>
-    <ul>
-        <li><strong>Täglich</strong> — z.&nbsp;B. Trainingsplatz vorbereiten</li>
-        <li><strong>Wöchentlich</strong> — z.&nbsp;B. Trikots waschen</li>
-        <li><strong>Monatlich</strong> — z.&nbsp;B. Vereinsbeiträge prüfen</li>
-    </ul>
-    <p>Das System erstellt automatisch neue Einträge im passenden Rhythmus.</p>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/aufgaben/wiederkehrend.png',
-        alt: 'Wiederkehrende Aufgabe einrichten',
-        caption: 'Wiederkehrende Aufgaben automatisch im gewählten Rhythmus erstellen.'
-    } %}
-
-    {# ─── Automatische Spielaufgaben ─── #}
-    <h2>Automatische Spielaufgaben</h2>
-    <p>
-        Mit dem Typ <strong>„Vor jedem Spiel"</strong> werden Aufgaben automatisch generiert,
-        wenn ein neues Spiel angelegt wird. Das integrierte <strong>Rotationssystem</strong>
-        sorgt für eine faire Verteilung unter den Spielern.
+        Unter <strong>Meine Aufgaben</strong> werden Aufgaben angezeigt, bei denen mindestens eine Zuweisung an euch
+        vorhanden ist. <strong>Erstellte Aufgaben</strong> enthält die Aufgaben, die ihr selbst angelegt habt.
+        <strong>Alle Aufgaben</strong> führt alle Aufgaben zusammen, die für euer Benutzerkonto sichtbar sind. Für
+        normale Benutzer sind das insbesondere selbst erstellte Aufgaben und Aufgaben mit einer eigenen Zuweisung.
     </p>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Nutzt automatische Spielaufgaben z.&nbsp;B. für „Trikots mitbringen", „Getränke besorgen" oder „Eckenfahnen aufstellen".'
+    <p>
+        Oben zeigt Kaderblick drei Kennzahlen. <strong>Offen</strong> und <strong>Erledigt</strong> zählen eure eigenen
+        Zuweisungen mit dem jeweiligen Status. <strong>Gesamt</strong> zählt die für euch sichtbaren Aufgaben. Die
+        Aufgaben selbst werden so sortiert, dass Aufgaben mit offenen Zuweisungen zuerst erscheinen; innerhalb
+        dieser Gruppe steht der nächste offene Termin weiter oben.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Aufgabenübersicht',
+        description: 'Bitte die Aufgabenansicht mit den drei Kennzahlen und mehreren Aufgabenkarten aufnehmen. Mindestens eine Karte sollte eine eigene offene Zuweisung und eine weitere Zuweisung an eine andere Person enthalten.',
+        items: [
+            'Kennzahlen Offen, Erledigt und Gesamt',
+            'Navigation zu Meine Aufgaben, Erstellte Aufgaben und Alle Aufgaben',
+            'Aufgabentitel und Beschreibung',
+            'nächster Termin',
+            'Fortschritt der Zuweisungen',
+            'Bereiche Meine Zuweisungen und Weitere Zuweisungen'
+        ],
+        purpose: 'Aufbau der Aufgabenübersicht und die Informationen einer Aufgabenkarte zeigen.'
     } %}
 
-    {# ─── Status ─── #}
-    <h2>Aufgabenstatus</h2>
-    <p>Jede Aufgabe durchläuft drei Phasen:</p>
-    <ul>
-        <li>🔲 <strong>Offen</strong> — Noch nicht begonnen</li>
-        <li>🔄 <strong>In Bearbeitung</strong> — Wird gerade erledigt</li>
-        <li>✅ <strong>Erledigt</strong> — Abgeschlossen</li>
-    </ul>
+    <h2>Informationen auf einer Aufgabenkarte</h2>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/aufgaben/status-uebersicht.png',
-        alt: 'Aufgabenstatus Übersicht',
-        caption: 'Die Aufgabenliste mit verschiedenen Status-Anzeigen.'
+    <p>
+        Eine Aufgabenkarte zeigt den Titel und – falls vorhanden – die Beschreibung. Bei wiederkehrenden Aufgaben
+        wird zusätzlich die Wiederholung angezeigt, zum Beispiel <strong>Täglich</strong>, <strong>Wöchentlich</strong>,
+        <strong>Monatlich</strong> oder <strong>Pro Spiel</strong>. Außerdem seht ihr den Ersteller, den nächsten
+        offenen Termin und den Fortschritt als Verhältnis von erledigten zu allen vorhandenen Zuweisungen.
+    </p>
+
+    <p>
+        Unter <strong>Meine Zuweisungen</strong> stehen eure Termine für diese Aufgabe. Jede Zeile enthält das Datum
+        und den Status. Unter <strong>Weitere Zuweisungen</strong> werden die Termine anderer eingeteilter Personen
+        angezeigt. Sind dort mehr als fünf Zuweisungen vorhanden, zeigt die Karte zunächst fünf und nennt darunter
+        die Zahl der weiteren Einträge. Ist bei einer Zuweisung eine Vertretung hinterlegt, erscheint sie zusätzlich
+        als <strong>Vertretung</strong> in der Zeile.
+    </p>
+
+    <h2>Eine eigene Zuweisung erledigen oder wieder öffnen</h2>
+
+    <p>
+        Links neben einer eigenen Zuweisung befindet sich das Statussymbol. Bei einer offenen Zuweisung markiert ein
+        Klick auf dieses Symbol genau diesen Termin als <strong>Erledigt</strong>. Das Symbol wechselt anschließend
+        zum grünen Haken. Ein weiterer Klick auf den Haken setzt dieselbe Zuweisung wieder auf <strong>Offen</strong>.
+        Andere Termine derselben Aufgabe bleiben unverändert.
+    </p>
+
+    <p>
+        Kaderblick kennt außerdem den Status <strong>Abgelehnt</strong>. Dieser kann in der Aufgabenübersicht
+        angezeigt werden; in der aktuellen Aufgabenansicht gibt es jedoch keine Schaltfläche, mit der ihr eine
+        Zuweisung selbst auf diesen Status setzen könnt.
+    </p>
+
+    <p>
+        Wird eine Zuweisung als erledigt markiert, kann dafür zusätzlich Erfahrung im
+        <a href="{{ path('app_xp_system') }}">XP-System</a> vergeben werden, sofern dafür eine entsprechende
+        XP-Regel aktiviert ist.
+    </p>
+
+    <h2>Eine Aufgabe anlegen</h2>
+
+    <p>
+        Über <strong>Neue Aufgabe</strong> öffnet ihr das Aufgabenformular. Für jede Aufgabe sind ein
+        <strong>Titel</strong>, ein <strong>Startdatum</strong> und mindestens eine Person in
+        <strong>Benutzer-Rotation</strong> erforderlich. Eine Beschreibung ist optional. Das Startdatum bestimmt
+        bei einer einmaligen Aufgabe den Termin und bei einer wiederkehrenden Aufgabe den Ausgangspunkt für die
+        erzeugten Termine.
+    </p>
+
+    <p>
+        Im Feld <strong>Benutzer-Rotation</strong> wählt ihr die Personen aus, unter denen die Aufgabe verteilt
+        werden soll. <strong>Personen pro Aufgabe gleichzeitig</strong> legt fest, wie viele Zuweisungen für einen
+        Termin erzeugt werden. Die Zahl muss mindestens 1 betragen und darf nicht größer sein als die Zahl der
+        ausgewählten Personen.
+    </p>
+
+    <p>
+        Nach dem Speichern einer neuen Aufgabe wechselt Kaderblick automatisch zu <strong>Erstellte Aufgaben</strong>.
+        Dort findet ihr die Aufgabe zusammen mit den erzeugten Zuweisungen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neue Aufgabe anlegen',
+        description: 'Bitte das Formular „Aufgabe anlegen“ mit ausgefülltem Titel, Startdatum und mehreren ausgewählten Personen aufnehmen. Keine echten personenbezogenen Daten verwenden.',
+        items: [
+            'Titel',
+            'Startdatum',
+            'Benutzer-Rotation',
+            'Personen pro Aufgabe gleichzeitig',
+            'Wiederkehrend',
+            'Beschreibung',
+            'Speichern'
+        ],
+        purpose: 'Pflichtfelder und Einstellungen einer neuen Aufgabe zeigen.'
     } %}
 
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
+    <h2>Einmalige Aufgaben</h2>
 
-    <h3>Bekomme ich eine Erinnerung?</h3>
-    <p>Ja, bei Zuweisung erhaltet ihr eine <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigung</a>.</p>
+    <p>
+        Bleibt <strong>Wiederkehrend</strong> ausgeschaltet, erzeugt Kaderblick Zuweisungen für das angegebene
+        Startdatum. Die Einstellung <strong>Personen pro Aufgabe gleichzeitig</strong> bestimmt, wie viele der in
+        der Benutzer-Rotation ausgewählten Personen an diesem Datum eine Zuweisung erhalten.
+    </p>
 
-    <h3>Kann ich eine Aufgabe weitergeben?</h3>
-    <p>Trainer und Admins können die Zuweisung jederzeit ändern.</p>
+    <h2>Regelmäßig wiederkehrende Aufgaben</h2>
 
-    <h3>Ich sehe keine Aufgaben – warum?</h3>
-    <p>Ihr seht nur Aufgaben, die euch direkt zugewiesen sind.</p>
+    <p>
+        Aktiviert <strong>Wiederkehrend</strong> und wählt als <strong>Wiederkehr-Modus</strong>
+        <strong>Regelmäßig (z.B. wöchentlich)</strong>, wenn die Aufgabe nach einem festen Zeitrhythmus verteilt
+        werden soll. Als Frequenz stehen <strong>Täglich</strong>, <strong>Wöchentlich</strong> und
+        <strong>Monatlich</strong> zur Verfügung. Das <strong>Intervall</strong> bestimmt den Abstand: Mit dem Wert
+        2 wird eine tägliche Aufgabe beispielsweise alle zwei Tage und eine wöchentliche Aufgabe alle zwei Wochen
+        erzeugt.
+    </p>
+
+    <p>
+        Bei wöchentlicher Wiederholung wählt ihr zusätzlich den Wochentag. Bei monatlicher Wiederholung legt ihr den
+        Tag des Monats zwischen 1 und 31 fest. Kaderblick erzeugt für eine solche Aufgabe derzeit die nächsten
+        zwölf Termine. Für jeden Termin werden so viele Personen eingeteilt, wie unter
+        <strong>Personen pro Aufgabe gleichzeitig</strong> angegeben ist.
+    </p>
+
+    <h3>Verteilung über die Benutzer-Rotation</h3>
+
+    <p>
+        Bei einer wiederkehrenden Aufgabe läuft die Zuweisung fortlaufend durch die ausgewählten Personen. Sind
+        beispielsweise vier Personen ausgewählt und zwei Personen pro Aufgabe eingestellt, erhalten beim ersten
+        Termin zwei Personen und beim nächsten Termin die nächsten beiden Personen eine Zuweisung. Danach beginnt
+        die Verteilung wieder am Anfang der Rotation.
+    </p>
+
+    <h2>Aufgaben pro Spiel</h2>
+
+    <p>
+        Für Aufgaben, die an Spiele gekoppelt werden sollen, aktiviert ihr <strong>Wiederkehrend</strong> und wählt
+        <strong>Pro Spiel (laut Spielplan)</strong>. Kaderblick erzeugt daraufhin Zuweisungen für zukünftige Spiele.
+        Wird später ein weiteres Spiel angelegt, wird auch für dieses Spiel eine passende Zuweisung zur bestehenden
+        Aufgabe ergänzt.
+    </p>
+
+    <p>
+        Für jedes Spiel berücksichtigt Kaderblick aus der Benutzer-Rotation die Personen, die als Spieler oder
+        Trainer einer der beiden beteiligten Mannschaften zugeordnet sind. Passt keine der ausgewählten Personen zu
+        einem Spiel, wird stattdessen der Ersteller der Aufgabe eingeteilt. Die Einstellung
+        <strong>Personen pro Aufgabe gleichzeitig</strong> bestimmt auch hier, wie viele Zuweisungen pro Spiel
+        erzeugt werden.
+    </p>
+
+    <p>
+        Über <strong>Beginn der Aufgabe, relativ zum Spieltag</strong> verschiebt ihr den Aufgabentermin gegenüber
+        dem Spiel. Der Wert <strong>0</strong> legt die Aufgabe auf den Spieltag, <strong>-1</strong> auf den Tag
+        davor und <strong>1</strong> auf den Tag danach. Zulässig sind Werte zwischen -365 und 365 Tagen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Wiederkehrende Aufgabe pro Spiel',
+        description: 'Bitte den unteren Teil des Aufgabenformulars mit aktivierter Wiederholung und ausgewähltem Modus „Pro Spiel (laut Spielplan)“ aufnehmen.',
+        items: [
+            'aktivierte Option Wiederkehrend',
+            'Wiederkehr-Modus Pro Spiel (laut Spielplan)',
+            'Benutzer-Rotation',
+            'Personen pro Aufgabe gleichzeitig',
+            'Beginn der Aufgabe relativ zum Spieltag'
+        ],
+        purpose: 'Einstellungen für spielbezogene Aufgaben und den zeitlichen Versatz zeigen.'
+    } %}
+
+    <h2>Eine erstellte Aufgabe bearbeiten</h2>
+
+    <p>
+        Bei Aufgaben, die ihr selbst erstellt habt, befindet sich oben rechts auf der Karte die Schaltfläche
+        <strong>Bearbeiten</strong>. Im Formular könnt ihr Titel, Startdatum, Beschreibung, Benutzer-Rotation,
+        Anzahl der gleichzeitig eingeteilten Personen und die Wiederholung ändern.
+    </p>
+
+    <p>
+        Beim Speichern werden zukünftige Zuweisungen der Aufgabe anhand der neuen Einstellungen neu erzeugt.
+        Vergangene Zuweisungen bleiben bestehen. Dadurch können bei zukünftigen Terminen auch bereits vorhandene
+        Zuweisungen und deren Status durch die neu berechnete Verteilung ersetzt werden.
+    </p>
+
+    <h2>Aufgaben und Termine löschen</h2>
+
+    <p>
+        Die Schaltfläche <strong>Löschen</strong> wird auf einer Aufgabenkarte nur dem Ersteller angezeigt. Bei einer
+        einmaligen Aufgabe bestätigt ihr das Löschen der gesamten Aufgabe direkt.
+    </p>
+
+    <p>
+        Bei einer wiederkehrenden Aufgabe fragt Kaderblick, ob nur der nächste offene Termin oder die gesamte Serie
+        gelöscht werden soll. <strong>Nur diesen Termin</strong> entfernt die zeitlich nächste offene Zuweisung aus
+        der Serie. <strong>Gesamte Serie</strong> entfernt die Aufgabe mit allen zugehörigen Zuweisungen. Gibt es
+        beim Löschen über <strong>Nur diesen Termin</strong> keinen offenen Termin mehr, wird im aktuellen Stand die
+        gesamte Aufgabe gelöscht.
+    </p>
+
+    <h2>Aufgaben über den Kalender anlegen</h2>
+
+    <p>
+        Aufgaben können auch beim Anlegen eines neuen Kalendereintrags erstellt werden. Wählt dort als Art des
+        Eintrags <strong>Aufgabe</strong>. Im weiteren Ablauf erscheinen die Einstellungen für Benutzer-Rotation,
+        Anzahl der gleichzeitig eingeteilten Personen und Wiederholung. Die so angelegte Aufgabe wird anschließend
+        ebenfalls im Bereich <strong>Aufgaben</strong> geführt.
+    </p>
+
+    <h2>Offene Aufgaben unter „Mein Team“</h2>
+
+    <p>
+        Unter <a href="{{ path('app_vereine_teams') }}">Team &amp; Verein</a> zeigt <strong>Mein Team</strong> offene
+        Aufgaben zusätzlich als kompakte Übersicht mit Titel, eingeteilter Person und Datum. Diese Übersicht dient
+        nur zur Anzeige. Eine Zuweisung als erledigt markieren oder eine Aufgabe bearbeiten könnt ihr dort nicht;
+        dafür verwendet ihr den Bereich <strong>Aufgaben</strong>.
+    </p>
+
+    <h2>Sichtbarkeit und Bearbeitungsmöglichkeiten</h2>
+
+    <p>
+        Eine Aufgabe ist für euch sichtbar, wenn ihr sie selbst erstellt habt oder wenn mindestens eine Zuweisung
+        dieser Aufgabe an euch besteht. Ersteller sehen auf ihrer Aufgabenkarte zusätzlich die Schaltflächen zum
+        Bearbeiten und Löschen. Bei eigenen Zuweisungen könnt ihr den Status direkt zwischen <strong>Offen</strong>
+        und <strong>Erledigt</strong> wechseln. Zuweisungen anderer Personen werden auf der Karte nur angezeigt.
+    </p>
 {% endblock %}
