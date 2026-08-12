@@ -66,10 +66,12 @@
     </p>
 
     <p>
-        Erkennt Kaderblick bei einer neuen Rückmeldung einen Termin- oder Reisekonflikt, erscheint die bereits aus
-        dem Kalender bekannte Konfliktprüfung. Eine Reisezeit-Warnung kann nach Prüfung bestätigt werden; ein echter
-        Terminüberschneidungskonflikt wird entsprechend der dort angezeigten Möglichkeiten behandelt. Weitere Details
-        zu Rückmeldungen und Konflikten findet ihr unter <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a>.
+        Überschneidet sich eine neue Zusage mit einer bereits gemeldeten Teilnahme an einem anderen Termin, wird die
+        neue Rückmeldung nicht gespeichert und Kaderblick zeigt den überschneidenden Termin an. Reicht nach der
+        berechneten Entfernung die Zeit zwischen zwei Terminen voraussichtlich nicht aus, erscheint stattdessen eine
+        Reisezeit-Warnung. Dort könnt ihr abbrechen oder die Zusage ausdrücklich mit
+        <strong>„Trotzdem zusagen“</strong> bestätigen. Weitere Details zu Rückmeldungen und Konflikten findet ihr
+        unter <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a>.
     </p>
 
     <h3>Teilnahme bei einer Aushilfe-Anfrage</h3>
@@ -110,7 +112,8 @@
         Der Abschnitt <strong>„Kaderbesetzung“</strong> verbindet die Rückmeldungen mit dem für den Spieltag relevanten
         Mannschaftskader. Trainer sehen dort ihre am Spieltag betreuten Mannschaften. Spieler sehen die
         Kaderbesetzung ihrer eigenen Mannschaft nur dann, wenn für genau diese Mannschaft ein Match-Plan veröffentlicht
-        wurde. Die systemweite Verwaltung kann die beteiligten Mannschaften des Spiels einsehen.
+        wurde. Benutzer mit vollständigem Zugriff auf die Systemverwaltung können die beteiligten Mannschaften des
+        Spiels einsehen.
     </p>
 
     <h3>Ohne ausgefüllten Match-Plan</h3>
@@ -134,7 +137,7 @@
 
     <p>
         Für einen unbesetzten oder nicht durch eine Zusage bestätigten Startelfplatz kann Kaderblick mögliche
-        Alternativen anzeigen. Dafür werden verfügbare, noch nicht bereits eingeplante Spieler berücksichtigt, deren
+        Alternativen anzeigen. Dafür werden zugesagte, noch nicht bereits eingeplante Spieler berücksichtigt, deren
         Haupt- oder Alternativposition zur benötigten Position passt. Diese Vorschläge ändern den Match-Plan nicht;
         sie dienen ausschließlich als Hinweis für die Besetzungsplanung. Änderungen an der tatsächlichen Aufstellung
         erfolgen im Match-Plan beziehungsweise im Bereich
