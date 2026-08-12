@@ -31,7 +31,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Aufgaben | abgeschlossen |
 | Neuigkeiten & Gemeinschaft | abgeschlossen |
 | Nachrichten | abgeschlossen |
-| Benachrichtigungen | offen |
+| Benachrichtigungen | abgeschlossen |
 | Profil & Benutzerzuordnung | offen |
 | Aufstellungen | offen |
 | Auswertungen | offen |
