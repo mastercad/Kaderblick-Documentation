@@ -25,7 +25,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Erste Schritte | abgeschlossen |
 | Anmelden & Registrieren | abgeschlossen |
 | Dashboard | abgeschlossen |
-| Kalender & Termine | offen |
+| Kalender & Termine | abgeschlossen |
 | Spiele | offen |
 | Team & Verein | offen |
 | Aufgaben | offen |
