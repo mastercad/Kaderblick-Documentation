@@ -3,80 +3,309 @@
 {% block title %}Dashboard – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>�️ Dashboard</h1>
+    <h1>Dashboard</h1>
+
     <p>
-        Eure persönliche Startseite mit Widgets – alle wichtigen Infos auf einen Blick.
+        Das Dashboard bündelt offene Rückmeldungen und frei wählbare Informationsbereiche. Die Anordnung,
+        Größe und Auswahl dieser Bereiche wird für euer eigenes Benutzerkonto gespeichert und verändert das
+        Dashboard anderer Personen nicht.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📅', title: 'Nächste Termine', desc: 'Anstehende Spiele, Trainings und Besprechungen.' },
-            { icon: '📋', title: 'Offene Aufgaben', desc: 'Aufgaben, die noch erledigt werden müssen.' },
-            { icon: '📰', title: 'Aktuelle News', desc: 'Die neuesten Nachrichten aus dem Verein.' },
-            { icon: '🔔', title: 'Benachrichtigungen', desc: 'Ungelesene Hinweise und Updates.' },
-            { icon: '📈', title: 'Berichte', desc: 'Selbst erstellte Berichte direkt auf dem Dashboard.' },
-        ]
-    } %}
+    <h2>Was beim ersten Aufruf bereits vorhanden ist</h2>
 
-    {# ─── Kacheln ─── #}
-    <h2>Die Dashboard-Kacheln</h2>
     <p>
-        Das Dashboard ist in <strong>Kacheln</strong> organisiert, die verschiedene
-        Informationen darstellen:
-    </p>
-    <ul>
-        <li>📅 <strong>Nächste Termine</strong> — Eure anstehenden Events</li>
-        <li>📋 <strong>Offene Aufgaben</strong> — Was noch zu erledigen ist</li>
-        <li>📰 <strong>Aktuelle News</strong> — Neueste Vereinsnachrichten</li>
-        <li>🔔 <strong>Benachrichtigungen</strong> — Aktuelle Hinweise</li>
-        <li>📈 <strong>Berichte</strong> — Eure gespeicherten Auswertungen</li>
-    </ul>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/dashboard/dashboard-uebersicht.png',
-        alt: 'Dashboard mit Kacheln',
-        caption: 'Das personalisierte Dashboard mit verschiedenen Informations-Kacheln.'
-    } %}
-
-    {# ─── Anpassen ─── #}
-    <h2>Dashboard anpassen</h2>
-    <p>
-        Ihr könnt euer Dashboard individuell gestalten:
-    </p>
-    <ul>
-        <li><strong>Kacheln hinzufügen</strong> oder <strong>entfernen</strong></li>
-        <li><strong>Reihenfolge</strong> per Drag &amp; Drop anpassen</li>
-    </ul>
-    <p>
-        Die Einstellungen werden <strong>pro Person</strong> gespeichert – jedes Mitglied
-        hat sein eigenes Dashboard.
+        Für ein neues Dashboard legt Kaderblick zunächst <strong>Kalender</strong>,
+        <strong>Anstehende Termine</strong>, <strong>Neuigkeiten</strong> und <strong>Nachrichten</strong> an.
+        Ist euer Benutzerkonto als Spieler oder Trainer mit einer Mannschaft verbunden, können zusätzlich
+        automatisch teambezogene Statistiken hinzukommen.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/dashboard/dashboard-anpassen.png',
-        alt: 'Dashboard anpassen',
-        caption: 'Kacheln hinzufügen, entfernen und per Drag & Drop anordnen.'
-    } %}
-
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Fügt eure wichtigsten <a href="' ~ path('app_berichte') ~ '">Berichte</a> als Dashboard-Kachel hinzu – so habt ihr die relevantesten Auswertungen immer direkt im Blick.'
-    } %}
-
-    {# ─── Berichts-Kacheln ─── #}
-    <h2>Berichts-Kacheln</h2>
     <p>
-        Selbst erstellte <a href="{{ path('app_berichte') }}">Berichte</a> können direkt
-        als Kachel auf dem Dashboard angezeigt werden. Die Daten werden bei jedem
-        Dashboard-Aufruf automatisch aktualisiert.
+        Bei einer Spielerzuordnung werden für eine Mannschaft Statistiken zu Toren und Vorlagen angelegt.
+        Bei einer Trainerzuordnung sind Statistiken zu Toren pro Spieler, Schüssen und Karten vorgesehen.
+        Diese Statistik-Kacheln gehören zu euren persönlichen Auswertungen und können wie andere
+        Dashboard-Kacheln verschoben oder entfernt werden.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/dashboard/berichts-kachel.png',
-        alt: 'Bericht als Dashboard-Kachel',
-        caption: 'Ein Bericht als Live-Kachel direkt auf dem Dashboard.'
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Dashboard mit mehreren Bereichen',
+        description: 'Bitte ein angemeldetes Dashboard mit den Standardbereichen und – falls vorhanden – einer offenen Teilnahme-Rückmeldung aufnehmen.',
+        items: [
+            'Schaltfläche „Widget hinzufügen“',
+            'mindestens zwei Dashboard-Kacheln mit ihren Kopfzeilen',
+            'Griff zum Verschieben sowie die Symbole zum Aktualisieren, Einstellen und Entfernen',
+            'falls vorhanden: Bereich „Zur Teilnahme offen“ oberhalb der Kacheln'
+        ],
+        purpose: 'Aufbau des Dashboards und Lage der wichtigsten Bedienelemente zeigen.'
     } %}
+
+    <h2>Offene Teilnahme-Rückmeldungen</h2>
+
+    <p>
+        Für Spieler und Trainer erscheint oberhalb der frei angeordneten Kacheln der Bereich
+        <strong>„Zur Teilnahme offen“</strong>, sobald für kommende Termine noch eine eigene Rückmeldung möglich
+        und noch keine Antwort hinterlegt ist. Die Zahl neben der Überschrift zeigt, wie viele offene Termine
+        vorhanden sind. Angezeigt werden der Termin, Datum und Uhrzeit sowie die für diesen Termin verfügbaren
+        Rückmeldemöglichkeiten.
+    </p>
+
+    <p>
+        Eine Auswahl in diesem Bereich wird unmittelbar als Teilnahme-Rückmeldung für den betreffenden Termin
+        gespeichert. Es handelt sich um dieselbe Rückmeldung, die auch beim Termin im
+        <a href="{{ path('app_kalender') }}">Kalender</a> verwendet wird. Nach einer erfolgreichen Antwort
+        verschwindet der Termin aus der Liste der offenen Rückmeldungen.
+    </p>
+
+    <p>
+        Wenn eine Rückmeldung mit einem anderen Termin oder einer notwendigen Anreise kollidiert, zeigt Kaderblick
+        den dafür vorgesehenen Hinweis beziehungsweise Konfliktdialog. Bei Terminen, bei denen ihr als Aushilfe
+        angefragt seid oder selbst als Aushilfe infrage kommt, werden die entsprechenden Hinweise ebenfalls direkt
+        in diesem Bereich angezeigt. Ist ein freiwilliges Aushilfe-Angebot möglich, kann dort
+        <strong>„Interesse anbieten“</strong> gewählt werden. Ein bereits abgegebenes Angebot wird als wartend auf
+        Bestätigung angezeigt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Offene Teilnahme auf dem Dashboard',
+        description: 'Bitte den Bereich „Zur Teilnahme offen“ mit mindestens einem noch unbeantworteten Termin aufnehmen.',
+        items: [
+            'Überschrift „Zur Teilnahme offen“ mit Anzahl',
+            'Terminname und Terminzeit',
+            'verfügbare Schaltflächen für die Teilnahme',
+            'falls verfügbar: Kennzeichnung einer Aushilfe-Anfrage oder Aushilfe-Möglichkeit'
+        ],
+        purpose: 'Direkte Rückmeldung zu einem Termin vom Dashboard aus zeigen.'
+    } %}
+
+    <h2>Offene Trainingsnachweise</h2>
+
+    <p>
+        Spieler sehen zusätzlich einen Hinweis, wenn für die eigene Spielerzuordnung noch Trainingsnachweise offen
+        sind. Der Hinweis nennt die Anzahl der offenen Nachweise und zeigt den als Nächstes fälligen Nachweis mit
+        seinem Titel und – sofern festgelegt – dem Fälligkeitsdatum. Über <strong>„Nachweis hochladen“</strong>
+        wechselt ihr direkt in <strong>Mein Team</strong> zum betreffenden Spieler und zum betreffenden
+        Trainingsnachweis.
+    </p>
+
+    <p>
+        Dieser Hinweis ist keine eigene Kopie des Trainingsnachweises. Nachweise werden weiterhin im Bereich
+        <strong>Mein Team</strong> geführt; das Dashboard bietet lediglich den direkten Einstieg in den nächsten
+        offenen Nachweis.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Hinweis auf offene Trainingsnachweise',
+        description: 'Bitte ein Dashboard eines Spielers mit mindestens einem offenen Trainingsnachweis aufnehmen.',
+        items: [
+            'Anzahl der offenen Trainingsnachweise',
+            'Titel des nächsten offenen Nachweises',
+            'falls vorhanden: Fälligkeitsdatum',
+            'Schaltfläche „Nachweis hochladen“'
+        ],
+        purpose: 'Direkten Weg vom Dashboard zum offenen Trainingsnachweis zeigen.'
+    } %}
+
+    <h2>Kalender-Kachel</h2>
+
+    <p>
+        Die Kalender-Kachel zeigt Termine in einer Kalenderansicht. Innerhalb der Kachel könnt ihr zwischen
+        <strong>Monat</strong>, <strong>Woche</strong>, <strong>Tag</strong> und <strong>Agenda</strong> wechseln
+        sowie mit <strong>„Zurück“</strong>, <strong>„Weiter“</strong> und <strong>„Heute“</strong> im angezeigten
+        Zeitraum navigieren. Ein Klick oder Fingertipp auf einen Termin öffnet dessen Termindetails direkt auf dem
+        Dashboard.
+    </p>
+
+    <p>
+        Über die Einstellungen der Kachel lässt sich festlegen, mit welcher Ansicht sie normalerweise startet.
+        Als gespeicherte Startansicht stehen Tag, Woche und Monat zur Verfügung. Zusätzlich kann ein zeitlicher
+        Versatz hinterlegt werden, zum Beispiel die nächste Woche oder der vorherige Monat. Die Navigation innerhalb
+        der Kachel ändert diese gespeicherte Startvorgabe nicht.
+    </p>
+
+    <p>
+        Die Kalender-Kachel zeigt dieselben Termine wie der <a href="{{ path('app_kalender') }}">Kalender</a>.
+        Änderungen an einem Termin wirken sich daher nicht nur auf die Kachel, sondern auch auf die übrigen
+        Kalenderansichten aus.
+    </p>
+
+    <h2>Kachel „Anstehende Termine“</h2>
+
+    <p>
+        <strong>Anstehende Termine</strong> zeigt bis zu fünf kommende Termine aus dem nächsten Zeitraum von sieben
+        Tagen. Zu jedem Eintrag werden Terminname, Terminart, Datum und Uhrzeit sowie – sofern vorhanden – der Ort
+        angezeigt. Hinweise zu Aushilfe-Anfragen, möglichen Aushilfen oder bereits bestätigten beziehungsweise
+        angebotenen Aushilfen erscheinen direkt beim jeweiligen Termin.
+    </p>
+
+    <p>
+        Durch Anklicken eines Eintrags öffnet ihr die vollständigen Termindetails. Änderungen, die dort vorgenommen
+        werden und den Termin betreffen, werden anschließend auch in der Kachel berücksichtigt.
+    </p>
+
+    <h2>Kachel „Neuigkeiten“</h2>
+
+    <p>
+        Die Kachel <strong>Neuigkeiten</strong> zeigt die für euch sichtbaren Veröffentlichungen mit Titel, Datum
+        und einem kurzen Textauszug. Durch Anklicken einer Neuigkeit öffnet ihr deren vollständigen Inhalt, ohne das
+        Dashboard verlassen zu müssen. Dieselben Veröffentlichungen findet ihr auch im Bereich
+        <a href="{{ path('app_news') }}">News</a>.
+    </p>
+
+    <h2>Kachel „Nachrichten“</h2>
+
+    <p>
+        Die Nachrichten-Kachel zeigt aktuelle Nachrichten mit Betreff, Absender und Versandzeit. Ein Klick auf eine
+        Nachricht öffnet sie direkt im Nachrichtenfenster. Die Nachricht gehört dabei weiterhin zum Bereich
+        <a href="{{ path('app_nachrichten') }}">Nachrichten</a>; das Dashboard ist ein zusätzlicher Zugang zu
+        denselben Nachrichten.
+    </p>
+
+    <h2>Kachel „Geburtstage“</h2>
+
+    <p>
+        Die Geburtstags-Kachel zeigt Geburtstage von Spielern aus Mannschaften, mit denen euer Benutzerkonto aktuell
+        verbunden ist. Berücksichtigt werden der heutige Tag und die folgenden sieben Tage. Angezeigt werden Name,
+        Alter, Abstand zum Geburtstag und die zugehörige Mannschaft. Ein Geburtstag am aktuellen Tag wird besonders
+        gekennzeichnet.
+    </p>
+
+    <p>
+        Die Kachel kann über <strong>„Widget hinzufügen“</strong> ergänzt werden; sie gehört nicht zu den vier
+        automatisch angelegten Standardkacheln.
+    </p>
+
+    <h2>Statistik-Kacheln</h2>
+
+    <p>
+        Eine Statistik-Kachel zeigt eine gespeicherte Auswertung direkt auf dem Dashboard. Auf kleineren
+        Smartphone-Bildschirmen wird eine kompakte Zusammenfassung verwendet; die vollständige Darstellung kann von
+        dort bildschirmfüllend geöffnet werden. Auf größeren Bildschirmen erscheint die Auswertung direkt in der
+        Kachel.
+    </p>
+
+    <p>
+        Statistik-Kacheln besitzen in ihrer Kopfzeile zusätzlich das Symbol <strong>„Report bearbeiten“</strong>.
+        Darüber wird die zugrunde liegende Auswertung bearbeitet. Wird eine allgemeine Vorlage von einem normalen
+        Benutzer geändert, legt Kaderblick dafür eine persönliche Kopie an; Administratoren können eine solche
+        Vorlage direkt bearbeiten. Weitere Möglichkeiten der Auswertungen werden im Kapitel
+        <a href="{{ path('app_berichte') }}">Berichte</a> beschrieben.
+    </p>
+
+    <h2>Weitere Kacheln hinzufügen</h2>
+
+    <p>
+        Über <strong>„Widget hinzufügen“</strong> oben auf dem Dashboard öffnet ihr die Auswahl. Dort stehen
+        <strong>Kalender</strong>, <strong>Nachrichten</strong>, <strong>Neuigkeiten</strong>,
+        <strong>Anstehende Termine</strong>, <strong>Geburtstage</strong> und
+        <strong>„Statistik Widget“</strong> zur Verfügung. Eine der ersten fünf Kacheln wird nach der Auswahl
+        unmittelbar am Ende des Dashboards ergänzt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kachel hinzufügen',
+        description: 'Bitte das geöffnete Fenster „Widget hinzufügen“ aufnehmen.',
+        items: [
+            'Kalender',
+            'Nachrichten',
+            'Neuigkeiten',
+            'Anstehende Termine',
+            'Geburtstage',
+            'Statistik Widget'
+        ],
+        purpose: 'Verfügbare Kacheltypen und den Einstieg zum Hinzufügen zeigen.'
+    } %}
+
+    <h3>Vorhandene Statistik hinzufügen</h3>
+
+    <p>
+        Bei <strong>„Statistik Widget“</strong> öffnet Kaderblick zunächst eine eigene Auswahl. Sind bereits
+        Auswertungen vorhanden, könnt ihr eine oder mehrere davon markieren und gemeinsam über
+        <strong>„Hinzufügen“</strong> auf das Dashboard übernehmen.
+    </p>
+
+    <h3>Neue Statistik direkt vom Dashboard erstellen</h3>
+
+    <p>
+        Im selben Fenster kann eine neue Auswertung erstellt werden. Dafür stehen die in Kaderblick sichtbaren Wege
+        <strong>„Einfacher Assistent“</strong> und <strong>„Detaillierter Builder“</strong> zur Verfügung. Nach dem
+        Speichern wird die neue Auswertung angelegt und gleichzeitig als Statistik-Kachel zum Dashboard hinzugefügt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Statistik zum Dashboard hinzufügen',
+        description: 'Bitte das Fenster „Statistik Widget hinzufügen“ mit mindestens einer vorhandenen Auswertung aufnehmen.',
+        items: [
+            '„Einfacher Assistent“',
+            '„Detaillierter Builder“',
+            'Bereich zur Auswahl vorhandener Auswertungen',
+            'Schaltfläche „Hinzufügen“'
+        ],
+        purpose: 'Unterschied zwischen neuer und bereits vorhandener Statistik zeigen.'
+    } %}
+
+    <h2>Kacheln verschieben</h2>
+
+    <p>
+        Links neben dem Titel jeder Kachel befindet sich der Griff <strong>„Widget verschieben“</strong>. Zieht die
+        Kachel an diesem Griff an die gewünschte Position. Mit der Maus beginnt das Verschieben nach einer kurzen
+        Bewegung. Auf einem Touchscreen haltet ihr den Griff kurz gedrückt und zieht die Kachel anschließend an die
+        neue Stelle. Die neue Reihenfolge wird gespeichert.
+    </p>
+
+    <p>
+        Auf kleinen Bildschirmen werden die Kacheln untereinander in voller Breite dargestellt. Die gespeicherte
+        Reihenfolge bleibt dabei erhalten und bestimmt die Reihenfolge von oben nach unten.
+    </p>
+
+    <h2>Größe und Einstellungen einer Kachel ändern</h2>
+
+    <p>
+        Das Zahnrad in der Kopfzeile öffnet <strong>„Widget-Einstellungen“</strong>. Für die Breite stehen
+        <strong>Schmal (25 %)</strong>, <strong>Normal (33 %)</strong>, <strong>Halbe Breite (50 %)</strong>,
+        <strong>Groß (66 %)</strong> und <strong>Volle Breite (100 %)</strong> zur Auswahl. Diese Breite wirkt sich
+        auf größere Bildschirmbreiten aus; auf kleinen Bildschirmen werden die Kacheln unabhängig davon in voller
+        Breite untereinander angezeigt.
+    </p>
+
+    <p>
+        Bei einer Kalender-Kachel enthält dasselbe Einstellungsfenster zusätzlich die gespeicherte Kalenderansicht
+        und den zeitlichen Versatz. Nach <strong>„Speichern“</strong> wird nur die betreffende Kachel angepasst.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Einstellungen einer Kalender-Kachel',
+        description: 'Bitte die „Widget-Einstellungen“ einer Kalender-Kachel aufnehmen.',
+        items: [
+            'Auswahl „Breite“',
+            'Bereich „Kalender-Ansicht“',
+            'Auswahl „Ansichtsmodus“',
+            'Feld für den zeitlichen Versatz',
+            'Schaltfläche „Speichern“'
+        ],
+        purpose: 'Größe und gespeicherte Kalenderansicht einer Kachel einstellen.'
+    } %}
+
+    <h2>Inhalt einer Kachel aktualisieren</h2>
+
+    <p>
+        Das kreisförmige Pfeilsymbol <strong>„Aktualisieren“</strong> lädt den Inhalt der betreffenden Kachel neu.
+        Andere Kacheln werden dabei nicht neu geladen. Das ist beispielsweise sinnvoll, wenn sich Termine,
+        Nachrichten oder eine Statistik geändert haben und die aktuelle Anzeige noch geöffnet ist.
+    </p>
+
+    <h2>Kachel vom Dashboard entfernen</h2>
+
+    <p>
+        Über das Papierkorb-Symbol <strong>„Entfernen“</strong> öffnet ihr eine Sicherheitsabfrage. Erst nach
+        <strong>„Löschen“</strong> wird die Kachel aus eurem Dashboard entfernt. Dabei werden die angezeigten
+        Inhalte nicht gelöscht: Das Entfernen einer Kalender-Kachel löscht keine Termine, das Entfernen der
+        Nachrichten- oder Neuigkeiten-Kachel löscht keine Nachrichten oder Veröffentlichungen und das Entfernen
+        einer Statistik-Kachel löscht nicht die zugrunde liegende Auswertung.
+    </p>
+
+    <p>
+        Entfernte Kacheltypen können später erneut über <strong>„Widget hinzufügen“</strong> ergänzt werden. Wird das
+        Dashboard vollständig geleert, legt Kaderblick beim nächsten Laden wieder die Standardkacheln an; vorhandene
+        Mannschaftszuordnungen können dabei auch die zugehörigen automatischen Statistik-Kacheln erneut ergänzen.
+    </p>
 {% endblock %}
