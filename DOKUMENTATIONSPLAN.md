@@ -37,6 +37,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Auswertungen | abgeschlossen |
 | Fahrgemeinschaften | abgeschlossen |
 | Verwaltung | abgeschlossen |
+| Mein Spieltag | abgeschlossen |
 | Weitere aktuelle Bereiche | offen |
 
 ## Vorgehen je Bereich

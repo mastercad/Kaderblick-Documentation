@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mein Spieltag – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Mein Spieltag</h1>
+
+    <p>
+        Unter <strong>Spiele → Mein Spieltag</strong> werden die für ein anstehendes Spiel relevanten Angaben
+        zusammengeführt: Spiel- und Treffpunktdaten, die eigene Rückmeldung, die aktuelle Kaderbesetzung,
+        Fahrgemeinschaften und Aufgaben am Spieltag. Angezeigt werden nur Spiele, zu denen ihr aufgrund eurer
+        Mannschaftszugehörigkeit oder einer Aushilfe-Anfrage Zugang habt.
+    </p>
+
+    <h2>Anstehendes Spiel auswählen</h2>
+
+    <p>
+        Öffnet ihr <strong>Mein Spieltag</strong> ohne bereits ausgewähltes Spiel, öffnet Kaderblick automatisch
+        das erste für euch zugängliche anstehende Spiel innerhalb des aktuell eingestellten Vorschauzeitraums.
+        Liegen in diesem Zeitraum mehrere Spiele, erscheinen sie oberhalb der Spieltagsansicht als Reiter mit
+        Spielbezeichnung und Datum. Eine Aushilfe-Anfrage ist dort zusätzlich mit <strong>„Aushelfen?“</strong>
+        gekennzeichnet.
+    </p>
+
+    <p>
+        Auf einem Smartphone könnt ihr zwischen mehreren angezeigten Spielen auch horizontal wischen. Befindet
+        sich im Vorschauzeitraum kein zugängliches Spiel, zeigt Kaderblick die Länge dieses Zeitraums an und bietet
+        über <strong>„Zum Kalender“</strong> den Wechsel zur vollständigen Terminübersicht an.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Mein Spieltag mit mehreren anstehenden Spielen',
+        description: 'Bitte den oberen Teil von „Mein Spieltag“ aufnehmen, während mindestens zwei zugängliche Spiele im Vorschauzeitraum liegen.',
+        items: [
+            'die Reiter der anstehenden Spiele mit Bezeichnung und Datum',
+            'gegebenenfalls die Kennzeichnung „Aushelfen?“',
+            'Spielbezeichnung, Datum und Spielort des ausgewählten Spiels',
+            'Treffpunkt und Treffzeit, sofern für das Beispielspiel hinterlegt'
+        ],
+        purpose: 'Auswahl zwischen mehreren Spieltagen und Aufbau des Kopfbereichs zeigen.'
+    } %}
+
+    <h2>Spiel, Ort und Treffpunkt</h2>
+
+    <p>
+        Im Kopfbereich stehen die Bezeichnung des Termins, Datum und Uhrzeit sowie – soweit hinterlegt – der
+        Spielort, die beteiligten Mannschaften und die Terminbeschreibung. Ein gesonderter Abschnitt
+        <strong>„Treffpunkt“</strong> erscheint, wenn für das Spiel ein Treffpunkt oder eine Treffzeit eingetragen
+        wurde. Ist der Treffpunkt mit einer gespeicherten Spielstätte samt Adresse oder Koordinaten verknüpft,
+        lässt sich dessen Name anklicken; Kaderblick öffnet den Ort anschließend in Google Maps.
+    </p>
+
+    <p>
+        Diese Angaben stammen aus dem zugehörigen Spieltermin. Änderungen werden nicht in <strong>Mein Spieltag</strong>,
+        sondern am Termin selbst vorgenommen. Die vollständige Terminbearbeitung ist unter
+        <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a> beschrieben.
+    </p>
+
+    <h2>Eigene Teilnahme melden</h2>
+
+    <p>
+        Im Abschnitt <strong>„Teilnahme“</strong> seht ihr zuerst die Anzahl der bisherigen Rückmeldungen je Status.
+        Direkt darunter könnt ihr eure eigene Rückmeldung mit denselben Statusmöglichkeiten ändern, die auch am
+        Termin im Kalender verwendet werden. Die Änderung wirkt deshalb auf denselben Teilnahme-Eintrag und ist
+        anschließend auch in den anderen Terminansichten sichtbar.
+    </p>
+
+    <p>
+        Erkennt Kaderblick bei einer neuen Rückmeldung einen Termin- oder Reisekonflikt, erscheint die bereits aus
+        dem Kalender bekannte Konfliktprüfung. Eine Reisezeit-Warnung kann nach Prüfung bestätigt werden; ein echter
+        Terminüberschneidungskonflikt wird entsprechend der dort angezeigten Möglichkeiten behandelt. Weitere Details
+        zu Rückmeldungen und Konflikten findet ihr unter <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a>.
+    </p>
+
+    <h3>Teilnahme bei einer Aushilfe-Anfrage</h3>
+
+    <p>
+        Wurdet ihr für das Spiel als Aushilfe angefragt, erscheint oberhalb der Spieldaten ein Hinweis und das Spiel
+        trägt die Kennzeichnung <strong>„Aushelfen?“</strong>. Die Rückmeldung dient in diesem Fall gleichzeitig als
+        Antwort auf die Anfrage. Erst mit einer Zusage gehört ihr verbindlich zum Spielkader dieses Termins.
+    </p>
+
+    <h2>Vollständigkeit der eigenen Vorbereitung</h2>
+
+    <p>
+        Die Anzeige <strong>„Vollständigkeit“</strong> prüft zwei Punkte: ob für das Spiel eine eigene Rückmeldung
+        vorliegt und ob alle euch für diesen Kalendertag zugewiesenen Aufgaben erledigt sind. Gibt es an diesem Tag
+        keine eigene Aufgabe, gilt der Aufgabenpunkt automatisch als erfüllt. Fahrgemeinschaften fließen nicht in
+        diese Anzeige ein.
+    </p>
+
+    <p>
+        Eine noch offene Aufgabe kann in <strong>Mein Spieltag</strong> nur eingesehen werden. Zum Erledigen oder
+        Wiederöffnen wechselt ihr in den Bereich <a href="{{ path('app_aufgaben') }}">Aufgaben</a>.
+    </p>
+
+    <h2>Rückmeldungen der Mannschaft</h2>
+
+    <p>
+        Trainer einer beteiligten Mannschaft sehen im Teilnahmebereich zusätzlich die vollständige Liste der
+        vorhandenen Rückmeldungen mit Namen und jeweiligem Status. Benutzer ohne diese Trainerfunktion erhalten
+        stattdessen – sofern bereits Zusagen vorliegen – den Abschnitt <strong>„Wer ist dabei?“</strong>. Dort werden
+        ausschließlich die Namen der Personen mit einer Zusage angezeigt; Absagen, offene Rückmeldungen und andere
+        Statuswerte werden in dieser Liste nicht offengelegt.
+    </p>
+
+    <h2>Kaderbesetzung</h2>
+
+    <p>
+        Der Abschnitt <strong>„Kaderbesetzung“</strong> verbindet die Rückmeldungen mit dem für den Spieltag relevanten
+        Mannschaftskader. Trainer sehen dort ihre am Spieltag betreuten Mannschaften. Spieler sehen die
+        Kaderbesetzung ihrer eigenen Mannschaft nur dann, wenn für genau diese Mannschaft ein Match-Plan veröffentlicht
+        wurde. Die systemweite Verwaltung kann die beteiligten Mannschaften des Spiels einsehen.
+    </p>
+
+    <h3>Ohne ausgefüllten Match-Plan</h3>
+
+    <p>
+        Ist für die Mannschaft noch kein Match-Plan mit tatsächlich eingesetzten Spielern vorhanden, gruppiert
+        Kaderblick den aktiven Kader nach Hauptposition. Zu jedem Spieler wird der aktuelle Rückmeldungsstatus farblich
+        dargestellt. Sind Alternativpositionen hinterlegt, werden sie als zusätzliche Information am jeweiligen
+        Spieler angeboten.
+    </p>
+
+    <h3>Mit ausgefülltem Match-Plan</h3>
+
+    <p>
+        Enthält der Match-Plan bereits Spieler, wird die geplante Aufstellung stattdessen in <strong>Startelf</strong>,
+        <strong>Bank</strong> und <strong>Nicht im Plan</strong> gegliedert. Bei Startelf und Bank ist unmittelbar
+        erkennbar, welche eingeplanten Spieler zugesagt haben und bei welchen noch keine passende Zusage vorliegt.
+        Spieler aus dem aktiven Mannschaftskader, die in der Ausgangsaufstellung weder auf dem Feld noch auf der Bank
+        eingeplant sind, erscheinen unter <strong>„Nicht im Plan“</strong>.
+    </p>
+
+    <p>
+        Für einen unbesetzten oder nicht durch eine Zusage bestätigten Startelfplatz kann Kaderblick mögliche
+        Alternativen anzeigen. Dafür werden verfügbare, noch nicht bereits eingeplante Spieler berücksichtigt, deren
+        Haupt- oder Alternativposition zur benötigten Position passt. Diese Vorschläge ändern den Match-Plan nicht;
+        sie dienen ausschließlich als Hinweis für die Besetzungsplanung. Änderungen an der tatsächlichen Aufstellung
+        erfolgen im Match-Plan beziehungsweise im Bereich
+        <a href="{{ path('app_aufstellungen') }}">Aufstellungen</a>.
+    </p>
+
+    <h3>Besetzungsanzeige und Ampel</h3>
+
+    <p>
+        Neben der Zahl der zugesagten Spieler zeigt Kaderblick eine Ampel für die Kaderstärke. Ab elf Zusagen wird
+        die Mannschaft als <strong>„Einsatzbereit“</strong> angezeigt, bei sieben bis zehn Zusagen als
+        <strong>„Knapp besetzt“</strong> und bei weniger als sieben Zusagen als <strong>„Kritisch“</strong>.
+    </p>
+
+    <p>
+        Der zusätzlich angezeigte Prozentwert hat je nach Planungsstand eine unterschiedliche Bedeutung. Ohne
+        ausgefüllten Match-Plan entspricht er dem Anteil der Zusagen am aktiven Mannschaftskader. Bei einer vorhandenen
+        Startelf berücksichtigt er neben zugesagten Startelfspielern auch offene beziehungsweise nicht bestätigte
+        Positionen, für die Kaderblick eine passende Alternative findet. Der Prozentwert kann deshalb höher sein als
+        der reine Anteil bestätigter Startelfspieler.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kaderbesetzung mit Match-Plan',
+        description: 'Bitte den Abschnitt „Kaderbesetzung“ aus der Sicht eines Trainers mit einem ausgefüllten Match-Plan aufnehmen.',
+        items: [
+            'Mannschaftsname, Zahl der Zusagen und Ampelstatus',
+            'Fortschrittsanzeige der Kaderbesetzung',
+            'Startelf mit unterschiedlichen Rückmeldungszuständen',
+            'mindestens ein angezeigter Besetzungsvorschlag, falls mit anonymisierten Beispieldaten möglich',
+            'Bank und Bereich „Nicht im Plan“, sofern beide im Beispiel vorhanden sind'
+        ],
+        purpose: 'Zusammenspiel von Aufstellungsplanung und Rückmeldungen am Spieltag zeigen.'
+    } %}
+
+    <h2>Fahrgemeinschaften am Spieltag</h2>
+
+    <p>
+        <strong>Mein Spieltag</strong> zeigt die für den Termin vorhandenen Fahrgemeinschaften mit Fahrer, optionaler
+        Notiz, Mitfahrern und der Zahl der noch freien Plätze. Bei einer Fahrt, an der ihr selbst beteiligt seid,
+        kennzeichnet Kaderblick euch als <strong>„Fahrer“</strong> oder <strong>„Mitfahrer“</strong>.
+    </p>
+
+    <p>
+        Fahrten werden in dieser Ansicht nicht gebucht, storniert oder bearbeitet. Über
+        <strong>„Verwalten“</strong> öffnet Kaderblick denselben Spieltermin im Kalender und dort unmittelbar die
+        Fahrgemeinschaftsverwaltung. Anlegen, Buchen, Stornieren und Zurückziehen sind unter
+        <a href="{{ path('app_fahrgemeinschaften') }}">Fahrgemeinschaften</a> beschrieben.
+    </p>
+
+    <h2>Aufgaben am Spieltag</h2>
+
+    <p>
+        Eigene Aufgaben, deren Termin auf denselben Kalendertag fällt wie das Spiel, erscheinen in
+        <strong>„Meine Aufgaben“</strong>. Angezeigt werden Titel und Erledigungszustand; offene Aufgaben tragen
+        zusätzlich ihren aktuellen Status. Dabei handelt es sich um die Aufgaben dieses Datums. Sie müssen nicht
+        zwingend speziell für das ausgewählte Spiel angelegt worden sein.
+    </p>
+
+    <p>
+        Trainer sehen zusätzlich <strong>„Aufgaben am Spieltag“</strong> mit den an diesem Datum vorhandenen
+        Zuweisungen und den jeweils eingeteilten Personen. Auch diese Übersicht ist nur zur Kontrolle gedacht.
+        Änderungen am Status oder an der Aufgabe selbst erfolgen im Bereich
+        <a href="{{ path('app_aufgaben') }}">Aufgaben</a>.
+    </p>
+{% endblock %}
