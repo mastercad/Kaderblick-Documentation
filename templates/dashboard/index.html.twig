@@ -16,15 +16,17 @@
     <p>
         Für ein neues Dashboard legt Kaderblick zunächst <strong>Kalender</strong>,
         <strong>Anstehende Termine</strong>, <strong>Neuigkeiten</strong> und <strong>Nachrichten</strong> an.
-        Ist euer Benutzerkonto als Spieler oder Trainer mit einer Mannschaft verbunden, können zusätzlich
-        automatisch teambezogene Statistiken hinzukommen.
+        Auf größeren Bildschirmen belegt der Kalender zunächst die volle Breite, Anstehende Termine und Neuigkeiten
+        jeweils die halbe Breite und Nachrichten wieder die volle Breite. Auf kleinen Bildschirmen werden die
+        Bereiche unabhängig von dieser Einstellung untereinander angezeigt.
     </p>
 
     <p>
-        Bei einer Spielerzuordnung werden für eine Mannschaft Statistiken zu Toren und Vorlagen angelegt.
-        Bei einer Trainerzuordnung sind Statistiken zu Toren pro Spieler, Schüssen und Karten vorgesehen.
-        Diese Statistik-Kacheln gehören zu euren persönlichen Auswertungen und können wie andere
-        Dashboard-Kacheln verschoben oder entfernt werden.
+        Ist euer Benutzerkonto als Spieler oder Trainer mit einer Mannschaft verbunden, können zusätzlich
+        automatisch teambezogene Statistiken hinzukommen. Bei einer Spielerzuordnung werden für eine Mannschaft
+        Statistiken zu Toren und Vorlagen angelegt. Bei einer Trainerzuordnung sind Statistiken zu Toren pro Spieler,
+        Schüssen und Karten vorgesehen. Diese Statistik-Kacheln gehören zu euren persönlichen Auswertungen und können
+        wie andere Dashboard-Kacheln verschoben oder entfernt werden.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -89,8 +91,8 @@
 
     <p>
         Dieser Hinweis ist keine eigene Kopie des Trainingsnachweises. Nachweise werden weiterhin im Bereich
-        <strong>Mein Team</strong> geführt; das Dashboard bietet lediglich den direkten Einstieg in den nächsten
-        offenen Nachweis.
+        <strong>Mein Team</strong> geführt; das Dashboard bietet den direkten Einstieg in den nächsten offenen
+        Nachweis.
     </p>
 
     {% include 'components/bildplatzhalter.html.twig' with {
@@ -177,10 +179,17 @@
     <h2>Statistik-Kacheln</h2>
 
     <p>
-        Eine Statistik-Kachel zeigt eine gespeicherte Auswertung direkt auf dem Dashboard. Auf kleineren
-        Smartphone-Bildschirmen wird eine kompakte Zusammenfassung verwendet; die vollständige Darstellung kann von
-        dort bildschirmfüllend geöffnet werden. Auf größeren Bildschirmen erscheint die Auswertung direkt in der
-        Kachel.
+        Eine Statistik-Kachel zeigt eine gespeicherte Auswertung direkt auf dem Dashboard. Auf Smartphones zeigt
+        Kaderblick bei Balken-, Linien- und Flächendiagrammen eine kompakte Zusammenfassung mit Kennzahlen und einer
+        Schaltfläche für das vollständige Diagramm. Bei anderen Diagrammarten wird auf dem Smartphone direkt die
+        Möglichkeit angeboten, das Diagramm bildschirmfüllend zu öffnen. Auf größeren Bildschirmen erscheint das
+        Diagramm unmittelbar in der Kachel.
+    </p>
+
+    <p>
+        In der bildschirmfüllenden Darstellung können leere Einträge bei dafür geeigneten Diagrammen ein- oder
+        ausgeblendet werden. Eine breite, seitlich verschiebbare Darstellung kann ein- und ausgeschaltet werden.
+        Bei Balkendiagrammen lässt sich außerdem zwischen horizontaler und vertikaler Darstellung wechseln.
     </p>
 
     <p>
@@ -289,8 +298,8 @@
 
     <p>
         Das kreisförmige Pfeilsymbol <strong>„Aktualisieren“</strong> lädt den Inhalt der betreffenden Kachel neu.
-        Andere Kacheln werden dabei nicht neu geladen. Das ist beispielsweise sinnvoll, wenn sich Termine,
-        Nachrichten oder eine Statistik geändert haben und die aktuelle Anzeige noch geöffnet ist.
+        Andere Kacheln werden dabei nicht neu geladen. Das ist beispielsweise relevant, wenn sich Termine,
+        Nachrichten oder eine Statistik geändert haben, während das Dashboard geöffnet ist.
     </p>
 
     <h2>Kachel vom Dashboard entfernen</h2>
