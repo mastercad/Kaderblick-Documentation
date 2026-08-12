@@ -3,83 +3,375 @@
 {% block title %}Aufstellungen – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>📋 Aufstellungen planen</h1>
+    <h1>Aufstellungen</h1>
+
     <p>
-        Interaktiver Aufstellungsplaner mit Drag &amp; Drop auf virtuellem Spielfeld –
-        taktische Aufstellungen erstellen und als Vorlagen speichern.
+        Unter <strong>„Aufstellungen“</strong> verwalten Trainer wiederverwendbare Mannschaftsaufstellungen. Eine
+        Aufstellung kann eine Startelf, Ersatzspieler, eine Formationsvorlage und taktische Notizen enthalten. Zusätzlich
+        besitzt jede gespeicherte Aufstellung ein Taktik-Board für Laufwege, Ballwege, Zonen, Gegnerpositionen und mehrere
+        benannte Taktiken. Gespeicherte Aufstellungen können später in den Match-Plan eines Spiels übernommen werden.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '⚙️', title: 'Formationssystem wählen', desc: '4-4-2, 4-3-3, 4-2-3-1, 3-5-2, 5-3-2 und weitere.' },
-            { icon: '🖱️', title: 'Drag & Drop', desc: 'Spieler per Drag &amp; Drop auf dem virtuellen Spielfeld positionieren.' },
-            { icon: '💾', title: 'Speichern', desc: 'Aufstellungen benennen und dauerhaft speichern.' },
-            { icon: '📑', title: 'Vorlagen', desc: 'Gespeicherte Aufstellungen als Vorlagen wiederverwenden.' },
-        ]
-    } %}
+    <h2>Welche Aufstellungen angezeigt werden</h2>
 
-    {# ─── Neue Aufstellung ─── #}
-    <h2>Neue Aufstellung erstellen</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Formationssystem wählen', text: 'Wählt eine Grundformation aus (z.&nbsp;B. 4-4-2, 4-3-3, 3-5-2).' },
-            { title: 'Spieler positionieren', text: 'Zieht eure Spieler per <strong>Drag &amp; Drop</strong> auf die gewünschte Position im Spielfeld.' },
-            { title: 'Name vergeben', text: 'Gebt der Aufstellung einen aussagekräftigen Namen (z.&nbsp;B. „Heimspiel gegen TSV").' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Die Aufstellung bleibt dauerhaft verfügbar.' },
-        ]
-    } %}
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/aufstellungen/aufstellung-editor.png',
-        alt: 'Interaktiver Aufstellungsplaner',
-        caption: 'Spieler per Drag & Drop auf dem virtuellen Spielfeld positionieren.'
-    } %}
-
-    {# ─── Formationssysteme ─── #}
-    <h2>Verfügbare Formationssysteme</h2>
-    <ul>
-        <li><strong>4-4-2</strong> — Klassische Formation mit zwei Stürmern</li>
-        <li><strong>4-3-3</strong> — Offensiv mit drei Stürmern</li>
-        <li><strong>4-2-3-1</strong> — Kompakt mit einem Stoßstürmer</li>
-        <li><strong>3-5-2</strong> — Dreierkette mit Flügelspiel</li>
-        <li><strong>5-3-2</strong> — Defensiv orientiert</li>
-        <li>Weitere Systeme können vom Admin konfiguriert werden</li>
-    </ul>
-
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/aufstellungen/formationssysteme.png',
-        alt: 'Auswahl der Formationssysteme',
-        caption: 'Die verfügbaren Formationssysteme zur Auswahl.'
-    } %}
-
-    {# ─── Vorlagen ─── #}
-    <h2>Vorlagen wiederverwenden</h2>
     <p>
-        Gespeicherte Aufstellungen bleiben dauerhaft erhalten und können als Vorlagen
-        für zukünftige Spiele wiederverwendet werden. So müsst ihr nicht jedes Mal
-        von vorne beginnen.
+        Der Bereich <strong>„Aufstellungen“</strong> steht im Trainer-Menü zur Verfügung. Angezeigt werden die
+        Aufstellungen der Mannschaften, denen ihr aktuell als Trainer zugeordnet seid. Seid ihr mehreren Mannschaften
+        zugeordnet, werden die aktiven Aufstellungen nach Mannschaft gruppiert. Eine Aufstellung ist dabei nicht nur für
+        ihren Ersteller bestimmt: Trainer mit einer aktiven Zuordnung zur betreffenden Mannschaft können die dort
+        sichtbaren Aufstellungen ebenfalls bearbeiten und verwalten.
     </p>
 
-    {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Speichert mehrere Varianten mit unterschiedlichen Namen – z.&nbsp;B. „Offensiv", „Defensiv", „Pressing". So habt ihr für jede Situation eine passende Vorlage parat.'
-    } %}
-
-    {# ─── Häufige Fragen ─── #}
-    <h2>Häufige Fragen</h2>
-
-    <h3>Ein Spieler fehlt in der Auswahl – warum?</h3>
     <p>
-        Prüft die <a href="{{ path('app_spieler') }}">Teamzuordnung</a> des Spielers.
-        Nur Spieler mit aktiver Zuordnung erscheinen in der Auswahl.
+        Für die systemweite Verwaltung steht zusätzlich ein Mannschaftsfilter zur Verfügung. Damit kann gezielt zwischen
+        den Aufstellungen verschiedener Mannschaften gewechselt werden.
     </p>
 
-    <h3>Kann ich Aufstellungen mit anderen teilen?</h3>
-    <p>Aktuell nur per Screenshot. Eine Teilen-Funktion ist in Planung.</p>
+    <h2>Aktive und archivierte Aufstellungen</h2>
 
-    <h3>Kann ich mehrere Varianten speichern?</h3>
-    <p>Ja, einfach mit unterschiedlichen Namen speichern.</p>
+    <p>
+        Die Seite <strong>„Meine Aufstellungen“</strong> ist in <strong>„Aktiv“</strong> und <strong>„Archiv“</strong>
+        unterteilt. Neben beiden Reitern steht die jeweilige Anzahl. Eine aktive Aufstellung wird als Karte mit einer
+        Vorschau des Spielfelds dargestellt. Die Karte zeigt den Namen, die verwendete Formation – sofern eine Vorlage
+        gewählt wurde –, die Anzahl der Spieler auf dem Feld und auf der Bank sowie vorhandene taktische Notizen.
+    </p>
+
+    <p>
+        Ein Klick auf die Spielfeldvorschau öffnet die Aufstellung zum Bearbeiten. Die Schaltflächen am unteren Rand und
+        das Menü mit den drei Punkten bieten dieselben Verwaltungsfunktionen: <strong>Bearbeiten</strong>,
+        <strong>Taktik-Board</strong>, <strong>Duplizieren</strong>, <strong>Archivieren</strong> und
+        <strong>Löschen</strong>.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Übersicht „Meine Aufstellungen“',
+        description: 'Die Seite mit mindestens zwei aktiven Aufstellungen aufnehmen. Wenn möglich ein Trainerkonto verwenden, das mehreren Mannschaften zugeordnet ist.',
+        items: [
+            'Reiter „Aktiv“ und „Archiv“ mit Anzahl',
+            'Schaltfläche „Neue Aufstellung“',
+            'mindestens eine Aufstellungskarte mit Spielfeldvorschau, Name, Formation und Spieleranzahl',
+            'Aktionsschaltflächen einer Karte',
+            'Mannschaftsüberschrift, falls mehrere Mannschaften angezeigt werden'
+        ],
+        purpose: 'Aufbau der Übersicht und die verfügbaren Aktionen an einer gespeicherten Aufstellung zeigen.'
+    } %}
+
+    <h2>Eine neue Aufstellung anlegen</h2>
+
+    <p>
+        Mit <strong>„Neue Aufstellung“</strong> beginnt ihr entweder mit einer fertigen Formationsvorlage oder mit einem
+        leeren Spielfeld. Als Vorlagen stehen derzeit <strong>4-4-2</strong>, <strong>4-3-3</strong>,
+        <strong>4-2-3-1</strong>, <strong>3-5-2</strong>, <strong>5-3-2</strong> und <strong>4-1-4-1</strong> zur
+        Auswahl. <strong>„Ohne Vorlage starten“</strong> öffnet den Editor ohne vorgegebene Positionen.
+    </p>
+
+    <p>
+        Eine gewählte Vorlage legt zunächst die Positionen auf dem Spielfeld an. Diese Positionen sind keine feste
+        Vorgabe: Spieler können anschließend frei verschoben, ausgetauscht, auf die Bank gesetzt oder entfernt werden.
+        Auch später kann über <strong>„Vorlage wählen“</strong> zu einer anderen Grundformation gewechselt werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Formationsvorlage auswählen',
+        description: 'Den Dialog „Neue Aufstellung – Formation wählen“ vollständig aufnehmen.',
+        items: [
+            'die sechs aktuell angebotenen Formationen',
+            'jeweilige kleine Spielfeldvorschau',
+            'Schaltfläche „Ohne Vorlage starten“'
+        ],
+        purpose: 'Die beiden möglichen Startwege einer neuen Aufstellung zeigen.'
+    } %}
+
+    <h2>Name und Mannschaft festlegen</h2>
+
+    <p>
+        Im Editor benötigt jede Aufstellung einen Namen und eine Mannschaft. Bei mehreren Trainer-Mannschaften wählt ihr
+        die gewünschte Mannschaft im Feld <strong>„Team“</strong> aus. Die Mannschaft bestimmt, welcher Kader im Editor
+        zur Verfügung steht und für welche Trainer die gespeicherte Aufstellung später sichtbar ist. Ohne Namen oder ohne
+        ausgewählte Mannschaft lässt sich die Aufstellung nicht speichern.
+    </p>
+
+    <p>
+        Gibt es für das angemeldete Konto keine aktuelle Trainer-Mannschaft, kann keine Aufstellung für einen Kader
+        erstellt werden. Kaderblick weist in diesem Fall darauf hin, dass zunächst eine Mannschaftszuordnung benötigt wird.
+    </p>
+
+    <h2>Spieler aus dem Kader einsetzen</h2>
+
+    <p>
+        Der Bereich <strong>„Kader“</strong> enthält die Spieler der gewählten Mannschaft. Über das Suchfeld kann nach
+        Name oder Trikotnummer gefiltert werden. Bereits auf dem Spielfeld oder auf der Ersatzbank verwendete Spieler sind
+        gekennzeichnet und können nicht ein zweites Mal eingesetzt werden.
+    </p>
+
+    <p>
+        Für einen verfügbaren Spieler gibt es zwei direkte Aktionen: Mit dem Fußball-Symbol setzt ihr ihn auf das
+        Spielfeld, mit dem Bank-Symbol auf die Ersatzbank. Alternativ kann ein Spieler aus der Kaderliste direkt auf die
+        gewünschte Stelle des Spielfelds gezogen werden. Auf Geräten mit Touchscreen erfolgt das Verschieben ebenfalls
+        direkt mit dem Finger.
+    </p>
+
+    <p>
+        Spieler auf dem Feld können jederzeit an eine andere Position verschoben, auf die Bank geschickt oder vollständig
+        aus der Aufstellung entfernt werden. Bankspieler lassen sich über das Fußball-Symbol wieder auf das Feld setzen.
+        Soll ein Bankspieler an einer bestimmten Stelle erscheinen, kann sein runder Spieler-Marker direkt von der Bank
+        auf das Spielfeld gezogen werden.
+    </p>
+
+    <p>
+        Mit <strong>„Platzhalter hinzufügen“</strong> könnt ihr zusätzlich eine Position anlegen, ohne bereits einen
+        bestimmten Kaderspieler festzulegen. Das ist beispielsweise sinnvoll, wenn eine Aufstellung vorbereitet werden
+        soll, bevor die endgültige Besetzung feststeht.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Aufstellungseditor mit Kader, Spielfeld und Bank',
+        description: 'Eine bereits teilweise besetzte Aufstellung im Editor aufnehmen. Einige Spieler sollten auf dem Feld und mindestens zwei auf der Bank stehen; mindestens ein Kaderspieler sollte noch nicht eingesetzt sein.',
+        items: [
+            'Name und Mannschaft der Aufstellung',
+            'Spielfeld mit mehreren Spielern',
+            'Kader mit Suche und den Aktionen für Spielfeld und Bank',
+            'Bereich „Startelf“',
+            'Ersatzbank',
+            'Schaltfläche „Platzhalter hinzufügen“',
+            'Zusammenfassung der eingesetzten und noch offenen Kaderspieler'
+        ],
+        purpose: 'Die wichtigsten Bedienbereiche des Aufstellungseditors in einer gemeinsamen Ansicht zeigen.'
+    } %}
+
+    <h2>Vorlagen mit dem Mannschaftskader besetzen</h2>
+
+    <p>
+        Eine Formationsvorlage enthält zunächst Platzhalter mit Positionsbezeichnungen. Mit
+        <strong>„Team einsetzen“</strong> beziehungsweise <strong>„Spieler automatisch einsetzen“</strong> versucht
+        Kaderblick, diese Plätze mit Spielern der gewählten Mannschaft zu besetzen. Dabei werden zuerst passende
+        Hauptpositionen berücksichtigt. Ist kein exakter Treffer vorhanden, werden Spieler aus derselben Positionsgruppe
+        und anschließend passende Alternativpositionen berücksichtigt. Für einen Platz ohne geeigneten Spieler bleibt der
+        Platzhalter bestehen.
+    </p>
+
+    <p>
+        Kaderspieler, die nach der automatischen Besetzung nicht für einen Platz auf dem Feld benötigt werden, werden auf
+        die Ersatzbank übernommen. Die automatische Besetzung ist deshalb ein Ausgangspunkt; alle Spieler und Positionen
+        können anschließend weiter angepasst werden.
+    </p>
+
+    <p>
+        Wird bei einer bereits mit echten Spielern besetzten Startelf eine andere Formationsvorlage ausgewählt, versucht
+        Kaderblick die vorhandenen Feldspieler passend auf die neuen Positionen zu verteilen. Spieler, für die in der
+        neuen Vorlage kein Platz mehr vorhanden ist, werden nicht gelöscht, sondern auf die Bank verschoben. Nicht
+        besetzte Stellen bleiben als Platzhalter sichtbar.
+    </p>
+
+    <h2>Spieler präzise auf dem Feld anordnen</h2>
+
+    <p>
+        Beim Verschieben eines Spielers zeigt der Editor geeignete Positionen als Orientierung an. Ist
+        <strong>„Auto-Snap“</strong> aktiviert, rastet ein abgelegter Spieler an einer passenden Position ein. Bei einer
+        gewählten Formationsvorlage werden dabei die vorgesehenen Plätze dieser Formation berücksichtigt. Ohne Vorlage
+        dienen allgemeine Positionsbereiche als Orientierung.
+    </p>
+
+    <p>
+        Wird <strong>„Auto-Snap“</strong> ausgeschaltet, bleiben die Orientierungshilfen sichtbar, der Spieler verbleibt
+        aber genau an der Stelle, an der ihr ihn ablegt. Die Einstellung gilt für die aktuelle Browser-Sitzung.
+    </p>
+
+    <p>
+        Änderungen an der Aufstellung lassen sich über die Pfeile oberhalb des Spielfelds rückgängig machen und erneut
+        anwenden. Am Computer funktionieren dafür zusätzlich <strong>Strg+Z</strong> beziehungsweise
+        <strong>Cmd+Z</strong> zum Rückgängigmachen und <strong>Strg+Y</strong>, <strong>Cmd+Y</strong> oder
+        <strong>Cmd+Umschalt+Z</strong> zum Wiederholen.
+    </p>
+
+    <h2>Taktische Notizen zur Aufstellung</h2>
+
+    <p>
+        Im Feld <strong>„Taktische Notizen“</strong> können Hinweise gespeichert werden, die direkt zu dieser Aufstellung
+        gehören. Die Notizen erscheinen später auch auf der Aufstellungskarte in gekürzter Form und können im
+        Taktik-Board eingeblendet werden.
+    </p>
+
+    <p>
+        Auf kleineren Bildschirmen sind <strong>„Kader“</strong>, <strong>„Startelf“</strong> und
+        <strong>„Notizen“</strong> als getrennte Reiter angeordnet. Dadurch bleiben dieselben Funktionen verfügbar, ohne
+        dass alle Bereiche gleichzeitig neben dem Spielfeld Platz benötigen.
+    </p>
+
+    <h2>Speichern oder Änderungen verwerfen</h2>
+
+    <p>
+        Mit <strong>„Speichern“</strong> werden Name, Mannschaft, Formation, Spieler auf dem Feld, Ersatzbank und Notizen
+        gemeinsam gespeichert. Bei einer bereits vorhandenen Aufstellung werden die bisherigen Angaben dadurch ersetzt.
+    </p>
+
+    <p>
+        Wird der Editor nach Änderungen geschlossen, bevor gespeichert wurde, erscheint die Abfrage
+        <strong>„Ungespeicherte Änderungen“</strong>. Ihr könnt weiterarbeiten, die Änderungen verwerfen oder mit
+        <strong>„Speichern &amp; Schließen“</strong> zuerst speichern und den Editor danach schließen.
+    </p>
+
+    <h2>Aufstellungen duplizieren</h2>
+
+    <p>
+        <strong>„Duplizieren“</strong> erstellt eine eigenständige Kopie der gewählten Aufstellung. Der vorgeschlagene
+        Name beginnt mit <strong>„Kopie von …“</strong> und kann vor dem Erstellen geändert werden. Spielfeld, Bank,
+        Formationsangabe, Notizen und die übrigen gespeicherten Aufstellungsdaten werden übernommen. Die Kopie bleibt
+        derselben Mannschaft zugeordnet und kann anschließend unabhängig vom Original bearbeitet werden.
+    </p>
+
+    <h2>Aufstellungen archivieren, wiederherstellen und löschen</h2>
+
+    <p>
+        <strong>„Archivieren“</strong> entfernt eine Aufstellung aus dem Reiter <strong>„Aktiv“</strong>, ohne sie zu
+        löschen. Im Reiter <strong>„Archiv“</strong> werden Name, Vorschau und Archivierungsdatum angezeigt. Mit
+        <strong>„Wiederherstellen“</strong> wird die Aufstellung wieder in die aktive Übersicht übernommen.
+    </p>
+
+    <p>
+        <strong>„Löschen“</strong> entfernt eine Aufstellung endgültig. Vor dem Löschen wird der Name der betroffenen
+        Aufstellung noch einmal zur Bestätigung angezeigt. Dieselbe endgültige Löschmöglichkeit steht auch für bereits
+        archivierte Aufstellungen zur Verfügung.
+    </p>
+
+    <h2>Das Taktik-Board einer Aufstellung</h2>
+
+    <p>
+        Das Taktik-Board wird über die entsprechende Schaltfläche einer aktiven Aufstellung geöffnet. Es verwendet die
+        Spieler und Grundpositionen dieser Aufstellung und ergänzt sie um frei verschiebbare taktische Elemente. Das Board
+        öffnet sich bildschirmfüllend; die eigentliche Aufstellung bleibt dabei unverändert, solange ausschließlich im
+        Taktik-Board gearbeitet wird.
+    </p>
+
+    <p>
+        Eine Aufstellung kann mehrere Taktiken enthalten. Besteht noch keine gespeicherte Taktik, beginnt das Board mit
+        <strong>„Standard“</strong>. Über die rechte Leiste <strong>„TAKTIKEN“</strong> wechselt ihr zwischen den
+        vorhandenen Varianten. <strong>„+ Neue Taktik“</strong> legt eine weitere leere Variante an. Am Computer kann ein
+        Taktikname per Doppelklick geändert werden; auf einem Touch-Gerät wird der Name dazu länger gedrückt. Die letzte
+        verbliebene Taktik kann nicht gelöscht werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Taktik-Board mit geöffneter Taktikleiste',
+        description: 'Das Taktik-Board einer besetzten Aufstellung im Vollbild aufnehmen. Die rechte Taktikleiste und die Bearbeitungswerkzeuge sollen sichtbar sein.',
+        items: [
+            'eigene Spieler auf dem Spielfeld',
+            'Werkzeuge „Ballweg“, „Laufweg“ und „Zone“',
+            'Farbauswahl',
+            'Umschaltung zwischen halbem und vollem Feld',
+            'rechte Leiste „TAKTIKEN“ mit mindestens zwei Taktiken',
+            'Schaltfläche „+ Neue Taktik“',
+            'Schaltfläche „Vorlagen“'
+        ],
+        purpose: 'Anordnung der Zeichenwerkzeuge und die Verwaltung mehrerer Taktiken innerhalb einer Aufstellung zeigen.'
+    } %}
+
+    <h3>Ballwege, Laufwege und Zonen einzeichnen</h3>
+
+    <p>
+        Mit <strong>„Ballweg“</strong> zeichnet ihr einen durchgezogenen Pfeil, mit <strong>„Laufweg“</strong> einen
+        gestrichelten Pfeil und mit <strong>„Zone“</strong> einen markierten Bereich. Vor dem Zeichnen kann die gewünschte
+        Farbe gewählt werden. Bereits gezeichnete Elemente können ausgewählt und anschließend verschoben, angepasst,
+        umgefärbt oder gelöscht werden. Mit der Schrittnummerierung lässt sich zusätzlich die Reihenfolge der
+        eingezeichneten Elemente sichtbar machen.
+    </p>
+
+    <p>
+        Eigene Spieler können im Taktik-Board unabhängig von ihrer gespeicherten Grundposition verschoben werden. Diese
+        Verschiebung gilt nur für die aktuell ausgewählte Taktik. Über
+        <strong>„Spielerpositionen auf Formations-Standard zurücksetzen“</strong> werden sie wieder auf die Positionen der
+        zugrunde liegenden Aufstellung gesetzt.
+    </p>
+
+    <h3>Volles Spielfeld und Gegner verwenden</h3>
+
+    <p>
+        Das Board kann zwischen einer Spielfeldhälfte und dem vollständigen Feld wechseln. Gegner lassen sich nur auf dem
+        vollständigen Spielfeld hinzufügen. Neue Gegner erscheinen als rote Marker und können anschließend verschoben
+        werden. Ein Gegner kann bearbeitet werden, um seine Nummer und optional eine kurze Bezeichnung einzutragen.
+    </p>
+
+    <h3>Änderungen rückgängig machen und Elemente entfernen</h3>
+
+    <p>
+        Für Änderungen am Taktik-Board stehen <strong>Rückgängig</strong> und <strong>Wiederholen</strong> zur Verfügung.
+        Ein ausgewählter Pfeil, eine Zone oder ein Gegner kann gezielt gelöscht werden. Die Funktion
+        <strong>„Alles löschen“</strong> entfernt die Zeichnungen und Gegner der aktuellen Taktik. Im aktuellen Stand
+        werden dabei außerdem taktikspezifisch verschobene eigene Spieler wieder auf ihre Positionen aus der Aufstellung
+        zurückgesetzt, obwohl der Bestätigungsdialog ankündigt, dass Spielerpositionen erhalten bleiben.
+    </p>
+
+    <h3>Taktik-Vorlagen laden und eigene Vorlagen speichern</h3>
+
+    <p>
+        Über <strong>„Vorlagen“</strong> stehen vorhandene Taktik-Vorlagen zur Verfügung. Sie können nach Kategorien wie
+        <strong>Pressing</strong>, <strong>Angriff</strong>, <strong>Standards</strong>,
+        <strong>Spielaufbau</strong> und <strong>Defensive</strong> gefiltert werden. Das Laden einer Vorlage überschreibt
+        die aktuelle Taktik nicht, sondern legt innerhalb der Aufstellung eine neue Taktik mit dem Namen der Vorlage an.
+    </p>
+
+    <p>
+        Die aktuell ausgewählte Taktik kann ebenfalls als Vorlage gespeichert werden. Dazu werden ein Name, eine Kategorie
+        und optional eine Kurzbeschreibung angegeben. Eigene Vorlagen können später wieder gelöscht werden; fest
+        bereitgestellte Vorlagen sind davon ausgenommen.
+    </p>
+
+    <p>
+        Die sichtbare Option <strong>„Mit meinem Team teilen“</strong> ordnet die Vorlage im aktuellen Stand nicht einer
+        ausdrücklich gewählten Mannschaft zu. Sie wird stattdessen dem ersten Verein zugeordnet, dem ihr als Trainer
+        angehört, und ist dadurch auch für andere Benutzer dieses Vereins sichtbar, die Zugriff auf Taktik-Vorlagen haben.
+    </p>
+
+    <h3>Taktik speichern und lokalen Entwurf wiederherstellen</h3>
+
+    <p>
+        Mit <strong>„Speichern“</strong> werden alle Taktiken der geöffneten Aufstellung zusammen mit der gewählten
+        Spielfelddarstellung gespeichert. Nach erfolgreichem Speichern ist der Stand auch auf anderen Geräten verfügbar.
+    </p>
+
+    <p>
+        Bei ungespeicherten Änderungen legt Kaderblick zusätzlich einen lokalen Entwurf auf dem aktuellen Gerät an. Wird
+        das Board geschlossen, bietet die Abfrage <strong>„Weiter bearbeiten“</strong>, <strong>„Lokal schließen“</strong>
+        und <strong>„Speichern &amp; Schließen“</strong> an. <strong>„Lokal schließen“</strong> überträgt die Änderungen
+        nicht in die gespeicherte Aufstellung, behält den Entwurf aber auf diesem Gerät. Beim nächsten Öffnen wird ein
+        ausreichend aktueller lokaler Entwurf automatisch wiederhergestellt. Nach einem erfolgreichen Speichern wird
+        dieser lokale Entwurf entfernt.
+    </p>
+
+    <h3>Vollbild und Präsentationsmodus</h3>
+
+    <p>
+        Für Besprechungen kann das Taktik-Board in den Vollbildmodus wechseln. Im Vollbild steht zusätzlich der
+        Präsentationsmodus zur Verfügung. In diesem Modus werden die Bearbeitungsfunktionen ausgeblendet beziehungsweise
+        gesperrt, sodass die vorbereitete Taktik gezeigt werden kann, ohne versehentlich Spieler, Gegner oder Zeichnungen
+        zu verändern.
+    </p>
+
+    <h2>Zusammenhang mit dem Match-Plan eines Spiels</h2>
+
+    <p>
+        Gespeicherte Aufstellungen dienen als wiederverwendbares Portfolio für Spiele. In der Detailansicht eines Spiels
+        kann ein berechtigter Trainer im Match-Plan bei der Startformation <strong>„Portfolio laden“</strong> wählen und
+        eine vorhandene Aufstellung übernehmen. Dabei werden die Formation, die Spieler auf dem Feld und die Ersatzbank
+        in den Match-Plan dieses Spiels kopiert.
+    </p>
+
+    <p>
+        Die übernommene Startformation wird danach als Bestandteil des Match-Plans weiterbearbeitet. Änderungen dort
+        verändern die ursprüngliche Portfolio-Aufstellung nicht; umgekehrt werden spätere Änderungen an der
+        Portfolio-Aufstellung nicht automatisch in einen bereits gespeicherten Match-Plan übertragen.
+    </p>
+
+    <p>
+        Der Weg funktioniert auch in die andere Richtung: Eine Start- oder Folgeformation aus dem Match-Plan kann über
+        <strong>„Portfolio“</strong> als neue wiederverwendbare Aufstellung gespeichert werden. Der dafür geöffnete Editor
+        verwendet denselben Aufbau wie der normale Aufstellungseditor. Da er in diesem Fall zu einem konkreten Spiel
+        gehört, berücksichtigt die Kaderauswahl zusätzlich die Spieldaten; gesperrte Spieler werden entsprechend
+        gekennzeichnet und können nicht auf das Spielfeld gesetzt werden.
+    </p>
+
+    <p>
+        Die Planung und Freigabe von Start- und Folgeformationen für ein konkretes Spiel wird im Kapitel
+        <a href="{{ path('app_spiele') }}">Spiele &amp; Turniere</a> beschrieben.
+    </p>
 {% endblock %}
