@@ -1,86 +1,362 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mein Profil – docs.kaderblick.de{% endblock %}
+{% block title %}Profil & Benutzerzuordnung – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>👤 Mein Profil</h1>
+    <h1>Profil &amp; Benutzerzuordnung</h1>
+
     <p>
-        Eure persönliche Visitenkarte in Kaderblick – Stammdaten, Profilbild und
-        Konfektionsgrößen an einem Ort.
+        Im Profil verwaltet ihr die Angaben eures Benutzerkontos, das Profilbild, Körper- und Kleidungsgrößen sowie
+        persönliche Einstellungen. Im selben Fenster seht ihr außerdem, mit welchen Spielern oder Trainern euer
+        Benutzerkonto verknüpft ist und könnt weitere Verknüpfungen beantragen.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '👤', title: 'Profildaten', desc: 'Vorname, Nachname, E-Mail, Telefon und Geburtsdatum.' },
-            { icon: '📷', title: 'Profilbild', desc: 'Individuelles Foto hochladen – wird überall in der App angezeigt.' },
-            { icon: '👕', title: 'Konfektionsgrößen', desc: 'Trikot, Hose, Stutzen und Schuhe – für Ausrüstungsbestellungen.' },
-            { icon: '🔑', title: 'Passwort ändern', desc: 'Aktuelles Passwort eingeben, neues setzen – sofort wirksam.' },
-            { icon: '📊', title: 'Profil-Vollständigkeit', desc: 'System zeigt an, wie vollständig euer Profil ist.' },
-        ]
+    <h2>Profil öffnen und Bereiche wechseln</h2>
+
+    <p>
+        Öffnet rechts oben das Benutzermenü und wählt <strong>Profil</strong>. Im Kopfbereich stehen euer Profilbild,
+        Name und E-Mail-Adresse. Je nach Konto werden dort zusätzlich ein Titel, euer aktuelles Level mit
+        Erfahrungspunkten sowie eure sichtbaren Rollen angezeigt. Darunter befindet sich die Anzeige zur
+        Profil-Vollständigkeit.
+    </p>
+
+    <p>
+        Über die Reiter <strong>Profil</strong>, <strong>Ausrüstung</strong>, <strong>Einstellungen</strong>,
+        <strong>Benachrichtigungen</strong>, <strong>API-Token</strong>, <strong>Kalender</strong> und
+        <strong>Dokumente</strong> wechselt ihr zwischen den einzelnen Bereichen. Auf schmalen Bildschirmen lässt
+        sich die Reiterleiste seitlich verschieben.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Profilübersicht',
+        description: 'Das geöffnete Profil mit Kopfbereich und vollständiger Reiterleiste aufnehmen.',
+        items: [
+            'Profilbild mit Schaltfläche zum Ändern',
+            'Name und E-Mail-Adresse',
+            'Level beziehungsweise Titel, falls vorhanden',
+            'Anzeige der Profil-Vollständigkeit',
+            'Symbol für verknüpfte Profile',
+            'Reiter von Profil bis Dokumente'
+        ],
+        purpose: 'Lage der wichtigsten Profilbereiche und Bedienelemente zeigen.'
     } %}
 
-    {# ─── Profildaten ─── #}
-    <h2>Profildaten</h2>
-    <p>Die folgenden Daten könnt ihr in eurem Profil pflegen:</p>
-    <ul>
-        <li><strong>Vorname & Nachname</strong></li>
-        <li><strong>E-Mail-Adresse</strong></li>
-        <li><strong>Profilbild</strong></li>
-        <li><strong>Telefonnummer</strong> (optional)</li>
-        <li><strong>Geburtsdatum</strong></li>
-    </ul>
+    <h2>Name, E-Mail-Adresse und Körperdaten ändern</h2>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/profil/profildaten.png',
-        alt: 'Profildaten bearbeiten',
-        caption: 'Eure persönlichen Daten im Profil bearbeiten.'
-    } %}
+    <p>
+        Im Reiter <strong>Profil</strong> können Vorname, Nachname und E-Mail-Adresse geändert werden. Vorname,
+        Nachname und E-Mail-Adresse sind Pflichtfelder. Zusätzlich stehen die freiwilligen Angaben
+        <strong>Körpergröße in Zentimetern</strong> und <strong>Gewicht in Kilogramm</strong> zur Verfügung.
+        Änderungen in diesem Reiter werden erst über <strong>Speichern</strong> am unteren Rand des Profilfensters
+        übernommen.
+    </p>
 
-    {# ─── Größenangaben ─── #}
-    <h2>Größenangaben</h2>
-    <p>Für Ausrüstungsbestellungen sind folgende Größen hinterlegt:</p>
-    <ul>
-        <li>👕 <strong>Trikotgröße</strong></li>
-        <li>👖 <strong>Hosengröße</strong></li>
-        <li>🧦 <strong>Stutzen</strong></li>
-        <li>👟 <strong>Schuhgröße</strong></li>
-    </ul>
+    <h3>E-Mail-Adresse ändern</h3>
+
+    <p>
+        Wird eine andere E-Mail-Adresse eingetragen und das Profil gespeichert, ersetzt Kaderblick die bisherige
+        Adresse nicht sofort. An die neue Adresse wird zunächst eine Bestätigung gesendet. Erst nach dem Aufruf des
+        Bestätigungslinks wird die neue E-Mail-Adresse für das Konto übernommen. Ist die eingetragene Adresse bereits
+        für ein anderes Kaderblick-Konto vergeben, kann die Änderung nicht gespeichert werden.
+    </p>
+
+    <p>
+        Weitere Informationen zur E-Mail-Bestätigung und zur Anmeldung nach einer Adressänderung stehen im Kapitel
+        <a href="{{ path('app_authentifizierung') }}">Anmelden &amp; Registrieren</a>.
+    </p>
+
+    <h3>Passwort im Profil ändern</h3>
+
+    <p>
+        Im Abschnitt <strong>Passwort ändern</strong> stehen die Felder <strong>Neues Passwort</strong> und
+        <strong>Passwort bestätigen</strong>. Bleibt das Feld für das neue Passwort leer, wird das vorhandene
+        Passwort beim Speichern nicht verändert. Bei einer Änderung müssen beide Eingaben übereinstimmen; andernfalls
+        weist Kaderblick auf die Abweichung hin und speichert die Profiländerung nicht.
+    </p>
+
+    <p>
+        Das bisherige Passwort wird in diesem Profilbereich nicht erneut abgefragt. Das neue Passwort wird zusammen
+        mit den übrigen Profildaten über <strong>Speichern</strong> übernommen.
+    </p>
+
+    <h2>Profilbild ändern</h2>
+
+    <p>
+        Über das Stiftsymbol am Profilbild öffnet ihr <strong>Profilbild ändern</strong>. Ein eigenes Bild kann per
+        Drag-and-drop in die runde Bildfläche gezogen oder über <strong>Bild auswählen</strong> ausgewählt werden.
+        Das Bild lässt sich anschließend innerhalb des Ausschnitts verschieben und vergrößern oder verkleinern.
+        Mit <strong>Übernehmen</strong> wird die Auswahl in das Profil übernommen; anschließend speichert ihr das
+        Profil über <strong>Speichern</strong>.
+    </p>
+
+    <p>
+        Wenn das Kaderblick-Konto mit einem Google-Konto verbunden ist und ein Google-Profilbild zur Verfügung steht,
+        erscheint zusätzlich <strong>Google-Profilbild verwenden</strong>. Bei aktivierter Auswahl wird das
+        Google-Bild verwendet und die manuelle Bildauswahl deaktiviert. Ein eigenes hochgeladenes Bild ersetzt die
+        Verwendung des Google-Profilbilds.
+    </p>
+
+    <p>
+        Ein vorhandenes eigenes Profilbild kann über das rote Löschsymbol direkt am Profilbild entfernt werden. Wird
+        gerade das Google-Profilbild verwendet, schaltet dasselbe Symbol dessen Verwendung aus, ohne das Bild im
+        Google-Konto zu verändern.
+    </p>
 
     {% include 'components/callout.html.twig' with {
-        type: 'tip',
-        title: 'Tipp',
-        text: 'Haltet eure Konfektionsgrößen aktuell – so stellt der Trainer sicher, dass die richtige Ausrüstung bestellt wird.'
+        type: 'warning',
+        title: 'Avatar-URL im aktuellen Stand',
+        text: 'Im Dialog ist zusätzlich das Feld „Oder Avatar-URL eingeben“ sichtbar. Eine dort eingetragene externe Bildadresse wird im aktuellen Stand nicht zuverlässig als dauerhaftes Profilbild gespeichert. Verwendet für ein dauerhaftes Profilbild „Bild auswählen“ oder – falls verfügbar – das Google-Profilbild.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/profil/groessenangaben.png',
-        alt: 'Größenangaben im Profil',
-        caption: 'Trikot-, Hosen-, Stutzen- und Schuhgröße hinterlegen.'
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Profilbild ändern',
+        description: 'Den Dialog mit ausgewähltem Beispielbild aufnehmen; falls ein Google-Profilbild verfügbar ist, soll auch dessen Auswahl sichtbar sein.',
+        items: [
+            'Bildfläche mit Zuschneidebereich',
+            'Schaltfläche „Bild auswählen“',
+            'Auswahl „Google-Profilbild verwenden“, sofern verfügbar',
+            'Schaltfläche „Übernehmen“'
+        ],
+        purpose: 'Auswahl, Zuschnitt und Übernahme eines Profilbilds zeigen.'
     } %}
 
-    {# ─── Passwort ändern ─── #}
-    <h2>Passwort ändern</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Profil öffnen', text: 'Geht in euer <strong>Profil</strong>.' },
-            { title: 'Passwort-Bereich', text: 'Scrollt zum Bereich <strong>„Passwort ändern"</strong>.' },
-            { title: 'Neues Passwort setzen', text: 'Aktuelles Passwort eingeben → Neues Passwort eingeben → <strong>Speichern</strong>.' },
-        ]
-    } %}
-    <p>Das neue Passwort ist sofort wirksam.</p>
+    <h2>Ausrüstungsgrößen hinterlegen</h2>
 
-    {# ─── Profil-Vollständigkeit ─── #}
-    <h2>Profil-Vollständigkeit</h2>
     <p>
-        Das System zeigt euch an, wie vollständig euer Profil ist. Ein vollständiges
-        Profil verbessert die Mannschaftsplanung und erleichtert Ausrüstungsbestellungen.
+        Im Reiter <strong>Ausrüstung</strong> werden die Größen für Trikot, Shorts, Trainingsjacke,
+        Stutzen beziehungsweise Socken und Schuhe gepflegt. Für Trikot und Trainingsjacke stehen die Größen XS bis
+        XXL zur Auswahl. Bei Shorts sind neben XS bis XXL auch Bund-/Längengrößen wie 30/30 oder 32/32 vorhanden.
+        Für Stutzen beziehungsweise Socken werden die Bereiche 35–38, 39–42, 43–46 und 47–50 angeboten. Die
+        Schuhgröße wird als EU-Größe eingegeben und kann auch halbe Größen enthalten.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/profil/vollstaendigkeit.png',
-        alt: 'Profil-Vollständigkeitsanzeige',
-        caption: 'Die Fortschrittsanzeige zeigt, wie komplett euer Profil ist.'
+    <p>
+        Eine Auswahl kann mit dem Eintrag <strong>–</strong> wieder geleert werden. Änderungen an den
+        Ausrüstungsgrößen werden gemeinsam mit den Profildaten über <strong>Speichern</strong> übernommen.
+    </p>
+
+    <h2>Profil-Vollständigkeit und Erfahrungspunkte</h2>
+
+    <p>
+        Die Prozentanzeige im Kopfbereich berücksichtigt das Profilbild, Körpergröße, Gewicht, die fünf Angaben unter
+        <strong>Ausrüstung</strong> sowie funktionsfähige Push-Benachrichtigungen. Das Profilbild zählt dabei mit
+        15 Prozent, Trikot-, Shorts-, Schuh-, Jacken- und Stutzengröße mit jeweils 12 Prozent, die Körpergröße mit
+        8 Prozent, das Gewicht mit 7 Prozent und aktive Push-Benachrichtigungen mit 10 Prozent.
+    </p>
+
+    <p>
+        Unter der Fortschrittsanzeige nennt Kaderblick bis zu drei noch fehlende Angaben. Ein Klick auf eine dieser
+        Angaben wechselt direkt zum passenden Profilreiter. Sind mehr als drei Angaben offen, wird zusätzlich die
+        Anzahl der weiteren fehlenden Punkte angezeigt. Bei 100 Prozent erscheint <strong>Profil vollständig</strong>.
+        Eine fehlende Trikotgröße wird in dieser Liste im aktuellen Stand irrtümlich als
+        <strong>„Trikotnummer“</strong> bezeichnet; gemeint ist die Trikotgröße im Reiter <strong>Ausrüstung</strong>.
+    </p>
+
+    <p>
+        Wenn für euer Konto ein Level vorhanden ist, zeigt der Kopfbereich <strong>Level</strong> und die bisher
+        gesammelten Erfahrungspunkte. Ein Klick darauf öffnet die Aufschlüsselung. Dort stehen das Karriere-Level,
+        das Saison-Level, der aktuelle Titel, weitere erreichte Titel und die Erfahrungspunkte nach den jeweiligen
+        Aktivitäten.
+    </p>
+
+    <h2>Verknüpfte Spieler und Trainer</h2>
+
+    <p>
+        Eine Benutzerverknüpfung ordnet euer Kaderblick-Konto einer bereits im Verein vorhandenen Spieler- oder
+        Trainerperson zu. Diese Zuordnung wird unter anderem benötigt, damit Kaderblick die zugehörigen Mannschaften,
+        Termine und personenbezogenen Funktionen dem richtigen Benutzerkonto zuordnen kann.
+    </p>
+
+    <p>
+        Das Kettensymbol rechts im Profilkopf zeigt vorhandene Verknüpfungen an. Sind bereits Verknüpfungen vorhanden,
+        öffnet ein Klick den Dialog <strong>Verknüpfte Profile</strong>. Für jede Verknüpfung werden der Name der
+        Person, die Art der Beziehung und die Zuordnung als Spieler oder Trainer angezeigt. Über
+        <strong>Weitere Verknüpfung</strong> kann ein weiterer Antrag begonnen werden. Vorhandene Verknüpfungen können
+        in diesem Dialog nicht selbst bearbeitet oder entfernt werden.
+    </p>
+
+    <p>
+        Ist noch keine Verknüpfung vorhanden, öffnet das Kettensymbol direkt den Antrag. Zusätzlich erscheint im
+        Benutzermenü der Eintrag <strong>Verknüpfung anfragen</strong>. Sobald mindestens eine Verknüpfung vorhanden
+        ist, verschwindet dieser zusätzliche Menüeintrag; weitere Anträge werden dann über das Profil gestartet.
+    </p>
+
+    <h3>Neue Verknüpfung beantragen</h3>
+
+    {% include 'components/steps.html.twig' with {
+        steps: [
+            { title: 'Spieler oder Trainer auswählen', text: 'Wählt zuerst, ob das Benutzerkonto mit einem Spieler oder einem Trainer verknüpft werden soll.' },
+            { title: 'Person suchen', text: 'Gebt mindestens <strong>2 Buchstaben</strong> des Namens ein. In den Treffern werden neben dem Namen vorhandene Mannschaften angezeigt, damit gleichnamige Personen unterschieden werden können.' },
+            { title: 'Beziehung auswählen', text: 'Wählt die passende Beziehung zur ausgewählten Person. Eine zusätzliche Anmerkung kann freiwillig ergänzt werden.' },
+            { title: 'Angaben prüfen und Antrag stellen', text: 'Kontrolliert Person und Beziehung in der Zusammenfassung und sendet den Antrag über <strong>Antrag stellen</strong> ab.' }
+        ]
     } %}
+
+    <p>
+        Bei einer Verknüpfung zu einem Spieler stehen aktuell <strong>Elternteil</strong>,
+        <strong>Geschwister</strong>, <strong>Verwandter</strong>, <strong>Erziehungsberechtigter</strong>,
+        <strong>Freund</strong> und <strong>Spieler selbst</strong> zur Auswahl. Bei Trainern sind
+        <strong>Assistent</strong>, <strong>Beobachter</strong>, <strong>Vertretung</strong>,
+        <strong>Mentor</strong> und <strong>Trainer selbst</strong> verfügbar.
+    </p>
+
+    <p>
+        Ein Antrag wird vor der Freischaltung geprüft. Solange bereits ein Antrag offen ist, kann kein weiterer
+        Zuordnungsantrag eingereicht werden. Der offene Antrag wird im Profil derzeit nicht als eigener Status
+        angezeigt; bei einem erneuten Absendeversuch weist Kaderblick darauf hin, dass bereits ein offener Antrag
+        vorhanden ist.
+    </p>
+
+    <p>
+        Nach einer Genehmigung wird die Verknüpfung angelegt und Kaderblick erzeugt eine Benachrichtigung für den
+        Antragsteller. Bei einer Ablehnung ist im aktuellen Stand keine entsprechende automatische Benachrichtigung
+        an den Antragsteller hinterlegt. Die Genehmigung der Verknüpfung bedeutet außerdem nicht, dass jede
+        personenbezogene Funktion automatisch freigegeben wird; welche Möglichkeiten anschließend verfügbar sind,
+        hängt von der Art der Verknüpfung und den dafür vergebenen Berechtigungen ab.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Verknüpfung beantragen',
+        description: 'Den Antrag in zwei Zuständen aufnehmen: Personensuche mit Treffern und abschließende Zusammenfassung vor dem Absenden.',
+        items: [
+            'Auswahl Spieler oder Trainer',
+            'Suchergebnis mit Name und Mannschaft',
+            'gewählte Beziehung',
+            'optionale Anmerkung',
+            'Schaltfläche „Antrag stellen“'
+        ],
+        purpose: 'Suche, Auswahl der Beziehung und abschließende Prüfung des Zuordnungsantrags zeigen.'
+    } %}
+
+    <h2>Dokumente zu verknüpften Spielern</h2>
+
+    <p>
+        Der Reiter <strong>Dokumente</strong> verwendet die Spieler-Verknüpfungen eures Kontos. Besteht keine
+        Verknüpfung zu einem Spieler, weist der Reiter darauf hin. Eine reine Trainer-Verknüpfung erzeugt dort keinen
+        eigenen Dokumentbereich. Bei genau einer Spieler-Verknüpfung erscheint <strong>Meine Dokumente</strong>;
+        bei mehreren Spieler-Verknüpfungen werden die Dokumentbereiche nach den jeweiligen Personen getrennt.
+    </p>
+
+    <p>
+        Vorhandene und für euch freigegebene Dokumente können im Browser geöffnet werden. Ob zusätzlich
+        <strong>Dokument hochladen</strong> oder <strong>Löschen</strong> angeboten wird, hängt von der jeweiligen
+        Verknüpfung und den dafür vorhandenen Berechtigungen ab. Ein als <strong>Spieler selbst</strong> verknüpfter
+        Benutzer kann die eigenen Spieler-Dokumente verwalten.
+    </p>
+
+    <p>
+        Beim Hochladen werden PDF-Dateien sowie Bilder im JPEG-, PNG- oder WebP-Format akzeptiert. Neben der Datei
+        wird ein Verein ausgewählt. Als Dokumenttyp stehen <strong>Automatisch erkennen</strong>,
+        <strong>Pass / Ausweis</strong>, <strong>Medizinisch</strong>, <strong>Einverständnis</strong>,
+        <strong>Vertrag</strong>, <strong>Trainingsnachweis</strong> und <strong>Sonstiges</strong> zur Verfügung.
+        Bezeichnung, Ausstellungsdatum, Ablaufdatum und Notiz sind zusätzliche Angaben. Nach dem Hochladen können bei
+        einem Dokument vorübergehend Hinweise wie <strong>Verarbeitung ausstehend</strong> oder
+        <strong>Verarbeitung läuft</strong> erscheinen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Dokumente im Profil',
+        description: 'Den Reiter „Dokumente“ mit mindestens einem Beispieldokument und – bei vorhandener Berechtigung – der Schaltfläche zum Hochladen aufnehmen.',
+        items: [
+            'Name des verknüpften Spielers bei mehreren Verknüpfungen',
+            'Dokumentname und Dokumenttyp',
+            'Vereinszuordnung und gegebenenfalls Gültigkeitsdatum',
+            'Schaltfläche zum Öffnen',
+            'Schaltfläche „Dokument hochladen“, falls für das Beispielkonto verfügbar'
+        ],
+        purpose: 'Aufbau des persönlichen Dokumentbereichs und verfügbare Aktionen zeigen.'
+    } %}
+
+    <h2>Persönliche Einstellungen</h2>
+
+    <h3>Darstellung</h3>
+
+    <p>
+        Unter <strong>Einstellungen → Design</strong> stehen <strong>System</strong>, <strong>Hell</strong> und
+        <strong>Dunkel</strong> zur Auswahl. Bei <strong>System</strong> folgt Kaderblick der aktuellen Darstellung
+        des Geräts. Die Auswahl wird unmittelbar angewendet und benötigt nicht die allgemeine Schaltfläche
+        <strong>Speichern</strong> am unteren Rand.
+    </p>
+
+    <h3>Push-Benachrichtigungen und Benachrichtigungsthemen</h3>
+
+    <p>
+        Im Reiter <strong>Einstellungen</strong> wird der Zustand der Push-Benachrichtigungen angezeigt. Dort können
+        Push-Benachrichtigungen eingerichtet, eine Testnachricht gesendet und der Zustand erneut geprüft werden. Im
+        eigenen Reiter <strong>Benachrichtigungen</strong> legt ihr fest, für welche Themen Kaderblick Meldungen
+        erzeugen soll. Änderungen an diesen Schaltern werden jeweils direkt gespeichert. Die vollständige Erklärung
+        dazu steht im Kapitel <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a>.
+    </p>
+
+    <h3>Zwei-Faktor-Anmeldung</h3>
+
+    <p>
+        Unter <strong>Einstellungen → Zwei-Faktor-Authentifizierung</strong> wird angezeigt, ob eine
+        Authenticator-App oder ein E-Mail-Code aktiv ist. Von dort können die Zwei-Faktor-Anmeldung eingerichtet oder
+        deaktiviert und bei Verwendung einer Authenticator-App neue Backup-Codes erzeugt werden. Die vollständigen
+        Abläufe stehen im Kapitel <a href="{{ path('app_authentifizierung') }}">Anmelden &amp; Registrieren</a>.
+    </p>
+
+    <h3>Feiertage und Hall of Fame</h3>
+
+    <p>
+        Mit <strong>Feiertage anzeigen</strong> können Feiertage in den Kalender eingeblendet werden. Ist die Anzeige
+        aktiv, wählt ihr den gewünschten Geltungsbereich beziehungsweise das Bundesland. Weitere Kalendereinstellungen
+        sind unter <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a> beschrieben.
+    </p>
+
+    <p>
+        Der Schalter <strong>In der Hall of Fame anzeigen</strong> steuert, ob das eigene Konto in der öffentlichen
+        Level-Rangliste und als möglicher Titelträger erscheint. Die Änderung wird beim Umschalten direkt übernommen.
+        Einzelheiten zur öffentlichen Ansicht stehen im Kapitel
+        <a href="{{ path('app_hall_of_fame') }}">Hall of Fame</a>.
+    </p>
+
+    <h2>Welche Spiele und Termine zusätzlich angezeigt werden</h2>
+
+    <p>
+        Im Reiter <strong>Kalender</strong> befindet sich der Abschnitt <strong>Meine Spiele und Termine</strong>.
+        Aktuelle eigene Mannschaften werden automatisch berücksichtigt. Zusätzlich könnt ihr einzelne andere
+        Mannschaften oder ganze Vereine auswählen, deren Spiele und Termine ihr verfolgen möchtet. Die Suche beginnt
+        nach mindestens zwei eingegebenen Zeichen. Zusätzliche Einträge lassen sich über das Entfernen-Symbol am
+        jeweiligen Eintrag wieder aus der Auswahl nehmen.
+    </p>
+
+    <p>
+        Diese Auswahl besitzt eine eigene Schaltfläche <strong>Auswahl speichern</strong>. Im selben Profilreiter
+        befinden sich außerdem der Export von Kaderblick-Kalendern und die Einbindung externer Kalender. Diese
+        Funktionen und ihre Auswirkungen sind vollständig unter
+        <a href="{{ path('app_kalender') }}">Kalender &amp; Termine</a> beschrieben.
+    </p>
+
+    <h2>Persönlicher API-Token</h2>
+
+    <p>
+        Der Reiter <strong>API-Token</strong> ist nur erforderlich, wenn ein externer Dienst oder eine eigene
+        Automatisierung einen persönlichen Zugang zu Kaderblick benötigt. Dort wird angezeigt, ob bereits ein Token
+        aktiv ist und wann er erstellt wurde. Über <strong>Token generieren</strong> beziehungsweise
+        <strong>Token neu generieren</strong> wird ein neuer persönlicher Schlüssel erzeugt.
+    </p>
+
+    <p>
+        Ein neu erzeugter Token wird nur unmittelbar nach dem Erstellen vollständig angezeigt und kann dort in die
+        Zwischenablage kopiert werden. Über <strong>Token widerrufen</strong> wird der vorhandene Zugang aufgehoben.
+        Der Token sollte nur an den Dienst weitergegeben werden, für den er benötigt wird.
+    </p>
+
+    <h2>Speichern, Abbrechen und sofort wirksame Einstellungen</h2>
+
+    <p>
+        Die Schaltfläche <strong>Speichern</strong> am unteren Rand übernimmt die Änderungen an Name, E-Mail-Adresse,
+        Körperdaten, Passwort, Ausrüstungsgrößen und der im Profil gewählten Bildquelle. <strong>Abbrechen</strong>
+        schließt das Profil, ohne diese noch nicht gespeicherten Formularänderungen zu übernehmen.
+    </p>
+
+    <p>
+        Mehrere andere Funktionen im Profil speichern unabhängig davon: Dazu gehören unter anderem die Auswahl des
+        Designs, Benachrichtigungsthemen, Zwei-Faktor-Aktionen, Push-Einrichtung, Feiertagseinstellungen,
+        Hall-of-Fame-Sichtbarkeit, API-Token-Aktionen sowie Funktionen mit einer eigenen Speichern-Schaltfläche im
+        Kalenderreiter. Solche bereits ausgeführten Änderungen werden durch <strong>Abbrechen</strong> am unteren Rand
+        nicht zurückgenommen.
+    </p>
 {% endblock %}
