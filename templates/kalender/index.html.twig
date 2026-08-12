@@ -3,101 +3,471 @@
 {% block title %}Kalender & Termine – docs.kaderblick.de{% endblock %}
 
 {% block body %}
-    <h1>📅 Kalender & Termine</h1>
+    <h1>Kalender &amp; Termine</h1>
+
     <p>
-        Zentraler Terminplaner mit Zu-/Absagen – alle Termine auf einen Blick.
+        Im Kalender erscheinen die Kaderblick-Termine, die für euch freigegeben sind oder die zu euren ausgewählten
+        Mannschaften und Vereinen gehören. Zusätzlich können eingebundene externe Kalender und Feiertage angezeigt werden.
+        Termine werden anhand ihrer Art farblich unterschieden.
     </p>
 
-    {# ─── Funktionsübersicht ─── #}
-    <h2>Funktionsübersicht</h2>
-    {% include 'components/feature_list.html.twig' with {
-        features: [
-            { icon: '📆', title: 'Vereinskalender', desc: 'Monats-, Wochen- und Tagesansicht für alle Termine.' },
-            { icon: '📝', title: 'Termin anlegen', desc: 'Spiele, Trainings, Besprechungen, Turniere und Sonstiges eintragen.' },
-            { icon: '✅', title: 'Zu-/Absagen', desc: 'Teilnahme bestätigen, absagen oder als offen markieren.' },
-            { icon: '👥', title: 'Teilnahmeübersicht', desc: 'Trainer sehen auf einen Blick, wer zugesagt hat.' },
-            { icon: '🌤️', title: 'Wetterdaten', desc: 'Automatisch für Outdoor-Termine angezeigt.' },
-            { icon: '🚗', title: 'Fahrgemeinschaften', desc: 'Direkt aus der Termindetailansicht organisieren.' },
-        ]
-    } %}
+    <h2>Kalenderansicht am Computer</h2>
 
-    {# ─── Vereinskalender ─── #}
-    <h2>Der Vereinskalender</h2>
     <p>
-        Der Kalender zeigt alle Termine in einer übersichtlichen Darstellung:
-        Spieltermine, Trainingseinheiten, Besprechungen und Turniere.
-        Wechselt zwischen <strong>Monats-</strong>, <strong>Wochen-</strong> und <strong>Tagesansicht</strong>.
+        Am Computer könnt ihr zwischen <strong>Monat</strong>, <strong>Woche</strong>, <strong>Tag</strong> und
+        <strong>Agenda</strong> wechseln. Mit <strong>Zurück</strong> und <strong>Weiter</strong> wechselt ihr den
+        dargestellten Zeitraum; <strong>Heute</strong> springt zum aktuellen Datum.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/kalender/kalender-uebersicht.png',
-        alt: 'Vereinskalender in Kaderblick',
-        caption: 'Der Vereinskalender mit Monatsansicht und farbigen Termintypen.'
+    <p>
+        Oberhalb des Kalenders stehen die Terminarten als farbige Schalter. Damit könnt ihr beispielsweise Trainings,
+        Spiele oder Aufgaben vorübergehend ausblenden. Die Auswahl verändert nur die aktuelle Darstellung. Termine aus
+        zusätzlich eingebundenen externen Kalendern und Feiertage werden von diesen Schaltern nicht ausgeblendet.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kalender am Computer',
+        description: 'Kalender in der Monatsansicht mit mehreren unterschiedlichen Terminarten aufnehmen.',
+        items: [
+            'Schalter für die Terminarten',
+            'Navigation für den Zeitraum',
+            'Auswahl Monat, Woche, Tag und Agenda',
+            'mehrere farblich unterschiedliche Termine',
+            'Schaltfläche „Neues Event“, sofern der verwendete Benutzer Termine anlegen darf'
+        ],
+        purpose: 'Aufbau, Filter und Ansichtswechsel des Kalenders zeigen.'
     } %}
 
-    {# ─── Termin anlegen ─── #}
-    <h2>Termin anlegen (Trainer/Admin)</h2>
-    {% include 'components/steps.html.twig' with {
-        steps: [
-            { title: 'Kalender öffnen', text: 'Im Menü auf <strong>„Kalender"</strong> klicken.' },
-            { title: 'Neuen Termin erstellen', text: 'Auf <strong>„+ Neuer Termin"</strong> klicken oder direkt auf ein Datum im Kalender.' },
-            { title: 'Details eingeben', text: '<strong>Titel</strong>, Beschreibung (optional), <strong>Start-/Enddatum und -uhrzeit</strong>, Termintyp (Spiel/Training/Turnier/Besprechung/Sonstiges), Spielort (optional).' },
-            { title: 'Speichern', text: 'Klickt auf <strong>Speichern</strong>. Der Termin erscheint sofort im Kalender.' },
-        ]
+    <h2>Kalenderansicht auf dem Smartphone</h2>
+
+    <p>
+        Auf dem Smartphone stehen <strong>Monat</strong>, <strong>Tag</strong> und <strong>Agenda</strong> zur Verfügung.
+        In der Monatsansicht markieren farbige Punkte die Tage mit Terminen. Tippt ihr auf einen Tag, werden die Termine
+        dieses Tages unterhalb des Monats angezeigt. Mit den Pfeilen wechselt ihr den Monat; die Schaltfläche mit dem
+        Kalendersymbol führt zum heutigen Tag zurück.
+    </p>
+
+    <p>
+        Enthält ein ausgewählter Tag noch keinen Termin und ihr dürft Termine anlegen, könnt ihr über diesen Tag direkt
+        einen neuen Termin erstellen. Das Datum ist dann bereits eingetragen. In der Tages- und Agendaansicht könnt ihr
+        ebenfalls zwischen Zeiträumen wechseln und zum heutigen Datum zurückspringen.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Kalender auf dem Smartphone',
+        description: 'Monatsansicht mit ausgewähltem Tag und der Terminliste darunter aufnehmen.',
+        items: [
+            'Monat und Jahreszahl mit Vor- und Zurück-Pfeilen',
+            'farbige Markierungen an Tagen mit Terminen',
+            'markierter ausgewählter Tag',
+            'Terminliste für den ausgewählten Tag',
+            'Schaltfläche zum Anlegen eines Termins, sofern sichtbar'
+        ],
+        purpose: 'Zusammenspiel von Monatsübersicht und Terminliste auf kleinen Bildschirmen zeigen.'
     } %}
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/kalender/termin-anlegen.png',
-        alt: 'Termin anlegen Formular',
-        caption: 'Einen neuen Termin mit allen Details anlegen.'
+    <h2>Welche Termine im Kalender erscheinen</h2>
+
+    <p>
+        Termine eurer aktuellen Mannschaft werden entsprechend eurer Vereins- und Mannschaftszuordnung berücksichtigt.
+        Zusätzlich könnt ihr Mannschaften oder ganze Vereine verfolgen. Öffnet dazu euer Profil, wechselt auf
+        <strong>Kalender</strong> und verwendet den Bereich <strong>„Meine Spiele und Termine“</strong>. Die aktuelle
+        Mannschaft ist dort automatisch aktiv. Unter <strong>„Zusätzliche Mannschaften“</strong> könnt ihr einzelne
+        Mannschaften ergänzen; unter <strong>„Ganze Vereine“</strong> werden die Termine der Mannschaften eines ausgewählten
+        Vereins berücksichtigt. Die Suche beginnt ab zwei eingegebenen Zeichen. Änderungen werden mit
+        <strong>„Auswahl speichern“</strong> übernommen.
+    </p>
+
+    <p>
+        Die persönliche Auswahl erweitert die sichtbaren Kaderblick-Termine. Sie ersetzt nicht die Termine, die ihr aufgrund
+        eurer eigenen Mannschaftszugehörigkeit, einer ausdrücklichen Einladung oder einer Aushilfe-Möglichkeit sehen dürft.
+    </p>
+
+    <h3>Externe Kalender einblenden</h3>
+
+    <p>
+        Im Profil unter <strong>Kalender</strong> können zusätzlich Kalender aus anderen Diensten eingebunden werden.
+        Unter <strong>„Externe Kalender einbinden“</strong> hinterlegt ihr einen Namen, die iCal-Adresse des Kalenders und
+        eine Farbe. Eingebundene Kalender können dort ein- und ausgeschaltet, bearbeitet oder entfernt werden.
+    </p>
+
+    <p>
+        Die übernommenen Einträge erscheinen zusammen mit den Kaderblick-Terminen in der Kalenderansicht. Sie sind dort
+        nur zur Orientierung eingeblendet: Ein Klick öffnet keine Kaderblick-Termindetails und sie können im Kaderblick-Kalender
+        nicht bearbeitet werden.
+    </p>
+
+    <h3>Feiertage anzeigen</h3>
+
+    <p>
+        Feiertage werden im Profil unter <strong>Einstellungen → Feiertage im Kalender</strong> ein- oder ausgeschaltet.
+        Nach dem Aktivieren könnt ihr zwischen bundesweiten Feiertagen und einem Bundesland wählen. Feiertage erscheinen
+        anschließend als eigene Kalendereinträge, lassen sich dort aber nicht wie ein Kaderblick-Termin öffnen oder bearbeiten.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Persönliche Kalendereinstellungen im Profil',
+        description: 'Profil im Reiter „Kalender“ aufnehmen. Der Bereich „Meine Spiele und Termine“ und darunter der Beginn der Kalender-Integrationen sollten sichtbar sein.',
+        items: [
+            'aktuelle Mannschaft',
+            'Zusätzliche Mannschaften',
+            'Ganze Vereine',
+            'Schaltfläche „Auswahl speichern“',
+            'Bereich „Externe Kalender einbinden“'
+        ],
+        purpose: 'Zeigen, wo zusätzliche Mannschaften, Vereine und externe Kalender für die Kalenderansicht festgelegt werden.'
     } %}
 
-    {# ─── Zu-/Absagen ─── #}
+    <h2>Einen Termin öffnen</h2>
+
+    <p>
+        Tippt oder klickt auf einen Kaderblick-Termin, um seine Detailansicht zu öffnen. Je nach Termin stehen dort Datum,
+        Beginn und Ende, Terminart, Ort, Treffpunkt und Treffzeit, Beschreibung sowie spielbezogene Angaben zur Verfügung.
+        Abgesagte Termine bleiben im Kalender sichtbar und sind durch eine abgeschwächte, durchgestrichene Darstellung
+        gekennzeichnet. In der Detailansicht wird zusätzlich angezeigt, dass der Termin abgesagt wurde; ein hinterlegter
+        Grund und die absagende Person werden ebenfalls angezeigt, wenn diese Angaben vorhanden sind.
+    </p>
+
+    <p>
+        Ist für den Ort eine Adresse oder Position hinterlegt, ist der Ortsname anklickbar und öffnet den Ort in Google Maps.
+        Dasselbe gilt für einen Treffpunkt, wenn dieser aus den hinterlegten Orten ausgewählt wurde. Ein frei eingegebener
+        Treffpunkt wird lediglich als Text angezeigt.
+    </p>
+
+    <h3>Wetter zum Termin</h3>
+
+    <p>
+        In der Termindetailansicht befindet sich neben der Zeit ein Wettersymbol. Wenn Wetterdaten für den Termin vorliegen,
+        öffnet ein Klick die Wetterdetails. Dort werden unter anderem Höchst- und Tiefsttemperatur, Niederschlag, Wind,
+        Böen, Sonnenauf- und -untergang sowie ein stündlicher Verlauf für den Terminzeitraum angezeigt. Sind keine
+        Wetterdaten vorhanden, kann Kaderblick entsprechend keine Wetterdetails anzeigen.
+    </p>
+
+    <h3>Fahrgemeinschaften zum Termin</h3>
+
+    <p>
+        Wenn für euch Fahrgemeinschaften zu diesem Termin verfügbar sind, erscheint in der Detailansicht ein Autosymbol.
+        Seine Darstellung unterscheidet zwischen keinen vorhandenen Fahrten, vollständig belegten Fahrten und Fahrten mit
+        freien Plätzen. Ein Klick öffnet die Fahrgemeinschaften des Termins. Die vollständige Bedienung wird unter
+        <a href="{{ path('app_fahrgemeinschaften') }}">Fahrgemeinschaften</a> beschrieben.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Detailansicht eines Termins',
+        description: 'Einen Termin mit Ort, Treffpunkt, Rückmeldungen sowie verfügbaren Wetter- und Fahrgemeinschaftssymbolen aufnehmen.',
+        items: [
+            'Terminart und Titel',
+            'Datum und Uhrzeit',
+            'Wetter- und Fahrgemeinschaftssymbol',
+            'Ort sowie Treffpunkt und Treffzeit',
+            'Bereich für die eigene Rückmeldung',
+            'Bereich „Rückmeldungen“'
+        ],
+        purpose: 'Die wichtigsten Informationen und Aktionen innerhalb eines geöffneten Termins zeigen.'
+    } %}
+
     <h2>Zu- und Absagen</h2>
-    <p>Für jeden Termin könnt ihr euren Teilnahmestatus angeben:</p>
-    <ul>
-        <li>✅ <strong>Zugesagt</strong> — Ihr seid dabei</li>
-        <li>❌ <strong>Abgesagt</strong> — Ihr könnt nicht teilnehmen</li>
-        <li>❓ <strong>Noch offen</strong> — Ihr wisst es noch nicht</li>
-    </ul>
+
     <p>
-        Optional könnt ihr eine <strong>Notiz</strong> hinterlegen (z.&nbsp;B. „Komme 10 Min. später").
-        Statusänderungen erzeugen <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a>
-        für alle Teilnehmer.
+        Wenn für einen Termin eine Rückmeldung möglich ist, zeigt die Detailansicht die verfügbaren Status an. Regulär sind
+        <strong>Zugesagt</strong>, <strong>Vielleicht</strong>, <strong>Abgesagt</strong> und <strong>Verspätet</strong>
+        vorhanden. Bei Spielen und Turnieren kann zusätzlich <strong>Gesperrt</strong> angeboten werden.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/kalender/zusage-absage.png',
-        alt: 'Zu- und Absageoptionen',
-        caption: 'Den Teilnahmestatus für einen Termin festlegen.'
+    <p>
+        Nach Auswahl eines Status öffnet sich ein Fenster, in dem ihr optional eine Nachricht mit bis zu 300 Zeichen
+        ergänzen könnt. Erst mit <strong>Bestätigen</strong> wird die Rückmeldung gespeichert. Die Rückmeldung kann später
+        auf dieselbe Weise geändert werden.
+    </p>
+
+    <h3>Für mehrere verbundene Personen antworten</h3>
+
+    <p>
+        Ist euer Benutzerkonto mit mehreren Spielern oder Trainern verbunden, kann oberhalb der Statusauswahl festgelegt
+        werden, für wen die Rückmeldung gelten soll. Mehrere Personen können gleichzeitig ausgewählt werden. Kaderblick
+        speichert dieselbe gewählte Rückmeldung anschließend für alle ausgewählten Personen.
+    </p>
+
+    <h3>Überschneidungen mit anderen Zusagen</h3>
+
+    <p>
+        Bei einer Zusage prüft Kaderblick bereits vorhandene Rückmeldungen. Überschneidet sich der Termin mit einer anderen
+        Zusage, wird die neue Zusage nicht gespeichert und der andere Termin wird angezeigt. Ist keine direkte zeitliche
+        Überschneidung vorhanden, die verfügbare Reisezeit zwischen zwei Orten aber voraussichtlich zu kurz, erscheint eine
+        Warnung mit Entfernung und verfügbarer Zeit. In diesem Fall könnt ihr die Zusage abbrechen oder mit
+        <strong>„Trotzdem zusagen“</strong> bestätigen.
+    </p>
+
+    <h3>Rückmeldungen der anderen Personen ansehen</h3>
+
+    <p>
+        Der Bereich <strong>„Rückmeldungen“</strong> in der Termindetailansicht lässt sich aufklappen. Die vorhandenen
+        Antworten werden nach Status gruppiert; hinterlegte Nachrichten stehen bei der jeweiligen Person. Über
+        <strong>„Alle Rückmeldungen“</strong> öffnet ihr die ausführliche Übersicht. Dort werden im Reiter
+        <strong>Kader</strong> Spieler, Trainer, weitere Mannschaftsmitglieder und noch ausstehende Rückmeldungen getrennt
+        dargestellt. Bei Terminen mit mehreren Mannschaften kann zwischen den Mannschaften gewechselt werden. Der Reiter
+        <strong>„Weitere Personen“</strong> enthält Rückmeldungen von Eltern, Gästen und Begleitpersonen.
+    </p>
+
+    <h3>Alternative Wege zur Rückmeldung</h3>
+
+    <p>
+        Dieselbe Teilnahme kann auch außerhalb der großen Kalenderseite geändert werden. Auf dem Dashboard öffnen die
+        Kacheln <strong>Kalender</strong> und <strong>Anstehende Termine</strong> dieselbe Termindetailansicht. Eine
+        Dashboard-Kachel für schnelle Rückmeldungen erlaubt außerdem eine direkte Statusänderung ohne vorheriges Öffnen des
+        Termins. Dort wird keine zusätzliche Nachricht abgefragt. Eine später aus der Termindetailansicht abgegebene Antwort
+        ersetzt den zuvor gespeicherten Status.
+    </p>
+
+    <p>
+        Benachrichtigungen zu einem Termin können ebenfalls direkt zu dessen Detailansicht im Kalender führen. Änderungen
+        an der Teilnahme werden in der Rückmeldungsübersicht des Termins unmittelbar berücksichtigt. Zuständige Personen
+        erhalten entsprechend ihrer Benachrichtigungseinstellungen eine Mitteilung über Rückmeldungen; die antwortende
+        Person selbst wird dabei nicht als Empfänger ihrer eigenen Rückmeldung behandelt.
+    </p>
+
+    <h2>Wer Termine anlegen und verwalten kann</h2>
+
+    <p>
+        Die Schaltfläche <strong>„Neues Event“</strong> wird nur angezeigt, wenn euer Benutzerkonto Termine anlegen darf.
+        Diese Möglichkeit steht abhängig von der Zuständigkeit insbesondere Trainern sowie Personen mit Verwaltungs- oder
+        Unterstützerberechtigung zur Verfügung. Für Mannschaftstermine wird zusätzlich geprüft, ob die ausgewählte
+        Mannschaft zu eurem Zuständigkeitsbereich gehört.
+    </p>
+
+    <p>
+        Die Rechte für bestehende Termine werden einzeln geprüft. Deshalb kann ein Benutzer neue Termine anlegen, ohne jeden
+        vorhandenen Termin bearbeiten, löschen oder absagen zu dürfen. In der Termindetailansicht werden nur die Aktionen
+        angezeigt, die für den konkreten Termin erlaubt sind.
+    </p>
+
+    <h2>Einen neuen Termin anlegen</h2>
+
+    <p>
+        Am Computer öffnet <strong>„Neues Event“</strong> den Eingabedialog. Auf dem Smartphone steht dafür die
+        Hinzufügen-Schaltfläche zur Verfügung. Zusätzlich kann im Kalender ein freier Zeitraum beziehungsweise auf dem
+        Smartphone ein leerer Tag gewählt werden; das ausgewählte Datum wird dann direkt übernommen.
+    </p>
+
+    <p>
+        Die Eingabe ist in mehrere Schritte gegliedert. Der erste Schritt <strong>„Basisdaten“</strong> enthält Titel,
+        Datum, Uhrzeit, optionales Enddatum und optionale Endzeit sowie die Terminart. Ein Titel ist bei normalen Terminen,
+        Trainings und Aufgaben erforderlich; bei Spielen und Turnieren kann er weggelassen werden. Datum, gültige Uhrzeit
+        und Terminart sind immer erforderlich. Bei einer ungewöhnlich frühen Startzeit zeigt Kaderblick einen zusätzlichen
+        Prüfhinweis an.
+    </p>
+
+    <p>
+        Nach Auswahl der Terminart passt Kaderblick die weiteren Schritte an. Zur Auswahl stehen für Benutzer unter anderem
+        <strong>Spiel</strong>, <strong>Training</strong>, <strong>Vereinstreffen</strong>, <strong>Event</strong>,
+        <strong>Aufgabe</strong> und <strong>Turnier</strong>. Der letzte Schritt enthält jeweils eine optionale
+        Beschreibung. Beim Bearbeiten eines bestehenden Termins können die einzelnen Schritte direkt angewählt werden;
+        beim erstmaligen Anlegen führt <strong>Weiter</strong> nacheinander durch die benötigten Angaben.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Neuen Termin anlegen – Basisdaten',
+        description: 'Ersten Schritt des Dialogs für einen neuen Termin aufnehmen.',
+        items: [
+            'Schrittanzeige oben',
+            'Titel',
+            'Datum und Uhrzeit',
+            'Enddatum und Endzeit',
+            'Auswahl der Terminart',
+            'Schaltflächen zum Abbrechen und Weitergehen'
+        ],
+        purpose: 'Gemeinsame Pflicht- und Zeitangaben aller Terminarten zeigen.'
     } %}
 
-    {# ─── Teilnahmeübersicht ─── #}
-    <h2>Teilnahmeübersicht (Trainer)</h2>
+    <h2>Training anlegen</h2>
+
     <p>
-        Trainer sehen auf einen Blick, wer zugesagt, abgesagt oder noch offen ist.
-        Die Übersicht unterscheidet zwischen <strong>Kaderspielern</strong> und
-        <strong>anderen Teilnehmern</strong>.
+        Nach der Auswahl <strong>Training</strong> folgt der Schritt <strong>„Training“</strong>. Dort wählt ihr die
+        Mannschaft und den Ort. Beim Ort beginnt die Suche nach zwei Zeichen. Steht eine benötigte Spielstätte noch nicht
+        zur Verfügung und dürft ihr Spielstätten anlegen, kann sie über <strong>„+ Neue Spielstätte anlegen“</strong>
+        unmittelbar aus dem Terminfenster heraus ergänzt und anschließend für das Training verwendet werden.
     </p>
 
-    {% include 'components/screenshot.html.twig' with {
-        src: 'images/docs/kalender/teilnahmeuebersicht.png',
-        alt: 'Teilnahmeübersicht für Trainer',
-        caption: 'Die Teilnahmeübersicht zeigt den Status aller Spieler.'
+    <p>
+        Die Trainingsdauer beträgt zunächst 90 Minuten. Zur schnellen Auswahl stehen 60, 75, 90, 105 und 120 Minuten zur
+        Verfügung; alternativ kann eine eigene Dauer eingetragen werden. Kaderblick zeigt daraus die berechnete Endzeit an.
+        Zusätzlich können Treffpunkt und Treffzeit hinterlegt werden. Der Treffpunkt kann aus vorhandenen Orten gewählt oder
+        frei eingetragen werden.
+    </p>
+
+    <h3>Wiederkehrendes Training</h3>
+
+    <p>
+        Mit <strong>„Wiederkehrendes Training“</strong> erstellt ihr aus einem Training eine Serie. Wählt mindestens einen
+        Wochentag und gebt unter <strong>„Serie bis“</strong> das letzte Datum der Serie an. Kaderblick zeigt vor dem
+        Speichern an, wie viele Trainings aus der gewählten Kombination entstehen. Nach dem Speichern werden die einzelnen
+        Trainingstermine im Kalender angelegt.
+    </p>
+
+    <h3>Eine Trainingsserie ändern</h3>
+
+    <p>
+        Beim Bearbeiten eines Trainings aus einer Serie erscheint zusätzlich der Schritt <strong>„Gültigkeit“</strong>.
+        Dort legt ihr fest, auf welche Termine die Änderung angewendet wird. Möglich sind nur dieses Training, alle
+        gleichnamigen Wochentage ab dem gewählten Training, dieses und alle folgenden Trainings, alle entsprechenden
+        Wochentage der gesamten Serie oder die gesamte Serie. Bei Änderungen, die mehrere Termine betreffen, kann die
+        Wirkung entweder bis zum Serienende oder bis einschließlich eines frei gewählten Datums begrenzt werden.
+    </p>
+
+    <p>
+        Ändert ihr ausschließlich das Enddatum der Serie, gilt diese Änderung für die Serie; die Auswahl
+        <strong>„Nur dieses Training“</strong> wird in diesem Fall nicht angeboten. Wenn eine Änderung Termine hinzufügt
+        oder entfernt, zeigt Kaderblick die Anzahl der betroffenen Termine bereits vor dem Speichern an.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Wiederkehrendes Training bearbeiten',
+        description: 'Bestehendes Training einer Serie im Schritt „Gültigkeit“ aufnehmen.',
+        items: [
+            'Auswahl „Diese Änderung gilt für …“',
+            'mehrere Gültigkeitsmöglichkeiten',
+            'Bereich „Bis wann gilt die Änderung?“'
+        ],
+        purpose: 'Unterschied zwischen einer Änderung nur dieses Trainings und einer Änderung mehrerer Serientermine zeigen.'
     } %}
 
-    {# ─── Wetterdaten ─── #}
-    <h2>Wetterdaten</h2>
+    <h2>Spiel anlegen</h2>
+
     <p>
-        Für Outdoor-Termine werden automatisch Wetterdaten angezeigt – so wisst ihr
-        schon vorher, ob ihr Regenjacke oder Sonnencreme braucht.
+        Bei der Terminart <strong>Spiel</strong> folgt nach den Basisdaten der Schritt <strong>„Spieldetails“</strong>.
+        Dort werden Heim- und Auswärtsmannschaft, Spielstätte und Spieltyp festgelegt. Heim- und Auswärtsmannschaft dürfen
+        nicht identisch sein. Abhängig vom Spieltyp werden weitere passende Angaben angeboten, beispielsweise Liga, Pokal,
+        eine nähere Einordnung für Test- oder Freundschaftsspiele oder eine Runde bei entsprechenden Wettbewerben.
     </p>
 
-    {# ─── Fahrgemeinschaften ─── #}
-    <h2>Fahrgemeinschaften</h2>
     <p>
-        Direkt aus der Termindetailansicht könnt ihr
-        <a href="{{ path('app_fahrgemeinschaften') }}">Fahrgemeinschaften</a> organisieren –
-        besonders praktisch für Auswärtsspiele.
+        Mannschaften werden über die Mannschaftssuche ausgewählt. Falls eine benötigte Mannschaft noch nicht vorhanden ist
+        und ihr sie anlegen dürft, kann sie direkt aus der Auswahl heraus ergänzt werden. Dasselbe gilt für eine noch
+        fehlende Spielstätte.
+    </p>
+
+    <h3>Zusätzliche Spieler anfragen</h3>
+
+    <p>
+        Im Schritt <strong>„Zusätzliche Spieler“</strong> können regelkonforme Spieler anderer Mannschaften für das Spiel
+        angefragt werden. Mit <strong>„Nur mit Bereitschaft“</strong> erscheinen nur Spieler, die grundsätzlich zum
+        Aushelfen bereit sind. <strong>„Alle regelkonformen Spieler“</strong> erweitert die Auswahl und kennzeichnet
+        Personen, bei denen keine Bereitschaft hinterlegt ist. Bereits ausgewählte Aushilfsspieler bleiben erhalten, wenn
+        der Filter danach geändert wird.
+    </p>
+
+    <p>
+        Angefragte Spieler sehen das Spiel anschließend als Aushilfe-Anfrage. Weitere Abläufe rund um Aushilfe-Angebote und
+        Spieltage werden im Kapitel <a href="{{ path('app_spiele') }}">Spiele</a> behandelt.
+    </p>
+
+    <h3>Spielzeiten festlegen</h3>
+
+    <p>
+        Im Schritt <strong>„Spielzeiten“</strong> werden Halbzeitdauer und Halbzeitpause festgelegt. Sind für die
+        Heimmannschaft Standardwerte hinterlegt, werden diese übernommen; andernfalls verwendet Kaderblick zunächst
+        45 Minuten pro Halbzeit und 15 Minuten Pause. Nachspielzeit für die erste und zweite Halbzeit kann zusätzlich
+        eingetragen werden. Ist keine Endzeit angegeben, berechnet Kaderblick die Endzeit aus den Spielzeiten.
+    </p>
+
+    <h2>Turnier anlegen</h2>
+
+    <p>
+        Die Terminart <strong>Turnier</strong> verwendet einen eigenen Ablauf für Turnierdaten und Begegnungen. Ein bereits
+        vorhandenes Turnier kann ausgewählt werden. Für ein neues Turnier stehen als Turniertyp
+        <strong>„Hallenturnier (1 Feld)“</strong> und <strong>„Normal (mehrere Felder)“</strong> zur Verfügung. Außerdem
+        werden Spieldauer und Pausenzeit sowie der Spielmodus festgelegt. Beim Modus <strong>„Gruppen + Finale“</strong>
+        wird zusätzlich die Anzahl der Gruppen gewählt; alternativ steht <strong>„Jeder gegen Jeden“</strong> zur Verfügung.
+    </p>
+
+    <p>
+        Begegnungen können automatisch erzeugt, manuell angelegt oder aus CSV- beziehungsweise JSON-Daten importiert werden.
+        Bereits angelegte Begegnungen lassen sich im Schritt <strong>„Begegnungen“</strong> bearbeiten oder entfernen.
+        Turniere und die spätere Arbeit mit ihren Spielen werden zusätzlich im Bereich <a href="{{ path('app_spiele') }}">Spiele</a>
+        eingeordnet.
+    </p>
+
+    <h2>Vereinstreffen oder allgemeinen Termin anlegen</h2>
+
+    <p>
+        Bei <strong>Vereinstreffen</strong> und der Terminart <strong>Event</strong> folgt auf die Basisdaten der Schritt
+        <strong>„Berechtigungen“</strong>. Dort werden Ort und Sichtbarkeit festgelegt. Die Sichtbarkeit kann
+        <strong>Öffentlich</strong>, auf bestimmte Vereine, auf bestimmte Mannschaften oder auf bestimmte Benutzer begrenzt
+        werden. Bei einer eingeschränkten Sichtbarkeit wählt ihr anschließend die betreffenden Einträge aus. Treffpunkt und
+        Treffzeit können zusätzlich hinterlegt werden.
+    </p>
+
+    <p>
+        Diese Sichtbarkeit bestimmt, für wen der Termin anschließend im Kalender erreichbar ist. Spiele, Turniere und
+        Trainings verwenden dagegen ihre Mannschaftszuordnung und die dafür vorgesehenen Regeln; die allgemeine
+        Sichtbarkeitsauswahl wird bei diesen Terminarten nicht verwendet.
+    </p>
+
+    <h2>Aufgabe als Termin anlegen</h2>
+
+    <p>
+        Mit der Terminart <strong>Aufgabe</strong> wird eine Aufgabe mit einem Kalendereintrag verbunden. Im Schritt
+        <strong>„Aufgabe“</strong> wählt ihr die Personen für die Rotation und legt fest, wie viele Personen gleichzeitig
+        zuständig sind. Eine Aufgabe kann einmalig oder wiederkehrend angelegt werden.
+    </p>
+
+    <p>
+        Für wiederkehrende Aufgaben steht entweder eine regelmäßige Wiederholung oder eine Wiederholung anhand des
+        Spielplans zur Verfügung. Regelmäßige Aufgaben können täglich, wöchentlich oder monatlich wiederholt werden und
+        besitzen ein entsprechendes Intervall. Bei einer Zuordnung zum Spielplan wird festgelegt, an welchem Tag relativ zum
+        jeweiligen Spiel die Aufgabe beginnt. Die Bearbeitung und Erledigung solcher Aufgaben wird im Kapitel
+        <a href="{{ path('app_aufgaben') }}">Aufgaben</a> ausführlich beschrieben.
+    </p>
+
+    <h2>Termin bearbeiten</h2>
+
+    <p>
+        Öffnet den Termin im Kalender und wählt <strong>Bearbeiten</strong>, wenn diese Aktion angezeigt wird. Der
+        Eingabedialog enthält die vorhandenen Werte. Beim Bearbeiten könnt ihr direkt zu den einzelnen Schritten springen.
+        Nach dem Speichern wird der Kalender neu geladen und die Änderungen werden an den betroffenen Termin beziehungsweise
+        bei einer entsprechend gewählten Trainingsserie an die ausgewählten Serientermine übertragen.
+    </p>
+
+    <p>
+        Schließt ihr einen neuen oder bearbeiteten Termin, nachdem Angaben verändert wurden, fragt Kaderblick vor dem
+        Schließen, ob die Änderungen verworfen werden sollen. <strong>„Weiter bearbeiten“</strong> führt zurück zum
+        Termin; <strong>„Verwerfen“</strong> schließt ihn ohne diese Änderungen.
+    </p>
+
+    <h2>Termin absagen oder wieder aktivieren</h2>
+
+    <p>
+        <strong>Absagen</strong> und <strong>Löschen</strong> haben unterschiedliche Folgen. Eine Absage lässt den Termin
+        im Kalender bestehen und kennzeichnet ihn für die Beteiligten als abgesagt. Berechtigte Personen können einen
+        abgesagten Termin später wieder aktivieren. Welche dieser Aktionen verfügbar ist, hängt von der Zuständigkeit für
+        den konkreten Termin ab.
+    </p>
+
+    <p>
+        Erstellen, Ändern und Löschen von Kaderblick-Terminen kann Benachrichtigungen an die jeweils betroffenen Personen
+        auslösen. Die Empfänger richten sich nach Mannschaft, Verein, ausdrücklichen Freigaben und der jeweiligen Aufgabe
+        beziehungsweise Terminart. Benachrichtigungen zu einem weiterhin vorhandenen Einzeltermin führen beim Öffnen direkt
+        in dessen Kalenderdetails.
+    </p>
+
+    <h2>Termin löschen</h2>
+
+    <p>
+        Ein einzelner normaler Termin wird nach einer Sicherheitsabfrage dauerhaft aus dem Kalender entfernt. Diese Aktion
+        kann nicht rückgängig gemacht werden. Bei einer Trainingsserie stehen dagegen drei Bereiche zur Auswahl:
+        <strong>nur dieser Termin</strong>, <strong>dieser und alle folgenden Termine</strong> oder
+        <strong>die gesamte Serie</strong>. Aufgaben mit Wiederholung besitzen ebenfalls eine Auswahl für den Umfang der
+        Löschung; die Einzelheiten dazu stehen unter <a href="{{ path('app_aufgaben') }}">Aufgaben</a>.
+    </p>
+
+    <h2>Zusammenhang mit anderen Bereichen</h2>
+
+    <p>
+        Spiele und Turniere aus dem Kalender gehören zugleich zum Bereich <a href="{{ path('app_spiele') }}">Spiele</a>.
+        Aufgaben mit Kalendereintrag erscheinen im Bereich <a href="{{ path('app_aufgaben') }}">Aufgaben</a>.
+        Fahrgemeinschaften werden an einen konkreten Termin gebunden und aus dessen Detailansicht geöffnet. Auf dem
+        <a href="{{ path('app_dashboard') }}">Dashboard</a> können Kalendertermine und anstehende Termine ebenfalls
+        geöffnet und Teilnahme-Rückmeldungen teilweise direkt abgegeben werden. Einstellungen für zusätzlich verfolgte
+        Mannschaften, externe Kalender und Kalenderexporte befinden sich im persönlichen Profil.
     </p>
 {% endblock %}
