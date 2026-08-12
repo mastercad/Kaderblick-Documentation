@@ -33,7 +33,10 @@ final class DocsControllerTest extends WebTestCase
         yield 'Spiele' => ['/spiele', 'Spiele'];
         yield 'Aufgaben' => ['/aufgaben', 'Aufgaben'];
         yield 'XP-System' => ['/xp-system', 'XP-System'];
-        yield 'News' => ['/news', 'News'];
+        yield 'Neuigkeiten' => ['/news', 'Neuigkeiten'];
+        yield 'Umfragen' => ['/umfragen', 'Umfragen'];
+        yield 'Wissenspool' => ['/wissenspool', 'Wissenspool'];
+        yield 'Hall of Fame' => ['/hall-of-fame', 'Hall of Fame'];
     }
 
     public function testSidebarShowsActiveState(): void
