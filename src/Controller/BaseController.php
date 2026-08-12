@@ -44,6 +44,7 @@ abstract class BaseController extends AbstractController
             'app_hall_of_fame' => ['label' => 'Hall of Fame', 'icon' => '🏅'],
             'app_aufgaben' => ['label' => 'Aufgaben', 'icon' => '✅'],
             'app_benachrichtigungen' => ['label' => 'Benachrichtigungen', 'icon' => '🔔'],
+            'app_mein_feedback' => ['label' => 'Mein Feedback', 'icon' => '💬'],
             'app_dashboard' => ['label' => 'Dashboard', 'icon' => '🖥️'],
             'app_berichte' => ['label' => 'Berichte', 'icon' => '📈'],
             'app_fahrgemeinschaften' => ['label' => 'Fahrgemeinschaften', 'icon' => '🚗'],
