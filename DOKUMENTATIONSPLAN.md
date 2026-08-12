@@ -29,7 +29,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Spiele | abgeschlossen |
 | Team & Verein | abgeschlossen |
 | Aufgaben | abgeschlossen |
-| Neuigkeiten & Gemeinschaft | offen |
+| Neuigkeiten & Gemeinschaft | abgeschlossen |
 | Nachrichten | offen |
 | Benachrichtigungen | offen |
 | Profil & Benutzerzuordnung | offen |
