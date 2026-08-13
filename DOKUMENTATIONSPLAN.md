@@ -55,7 +55,9 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Inventar | abgeschlossen |
 | Kassenbuch | abgeschlossen |
 | Abrechnung & Abo | abgeschlossen |
-| Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | noch zu prüfen |
+| Registrierungs-QR-Code | abgeschlossen |
+| Cookie-Einstellungen | offen |
+| Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | in Prüfung |
 
 ## Vorgehen je Bereich
 
