@@ -56,7 +56,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Kassenbuch | abgeschlossen |
 | Abrechnung & Abo | abgeschlossen |
 | Registrierungs-QR-Code | abgeschlossen |
-| Cookie-Einstellungen | offen |
+| Cookie-Einstellungen | abgeschlossen |
 | Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | in Prüfung |
 
 ## Vorgehen je Bereich
