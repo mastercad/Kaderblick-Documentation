@@ -61,6 +61,34 @@
         purpose: 'Die für ein neues Konto benötigten Angaben zeigen.'
     } %}
 
+    <h2>Registrierung per QR-Code oder Link weitergeben</h2>
+
+    <p>
+        Angemeldete Benutzer können das Registrierungsformular direkt an andere Personen weitergeben. Am Computer
+        öffnet ihr dazu das Benutzermenü über euer Benutzerbild und wählt <strong>„Registrierungs-QR-Code“</strong>.
+        Auf dem Smartphone öffnet ihr <strong>„Mehr“</strong> und wählt im unteren Bereich
+        <strong>„Registrierungs-QR-Code teilen“</strong>.
+    </p>
+
+    <p>
+        Der Dialog zeigt sowohl einen QR-Code als auch den zugehörigen Registrierungslink. Wer den QR-Code scannt,
+        gelangt unmittelbar zum geöffneten Registrierungsformular. Mit <strong>„Link kopieren“</strong> wird dieselbe
+        Adresse in die Zwischenablage übernommen. <strong>„QR herunterladen“</strong> speichert den QR-Code als Bild,
+        damit er beispielsweise ausgedruckt oder über einen anderen Weg weitergegeben werden kann.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Registrierungs-QR-Code',
+        description: 'Bitte den geöffneten Dialog „Registrierungs-QR-Code“ aufnehmen.',
+        items: [
+            'QR-Code',
+            'angezeigter Registrierungslink',
+            'Schaltfläche „Link kopieren“',
+            'Schaltfläche „QR herunterladen“'
+        ],
+        purpose: 'QR-Code, Registrierungslink und beide Möglichkeiten zum Weitergeben zeigen.'
+    } %}
+
     <h2>E-Mail-Adresse bestätigen</h2>
 
     <p>
