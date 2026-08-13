@@ -1,0 +1,262 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abrechnung & Abo – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Abrechnung &amp; Abo</h1>
+
+    <p>
+        Unter <strong>Team &amp; Verein → Abrechnung &amp; Abo</strong> verwalten Kassenwarte die kostenpflichtige
+        Nutzung von Kaderblick für ihre Mannschaften. Der Preis beträgt <strong>10 € pro Team und Monat</strong>.
+        Der erste Abrechnungszeitraum beginnt unmittelbar mit dem erfolgreichen Abschluss des Abonnements.
+    </p>
+
+    <p>
+        Ein Mannschaftskassenwart sieht die Mannschaften, für die seine Kassenwart-Zuordnung aktuell gültig ist.
+        Ein Vereinskassenwart sieht die Mannschaften des zugeordneten Vereins. Gehören mehrere Mannschaften zum
+        eigenen Verantwortungsbereich, können sie einzeln oder gemeinsam abonniert werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Menüeintrag und gültige Kassenwart-Zuordnung',
+        text: 'Der Menüeintrag wird derzeit bereits angezeigt, sobald für das Konto irgendeine Kassenwart-Zuordnung vorhanden ist. Die Abrechnungsübersicht berücksichtigt dagegen nur Zuordnungen, die am aktuellen Tag gültig sind. Deshalb kann „Abrechnung & Abo“ sichtbar sein, obwohl dort keine abrechenbare Mannschaft erscheint, wenn die vorhandene Zuordnung erst später beginnt oder bereits beendet ist.'
+    } %}
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Abrechnungsübersicht mit mehreren Mannschaften',
+        description: 'Die Seite „Abrechnung & Abo“ mit mindestens zwei Mannschaften in unterschiedlichen Zuständen aufnehmen, zum Beispiel einer kostenlosen Mannschaft und einer noch nicht abonnierten Mannschaft.',
+        items: [
+            'Überschrift „Abrechnung & Abo“ und Monatspreis',
+            'Mannschaftskarten mit Statuskennzeichnung',
+            'gegebenenfalls Hinweis zur kostenlosen Nutzung oder zum bezahlten Zeitraum',
+            'Bereich „Abo abschließen“'
+        ],
+        purpose: 'Aufbau der Abrechnungsseite und die unterschiedlichen Zustände einer Mannschaft zeigen.'
+    } %}
+
+    <h2>Status einer Mannschaft</h2>
+
+    <p>
+        Jede Mannschaft wird auf einer eigenen Karte mit ihrem aktuellen Abrechnungsstatus angezeigt. Bei einer
+        kostenlosen Phase steht dort <strong>„Kostenlose Testphase“</strong>. Ist ein Enddatum hinterlegt, zeigt die
+        Karte zusätzlich <strong>„Kostenlos bis“</strong> mit diesem Datum; ein hinterlegter Grund für die kostenlose
+        Nutzung wird ebenfalls angezeigt.
+    </p>
+
+    <p>
+        Ein bezahltes Abonnement erscheint als <strong>„Bezahlt &amp; aktiv“</strong>. Unterhalb des Status steht
+        <strong>„Bezahlt bis“</strong> mit dem Ende des aktuellen Abrechnungszeitraums. Ein noch nicht abonniertes Team
+        wird mit <strong>„Noch nicht abonniert“</strong> gekennzeichnet und kann – sofern die Zahlungsfunktion verfügbar
+        ist – im Bereich <strong>„Abo abschließen“</strong> ausgewählt werden.
+    </p>
+
+    <p>
+        Während eines begonnenen, aber noch nicht vollständig bestätigten Abschlusses steht
+        <strong>„Aktivierung läuft“</strong>. Bei einer fehlgeschlagenen oder noch zu bestätigenden Zahlung lautet der
+        Status <strong>„Zahlung offen“</strong>. Weitere mögliche Zustände sind <strong>„Kostenlos pausiert“</strong>,
+        <strong>„Gekündigt“</strong> und <strong>„Zugriff gesperrt“</strong>. Bei einer Sperre zeigt Kaderblick als Grund
+        an, dass zwei Abrechnungszeiträume unbezahlt sind.
+    </p>
+
+    <h2>Abonnement für eine oder mehrere Mannschaften abschließen</h2>
+
+    <p>
+        Im Bereich <strong>„Abo abschließen“</strong> stehen nur Mannschaften zur Auswahl, die noch keinem Abonnement
+        zugeordnet sind und sich nicht in einer kostenlosen Phase befinden. Vor jeder Mannschaft steht ein
+        Kontrollkästchen; daneben werden Mannschaftsname und Monatspreis angezeigt. Werden mehrere Mannschaften
+        ausgewählt, addiert Kaderblick den Preis und zeigt die Gesamtsumme direkt auf der Schaltfläche
+        <strong>„Zahlungsart wählen“</strong> an.
+    </p>
+
+    <p>
+        Nach <strong>„Zahlungsart wählen“</strong> wird die Zahlungsseite geöffnet. Dort wird eine Rechnungsadresse
+        benötigt. Als mögliche Zahlungsarten nennt Kaderblick <strong>PayPal</strong>, <strong>SEPA-Lastschrift</strong>,
+        <strong>Karte</strong>, <strong>Apple Pay</strong> und <strong>Google Pay</strong>. Welche davon auf dem
+        verwendeten Gerät tatsächlich angeboten werden, wird auf der Zahlungsseite festgelegt. Nach dem Abschluss führt
+        der Rückweg wieder zu <strong>Abrechnung &amp; Abo</strong>.
+    </p>
+
+    <p>
+        Werden mehrere Mannschaften gleichzeitig ausgewählt, gehören sie anschließend zu demselben Abonnement. Die
+        monatliche Abrechnung verwendet für jede ausgewählte Mannschaft eine Einheit zu 10 €. Ein Team kann nicht
+        gleichzeitig über zwei Abonnements abgerechnet werden.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Mannschaften für ein Abonnement auswählen',
+        description: 'Den Bereich „Abo abschließen“ mit mindestens zwei auswählbaren Mannschaften aufnehmen. Noch keine Zahlungsseite öffnen.',
+        items: [
+            'Kontrollkästchen vor den Mannschaften',
+            'Monatspreis je Mannschaft',
+            'mindestens zwei ausgewählte Mannschaften',
+            'Gesamtsumme auf „Zahlungsart wählen“'
+        ],
+        purpose: 'Auswahl mehrerer Mannschaften und Berechnung des monatlichen Gesamtpreises zeigen.'
+    } %}
+
+    <h2>Wenn Abonnements noch nicht verfügbar sind</h2>
+
+    <p>
+        Ist die Zahlungsfunktion auf der Plattform noch nicht freigeschaltet, erscheint oberhalb der Seite der Hinweis
+        <strong>„Abos sind zurzeit noch nicht verfügbar.“</strong> Die Schaltfläche
+        <strong>„Zahlungsart wählen“</strong> bleibt in diesem Zustand deaktiviert. Kaderblick weist gleichzeitig darauf
+        hin, dass während dieser Phase keine Zahlung erforderlich ist und vor entstehenden Kosten informiert wird.
+    </p>
+
+    <p>
+        Ein noch nicht abonniertes Team ist im aktuellen Stand nicht allein wegen dieses Status gesperrt. Eine Sperre
+        entsteht erst über die weiter unten beschriebene Behandlung tatsächlich offener Abrechnungszeiträume eines
+        bestehenden beziehungsweise beendeten Abonnements.
+    </p>
+
+    <h2>Kostenlose Testphase oder kostenlose Freistellung</h2>
+
+    <p>
+        Für eine Mannschaft mit aktiver kostenloser Phase wird kein neuer Zahlungsabschluss angeboten. Die
+        Mannschaftskarte zeigt den Grund und – sofern vorhanden – das Enddatum. Befinden sich alle eigenen
+        abrechenbaren Mannschaften in einer solchen Phase, steht im Bereich <strong>„Abo abschließen“</strong> lediglich
+        der Hinweis, dass derzeit kein Abonnement erforderlich ist.
+    </p>
+
+    <p>
+        Wird eine Mannschaft kostenlos gestellt, obwohl sie bereits Teil eines laufenden Abonnements ist, berücksichtigt
+        die eigentliche monatliche Abbuchung nur die weiterhin kostenpflichtigen Mannschaften. Sind sämtliche Teams eines
+        Abonnements kostenlos gestellt, wird die Zahlung für dieses Abonnement pausiert und später wieder aufgenommen,
+        sobald wieder mindestens eine Mannschaft kostenpflichtig wird.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Angezeigte Monatssumme bei teilweise kostenloser Nutzung',
+        text: 'Die Abonnementkarte berechnet ihre angezeigte Monatssumme derzeit weiterhin aus allen dem Abonnement zugeordneten Mannschaften. Ist innerhalb eines bestehenden Sammel-Abonnements nur ein Teil der Mannschaften vorübergehend kostenlos gestellt, kann die dort angezeigte Summe deshalb höher sein als die tatsächlich für diesen Zeitraum berücksichtigte Anzahl kostenpflichtiger Teams.'
+    } %}
+
+    <h2>Unterbrochenen Zahlungsabschluss fortsetzen</h2>
+
+    <p>
+        Wurde ein Zahlungsabschluss begonnen, aber nicht vollständig beendet, trägt die Mannschaft den Status
+        <strong>„Aktivierung läuft“</strong>. Sind keine noch nicht abonnierten Teams auswählbar, zeigt der Bereich
+        <strong>„Abo abschließen“</strong> in diesem Fall die Schaltfläche
+        <strong>„Zahlungsabschluss neu starten“</strong>.
+    </p>
+
+    <p>
+        Ist die ursprüngliche Zahlungsseite noch geöffnet und gehört sie zum selben zahlenden Benutzer, wird diese
+        vorhandene Sitzung weiterverwendet. Startet ein anderer aktuell zuständiger Kassenwart den Abschluss neu, kann
+        die bisherige offene Sitzung beendet und ein neuer Zahlungsabschluss unter dem neuen Benutzer begonnen werden.
+        Ein seit mehr als 24 Stunden nicht abgeschlossener Vorgang wird automatisch verworfen; die Mannschaft kann
+        danach wieder neu ausgewählt werden.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'info',
+        title: 'Abschluss bereits bestätigt, Status noch nicht aktualisiert',
+        text: 'Kurz nach einem erfolgreichen Zahlungsabschluss kann die Mannschaft vorübergehend noch als „Aktivierung läuft“ erscheinen. Wird „Zahlungsabschluss neu starten“ in diesem Zustand abgelehnt, weil der Abschluss auf der Zahlungsseite bereits bestätigt wurde, darf kein zweiter Abschluss angelegt werden. Ein erneutes Laden der Abrechnungsseite übernimmt den anschließend aktualisierten Status, sobald die Bestätigung verarbeitet wurde.'
+    } %}
+
+    <h2>Bestehendes Abonnement verwalten</h2>
+
+    <p>
+        Unterhalb des Abschlussbereichs erscheinen die Abonnements, bei denen das eigene Benutzerkonto als zahlende
+        Person hinterlegt ist. Bei einem Abonnement mit mehreren Mannschaften stehen alle zugehörigen Mannschaftsnamen
+        gemeinsam in der Überschrift. Darunter zeigt Kaderblick die monatliche Summe und das Ende des aktuellen
+        Abrechnungszeitraums.
+    </p>
+
+    <p>
+        <strong>„Abo &amp; Zahlungsart verwalten“</strong> öffnet die externe Abonnementverwaltung. Dort wird das
+        bestehende Abonnement beziehungsweise die zugehörige Zahlungsart verwaltet. Kaderblick selbst zeigt auf dieser
+        Seite keine Felder zum Ändern einer hinterlegten Zahlungsart. Solange ein Abonnement noch ausschließlich den
+        Status <strong>„Aktivierung läuft“</strong> hat, ist diese Schaltfläche deaktiviert.
+    </p>
+
+    <p>
+        Die Abonnementkarten werden ausschließlich für Abonnements angezeigt, die vom aktuell angemeldeten Benutzer
+        abgeschlossen wurden. Eine Mannschaft kann deshalb als <strong>„Bezahlt &amp; aktiv“</strong> erscheinen, ohne
+        dass darunter eine passende Abonnementkarte sichtbar ist. Das ist möglich, wenn ein anderer berechtigter
+        Kassenwart die Zahlung übernommen hat. Der Name dieser zahlenden Person wird in der aktuellen Abrechnungsseite
+        nicht angezeigt.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Bestehendes Abonnement und Rechnungen',
+        description: 'Eine Abrechnungsseite mit einem bereits aktiven Abonnement aufnehmen. Zahlungs- und Rechnungsdaten mit persönlichen Angaben müssen unkenntlich gemacht werden.',
+        items: [
+            'zugehörige Mannschaft oder mehrere Mannschaften',
+            'monatliche Summe',
+            'Ende des aktuellen Abrechnungszeitraums',
+            'Schaltfläche „Abo & Zahlungsart verwalten“',
+            'Bereich „Rechnungen“ mit mindestens einem Eintrag und „Rechnung öffnen“'
+        ],
+        purpose: 'Verwaltung eines bestehenden Abonnements und Zugriff auf vorhandene Rechnungen zeigen.'
+    } %}
+
+    <h2>Rechnungen öffnen</h2>
+
+    <p>
+        Zu jedem eigenen Abonnement werden vorhandene Rechnungen unter <strong>„Rechnungen“</strong> aufgeführt. Ein
+        Eintrag zeigt das Datum und den Betrag. Ist eine Rechnungsdatei oder eine Rechnungsseite vorhanden, öffnet
+        <strong>„Rechnung öffnen“</strong> diese in einem neuen Browser-Tab.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Zahlungsstatus fehlt in der Rechnungsliste',
+        text: 'Die Rechnungsliste zeigt derzeit nur Datum und Betrag, nicht den Zahlungsstatus des einzelnen Eintrags. Auch eine Rechnung zu einem fehlgeschlagenen oder noch offenen Zahlungsversuch kann deshalb in dieser Liste stehen, ohne dort ausdrücklich als offen gekennzeichnet zu sein. Maßgeblich für den aktuellen Zustand ist die Statuskennzeichnung der Mannschaft beziehungsweise des Abonnements.'
+    } %}
+
+    <h2>Offene Zahlung und Zugriffssperre</h2>
+
+    <p>
+        Schlägt eine Zahlung fehl oder benötigt sie noch eine zusätzliche Bestätigung, wechselt das Abonnement auf
+        <strong>„Zahlung offen“</strong>. Eine später erfolgreich bezahlte Rechnung setzt den Status wieder auf
+        <strong>„Bezahlt &amp; aktiv“</strong> und die Zahl der offenen Abrechnungszeiträume wird auf null zurückgesetzt.
+    </p>
+
+    <p>
+        Bleibt eine Zahlung offen, wird der erste offene Abrechnungszeitraum vermerkt. Nach ungefähr weiteren 30 Tagen
+        gilt ein zweiter Abrechnungszeitraum als offen. Ab zwei offenen Abrechnungszeiträumen erhält die Mannschaft auf
+        der Abrechnungsseite den Status <strong>„Zugriff gesperrt“</strong>.
+    </p>
+
+    <p>
+        Die Sperrprüfung betrachtet alle Mannschaften, die mit dem angemeldeten Konto verbunden sind oder von ihm
+        abgerechnet werden können. Solange darunter mindestens eine Mannschaft weiterhin Zugriff besitzt, wird das
+        gesamte Konto durch diese Prüfung nicht vollständig blockiert. Sind dagegen sämtliche dabei berücksichtigten
+        Mannschaften gesperrt, bleiben im Wesentlichen nur noch die Abrechnung sowie grundlegende Funktionen für
+        Benachrichtigungen und Abmeldung erreichbar; andere Kaderblick-Funktionen können dann nicht mehr geladen werden.
+    </p>
+
+    <h2>Hinweise bei fehlender Zahlung</h2>
+
+    <p>
+        Bei einem fehlgeschlagenen Zahlungsversuch und beim Erreichen einer neuen offenen Abrechnungsstufe informiert
+        Kaderblick die zahlende Person, die aktuell zuständigen Mannschafts- und Vereinskassenwarte der betroffenen
+        Teams sowie die Plattformverwaltung. Die E-Mail nennt die betroffenen Mannschaften und verweist auf
+        <strong>Abrechnung &amp; Abo</strong>.
+    </p>
+
+    <p>
+        Zusätzlich kann eine Kaderblick-Benachrichtigung mit direktem Link zur Abrechnung erzeugt werden. Diese Meldung
+        fällt derzeit unter die Kategorie <strong>„System- und Verwaltungshinweise“</strong>. Diese Kategorie ist
+        standardmäßig ausgeschaltet. Ist sie deaktiviert, wird die Kaderblick-Benachrichtigung nicht angelegt; die
+        Abrechnungs-E-Mail wird unabhängig davon trotzdem versendet. Die Kategorie wird unter
+        <a href="{{ path('app_benachrichtigungen') }}">Benachrichtigungen</a> beschrieben.
+    </p>
+
+    <h2>Kündigung und erneuter Abschluss</h2>
+
+    <p>
+        Ein gekündigtes Abonnement wird mit <strong>„Gekündigt“</strong> gekennzeichnet. Ist noch ein bezahlter Zeitraum
+        hinterlegt, bleibt dessen Enddatum als <strong>„Bezahlt bis“</strong> sichtbar. Die eigentliche Kündigung wird
+        nicht über eine eigene Schaltfläche auf der Kaderblick-Seite ausgeführt, sondern über
+        <strong>„Abo &amp; Zahlungsart verwalten“</strong> in der externen Abonnementverwaltung.
+    </p>
+
+    {% include 'components/callout.html.twig' with {
+        type: 'warning',
+        title: 'Gekündigte Mannschaft wird derzeit nicht erneut zur Auswahl angeboten',
+        text: 'Die Auswahl unter „Abo abschließen“ enthält im aktuellen Stand ausschließlich Mannschaften mit dem Status „Noch nicht abonniert“. Eine gekündigte Mannschaft bleibt jedoch als „Gekündigt“ geführt und wird deshalb auch nach dem Ende des bezahlten Zeitraums nicht automatisch wieder in diese Auswahl aufgenommen. Für einen direkten Neuabschluss eines solchen Teams bietet die aktuelle Abrechnungsseite damit keinen Bedienweg.'
+    } %}
+{% endblock %}
