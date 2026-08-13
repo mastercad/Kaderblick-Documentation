@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cookie-Einstellungen – docs.kaderblick.de{% endblock %}
+
+{% block body %}
+    <h1>Cookie-Einstellungen</h1>
+
+    <p>
+        Mit den Cookie-Einstellungen legt ihr fest, ob Kaderblick neben den notwendigen Cookies auch
+        funktionale Einstellungen speichern und die Nutzung der Anwendung auswerten darf.
+    </p>
+
+    <h2>Erste Auswahl im Cookie-Hinweis</h2>
+
+    <p>
+        Solange noch keine gültige Auswahl gespeichert ist, erscheint am unteren Rand der Seite der Cookie-Hinweis.
+        Dort stehen drei Möglichkeiten zur Verfügung.
+    </p>
+
+    <p>
+        <strong>„Nur notwendige“</strong> lässt ausschließlich die für Anmeldung, Sicherheit und grundlegende
+        Funktionen benötigten Cookies zu. Funktionale Speicherung und Nutzungsanalyse bleiben ausgeschaltet.
+    </p>
+
+    <p>
+        <strong>„Einstellungen“</strong> öffnet die einzelnen Kategorien. Dort können funktionale Speicherung und
+        Analyse unabhängig voneinander aktiviert oder deaktiviert werden.
+    </p>
+
+    <p>
+        <strong>„Alle akzeptieren“</strong> aktiviert neben den notwendigen Cookies auch die funktionale Speicherung
+        und die Nutzungsanalyse.
+    </p>
+
+    <p>
+        Der Link <strong>„Datenschutzerklärung“</strong> im Hinweis führt zu den weiterführenden Angaben zum Datenschutz.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Cookie-Hinweis bei der ersten Auswahl',
+        description: 'Die Seite mit eingeblendetem Cookie-Hinweis am unteren Rand aufnehmen. Es dürfen keine personenbezogenen Inhalte im Hintergrund sichtbar sein.',
+        items: [
+            'Schaltfläche „Nur notwendige“',
+            'Schaltfläche „Einstellungen“',
+            'Schaltfläche „Alle akzeptieren“',
+            'Link „Datenschutzerklärung“'
+        ],
+        purpose: 'Die drei möglichen Entscheidungen beim ersten Cookie-Hinweis zeigen.'
+    } %}
+
+    <h2>Gespeicherte Auswahl später ändern</h2>
+
+    <p>
+        Angemeldete Benutzer öffnen oben rechts das Benutzermenü und wählen
+        <strong>„Cookie-Einstellungen“</strong>. Ohne Anmeldung befindet sich im Seitenfuß der Link
+        <strong>„Cookies“</strong>, der denselben Einstellungsdialog öffnet.
+    </p>
+
+    <p>
+        Beim Öffnen zeigt der Dialog die derzeit gespeicherte Auswahl. Auf einem Smartphone wird der Dialog
+        bildschirmfüllend dargestellt. Die einzelnen Kategorien lassen sich über den Pfeil links neben dem Namen
+        aufklappen; darunter erscheinen die Beschreibung und Beispiele für die jeweilige Kategorie.
+    </p>
+
+    {% include 'components/bildplatzhalter.html.twig' with {
+        title: 'Dialog „Cookie-Einstellungen“',
+        description: 'Den geöffneten Dialog mit mindestens einer aufgeklappten Kategorie aufnehmen. Keine personenbezogenen Inhalte im Hintergrund anzeigen.',
+        items: [
+            'Kategorie „Notwendig“ mit „Immer aktiv“',
+            'Schalter für „Funktional“',
+            'Schalter für „Analyse“',
+            'Schaltfläche „Auswahl speichern“',
+            'Schaltfläche „Alle akzeptieren“',
+            'Link zur Datenschutzerklärung'
+        ],
+        purpose: 'Aufbau des Einstellungsdialogs und die veränderbaren Kategorien zeigen.'
+    } %}
+
+    <h2>Notwendige Cookies</h2>
+
+    <p>
+        Die Kategorie <strong>„Notwendig“</strong> ist immer aktiv und kann nicht ausgeschaltet werden. Sie wird für
+        grundlegende Funktionen wie Anmeldung, Sitzungsverwaltung, Sicherheitsprüfungen und notwendige
+        Grundeinstellungen verwendet. Im Dialog ist die Kategorie deshalb mit einem Schloss und
+        <strong>„Immer aktiv“</strong> gekennzeichnet.
+    </p>
+
+    <h2>Funktionale Speicherung</h2>
+
+    <p>
+        Die Kategorie <strong>„Funktional“</strong> speichert Einstellungen, die nicht für den grundlegenden Betrieb
+        erforderlich sind, aber die gewählte Darstellung und Arbeitsweise über spätere Seitenaufrufe hinweg erhalten.
+        Dazu gehören im aktuellen Stand unter anderem die Auswahl von Hell- oder Dunkelmodus, der Zustand der
+        Seitenleiste, die zuletzt gewählte Nachrichtenansicht, die Mannschaftsauswahl auf der Spieleseite,
+        Einstellungen zur Feiertagsanzeige im Kalender und geöffnete beziehungsweise geschlossene Bereiche in
+        Spieldetails.
+    </p>
+
+    <p>
+        Auch lokale Arbeitsstände können zu dieser Kategorie gehören. Dazu zählen beispielsweise gespeicherte
+        Taktik-Entwürfe. Wird <strong>„Funktional“</strong> nach einer vorherigen Zustimmung ausgeschaltet und die
+        Auswahl gespeichert, entfernt Kaderblick die zu dieser Kategorie gespeicherten Browserdaten. Solche
+        Einstellungen können danach wieder auf ihre Standardwerte zurückfallen; gespeicherte Taktik-Entwürfe dieser
+        Kategorie werden dabei ebenfalls entfernt.
+    </p>
+
+    <p>
+        Lokal zwischengespeicherte Benachrichtigungen werden bei diesem Widerruf ebenfalls entfernt. Die eigentlichen
+        Benachrichtigungen des Benutzerkontos werden dadurch nicht gelöscht und können erneut aus Kaderblick geladen
+        werden.
+    </p>
+
+    <h2>Nutzungsanalyse</h2>
+
+    <p>
+        Die Kategorie <strong>„Analyse“</strong> erlaubt Kaderblick, die Nutzung angemeldeter Benutzer auszuwerten.
+        Erfasst werden im aktuellen Stand unter anderem Seitenaufrufe, aktive Nutzungsdauer und bestimmte
+        Bedienaktionen innerhalb einzelner Bereiche. Ohne Zustimmung zu dieser Kategorie werden diese
+        Nutzungsereignisse nicht gespeichert.
+    </p>
+
+    <p>
+        Wird die Analyse nach einer vorherigen Zustimmung ausgeschaltet und die Auswahl gespeichert, beendet
+        Kaderblick die weitere Erfassung. Für ein angemeldetes Benutzerkonto wird zusätzlich die Löschung der bisher
+        diesem Konto zugeordneten Analysedaten angestoßen.
+    </p>
+
+    <h2>Auswahl speichern oder widerrufen</h2>
+
+    <p>
+        Nach einer Änderung übernimmt <strong>„Auswahl speichern“</strong> den aktuellen Zustand der beiden optionalen
+        Kategorien. <strong>„Alle akzeptieren“</strong> schaltet beide optionalen Kategorien ein und speichert die
+        Auswahl sofort.
+    </p>
+
+    <p>
+        Soll nach einer früheren Zustimmung nur noch die notwendige Kategorie verwendet werden, müssen
+        <strong>„Funktional“</strong> und <strong>„Analyse“</strong> ausgeschaltet und anschließend mit
+        <strong>„Auswahl speichern“</strong> bestätigt werden. Die Schaltfläche <strong>„Nur notwendige“</strong>
+        steht nur im anfänglichen Cookie-Hinweis zur Verfügung, nicht im später geöffneten Einstellungsdialog.
+    </p>
+
+    <p>
+        Wird der Einstellungsdialog über das <strong>×</strong> geschlossen, ohne die Auswahl zu speichern, werden die
+        dort vorgenommenen Änderungen nicht übernommen. Beim nächsten Öffnen erscheint wieder der zuletzt gespeicherte
+        Zustand.
+    </p>
+
+    <h2>Auswahl auf mehreren Geräten oder in mehreren Browsern</h2>
+
+    <p>
+        Die Cookie-Auswahl wird im jeweils verwendeten Browser gespeichert. Auf einem anderen Gerät oder in einem
+        anderen Browser muss die Auswahl deshalb separat getroffen werden. Wird die Einstellung in einem weiteren
+        geöffneten Tab desselben Browsers geändert, übernimmt Kaderblick den neuen Zustand auch in den anderen offenen
+        Tabs.
+    </p>
+
+    <p>
+        Ändert sich die zugrunde liegende Cookie-Richtlinie, kann Kaderblick eine bereits gespeicherte Auswahl als nicht
+        mehr aktuell behandeln. In diesem Fall erscheint der Cookie-Hinweis erneut und verlangt eine neue Auswahl.
+    </p>
+{% endblock %}
