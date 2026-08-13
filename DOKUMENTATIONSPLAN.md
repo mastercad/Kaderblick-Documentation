@@ -54,7 +54,7 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Strafenkatalog | abgeschlossen |
 | Inventar | abgeschlossen |
 | Kassenbuch | abgeschlossen |
-| Abrechnung & Abo | offen |
+| Abrechnung & Abo | abgeschlossen |
 | Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | noch zu prüfen |
 
 ## Vorgehen je Bereich
