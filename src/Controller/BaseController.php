@@ -23,6 +23,7 @@ abstract class BaseController extends AbstractController
             'app_home' => ['label' => 'Übersicht', 'icon' => '🏠'],
             'app_erste_schritte' => ['label' => 'Erste Schritte', 'icon' => '🚀'],
             'app_authentifizierung' => ['label' => 'Anmelden & Registrieren', 'icon' => '🔐'],
+            'app_cookie_einstellungen' => ['label' => 'Cookie-Einstellungen', 'icon' => '🍪'],
             'app_vereine_teams' => ['label' => 'Vereine & Teams', 'icon' => '🏢'],
             'app_strafenkatalog' => ['label' => 'Strafenkatalog', 'icon' => '⚖️'],
             'app_inventar' => ['label' => 'Inventar', 'icon' => '📦'],
