@@ -57,6 +57,9 @@ Diese Datei hält den Arbeitsstand der vollständigen Überarbeitung fest. Maßg
 | Abrechnung & Abo | abgeschlossen |
 | Registrierungs-QR-Code | abgeschlossen |
 | Cookie-Einstellungen | abgeschlossen |
+| Aktualisieren durch Herunterziehen auf Touch-Geräten | abgeschlossen |
+| Globaler Push-Warnhinweis bei Zustellproblemen | offen |
+| Schneller Wechsel zwischen heller und dunkler Darstellung im Benutzermenü | offen |
 | Weitere außerhalb der bisher geprüften Navigation erreichbare Benutzerfunktionen | in Prüfung |
 
 ## Vorgehen je Bereich
