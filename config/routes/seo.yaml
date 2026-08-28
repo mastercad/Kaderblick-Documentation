@@ -1,0 +1,9 @@
+seo_robots:
+  path: /robots.txt
+  controller: App\Controller\SeoController::robots
+  methods: [GET, HEAD]
+
+seo_sitemap:
+  path: /sitemap.xml
+  controller: App\Controller\SeoController::sitemap
+  methods: [GET, HEAD]

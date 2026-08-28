@@ -1,34 +1,111 @@
-/* ─── Custom Font ─── */
 @font-face {
     font-family: 'ImpactWeb';
     src: url('/fonts/ImpactLTStd.woff2') format('woff2');
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
-    font-display: block;
+    font-display: swap;
 }
 
-/* ─── Design Tokens ─── */
 :root {
-    --color-primary: #018606;
-    --color-primary-light: #00c853;
-    --color-bg: #f8f9fa;
-    --color-surface: #ffffff;
-    --color-text: #1a1a1a;
-    --color-text-muted: #6b7280;
-    --color-border: #e5e7eb;
-    --sidebar-width: 260px;
-    --header-height: 60px;
+    color-scheme: light;
+    --kb-ink: #0c0e0d;
+    --kb-forest: #142118;
+    --kb-green: #1f7a35;
+    --kb-green-light: #3fa653;
+    --kb-lime: #78d13f;
+    --kb-bg: #f3f6f2;
+    --kb-surface: #ffffff;
+    --kb-surface-soft: #f7faf7;
+    --kb-text: #142118;
+    --kb-text-muted: #526059;
+    --kb-border: rgba(20, 54, 30, 0.12);
+    --kb-focus: rgba(31, 122, 53, 0.24);
+    --kb-success: #238636;
+    --kb-warning: #9b5a08;
+    --kb-danger: #b72d36;
+    --kb-info: #2479a8;
+    --kb-radius-sm: 8px;
+    --kb-radius: 12px;
+    --kb-radius-lg: 16px;
+    --kb-shadow: 0 14px 36px rgba(24, 58, 32, 0.07);
+    --kb-shadow-strong: 0 18px 44px rgba(24, 58, 32, 0.1);
+    --sidebar-width: 300px;
+    --header-height: 72px;
+    --content-width: 1120px;
+    /* Übergangsaliase für bestehende Inhaltskomponenten */
+    --color-primary: var(--kb-green);
+    --color-primary-light: var(--kb-green-light);
+    --color-bg: var(--kb-bg);
+    --color-surface: var(--kb-surface);
+    --color-text: var(--kb-text);
+    --color-text-muted: var(--kb-text-muted);
+    --color-border: var(--kb-border);
 }
 
-/* ─── Reset & Basis ─── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 24px); }
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
+    margin: 0;
     min-height: 100vh;
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
+    background: radial-gradient(circle at 90% 0%, rgba(90, 170, 82, 0.08), transparent 30%), var(--kb-bg);
+    color: var(--kb-text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    text-align: left;
 }
+button, input, select, textarea { font: inherit; }
+a { color: var(--kb-green); }
+img { max-width: 100%; }
+:focus-visible { outline: 3px solid var(--kb-focus); outline-offset: 3px; }
+::selection { background: rgba(31, 122, 53, 0.25); }
+.skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 1000;
+    padding: 10px 14px;
+    border-radius: var(--kb-radius-sm);
+    background: var(--kb-ink);
+    color: #fff;
+    transform: translateY(-150%);
+}
+.skip-link:focus { transform: translateY(0); }
+.visually-hidden {
+    position: absolute !important; width: 1px !important; height: 1px !important;
+    padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --kb-ink: #f3f7f4;
+    --kb-forest: #e7f0e9;
+    --kb-green: #72d44c;
+    --kb-green-light: #9bea76;
+    --kb-lime: #a4eb63;
+    --kb-bg: #080d0a;
+    --kb-surface: #111814;
+    --kb-surface-soft: #0e1511;
+    --kb-text: #f3f7f4;
+    --kb-text-muted: rgba(231, 240, 233, 0.72);
+    --kb-border: rgba(184, 220, 191, 0.13);
+    --kb-focus: rgba(114, 212, 76, 0.3);
+    --kb-success: #64cf63;
+    --kb-warning: #f0b84b;
+    --kb-danger: #ff6b6b;
+    --kb-info: #65b8e8;
+    --kb-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+    --kb-shadow-strong: 0 18px 44px rgba(0, 0, 0, 0.27);
+}
+
+[data-theme="dark"] body {
+    background: radial-gradient(circle at 88% -10%, rgba(80, 160, 65, 0.1), transparent 34%), var(--kb-bg);
+}
+[data-theme="dark"] .site-header { background: rgba(8, 13, 10, 0.9); }
+[data-theme="dark"] .sidebar { background: rgba(13, 20, 16, 0.9); }
+[data-theme="dark"] .site-footer { background: rgba(13, 20, 16, 0.7); }
+[data-theme="dark"] .callout--tip { background: rgba(100, 207, 99, 0.08); }
+[data-theme="dark"] .callout--info { background: rgba(101, 184, 232, 0.08); }
+[data-theme="dark"] .callout--warning { background: rgba(240, 184, 75, 0.08); }
+[data-theme="dark"] .callout--danger { background: rgba(255, 107, 107, 0.08); }

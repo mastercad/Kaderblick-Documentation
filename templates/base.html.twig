@@ -1,9 +1,93 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{ app.request.locale|replace({'_': '-'}) }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}docs.kaderblick.de{% endblock %}</title>
+        <script>
+            (function () {
+                const saved = localStorage.getItem('kaderblick-docs-theme');
+                const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.dataset.theme = theme;
+            })();
+        </script>
+        {% set seo_title %}{% block title %}Kaderblick Docs{% endblock %}{% endset %}
+        {% set seo_title = seo_title|striptags|trim %}
+        {% set seo_description = (seo_title ~ ' – ' ~ (document.hero.lead|default('seo.default_description'|trans)))|striptags|trim %}
+        <title>{{ seo_title }}</title>
+        <meta name="description" content="{{ seo_description }}">
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+        {% set current_route = app.request.attributes.get('_route') %}
+        {% set current_route_params = app.request.attributes.get('_route_params')|default({}) %}
+        {% if current_route and current_route starts with 'docs_' %}
+            {% set canonical_url = absolute_url(path(current_route, current_route_params|merge({'lang': app.request.attributes.get('lang')}))) %}
+            <link rel="canonical" href="{{ canonical_url }}">
+            {% for url_locale, hreflang in {'de': 'de', 'en': 'en', 'fr': 'fr', 'ru': 'ru', 'zh-hans': 'zh-Hans'} %}
+                <link rel="alternate" hreflang="{{ hreflang }}" href="{{ absolute_url(path(current_route, current_route_params|merge({'lang': url_locale}))) }}">
+            {% endfor %}
+            <link rel="alternate" hreflang="x-default" href="{{ absolute_url(path(current_route, current_route_params|merge({'lang': 'de'}))) }}">
+            <meta property="og:type" content="website">
+            <meta property="og:site_name" content="Kaderblick Docs">
+            <meta property="og:title" content="{{ seo_title }}">
+            <meta property="og:description" content="{{ seo_description }}">
+            <meta property="og:url" content="{{ canonical_url }}">
+            <meta name="twitter:card" content="summary">
+            <meta name="twitter:title" content="{{ seo_title }}">
+            <meta name="twitter:description" content="{{ seo_description }}">
+            {% set structured_data = {
+                '@context': 'https://schema.org',
+                '@type': current_route == 'docs_home' ? 'WebSite' : 'WebPage',
+                '@id': canonical_url ~ (current_route == 'docs_home' ? '#website' : '#webpage'),
+                'name': seo_title,
+                'description': seo_description,
+                'url': canonical_url,
+                'inLanguage': app.request.locale|replace({'_': '-'}),
+                'publisher': {
+                    '@type': 'Organization',
+                    '@id': 'https://kaderblick.de/#organization',
+                    'name': 'Kaderblick',
+                    'url': 'https://kaderblick.de/'
+                },
+                'about': {
+                    '@type': 'SoftwareApplication',
+                    '@id': 'https://kaderblick.de/#software',
+                    'name': 'Kaderblick',
+                    'url': 'https://kaderblick.de/',
+                    'applicationCategory': 'SportsApplication',
+                    'operatingSystem': 'Web',
+                    'publisher': {'@id': 'https://kaderblick.de/#organization'}
+                }
+            } %}
+            {% if current_route == 'docs_home' %}
+                {% set structured_data = structured_data|merge({'alternateName': 'Kaderblick Dokumentation'}) %}
+            {% else %}
+                {% set structured_data = structured_data|merge({
+                    'isPartOf': {
+                        '@type': 'WebSite',
+                        '@id': absolute_url(path('docs_home')) ~ '#website',
+                        'name': 'Kaderblick Docs',
+                        'url': absolute_url(path('docs_home'))
+                    },
+                    'breadcrumb': {
+                        '@type': 'BreadcrumbList',
+                        'itemListElement': [
+                            {
+                                '@type': 'ListItem',
+                                'position': 1,
+                                'name': 'Kaderblick Docs',
+                                'item': absolute_url(path('docs_home'))
+                            },
+                            {
+                                '@type': 'ListItem',
+                                'position': 2,
+                                'name': document.hero.heading|default(seo_title)|striptags,
+                                'item': canonical_url
+                            }
+                        ]
+                    }
+                }) %}
+            {% endif %}
+            <script type="application/ld+json">{{ structured_data|json_encode|raw }}</script>
+        {% endif %}
         <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon">
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
@@ -22,15 +106,47 @@
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
         {% endblock %}
         {% block head_extras %}{% endblock %}
+        <script src="{{ asset('js/docs-search.js') }}" defer></script>
     </head>
     <body>
+        <a class="skip-link" href="#main-content">{{ 'layout.skip_to_content'|trans }}</a>
         {# ─── Header ─── #}
         <header class="site-header">
-            <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Menü öffnen">☰</button>
-            <a href="{{ path('app_home') }}" class="site-header__logo">
+            <button class="sidebar-toggle" type="button" onclick="toggleSidebar()" aria-label="{{ 'layout.open_menu'|trans }}" aria-controls="sidebar" aria-expanded="false">☰</button>
+            <a href="{{ path('docs_home') }}" class="site-header__logo">
                 <span class="site-header__logo_text"><span class="site-header__logo_highlight">K</span>ADERBLICK</span>
                 <span class="site-header__badge">Docs</span>
             </a>
+            <div class="header-search" role="search" data-docs-search
+                 data-locale="{{ app.request.locale }}"
+                 data-loading="{{ 'search.loading'|trans }}"
+                 data-empty="{{ 'search.empty'|trans }}"
+                 data-no-results="{{ 'search.no_results'|trans }}"
+                 data-result-count="{{ 'search.result_count'|trans }}"
+                 data-match-page="{{ 'search.match_page'|trans }}"
+                 data-match-heading="{{ 'search.match_heading'|trans }}"
+                 data-match-content="{{ 'search.match_content'|trans }}"
+                 data-error="{{ 'search.error'|trans }}">
+                <span class="header-search__icon" aria-hidden="true">⌕</span>
+                <label class="visually-hidden" for="docs-search-input">{{ 'search.label'|trans }}</label>
+                <input id="docs-search-input" class="header-search__input" type="search" autocomplete="off" spellcheck="false"
+                       placeholder="{{ 'search.placeholder'|trans }}" aria-controls="docs-search-results" aria-expanded="false" data-search-input>
+                <div class="header-search__popover" data-search-popover hidden>
+                    <p class="header-search__status" data-search-status aria-live="polite">{{ 'search.empty'|trans }}</p>
+                    <ol class="search-results" id="docs-search-results" data-search-results></ol>
+                </div>
+            </div>
+            <button class="header-action theme-toggle" type="button" onclick="toggleDocsTheme()" aria-label="{{ 'header.theme'|trans }}" aria-pressed="false"><span aria-hidden="true">◐</span></button>
+            <div class="site-header__tools" aria-label="{{ 'layout.tools'|trans }}">
+                <a class="header-action" href="{{ path('docs_roles') }}">{{ 'header.roles'|trans }}</a>
+                <label class="visually-hidden" for="docs-language">{{ 'header.language'|trans }}</label>
+                <select class="header-action language-select" id="docs-language" onchange="changeDocsLanguage(this.value)" aria-label="{{ 'header.language'|trans }}">
+                    {% for locale, label in {'de': '🇩🇪 Deutsch', 'en': '🇬🇧 English', 'fr': '🇫🇷 Français', 'ru': '🇷🇺 Русский', 'zh-hans': '🇨🇳 简体中文'} %}
+                        <option value="{{ locale }}" {{ app.request.attributes.get('lang') == locale ? 'selected' : '' }}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                <a class="header-action" href="https://kaderblick.de" target="_blank" rel="noopener">{{ 'header.open_app'|trans }}</a>
+            </div>
         </header>
 
         <div class="site-layout">
@@ -39,28 +155,34 @@
 
             {# ─── Sidebar ─── #}
             <aside class="sidebar" id="sidebar">
-                <div class="sidebar__section-title">Dokumentation</div>
-                <ul class="sidebar__nav">
-                    {% for route, item in navigation %}
-                        <li>
-                            <a href="{{ path(route) }}"
-                               class="sidebar__link {{ active_route == route ? 'sidebar__link--active' : '' }}">
-                                <span class="sidebar__link-icon">{{ item.icon }}</span>
-                                {{ item.label }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                <p class="sidebar__intro">{{ 'layout.sidebar_intro'|trans }}</p>
+                {% for group_label, group_items in navigation_groups %}
+                    <details class="sidebar-group" data-sidebar-group="{{ group_label }}" open>
+                    <summary class="sidebar__section-title">{{ group_label|trans }}</summary>
+                    <ul class="sidebar__nav">
+                        {% for route, item in group_items %}
+                            <li>
+                                <a href="{{ path(route) }}"
+                                   class="sidebar__link {{ active_route == route ? 'sidebar__link--active' : '' }}">
+                                    <span class="sidebar__link-icon">{{ item.icon }}</span>
+                                    {{ item.label|trans }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    </details>
+                {% endfor %}
 
                 {% if tools_navigation is defined and tools_navigation is not empty %}
-                    <div class="sidebar__section-title sidebar__section-title--tools">Tools & Equipment</div>
+                    <details class="sidebar-group" data-sidebar-group="tools" open>
+                    <summary class="sidebar__section-title sidebar__section-title--tools">{{ 'sidebar.tools'|trans }}</summary>
                     <ul class="sidebar__nav">
                         {% for route, item in tools_navigation %}
                             <li>
                                 <a href="{{ path(route) }}"
                                    class="sidebar__link {{ active_route == route ? 'sidebar__link--active' : '' }}">
                                     <span class="sidebar__link-icon">{{ item.icon }}</span>
-                                    {{ item.label }}
+                                    {{ item.label|trans }}
                                 </a>
                                 {% if item.children is defined %}
                                     <ul class="sidebar__nav sidebar__nav--children">
@@ -69,7 +191,7 @@
                                                 <a href="{{ path(child_route) }}"
                                                    class="sidebar__link sidebar__link--child {{ active_route == child_route ? 'sidebar__link--active' : '' }}">
                                                     <span class="sidebar__link-icon">{{ child.icon }}</span>
-                                                    {{ child.label }}
+                                                    {{ child.label|trans }}
                                                 </a>
                                             </li>
                                         {% endfor %}
@@ -78,42 +200,107 @@
                             </li>
                         {% endfor %}
                     </ul>
+                    </details>
                 {% endif %}
             </aside>
 
             {# ─── Content ─── #}
-            <main class="site-content">
+            <main class="site-content" id="main-content" tabindex="-1" data-toc-title="{{ 'toc.title'|trans }}" data-toc-open="{{ 'toc.open'|trans }}" data-toc-close="{{ 'toc.close'|trans }}" data-back-to-top="{{ 'toc.back_to_top'|trans }}" data-image-open="{{ 'image.open'|trans }}" data-image-close="{{ 'image.close'|trans }}">
                 {% block body %}{% endblock %}
             </main>
         </div>
 
         <footer class="site-footer">
-            &copy; {{ 'now'|date('Y') }} docs.kaderblick.de &middot; Teil von
+            &copy; {{ 'now'|date('Y') }} docs.kaderblick.de &middot; {{ 'layout.part_of'|trans }}
             <a href="https://kaderblick.de" target="_blank">kaderblick.de</a>
         </footer>
 
         <script>
-            function toggleSidebar() {
-                document.getElementById('sidebar').classList.toggle('sidebar--open');
-                document.getElementById('sidebarOverlay').classList.toggle('sidebar-overlay--visible');
+            function syncThemeButton() {
+                const button = document.querySelector('.theme-toggle');
+                const dark = document.documentElement.dataset.theme === 'dark';
+                button.setAttribute('aria-pressed', String(dark));
+                button.querySelector('span').textContent = dark ? '☀' : '☾';
             }
 
-            /* Sidebar-Scrollposition über Seitenwechsel hinweg beibehalten */
+            function toggleDocsTheme() {
+                const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.dataset.theme = next;
+                localStorage.setItem('kaderblick-docs-theme', next);
+                syncThemeButton();
+            }
+
+            syncThemeButton();
+
+            function changeDocsLanguage(locale) {
+                const url = new URL(window.location.href);
+                const segments = url.pathname.split('/').filter(Boolean);
+                if (['de', 'en', 'fr', 'ru', 'zh-hans'].includes(segments[0])) {
+                    segments[0] = locale;
+                } else {
+                    segments.unshift(locale);
+                }
+                url.pathname = '/' + segments.join('/') + (url.pathname.endsWith('/') ? '/' : '');
+                url.searchParams.delete('lang');
+                window.location.assign(url.toString());
+            }
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                const toggle = document.querySelector('.sidebar-toggle');
+                const isOpen = sidebar.classList.toggle('sidebar--open');
+                overlay.classList.toggle('sidebar-overlay--visible', isOpen);
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            }
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && document.getElementById('sidebar').classList.contains('sidebar--open')) {
+                    toggleSidebar();
+                    document.querySelector('.sidebar-toggle').focus();
+                }
+            });
+
+            /* Gruppenstatus erhalten, aktive Gruppe öffnen und aktiven Link sichtbar machen. */
             (function () {
                 const sidebar = document.getElementById('sidebar');
-                const STORAGE_KEY = 'sidebar_scroll';
+                const groups = [...sidebar.querySelectorAll('.sidebar-group')];
+                const activeLink = sidebar.querySelector('.sidebar__link--active');
+                const activeGroup = activeLink?.closest('.sidebar-group');
+                const STORAGE_KEY = 'kaderblick-docs-sidebar-groups';
 
-                /* Gespeicherte Position wiederherstellen */
-                const saved = sessionStorage.getItem(STORAGE_KEY);
-                if (saved !== null) {
-                    sidebar.scrollTop = parseInt(saved, 10);
+                try {
+                    const savedGroups = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
+                    if (savedGroups && typeof savedGroups === 'object') {
+                        groups.forEach(function (group) {
+                            group.open = savedGroups[group.dataset.sidebarGroup] !== false;
+                        });
+                    }
+                } catch (_) {
+                    /* Ungültige alte Sitzungsdaten ändern den offenen Standardzustand nicht. */
                 }
 
-                /* Position vor dem Verlassen der Seite speichern */
-                window.addEventListener('beforeunload', function () {
-                    sessionStorage.setItem(STORAGE_KEY, sidebar.scrollTop);
+                if (activeGroup) activeGroup.open = true;
+
+                groups.forEach(function (group) {
+                    group.addEventListener('toggle', function () {
+                        const state = Object.fromEntries(groups.map(function (item) {
+                            return [item.dataset.sidebarGroup, item.open];
+                        }));
+                        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+                    });
+                });
+
+                if (!activeLink) return;
+                requestAnimationFrame(function () {
+                    const sidebarRect = sidebar.getBoundingClientRect();
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const linkIsVisible = linkRect.top >= sidebarRect.top && linkRect.bottom <= sidebarRect.bottom;
+                    if (linkIsVisible) return;
+                    sidebar.scrollTop += linkRect.top - sidebarRect.top - (sidebar.clientHeight - linkRect.height) / 2;
                 });
             })();
         </script>
+        <script src="{{ asset('js/docs-toc.js') }}" defer></script>
+        <script src="{{ asset('js/docs-images.js') }}" defer></script>
     </body>
 </html>

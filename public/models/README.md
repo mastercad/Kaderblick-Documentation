@@ -1,13 +1,13 @@
 # 3D-Modelle
 
-Lege hier die 3D-Dateien deiner Kameras ab. Unterstützt werden **OBJ** und **GLB** Formate.
+Lege hier die 3D-Dateien deiner cameras ab. Unterstützt werden **OBJ** und **GLB** Formate.
 
 ## Dateien
 
-| Kamera     | OBJ-Dateien                                              | GLB-Datei (Scan)          |
+| camera     | OBJ-Dateien                                              | GLB-Datei (Scan)          |
 |------------|----------------------------------------------------------|---------------------------|
-| Kaderblick | `kaderblick-kamera.obj` + `kaderblick-kamera.mtl` (opt.) | `kaderblick-kamera.glb`   |
-| PTZ        | `ptz-kamera.obj` + `ptz-kamera.mtl` (optional)           | `ptz-kamera.glb`          |
+| Kaderblick | `kaderblick-camera.obj` + `kaderblick-camera.mtl` (opt.) | `kaderblick-camera.glb`   |
+| PTZ        | `ptz-camera.obj` + `ptz-camera.mtl` (optional)           | `ptz-camera.glb`          |
 
 ## Formate
 
@@ -26,7 +26,7 @@ Lege hier die 3D-Dateien deiner Kameras ab. Unterstützt werden **OBJ** und **GL
 
 ## Wenn beide Formate vorhanden sind
 
-Sind für eine Kamera sowohl OBJ als auch GLB vorhanden, zeigt die 3D-Ansicht einen **Umschalter**:
+Sind für eine camera sowohl OBJ als auch GLB vorhanden, zeigt die 3D-Ansicht einen **Umschalter**:
 
 - **📐 OBJ-Modell** – z.B. CAD-Export mit sauberer Geometrie
 - **🧊 GLB-Scan** – z.B. Photogrammetrie-Scan mit Texturen
@@ -41,6 +41,6 @@ Sind für eine Kamera sowohl OBJ als auch GLB vorhanden, zeigt die 3D-Ansicht ei
 
 ### GLB aus Smartphone-Scan
 
-1. Mit Polycam, Luma AI oder RealityScan die Kamera rundherum fotografieren
+1. Mit Polycam, Luma AI oder RealityScan die camera rundherum fotografieren
 2. Als `.glb` exportieren (Draco-Komprimierung empfohlen)
 3. Die `.glb`-Datei in diesen Ordner kopieren

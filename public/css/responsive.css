@@ -1,38 +1,52 @@
-/* ─── Responsive ─── */
-@media (max-width: 768px) {
-    .sidebar-toggle {
-        display: block;
-    }
-
+@media (max-width: 900px) {
+    :root { --header-height: 64px; }
+    .sidebar-toggle { display: inline-grid; place-items: center; }
+    .site-header { padding-inline: 14px; }
+    .site-header__tools { display: none; }
+    .header-search { flex: 1 1 160px; width: auto; min-width: 90px; margin-left: auto; }
+    .header-search__popover { right: 0; left: auto; }
+    .theme-toggle { margin-left: 0; }
+    .site-layout { display: block; }
     .sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.25s ease;
+        transform: translateX(-105%);
+        transition: transform .22s ease;
         box-shadow: none;
     }
-
-    .sidebar--open {
-        transform: translateX(0);
-        box-shadow: 4px 0 12px rgba(0,0,0,0.1);
-    }
-
-    .site-content,
-    .site-footer {
-        margin-left: 0;
-    }
-
-    .site-content {
-        padding: 1.5rem 1rem;
-    }
-
+    .sidebar--open { transform: translateX(0); box-shadow: 12px 0 40px rgba(12, 30, 17, 0.16); }
+    .site-content, .site-footer { grid-column: auto; margin-left: 0; }
+    .site-content { padding: 28px 18px 56px; }
     .sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.3);
-        z-index: 40;
+        display: block; position: fixed; inset: var(--header-height) 0 0; z-index: 70;
+        background: rgba(12, 14, 13, 0.42); opacity: 0; pointer-events: none;
+        transition: opacity .22s ease;
     }
-
-    .sidebar-overlay--visible {
-        display: block;
-    }
+    .sidebar-overlay--visible { opacity: 1; pointer-events: auto; }
+}
+@media (max-width: 1180px) {
+    .docs-shell { display: block; }
+    .page-toc { position: fixed; z-index: 95; right: 14px; bottom: 76px; left: 14px; top: auto; max-height: min(65vh, 560px); padding: 20px; border: 1px solid var(--kb-border); border-radius: 16px; background: var(--kb-surface); box-shadow: var(--kb-shadow-strong); opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .18s ease, transform .18s ease, visibility .18s; }
+    .page-toc--open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .reading-controls { position: fixed; z-index: 96; right: 14px; bottom: 14px; left: 14px; display: flex; justify-content: space-between; pointer-events: none; }
+    .reading-controls button { min-height: 46px; border: 1px solid var(--kb-border); border-radius: 999px; background: var(--kb-surface); color: var(--kb-text); box-shadow: var(--kb-shadow-strong); font: inherit; font-size: .84rem; font-weight: 720; cursor: pointer; pointer-events: auto; }
+    .reading-controls__sections { display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; }
+    .reading-controls__top { width: 46px; opacity: 0; transform: translateY(10px); transition: opacity .18s ease, transform .18s ease; pointer-events: none !important; }
+    .reading-controls__top--visible { opacity: 1; transform: none; pointer-events: auto !important; }
+}
+@media (max-width: 600px) {
+    .site-header__logo_text { font-size: 1.35rem; }
+    .site-header__badge { display: none; }
+    .site-content { padding-inline: 14px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .site-content table { min-width: 680px; }
+    .table-scroll { overflow-x: auto; }
+    .header-search__input { padding-right: 10px; }
+    .guide-grid, .chapter-navigation { grid-template-columns: 1fr; }
+    .chapter-navigation > span:empty { display: none; }
+    .chapter-navigation__link--next { text-align: left; }
+    .chapter-breadcrumb { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .image-lightbox { width: 100vw; height: 100vh; max-height: none; border-radius: 0; }
+    .image-lightbox img { min-width: 1050px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

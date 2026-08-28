@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}3D-Ansicht – Kaderblick-Kamera – docs.kaderblick.de{% endblock %}
+
+{% block head_extras %}
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+    }
+}
+</script>
+{% endblock %}
+
+{% block body %}
+<article class="docs-page">
+    {% include 'components/docs_hero.html.twig' with {
+        heading: '3D-Ansicht – Kaderblick-Kamera',
+        lead: 'Interaktive 3D-Darstellung des Kaderblick-Kameragehäuses. Dreh das Modell per Maus oder Touch. Klicke in der Teilekarte auf ein Bauteil, um es im 3D-Modell anzufliegen und hervorzuheben. Innere Bauteile öffnen das Gehäuse automatisch als Explosionsansicht.'
+    } only %}
+
+    {% include 'components/camera_subnav.html.twig' with {
+        base_route: 'docs_kaderblick_camera',
+        current_path: app.request.pathInfo
+    } %}
+
+    {% include 'components/kaderblick_3d_viewer.html.twig' %}
+</article>
+{% endblock %}

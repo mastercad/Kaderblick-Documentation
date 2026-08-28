@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ document.title }}{% endblock %}
+
+{% block body %}
+    <article class="docs-page docs-page--overview">
+        {% include 'components/docs_hero.html.twig' with {
+            heading: document.hero.heading,
+            lead: document.hero.lead,
+            eyebrow: document.hero.eyebrow,
+            chips: document.hero.chips
+        } only %}
+
+        <section class="guide-overview" aria-labelledby="guide-overview-title">
+            <div class="section-heading">
+                <h2 id="guide-overview-title">{{ 'guide_overview.compact_title'|trans }}</h2>
+            </div>
+            <ol class="guide-grid">
+                {% for section in sections %}
+                    <li>
+                        <a class="guide-card" href="{{ path('docs_long_form_section', {page: page, section: section.slug}) }}">
+                            <span class="guide-card__content">
+                                <strong>{{ section.title }}</strong>
+                                {% if section.summary %}<span>{{ section.summary }}</span>{% endif %}
+                            </span>
+                            <span class="guide-card__arrow" aria-hidden="true">→</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </section>
+    </article>
+{% endblock %}

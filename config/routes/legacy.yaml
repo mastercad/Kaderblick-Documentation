@@ -1,0 +1,235 @@
+legacy_billing:
+  path: /{lang}/abrechnung
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_billing, permanent: true, keepQueryParams: true }
+legacy_tasks:
+  path: /{lang}/aufgaben
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_tasks, permanent: true, keepQueryParams: true }
+legacy_lineups:
+  path: /{lang}/aufstellungen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_lineups, permanent: true, keepQueryParams: true }
+legacy_help_out:
+  path: /{lang}/aushelfen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_help_out, permanent: true, keepQueryParams: true }
+legacy_authentication:
+  path: /{lang}/authentifizierung
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_authentication, permanent: true, keepQueryParams: true }
+legacy_notifications:
+  path: /{lang}/benachrichtigungen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_notifications, permanent: true, keepQueryParams: true }
+legacy_user_assignments:
+  path: /{lang}/benutzer-zuordnungen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_user_assignments, permanent: true, keepQueryParams: true }
+legacy_watchlist:
+  path: /{lang}/beobachtungsliste
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_watchlist, permanent: true, keepQueryParams: true }
+legacy_reports:
+  path: /{lang}/berichte
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_reports, permanent: true, keepQueryParams: true }
+legacy_getting_started:
+  path: /{lang}/erste-schritte
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_getting_started, permanent: true, keepQueryParams: true }
+legacy_car_pools:
+  path: /{lang}/fahrgemeinschaften
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_car_pools, permanent: true, keepQueryParams: true }
+legacy_football_de_import:
+  path: /{lang}/fussball-de-import
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_football_de_import, permanent: true, keepQueryParams: true }
+legacy_inventory:
+  path: /{lang}/inventar
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_inventory, permanent: true, keepQueryParams: true }
+legacy_calendar:
+  path: /{lang}/kalender
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_calendar, permanent: true, keepQueryParams: true }
+legacy_cash_book:
+  path: /{lang}/kassenbuch
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_cash_book, permanent: true, keepQueryParams: true }
+legacy_clothing_sizes:
+  path: /{lang}/kleidergroessen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_clothing_sizes, permanent: true, keepQueryParams: true }
+legacy_my_balance:
+  path: /{lang}/mein-deckel
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_my_balance, permanent: true, keepQueryParams: true }
+legacy_my_matchday:
+  path: /{lang}/mein-spieltag
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_my_matchday, permanent: true, keepQueryParams: true }
+legacy_messages:
+  path: /{lang}/nachrichten
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_messages, permanent: true, keepQueryParams: true }
+legacy_profile:
+  path: /{lang}/profil
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_profile, permanent: true, keepQueryParams: true }
+legacy_roles:
+  path: /{lang}/rollen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_roles, permanent: true, keepQueryParams: true }
+legacy_games:
+  path: /{lang}/spiele
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_games, permanent: true, keepQueryParams: true }
+legacy_players:
+  path: /{lang}/spieler
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_players, permanent: true, keepQueryParams: true }
+legacy_venues:
+  path: /{lang}/spielstaetten
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_venues, permanent: true, keepQueryParams: true }
+legacy_staff_assignments:
+  path: /{lang}/staff-und-funktionaere
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_staff_assignments, permanent: true, keepQueryParams: true }
+legacy_fines_catalogue:
+  path: /{lang}/strafenkatalog
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_fines_catalogue, permanent: true, keepQueryParams: true }
+legacy_coaches:
+  path: /{lang}/trainer
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_coaches, permanent: true, keepQueryParams: true }
+legacy_training_proofs:
+  path: /{lang}/trainingsnachweise
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_training_proofs, permanent: true, keepQueryParams: true }
+legacy_tournaments:
+  path: /{lang}/turniere
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_tournaments, permanent: true, keepQueryParams: true }
+legacy_surveys:
+  path: /{lang}/umfragen
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_surveys, permanent: true, keepQueryParams: true }
+legacy_clubs_teams:
+  path: /{lang}/vereine-teams
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_clubs_teams, permanent: true, keepQueryParams: true }
+legacy_video_analysis:
+  path: /{lang}/video-analyse
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_video_analysis, permanent: true, keepQueryParams: true }
+legacy_knowledge_pool:
+  path: /{lang}/wissenspool
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_knowledge_pool, permanent: true, keepQueryParams: true }
+legacy_analysis_player:
+  path: /{lang}/tools/analyse-player
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_analysis_player, permanent: true, keepQueryParams: true }
+legacy_video_combiner:
+  path: /{lang}/tools/video-schnitt
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_video_combiner, permanent: true, keepQueryParams: true }
+legacy_camera_systems:
+  path: /{lang}/tools/kamera-systeme
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_camera_systems, permanent: true, keepQueryParams: true }
+legacy_kaderblick_camera:
+  path: /{lang}/tools/kamera/kaderblick
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_kaderblick_camera, permanent: true, keepQueryParams: true }
+legacy_ptz_camera:
+  path: /{lang}/tools/kamera/ptz
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_ptz_camera, permanent: true, keepQueryParams: true }
+legacy_dji_camera:
+  path: /{lang}/tools/kamera/dji-osmo
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_dji_camera, permanent: true, keepQueryParams: true }
+legacy_kaderblick_camera_assembly:
+  path: /{lang}/tools/kamera/kaderblick/bauanleitung
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_kaderblick_camera_assembly, permanent: true, keepQueryParams: true }
+legacy_kaderblick_camera_3d_view:
+  path: /{lang}/tools/kamera/kaderblick/3d-ansicht
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_kaderblick_camera_3d_view, permanent: true, keepQueryParams: true }
+legacy_kaderblick_camera_software:
+  path: /{lang}/tools/kamera/kaderblick/software
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_kaderblick_camera_software, permanent: true, keepQueryParams: true }
+legacy_kaderblick_camera_parts_list:
+  path: /{lang}/tools/kamera/kaderblick/teileliste
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_kaderblick_camera_parts_list, permanent: true, keepQueryParams: true }
+legacy_ptz_camera_assembly:
+  path: /{lang}/tools/kamera/ptz/bauanleitung
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_ptz_camera_assembly, permanent: true, keepQueryParams: true }
+legacy_ptz_camera_3d_view:
+  path: /{lang}/tools/kamera/ptz/3d-ansicht
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_ptz_camera_3d_view, permanent: true, keepQueryParams: true }
+legacy_ptz_camera_software:
+  path: /{lang}/tools/kamera/ptz/software
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_ptz_camera_software, permanent: true, keepQueryParams: true }
+legacy_ptz_camera_parts_list:
+  path: /{lang}/tools/kamera/ptz/teileliste
+  requirements: { lang: 'de|en|fr|ru|zh-hans' }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults: { route: docs_ptz_camera_parts_list, permanent: true, keepQueryParams: true }

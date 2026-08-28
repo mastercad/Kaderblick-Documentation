@@ -1,0 +1,10 @@
+{
+    "title": "通知 | Kaderblick Docs",
+    "hero": {
+        "heading": "通知",
+        "lead": "右上角铃铛集中显示与当前账户和职责分配相关的提示。数字表示未读数量；超过 99 时会以限制后的形式显示。",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>打开并阅读通知中心</h2><ol><li>点击右上角的<strong>铃铛</strong>。</li><li>列表按<strong>今天</strong>、<strong>昨天</strong>和<strong>更早</strong>分组。</li><li>未读条目带有彩色标记、圆点和突出标题。</li><li>点击条目可查看标题、类型、完整正文、日期和时间，同时标记为已读。</li><li>条目具有对应目标时，详情中的按钮会打开相关区域。</li></ol>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/notifications/empty-centre.png\"\n        alt=\"通知中心打开后显示没有通知的空状态\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">没有条目时，Kaderblick 会显示“没有通知”和“你已查看所有最新内容”。</figcaption>\n    </figure>\n<h2>全部标为已读或清空列表</h2><ul><li>存在未读条目时会显示双对勾图标，用于全部标为已读。</li><li>存在条目时会显示垃圾桶图标，用于清空通知列表。</li><li>单个条目通过打开变为已读；通知中心不提供单条删除。</li></ul>\n<h2>可能出现的通知</h2><p>图标、颜色和类型标识会说明来源。Kaderblick 支持的内容包括：</p><ul><li>动态和站内消息，</li><li>参与回复和支援其他球队的申请，</li><li>问卷和可用视频，</li><li>新建、修改、取消或删除的日程，</li><li>拼车、预订、取消和已删除行程，</li><li>分配的处罚、反馈和系统提示，</li><li>注册、关联、演示和 Supporter 申请及其处理结果。</li></ul><p>你只会收到由相关操作为当前账户触发的条目。根据类型，详情还可显示发件人、日程、日期、地点、参与状态、类别或打开申请的按钮。</p>\n<h2>在个人资料中配置</h2><p>打开<a href=\"/zh-hans/profile\">我的个人资料</a>中的<strong>通知</strong>选项卡。每个类别可分别选择电子邮件、推送或两者。页面还说明参与回复和日程提醒及其时间。</p>\n<h2>检查推送通知</h2><p>在<strong>个人资料 → 设置</strong>中，Kaderblick 会显示推送支持、浏览器权限和当前设备注册状态。你可以申请权限、为设备启用或停用推送，并发送测试通知。浏览器权限被阻止时，需要在浏览器的网站设置中重新允许。</p>\n<h2>与其他区域的关联</h2><ul><li>消息提示会打开<a href=\"/zh-hans/messages\">消息</a>。</li><li>日程和参与提示会打开相应的<a href=\"/zh-hans/calendar\">日历条目</a>。</li><li>问卷、动态、反馈和拼车提示在具有目标时会打开相应内容。</li></ul>"
+}

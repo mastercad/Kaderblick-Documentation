@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ document.title }}{% endblock %}
+
+{% block body %}
+    <div class="docs-shell">
+    <article class="docs-page">
+        {% if document.back_to_roles|default(false) %}
+            <nav class="chapter-breadcrumb" aria-label="{{ 'roles.overview'|trans }}">
+                <a href="{{ path('docs_roles') }}">← {{ 'roles.overview'|trans }}</a>
+            </nav>
+        {% endif %}
+        {% if chapter_navigation is defined %}
+            <nav class="chapter-breadcrumb" aria-label="{{ 'chapter.breadcrumb'|trans }}">
+                <a href="/{{ app.request.attributes.get('lang') }}/{{ chapter_navigation.page }}">← {{ 'chapter.all'|trans }}</a>
+                <span>{{ 'chapter.position'|trans({'{current}': chapter_navigation.current, '{total}': chapter_navigation.total}) }}</span>
+            </nav>
+        {% endif %}
+        {% if chapter_navigation is defined %}
+            <header class="chapter-header">
+                <h1>{{ document.hero.heading }}</h1>
+            </header>
+        {% else %}
+            {% include 'components/docs_hero.html.twig' with {
+                heading: document.hero.heading,
+                lead: document.hero.lead,
+                eyebrow: document.hero.eyebrow,
+                chips: document.hero.chips
+            } only %}
+        {% endif %}
+        {% if document.chapter_image is defined %}
+            <figure class="screenshot chapter-image">
+                <img src="{{ document.chapter_image.src }}" alt="{{ document.chapter_image.alt }}" class="screenshot__img" loading="lazy">
+                <figcaption class="screenshot__caption">{{ document.chapter_image.caption }}</figcaption>
+            </figure>
+        {% endif %}
+        {{ document.body|raw }}
+        {% if chapter_navigation is defined %}
+            <nav class="chapter-navigation" aria-label="{{ 'chapter.navigation'|trans }}">
+                {% if chapter_navigation.previous %}
+                    <a class="chapter-navigation__link" href="/{{ app.request.attributes.get('lang') }}/{{ chapter_navigation.page }}/{{ chapter_navigation.previous.slug }}"><span>{{ 'chapter.previous'|trans }}</span><strong>← {{ chapter_navigation.previous.title }}</strong></a>
+                {% else %}<span></span>{% endif %}
+                {% if chapter_navigation.next %}
+                    <a class="chapter-navigation__link chapter-navigation__link--next" href="/{{ app.request.attributes.get('lang') }}/{{ chapter_navigation.page }}/{{ chapter_navigation.next.slug }}"><span>{{ 'chapter.next'|trans }}</span><strong>{{ chapter_navigation.next.title }} →</strong></a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    </article>
+    <aside class="page-toc" data-page-toc aria-label="{{ 'toc.title'|trans }}"></aside>
+    </div>
+{% endblock %}

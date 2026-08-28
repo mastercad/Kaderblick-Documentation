@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
+use App\Documentation\LongFormContent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 /**
- * Dokumentation: Dashboard-Bereich von kaderblick.de
+ * Documentation: Dashboard area on kaderblick.de
  */
-#[Route('/dashboard', name: 'app_dashboard')]
+#[Route('/dashboard', name: 'docs_dashboard')]
 final class DashboardController extends BaseController
 {
     #[Route('', name: '')]
-    public function index(): Response
+    public function index(LongFormContent $longForm): Response
     {
-        return $this->renderDocs('dashboard/index.html.twig', 'app_dashboard');
+        return $this->renderLongFormOverview('dashboard', 'docs_dashboard', $longForm);
     }
 }

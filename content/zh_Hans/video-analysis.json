@@ -1,0 +1,14 @@
+{
+    "title": "视频与比赛分析 | Kaderblick 文档",
+    "hero": {
+        "heading": "视频与比赛分析",
+        "lead": "视频始终属于某一场具体比赛。在视频区域中设置来源和时间对应关系；播放时，Kaderblick 会将视频时间、比赛事件和已标记片段关联起来。",
+        "eyebrow": "比赛详情",
+        "chips": [
+            "关联比赛",
+            "支持者授权",
+            "事件与片段"
+        ]
+    },
+    "body": "<h2>打开视频区域</h2>\n<ol><li>打开<a href=\"/zh-hans/games\">比赛</a>。</li><li>选择相应比赛。</li><li>打开<strong>视频</strong>部分。标题旁数字表示已添加视频的数量。</li></ol>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/video-analysis/video-section.png\"\n        alt=\"已完全加载的比赛视频区域，包含添加视频按钮\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">视频区域属于比赛详情；根据权限，“添加视频”会打开编辑器或支持者权限申请。</figcaption>\n    </figure>\n<h2>添加视频</h2>\n<p>选择<strong>添加视频</strong>。编辑器包含：</p>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/video-analysis/add-video.png\"\n        alt=\"添加视频对话框，包含名称、URL、文件路径、开始时间、排序、视频类型、摄像机和时长\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">名称和视频类型为必填项；时间支持秒、mm:ss 和 hh:mm:ss。</figcaption>\n    </figure>\n<ul><li><strong>名称：</strong>视频列表中的唯一名称。</li><li><strong>YouTube 链接或文件 URL：</strong>Kaderblick 播放时打开的来源。</li><li><strong>文件路径：</strong>可选附加路径，会显示在列表中。</li><li><strong>开始时间：</strong>比赛在视频中开始的位置，可输入秒、<code>mm:ss</code>或<code>hh:mm:ss</code>。</li><li><strong>排序：</strong>设置多个视频的先后顺序。</li><li><strong>视频类型：</strong>Kaderblick 中维护的视频类型，必选。</li><li><strong>摄像机：</strong>按需关联所用视角。</li><li><strong>时长：</strong>总时长，可输入秒、<code>mm:ss</code>或<code>hh:mm:ss</code>。</li></ul>\n<p>选择<strong>添加</strong>将视频关联到比赛；选择<strong>取消</strong>关闭且不保存。</p>\n<h2>使用已有视频</h2>\n<p>每条记录显示名称，以及适用时的预览图、视频类型、时长、摄像机和文件路径。选择名称、预览图或 YouTube 图标打开播放器。具备管理权限的用户还可编辑和删除。</p>\n<h2>比赛时间与视频时间</h2>\n<p>开始时间用于连接视频时间轴和比赛时间。例如开赛位于视频的<strong>1:30</strong>，该位置就对应比赛时间起点。跳转到比赛事件时，Kaderblick 会应用此偏移。多个连续视频还会考虑此前视频的顺序和时长。</p>\n<h2>事件与时间轴</h2>\n<p>播放器时间轴在对应视频位置显示已记录的比赛事件。你可以跳转到事件位置。具备事件权限时，可在当前视频位置新建事件或更正时间。移动设备提供独立的播放、前后跳一秒或五秒、事件定位和剪辑标记控件。</p>\n<h2>视频片段与剪辑标记</h2>\n<p>至少有一个视频后，视频区域会显示<strong>视频片段</strong>操作。可按视频管理片段的开始位置、时长、标题、副标题、声音选项和顺序。已有片段可编辑、删除并导出为 CSV。</p>\n<p>播放器中还可开启剪辑模式，设置片段起点和终点，并在时间轴上移动或精调标记。Kaderblick 会显示剪辑标记数量和总时长。</p>\n<h2>不同角色和关系的访问权限</h2>\n<ul><li><strong>具备读取权限的用户：</strong>查看并播放已有视频。</li><li><strong>已授权支持者或球队负责人：</strong>根据具体比赛权限管理视频和比赛事件。</li><li><strong>没有球队授权的支持者：</strong>看到<strong>申请支持者权限</strong>，而不是编辑器。待处理申请会显示俱乐部、球队和申请日期。</li><li><strong>只有系统角色：</strong>不能保证视频访问；决定因素是相应球队和具体比赛的权限。</li></ul>\n<h2>与摄像机和软件的关联</h2>\n<p>录制、传输和文件准备在保留的<a href=\"/zh-hans/tools/camera-systems\">摄像系统</a>和<a href=\"/zh-hans/tools/video-manager\">Video Manager</a>区域中说明。准备好的来源随后作为视频添加到比赛。</p>"
+}

@@ -1,0 +1,10 @@
+<header class="docs-hero">
+    {% if eyebrow is defined and eyebrow %}<p class="docs-eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h1>{{ heading }}</h1>
+    <p class="docs-hero__lead">{{ lead|raw }}</p>
+    {% if chips is defined and chips is not empty %}
+        <div class="docs-meta">
+            {% for chip in chips %}<span class="docs-chip">{{ chip }}</span>{% endfor %}
+        </div>
+    {% endif %}
+</header>

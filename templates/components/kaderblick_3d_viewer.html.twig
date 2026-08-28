@@ -223,13 +223,13 @@
             <div class="kb3d-viewer-actions">
                 <div class="kb3d-btn-group">
                     <span class="kb3d-btn-group-label">Deckel:</span>
-                    <button id="kb3dDeckelBtn" class="kb3d-btn">Öffnen</button>
-                    <button id="kb3dDeckelHideBtn" class="kb3d-btn">Ausblenden</button>
+                    <button id="kb3dLidButton" class="kb3d-btn">Öffnen</button>
+                    <button id="kb3dLidVisibilityButton" class="kb3d-btn">Ausblenden</button>
                 </div>
                 <div class="kb3d-btn-group">
                     <span class="kb3d-btn-group-label">Schutz:</span>
-                    <button id="kb3dSchutzBtn" class="kb3d-btn">Öffnen</button>
-                    <button id="kb3dSchutzHideBtn" class="kb3d-btn">Ausblenden</button>
+                    <button id="kb3dGuardButton" class="kb3d-btn">Öffnen</button>
+                    <button id="kb3dGuardVisibilityButton" class="kb3d-btn">Ausblenden</button>
                 </div>
                 <button id="kb3dExplodeBtn" class="kb3d-btn">💥 Explosion</button>
                 <button id="kb3dResetBtn" class="kb3d-btn">↺ Reset</button>
@@ -249,19 +249,19 @@
             <button class="kb3d-deselect-btn" id="kb3dDeselectBtn">✕ Auswahl aufheben</button>
         </div>
         <div class="kb3d-tabs">
-            <button class="kb3d-tab kb3d-tab--active" data-tab="aussen">Außen</button>
-            <button class="kb3d-tab" data-tab="innen">Innen</button>
-            <button class="kb3d-tab" data-tab="klein">Kleine Kamera</button>
+            <button class="kb3d-tab kb3d-tab--active" data-tab="exterior">Außen</button>
+            <button class="kb3d-tab" data-tab="interior">Innen</button>
+            <button class="kb3d-tab" data-tab="small-camera">Kleine Kamera</button>
         </div>
         <div class="kb3d-tab-panels">
-            <div id="kb3d-tab-aussen" class="kb3d-tab-pane kb3d-tab-pane--active">
-                <div class="kb3d-svg-wrap" id="kb3d-svg-aussen"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
+            <div id="kb3d-tab-exterior" class="kb3d-tab-pane kb3d-tab-pane--active">
+                <div class="kb3d-svg-wrap" id="kb3d-svg-exterior"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
             </div>
-            <div id="kb3d-tab-innen" class="kb3d-tab-pane">
-                <div class="kb3d-svg-wrap" id="kb3d-svg-innen"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
+            <div id="kb3d-tab-interior" class="kb3d-tab-pane">
+                <div class="kb3d-svg-wrap" id="kb3d-svg-interior"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
             </div>
-            <div id="kb3d-tab-klein" class="kb3d-tab-pane">
-                <div class="kb3d-svg-wrap" id="kb3d-svg-klein"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
+            <div id="kb3d-tab-small-camera" class="kb3d-tab-pane">
+                <div class="kb3d-svg-wrap" id="kb3d-svg-small-camera"><p class="kb3d-svg-loading">SVG wird geladen …</p></div>
             </div>
         </div>
     </div>
@@ -279,31 +279,31 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     'use strict';
 
     // ─── Konfiguration ────────────────────────────────────────────────────────
-    const OBJ_URL = {{ asset('models/kaderblick-kamera.obj')|json_encode|raw }};
-    const MTL_URL = {{ asset('models/kaderblick-kamera.mtl')|json_encode|raw }};
+    const OBJ_URL = {{ asset('models/kaderblick-camera.obj')|json_encode|raw }};
+    const MTL_URL = {{ asset('models/kaderblick-camera.mtl')|json_encode|raw }};
 
     const SVG_CONFIGS = [
         {
-            tabId:       'aussen',
-            svgUrl:      {{ asset('models/svg/Kameragehäuse_außen_kamera.svg')|json_encode|raw }},
+            tabId:       'exterior',
+            svgUrl:      {{ asset('models/svg/camera-housing-exterior.svg')|json_encode|raw }},
             mappingUrls: [
-                {{ asset('models/svg/Kameragehäuse_außen_kamera_mapping.json')|json_encode|raw }},
+                {{ asset('models/svg/camera-housing-exterior-mapping.json')|json_encode|raw }},
             ],
             isInner: false
         },
         {
-            tabId:       'innen',
-            svgUrl:      {{ asset('models/svg/Kameragehäuse_innen.svg')|json_encode|raw }},
+            tabId:       'interior',
+            svgUrl:      {{ asset('models/svg/camera-housing-interior.svg')|json_encode|raw }},
             mappingUrls: [
-                {{ asset('models/svg/Kameragehäuse_innen_mapping.json')|json_encode|raw }}
+                {{ asset('models/svg/camera-housing-interior-mapping.json')|json_encode|raw }}
             ],
             isInner: true
         },
         {
-            tabId:       'klein',
-            svgUrl:      {{ asset('models/svg/Kameragehäuse_kleine_kamera.svg')|json_encode|raw }},
+            tabId:       'small-camera',
+            svgUrl:      {{ asset('models/svg/small-camera-housing.svg')|json_encode|raw }},
             mappingUrls: [
-                {{ asset('models/svg/Kameragehäuse_kleine_kamera_mapping.json')|json_encode|raw }}
+                {{ asset('models/svg/small-camera-housing-mapping.json')|json_encode|raw }}
             ],
             isInner: false
         }
@@ -314,17 +314,17 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
     // ─── Animierte Baugruppen ─────────────────────────────────────────────────
     // Mesh-Namen aus dem OBJ-Modell (sobald exportiert werden sie aktiv)
-    const DECKEL_MESH_NAMES = [
+    const LID_MESH_NAMES = [
         'part_0072', 'part_0073', 'part_0074', 'part_0075', 'part_0076',
         'part_0077', 'part_0108', 'part_0109', 'part_0110', 'part_0111'
     ];
-    const KAMERASCHUTZ_MESH_NAMES = [
+    const CAMERA_GUARD_MESH_NAMES = [
         'part_0122', 'part_0123', 'part_0124', 'part_0125'
     ];
 
     // Bewegungsweite relativ zu modelRadius (anpassen falls zu viel/wenig Hub)
-    const DECKEL_LIFT_FACTOR        = 0.65; // nach oben (+Y)
-    const KAMERASCHUTZ_SLIDE_FACTOR = 0.55; // nach vorn (+Z); bei falsche Richtung → -1 setzen
+    const LID_LIFT_FACTOR        = 0.65; // nach oben (+Y)
+    const CAMERA_GUARD_SLIDE_FACTOR = 0.55; // nach vorn (+Z); bei falsche Richtung → -1 setzen
 
     // ─── Three.js Setup ───────────────────────────────────────────────────────
     const canvas    = document.getElementById('kb3dCanvas');
@@ -405,10 +405,10 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     const defaultTarget = new THREE.Vector3();
 
     let isExploded           = false;
-    let isDeckelOpen         = false;
-    let isDeckelHidden       = false;
-    let isKameraschutzOpen   = false;
-    let isKameraschutzHidden = false;
+    let isLidOpen         = false;
+    let isLidHidden       = false;
+    let isCameraGuardOpen   = false;
+    let isCameraGuardHidden = false;
 
     // ─── Animations-State ─────────────────────────────────────────────────────
     let camAnim      = null;          // Kamera-Fly-to
@@ -591,29 +591,29 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
         });
     }
 
-    function toggleDeckel() {
-        const btn = document.getElementById('kb3dDeckelBtn');
-        if (isDeckelOpen) {
+    function toggleLid() {
+        const btn = document.getElementById('kb3dLidButton');
+        if (isLidOpen) {
             // Umgekehrte Richtung → landet korrekt in Normal- UND Explosionsansicht
-            animateGroupInDirection(DECKEL_MESH_NAMES, new THREE.Vector3(0, -1, 0), DECKEL_LIFT_FACTOR, 0.9);
-            isDeckelOpen = false;
+            animateGroupInDirection(LID_MESH_NAMES, new THREE.Vector3(0, -1, 0), LID_LIFT_FACTOR, 0.9);
+            isLidOpen = false;
             if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = 'Öffnen'; }
         } else {
-            animateGroupInDirection(DECKEL_MESH_NAMES, new THREE.Vector3(0, 1, 0), DECKEL_LIFT_FACTOR, 0.9);
-            isDeckelOpen = true;
+            animateGroupInDirection(LID_MESH_NAMES, new THREE.Vector3(0, 1, 0), LID_LIFT_FACTOR, 0.9);
+            isLidOpen = true;
             if (btn) { btn.classList.add('kb3d-btn--active'); btn.textContent = 'Schließen'; }
         }
     }
 
-    function toggleKameraschutz() {
-        const btn = document.getElementById('kb3dSchutzBtn');
-        if (isKameraschutzOpen) {
-            animateGroupInDirection(KAMERASCHUTZ_MESH_NAMES, new THREE.Vector3(0, 0, -1), KAMERASCHUTZ_SLIDE_FACTOR, 0.9);
-            isKameraschutzOpen = false;
+    function toggleCameraGuard() {
+        const btn = document.getElementById('kb3dGuardButton');
+        if (isCameraGuardOpen) {
+            animateGroupInDirection(CAMERA_GUARD_MESH_NAMES, new THREE.Vector3(0, 0, -1), CAMERA_GUARD_SLIDE_FACTOR, 0.9);
+            isCameraGuardOpen = false;
             if (btn) { btn.classList.remove('kb3d-btn--active'); btn.textContent = 'Öffnen'; }
         } else {
-            animateGroupInDirection(KAMERASCHUTZ_MESH_NAMES, new THREE.Vector3(0, 0, 1), KAMERASCHUTZ_SLIDE_FACTOR, 0.9);
-            isKameraschutzOpen = true;
+            animateGroupInDirection(CAMERA_GUARD_MESH_NAMES, new THREE.Vector3(0, 0, 1), CAMERA_GUARD_SLIDE_FACTOR, 0.9);
+            isCameraGuardOpen = true;
             if (btn) { btn.classList.add('kb3d-btn--active'); btn.textContent = 'Schließen'; }
         }
     }
@@ -626,23 +626,23 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
         });
     }
 
-    function toggleDeckelVisibility() {
-        isDeckelHidden = !isDeckelHidden;
-        setGroupVisibility(DECKEL_MESH_NAMES, !isDeckelHidden);
-        const btn = document.getElementById('kb3dDeckelHideBtn');
+    function toggleLidVisibility() {
+        isLidHidden = !isLidHidden;
+        setGroupVisibility(LID_MESH_NAMES, !isLidHidden);
+        const btn = document.getElementById('kb3dLidVisibilityButton');
         if (btn) {
-            btn.classList.toggle('kb3d-btn--active', isDeckelHidden);
-            btn.textContent = isDeckelHidden ? 'Einblenden' : 'Ausblenden';
+            btn.classList.toggle('kb3d-btn--active', isLidHidden);
+            btn.textContent = isLidHidden ? 'Einblenden' : 'Ausblenden';
         }
     }
 
-    function toggleSchutzVisibility() {
-        isKameraschutzHidden = !isKameraschutzHidden;
-        setGroupVisibility(KAMERASCHUTZ_MESH_NAMES, !isKameraschutzHidden);
-        const btn = document.getElementById('kb3dSchutzHideBtn');
+    function toggleGuardVisibility() {
+        isCameraGuardHidden = !isCameraGuardHidden;
+        setGroupVisibility(CAMERA_GUARD_MESH_NAMES, !isCameraGuardHidden);
+        const btn = document.getElementById('kb3dGuardVisibilityButton');
         if (btn) {
-            btn.classList.toggle('kb3d-btn--active', isKameraschutzHidden);
-            btn.textContent = isKameraschutzHidden ? 'Einblenden' : 'Ausblenden';
+            btn.classList.toggle('kb3d-btn--active', isCameraGuardHidden);
+            btn.textContent = isCameraGuardHidden ? 'Einblenden' : 'Ausblenden';
         }
     }
 
@@ -651,13 +651,13 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
         const btn = document.getElementById('kb3dExplodeBtn');
         // Deckel/Schutz-Zustand zurücksetzen: explodeNames/restoreNames arbeiten
         // auf originalPositions – offene Baugruppen würden sonst inkonsistent liegen.
-        if (isDeckelOpen || isKameraschutzOpen) {
-            isDeckelOpen = false;
-            isKameraschutzOpen = false;
-            const deckelBtn = document.getElementById('kb3dDeckelBtn');
-            if (deckelBtn) { deckelBtn.classList.remove('kb3d-btn--active'); deckelBtn.textContent = 'Öffnen'; }
-            const schutzBtn = document.getElementById('kb3dSchutzBtn');
-            if (schutzBtn) { schutzBtn.classList.remove('kb3d-btn--active'); schutzBtn.textContent = 'Öffnen'; }
+        if (isLidOpen || isCameraGuardOpen) {
+            isLidOpen = false;
+            isCameraGuardOpen = false;
+            const lidButton = document.getElementById('kb3dLidButton');
+            if (lidButton) { lidButton.classList.remove('kb3d-btn--active'); lidButton.textContent = 'Öffnen'; }
+            const guardButton = document.getElementById('kb3dGuardButton');
+            if (guardButton) { guardButton.classList.remove('kb3d-btn--active'); guardButton.textContent = 'Öffnen'; }
         }
         if (isExploded) {
             restoreNames([...meshMap.keys()], 1.1);
@@ -994,21 +994,21 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     });
 
     // ─── Steuer-Buttons ───────────────────────────────────────────────────────
-    document.getElementById('kb3dDeckelBtn')?.addEventListener('click', toggleDeckel);
-    document.getElementById('kb3dDeckelHideBtn')?.addEventListener('click', toggleDeckelVisibility);
-    document.getElementById('kb3dSchutzBtn')?.addEventListener('click', toggleKameraschutz);
-    document.getElementById('kb3dSchutzHideBtn')?.addEventListener('click', toggleSchutzVisibility);
+    document.getElementById('kb3dLidButton')?.addEventListener('click', toggleLid);
+    document.getElementById('kb3dLidVisibilityButton')?.addEventListener('click', toggleLidVisibility);
+    document.getElementById('kb3dGuardButton')?.addEventListener('click', toggleCameraGuard);
+    document.getElementById('kb3dGuardVisibilityButton')?.addEventListener('click', toggleGuardVisibility);
     document.getElementById('kb3dExplodeBtn')?.addEventListener('click', toggleExplode);
 
     document.getElementById('kb3dResetBtn')?.addEventListener('click', () => {
         restoreNames([...meshMap.keys()], 0.9);
         isExploded           = false;
-        isDeckelOpen         = false;
-        isDeckelHidden       = false;
-        isKameraschutzOpen   = false;
-        isKameraschutzHidden = false;
-        setGroupVisibility(DECKEL_MESH_NAMES, true);
-        setGroupVisibility(KAMERASCHUTZ_MESH_NAMES, true);
+        isLidOpen         = false;
+        isLidHidden       = false;
+        isCameraGuardOpen   = false;
+        isCameraGuardHidden = false;
+        setGroupVisibility(LID_MESH_NAMES, true);
+        setGroupVisibility(CAMERA_GUARD_MESH_NAMES, true);
         clearHighlight();
         clearSvgActive();
 
@@ -1017,14 +1017,14 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
             explodeBtn.classList.remove('kb3d-btn--active');
             explodeBtn.textContent = '💥 Explosion';
         }
-        const deckelBtn = document.getElementById('kb3dDeckelBtn');
-        if (deckelBtn) { deckelBtn.classList.remove('kb3d-btn--active'); deckelBtn.textContent = 'Öffnen'; }
-        const deckelHideBtn = document.getElementById('kb3dDeckelHideBtn');
-        if (deckelHideBtn) { deckelHideBtn.classList.remove('kb3d-btn--active'); deckelHideBtn.textContent = 'Ausblenden'; }
-        const schutzBtn = document.getElementById('kb3dSchutzBtn');
-        if (schutzBtn) { schutzBtn.classList.remove('kb3d-btn--active'); schutzBtn.textContent = 'Öffnen'; }
-        const schutzHideBtn = document.getElementById('kb3dSchutzHideBtn');
-        if (schutzHideBtn) { schutzHideBtn.classList.remove('kb3d-btn--active'); schutzHideBtn.textContent = 'Ausblenden'; }
+        const lidButton = document.getElementById('kb3dLidButton');
+        if (lidButton) { lidButton.classList.remove('kb3d-btn--active'); lidButton.textContent = 'Öffnen'; }
+        const lidVisibilityButton = document.getElementById('kb3dLidVisibilityButton');
+        if (lidVisibilityButton) { lidVisibilityButton.classList.remove('kb3d-btn--active'); lidVisibilityButton.textContent = 'Ausblenden'; }
+        const guardButton = document.getElementById('kb3dGuardButton');
+        if (guardButton) { guardButton.classList.remove('kb3d-btn--active'); guardButton.textContent = 'Öffnen'; }
+        const guardVisibilityButton = document.getElementById('kb3dGuardVisibilityButton');
+        if (guardVisibilityButton) { guardVisibilityButton.classList.remove('kb3d-btn--active'); guardVisibilityButton.textContent = 'Ausblenden'; }
 
         camAnim = {
             startPos:    camera.position.clone(),

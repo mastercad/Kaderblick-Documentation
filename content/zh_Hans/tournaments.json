@@ -1,0 +1,14 @@
+{
+    "title": "锦标赛 | Kaderblick Docs",
+    "hero": {
+        "heading": "锦标赛",
+        "lead": "锦标赛作为 Kaderblick 日历活动创建。比赛模式和对阵在日历中配置；之后的锦标赛视图集中显示球队、比赛、结果和比赛入口。",
+        "eyebrow": "比赛与日程",
+        "chips": [
+            "从日历创建",
+            "对阵赛程",
+            "筛选自己的球队"
+        ]
+    },
+    "body": "<h2>新建锦标赛</h2><ol><li>打开<a href=\"/zh-hans/calendar\">日历</a>，点击<strong>新建活动</strong>。</li><li>填写标题、日期和时间，将<strong>活动类型</strong>设为<strong>锦标赛</strong>。</li><li>按需设置结束日期、结束时间、回复要求和个人提醒。</li><li>点击<strong>下一步</strong>编辑锦标赛配置和对阵。</li></ol>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/tournaments/tournament-basic-data.png\"\n        alt=\"锦标赛日历对话框，包含标题、日期、时间和活动类型\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">锦标赛从日历开始；锦标赛类型会打开专用步骤。</figcaption>\n    </figure>\n<h2>比赛详情与锦标赛配置</h2><p>第二步提供地点、锦标赛类型、比赛时长、间歇时间、比赛模式、集合地点和集合时间。已验证界面默认选择<strong>室内锦标赛（1 块场地）</strong>，比赛模式提供<strong>单循环</strong>。</p>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/tournaments/tournament-details.png\"\n        alt=\"包含类型、比赛与间歇时长、模式和对阵操作的锦标赛配置\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">在比赛详情中配置锦标赛流程和对阵赛程。</figcaption>\n    </figure>\n<h3>建立对阵</h3><ul><li><strong>自动生成：</strong>根据当前锦标赛配置建立赛程。</li><li><strong>手动新建：</strong>有针对性地添加单场对阵。</li><li><strong>导入（CSV/JSON）：</strong>从文件导入准备好的赛程。</li><li><strong>清空列表：</strong>从草稿中移除当前对阵列表。</li></ul><p>比赛详情之后是<strong>对阵</strong>和<strong>说明</strong>步骤。保存日历活动前请完整检查赛程。</p>\n<h2>锦标赛视图</h2><p>已保存锦标赛通过相关日历或比赛入口打开；主菜单中没有独立锦标赛列表。详情显示：</p><ul><li>锦标赛状态、日期和时间、对阵和参赛球队数量、地点与天气入口，</li><li>半场时长、比赛模式、锦标赛类型和分组数量，</li><li>锦标赛赛程 PDF 操作，</li><li>全部参赛球队，并标记自己的球队，</li><li>按锦标赛阶段分组的对阵，包括进行中、计划中或已结束状态、比分、轮次、场地和开球时间。</li></ul>\n<h3>打开对阵</h3><p>如果锦标赛对阵已有对应 Kaderblick 比赛，其卡片会打开完整<a href=\"/zh-hans/games\">比赛详情</a>；事件、视频、比赛时长和比赛计划按权限显示。</p>\n<h2>不同角色和关联的可见性</h2><ul><li><strong>已关联球队的用户：</strong>首先看到自己球队的对阵；存在其他比赛时可展开全部。</li><li><strong>没有匹配球队关联的用户：</strong>可以查看锦标赛信息，但没有针对自己球队的选择。</li><li><strong>获授权日程管理员：</strong>在日历中新建锦标赛，并管理配置和对阵。</li></ul>"
+}

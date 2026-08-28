@@ -1,0 +1,10 @@
+{
+    "title": "关注名单 — Kaderblick 文档",
+    "hero": {
+        "heading": "关注名单",
+        "lead": "教练可以在此收集希望持续关注俱乐部归属和发展情况的球员与教练。",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>查看和搜索名单</h2>\n<p>标题旁的数字表示全部条目数量。搜索框可按姓名筛选你自己的名单；结果超过十条时，可在卡片下方切换页面。</p>\n<ul>\n    <li>图标以及<strong>球员</strong>或<strong>教练</strong>标签用于标识条目类型。</li>\n    <li>卡片显示当前俱乐部，或标明此人目前没有俱乐部。即将结束的俱乐部归属会同时显示俱乐部和结束日期。</li>\n    <li>球员卡片会显示已有的比赛场次、上场时间以及最多四类比赛事件数据。</li>\n    <li>眼睛图标用于切换公开关注和匿名关注。</li>\n    <li>垃圾桶用于停止关注并移除卡片。</li>\n</ul>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/watchlist/overview.png\"\n        alt=\"空的关注名单，包含添加和添加第一条记录操作\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">“添加”和“添加第一条记录”会打开相同的人员搜索。</figcaption>\n    </figure>\n<h2>添加球员或教练</h2>\n<ol>\n    <li>选择<strong>添加</strong>。</li>\n    <li>在对话框中选择<strong>球员</strong>或<strong>教练</strong>。</li>\n    <li>输入姓名中的至少两个字符。Kaderblick 会显示匹配人员及其当前俱乐部；没有俱乐部时会显示相应提示。</li>\n    <li>选择搜索结果旁的空心书签即可关注此人。实心书签表示此人已在名单中；再次选择会停止关注。</li>\n</ol>\n<figure class=\"screenshot\">\n    <img\n        src=\"/images/docs/zh-hans/watchlist/add-person.png\"\n        alt=\"关注球员或教练的对话框，可在两种人员类型之间切换\"\n        class=\"screenshot__img\"\n        loading=\"lazy\"\n        onerror=\"this.closest('figure').hidden = true\"\n    >\n            <figcaption class=\"screenshot__caption\">先选择人员类型，再按姓名搜索。</figcaption>\n    </figure>\n<h2>其他入口</h2>\n<p>在<a href=\"/zh-hans/players\">球员</a>和<a href=\"/zh-hans/coaches\">教练</a>区域中，选择人员旁的书签也可直接开启或关闭同一项关注。</p>\n<h2>访问权限</h2>\n<p>在经验证的演示环境中，关注名单属于教练导航，是当前登录教练的个人工作名单。</p>"
+}

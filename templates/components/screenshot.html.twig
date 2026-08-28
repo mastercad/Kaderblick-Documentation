@@ -3,7 +3,7 @@
 
     Verwendung:
         {% include 'components/screenshot.html.twig' with {
-            src: 'images/docs/spieler/spieler-uebersicht.png',
+            src: 'images/docs/de/players/players-overview.png',
             alt: 'Spielerübersicht in Kaderblick',
             caption: 'Die Spielerübersicht zeigt alle Kadermitglieder auf einen Blick.'
         } %}
@@ -14,6 +14,7 @@
         alt="{{ alt|default('Screenshot') }}"
         class="screenshot__img"
         loading="lazy"
+        onerror="this.closest('figure').hidden = true"
     >
     {% if caption is defined and caption %}
         <figcaption class="screenshot__caption">{{ caption }}</figcaption>

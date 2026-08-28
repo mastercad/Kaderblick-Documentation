@@ -3,7 +3,7 @@
 # Macht Image-Rebuilds für Template-, Asset- und Controller-Änderungen überflüssig.
 #
 # Workflow lokal:
-#   docker compose up -d   →  App läuft, Änderungen in templates/public/src/config
+#   docker compose up -d   →  App läuft, Änderungen in templates/public/src/config/content
 #                             sind SOFORT sichtbar ohne Rebuild und ohne cache:clear.
 #
 # Für einen sauberen Prod-Build (Image bauen + pushen):
@@ -23,6 +23,7 @@ services:
       - ./public:/var/www/symfony/public
       - ./src:/var/www/symfony/src
       - ./config:/var/www/symfony/config
+      - ./content:/var/www/symfony/content:ro
       - ./translations:/var/www/symfony/translations
       # var/ bleibt als benanntes Volume (Schreibrechte www-data ok, dev-Cache landet
       # in var/cache/dev/ – getrennt vom prod-Cache des named Volume).

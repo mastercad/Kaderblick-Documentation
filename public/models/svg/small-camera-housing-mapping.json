@@ -1,0 +1,329 @@
+{
+  "svg_file": "small-camera-housing.svg",
+  "parts": [
+    {
+      "svg_id": "circle1344",
+      "meshes": [
+        "part_0000"
+      ]
+    },
+    {
+      "svg_id": "path166",
+      "meshes": [
+        "part_0001"
+      ]
+    },
+    {
+      "svg_id": "path182",
+      "meshes": [
+        "part_0002"
+      ]
+    },
+    {
+      "svg_id": "path200",
+      "meshes": [
+        "part_0003"
+      ]
+    },
+    {
+      "svg_id": "path214",
+      "meshes": [
+        "part_0004"
+      ]
+    },
+    {
+      "svg_id": "path216",
+      "meshes": [
+        "part_0005"
+      ]
+    },
+    {
+      "svg_id": "path504",
+      "meshes": [
+        "part_0006"
+      ]
+    },
+    {
+      "svg_id": "path508",
+      "meshes": [
+        "part_0007"
+      ]
+    },
+    {
+      "svg_id": "circle516",
+      "meshes": [
+        "part_0008"
+      ]
+    },
+    {
+      "svg_id": "rect528",
+      "meshes": [
+        "part_0009"
+      ]
+    },
+    {
+      "svg_id": "circle1344-1",
+      "meshes": [
+        "part_0010"
+      ]
+    },
+    {
+      "svg_id": "path504-0",
+      "meshes": [
+        "part_0011"
+      ]
+    },
+    {
+      "svg_id": "path508-5",
+      "meshes": [
+        "part_0012"
+      ]
+    },
+    {
+      "svg_id": "circle516-1",
+      "meshes": [
+        "part_0013"
+      ]
+    },
+    {
+      "svg_id": "rect528-1",
+      "meshes": [
+        "part_0014"
+      ]
+    },
+    {
+      "svg_id": "ellipse218",
+      "meshes": [
+        "part_0015"
+      ]
+    },
+    {
+      "svg_id": "path1778",
+      "meshes": [
+        "part_0016"
+      ]
+    },
+    {
+      "svg_id": "path1780",
+      "meshes": [
+        "part_0017"
+      ]
+    },
+    {
+      "svg_id": "path1782",
+      "meshes": [
+        "part_0018"
+      ]
+    },
+    {
+      "svg_id": "path1784",
+      "meshes": [
+        "part_0019"
+      ]
+    },
+    {
+      "svg_id": "path1786",
+      "meshes": [
+        "part_0020"
+      ]
+    },
+    {
+      "svg_id": "path1788",
+      "meshes": [
+        "part_0021"
+      ]
+    },
+    {
+      "svg_id": "path1790",
+      "meshes": [
+        "part_0022"
+      ]
+    },
+    {
+      "svg_id": "path1792",
+      "meshes": [
+        "part_0023"
+      ]
+    },
+    {
+      "svg_id": "path1794",
+      "meshes": [
+        "part_0024"
+      ]
+    },
+    {
+      "svg_id": "path1796",
+      "meshes": [
+        "part_0025"
+      ]
+    },
+    {
+      "svg_id": "path166-2",
+      "meshes": [
+        "part_0026"
+      ]
+    },
+    {
+      "svg_id": "path182-2",
+      "meshes": [
+        "part_0027"
+      ]
+    },
+    {
+      "svg_id": "path200-4",
+      "meshes": [
+        "part_0028"
+      ]
+    },
+    {
+      "svg_id": "path214-7",
+      "meshes": [
+        "part_0029"
+      ]
+    },
+    {
+      "svg_id": "path216-7",
+      "meshes": [
+        "part_0030"
+      ]
+    },
+    {
+      "svg_id": "ellipse218-4",
+      "meshes": [
+        "part_0031"
+      ]
+    },
+    {
+      "svg_id": "path1778-8",
+      "meshes": [
+        "part_0032"
+      ]
+    },
+    {
+      "svg_id": "path1780-1",
+      "meshes": [
+        "part_0033"
+      ]
+    },
+    {
+      "svg_id": "path1782-2",
+      "meshes": [
+        "part_0034"
+      ]
+    },
+    {
+      "svg_id": "path1784-8",
+      "meshes": [
+        "part_0035"
+      ]
+    },
+    {
+      "svg_id": "path1786-9",
+      "meshes": [
+        "part_0036"
+      ]
+    },
+    {
+      "svg_id": "path1788-3",
+      "meshes": [
+        "part_0037"
+      ]
+    },
+    {
+      "svg_id": "path1790-6",
+      "meshes": [
+        "part_0038"
+      ]
+    },
+    {
+      "svg_id": "path1792-8",
+      "meshes": [
+        "part_0039"
+      ]
+    },
+    {
+      "svg_id": "path1794-0",
+      "meshes": [
+        "part_0040"
+      ]
+    },
+    {
+      "svg_id": "path1796-2",
+      "meshes": [
+        "part_0041"
+      ]
+    },
+    {
+      "svg_id": "path322",
+      "meshes": [
+        "part_0042"
+      ]
+    },
+    {
+      "svg_id": "path392",
+      "meshes": [
+        "part_0043"
+      ]
+    },
+    {
+      "svg_id": "path434",
+      "meshes": [
+        "part_0044"
+      ]
+    },
+    {
+      "svg_id": "path322-3",
+      "meshes": [
+        "part_0045"
+      ]
+    },
+    {
+      "svg_id": "path392-5",
+      "meshes": [
+        "part_0046"
+      ]
+    },
+    {
+      "svg_id": "path434-0",
+      "meshes": [
+        "part_0047"
+      ]
+    },
+    {
+      "svg_id": "path1402",
+      "meshes": [
+        "part_0048"
+      ]
+    },
+    {
+      "svg_id": "path1404",
+      "meshes": [
+        "part_0049"
+      ]
+    },
+    {
+      "svg_id": "path1406",
+      "meshes": [
+        "part_0050"
+      ]
+    },
+    {
+      "svg_id": "path1416",
+      "meshes": [
+        "part_0051"
+      ]
+    },
+    {
+      "svg_id": "path1418",
+      "meshes": [
+        "part_0052"
+      ]
+    },
+    {
+      "svg_id": "path1420",
+      "meshes": [
+        "part_0053"
+      ]
+    }
+  ]
+}
