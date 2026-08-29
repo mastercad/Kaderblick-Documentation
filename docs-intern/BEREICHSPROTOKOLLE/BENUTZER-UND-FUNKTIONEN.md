@@ -26,3 +26,10 @@
 ## Screenshots
 
 Unter `public/images/docs/benutzer-zuordnungen/` und `public/images/docs/funktionszuordnungen/`; reproduzierbar mit `scripts/audit-assignments.mjs`.
+
+## Dublettenprüfung (lokale Entwicklungsoberfläche)
+
+- Am 29. August 2026 auf `localhost:5173` in allen fünf Sprachen geprüft.
+- Erfasst wurden der Dubletten-Dialog sowie die Konfliktauswahl vor der endgültigen Zusammenführung.
+- Die Kandidatenwerte waren kontrollierte Dokumentationsdaten; es wurde weder zusammengeführt noch gelöscht.
+- Geprüfte Implementierung: `frontend/src/pages/Players.tsx`, `PlayersController.php`, `PlayerMergeService.php` und `PlayerMergeAccessService.php`.

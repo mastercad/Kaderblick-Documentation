@@ -1,10 +1,10 @@
 # Screenshot-Katalog
 
-Stand: 28. August 2026
+Stand: 29. August 2026
 
 ## Verbindliche Regeln
 
-- Nur Aufnahmen der freigegebenen Demo-Instanz verwenden.
+- Grundsätzlich Aufnahmen der freigegebenen Demo-Instanz verwenden. Noch nicht veröffentlichte Funktionen werden auf `localhost:5173` aufgenommen und im Bereichsprotokoll ausdrücklich als lokale Entwicklungsoberfläche gekennzeichnet.
 - Keine Kennwörter, Tokens, privaten Kontaktdaten oder sonstigen Zugangsdaten abbilden.
 - Cookie-Hinweise, Ladezustände und geöffnete persönliche Menüs vor der Aufnahme entfernen.
 - Nach Navigation, Tabwechsel und Öffnen eines Dialogs warten, bis nachgeladene Inhalte vollständig sichtbar sind. Eine Aufnahme mit kreisförmigem oder linearem Ladeindikator, `aria-busy`-Zustand oder noch wechselndem Inhalt wird verworfen.
@@ -29,7 +29,7 @@ Am 28. August 2026 wurden sämtliche 114 aus Endverbraucher-Templates referenzie
 | Beobachtungsliste | `overview.png`, `person-hinzufuegen.png` | Trainer |
 | Berichte | `berichte-aktuell.png`, `report-assistant.png` | Trainer |
 | Dashboard | `trainer-dashboard.png`, `widget-hinzufuegen.png`, `statistik-widget-hinzufuegen.png`, `widget-settings.png`, `widget-entfernen.png` | Trainer |
-| Erste Schritte | `coach-navigation.png` | Trainer |
+| Erste Schritte | `coach-navigation.png`, `link-request-type.png`, `link-request-team.png`, `link-request-person.png`, `link-request-relation.png`, `link-request-review.png` | Trainer beziehungsweise lokal authentifizierter Verknüpfungsablauf |
 | Fahrgemeinschaften | `termindetails.png`, `overview.png`, `anbieten.png` | angemeldetes Teammitglied |
 | Feedback | `feedback-geben.png`, `mein-feedback.png` | angemeldetes Demo-Konto |
 | Staff und Funktionäre | `staff.png`, `funktionaere.png`, `staff-anlegen.png`, `funktionaer-anlegen.png` | Vereinsadministration |
@@ -46,7 +46,7 @@ Am 28. August 2026 wurden sämtliche 114 aus Endverbraucher-Templates referenzie
 | Quick Events | `overview.png`, `editor.png` | Trainer |
 | Software | `analyse-player/hauptfenster.png`, `video-manager/hauptfenster.png`, `video-manager/workflow-editor.png`, `video-manager/kaderblick-settings.png`, `video-schnitt/hauptfenster.png` | offizielle Projektseiten und Projektdokumentationen |
 | Spiele | `overview.png`, `detail.png` | Trainer |
-| Spieler | `spieler-aktuell.png`, `spieler-uebersicht.png`, `spieler-anlegen.png`, `spieler-anlegen-button.png` | Trainer |
+| Spieler | `spieler-aktuell.png`, `spieler-uebersicht.png`, `spieler-anlegen.png`, `spieler-anlegen-button.png`, `duplicates.png`, `duplicate-conflicts.png` | Trainer beziehungsweise lokale Dublettenprüfung |
 | Spielstätten | `overview.png`, `anlegen.png` | Vereinsadministration |
 | Strafenkatalog | `katalog.png`, `neuer-typ.png` | Katalogsicht und Katalogverwaltung |
 | Trainer | `trainer-aktuell.png`, `trainer-anlegen.png`, `lizenzen.png` | Trainer beziehungsweise Administration |
@@ -62,4 +62,4 @@ Am 28. August 2026 wurden sämtliche 114 aus Endverbraucher-Templates referenzie
 
 ## Reproduzierbarkeit
 
-Die Aufnahmen werden mit den Audit-Skripten unter `scripts/` erstellt. `scripts/lib/wait-for-ready.mjs` prüft nachgeladene Inhalte und blockierende Ladezustände vor der Aufnahme. Kennwörter werden ausschließlich zur Laufzeit bereitgestellt und weder in Skripten noch in diesem Katalog gespeichert.
+Die Aufnahmen werden mit den Audit-Skripten unter `scripts/` erstellt. Die neuen Verknüpfungs- und Dublettenbilder wurden aus der lokalen Entwicklungsoberfläche erzeugt; die Zugangsdaten wurden nur zur Laufzeit verdeckt übergeben und nicht gespeichert. `scripts/lib/wait-for-ready.mjs` prüft nachgeladene Inhalte und blockierende Ladezustände vor der Aufnahme. Kennwörter werden ausschließlich zur Laufzeit bereitgestellt und weder in Skripten noch in diesem Katalog gespeichert.

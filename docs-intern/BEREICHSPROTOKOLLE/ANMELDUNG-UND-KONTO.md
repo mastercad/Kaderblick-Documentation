@@ -44,3 +44,13 @@
 - Keine Zwei-Faktor-Einstellung verändert
 
 Die zugehörigen Erfolgs- und Fehlerzustände wurden aus den oben genannten Komponenten geprüft.
+
+## Verknüpfungsanfrage (lokale Entwicklungsoberfläche)
+
+- Am 29. August 2026 auf `localhost:5173` mit einem real angemeldeten Administratorkonto in Deutsch, Englisch, Französisch, Russisch und vereinfachtem Chinesisch geprüft.
+- Fünf mobile Schritte: Personentyp, serverseitige Teamsuche, serverseitig auf das Team eingeschränkte Personensuche, Beziehung und Zusammenfassung.
+- Teamtreffer zeigen Teamname, Altersgruppe und Verein; die vollständige Teamliste wird nicht in den Browser vorgeladen.
+- Die Aufnahme endet jeweils vor `Antrag stellen`; es wurde keine Verknüpfungsanfrage erzeugt.
+- Für reproduzierbare, sprachübergreifend identische Darstellungen wurden ausschließlich die Suchtreffer der Team-/Personensuche kontrolliert bereitgestellt. Authentifizierung und Oberfläche liefen gegen die lokale Entwicklungsinstanz.
+
+Geprüfte zusätzliche Implementierung: `RegistrationContextDialog.tsx`, `RegistrationRequestController.php` und die lokalisierten Meldungen unter `translations/messages/registration_context/`.
