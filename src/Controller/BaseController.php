@@ -45,6 +45,7 @@ abstract class BaseController extends AbstractController
             'docs_football_de_import' => ['label' => 'nav.fussball_de_import', 'icon' => '📥'],
             'docs_my_matchday' => ['label' => 'nav.my_matchday', 'icon' => '⚽'],
             'docs_help_out' => ['label' => 'nav.help_out', 'icon' => '🤝'],
+            'docs_event_duties' => ['label' => 'nav.event_duties', 'icon' => '🛡️'],
             'docs_calendar' => ['label' => 'nav.calendar', 'icon' => '📅'],
             'docs_lineups' => ['label' => 'nav.formations', 'icon' => '📋'],
             'docs_tournaments' => ['label' => 'nav.tournaments', 'icon' => '🏆'],
@@ -100,7 +101,7 @@ abstract class BaseController extends AbstractController
         $routesByGroup = [
             'sidebar.group.start' => ['docs_home', 'docs_getting_started', 'docs_roles', 'docs_authentication', 'docs_dashboard'],
             'sidebar.group.team' => ['docs_clubs_teams', 'docs_venues', 'docs_training_proofs', 'docs_clothing_sizes', 'docs_players', 'docs_coaches', 'docs_watchlist', 'docs_profile'],
-            'sidebar.group.matchday' => ['docs_calendar', 'docs_games', 'docs_quick_events', 'docs_football_de_import', 'docs_my_matchday', 'docs_help_out', 'docs_lineups', 'docs_tournaments', 'docs_video_analysis', 'docs_reports'],
+            'sidebar.group.matchday' => ['docs_calendar', 'docs_games', 'docs_quick_events', 'docs_football_de_import', 'docs_my_matchday', 'docs_help_out', 'docs_event_duties', 'docs_lineups', 'docs_tournaments', 'docs_video_analysis', 'docs_reports'],
             'sidebar.group.organisation' => ['docs_messages', 'docs_news', 'docs_tasks', 'docs_surveys', 'docs_knowledge_pool', 'docs_notifications', 'docs_feedback', 'docs_car_pools', 'docs_my_balance', 'docs_cash_book', 'docs_billing', 'docs_fines_catalogue', 'docs_inventory', 'docs_administration', 'docs_user_assignments', 'docs_staff_assignments', 'docs_xp_system'],
         ];
 

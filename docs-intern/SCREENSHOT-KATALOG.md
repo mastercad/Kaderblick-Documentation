@@ -1,6 +1,6 @@
 # Screenshot-Katalog
 
-Stand: 29. August 2026
+Stand: 6. September 2026
 
 ## Verbindliche Regeln
 
@@ -14,7 +14,7 @@ Stand: 29. August 2026
 
 ## Veröffentlichte und geprüfte Aufnahmen
 
-Am 28. August 2026 wurden sämtliche 114 aus Endverbraucher-Templates referenzierten Aufnahmen als Kontaktübersichten und in auffälligen Größen zusätzlich einzeln geprüft. Kein veröffentlichtes Bild zeigt einen Ladeindikator, einen Cookie-Hinweis, ein geöffnetes persönliches Menü oder unmaskierte Zugangsdaten. Sichtbare Personennamen und Inhalte stammen aus der freigegebenen Demo-Instanz. Das Tokenfeld in `software/video-manager/kaderblick-settings.png` ist vollständig maskiert.
+Am 28. August 2026 wurden die damaligen 114 aus Endverbraucher-Templates referenzierten Aufnahmen als Kontaktübersichten und in auffälligen Größen zusätzlich einzeln geprüft. Am 6. und 7. September 2026 kamen insgesamt 40 lokalisierte Aufnahmen der Einsatzplanung hinzu; auch diese wurden als Kontaktübersicht und einzeln in Originalgröße geprüft. Kein veröffentlichtes Bild zeigt einen Ladeindikator, einen Cookie-Hinweis, ein geöffnetes persönliches Menü oder unmaskierte Zugangsdaten. Die neuen Aufnahmen verwenden neutrale Dokumentationsdaten; die übrigen sichtbaren Personennamen und Inhalte stammen aus der freigegebenen Demo-Instanz. Das Tokenfeld in `software/video-manager/kaderblick-settings.png` ist vollständig maskiert.
 
 | Bereich | Veröffentlichte Dateien | Perspektive beziehungsweise Quelle |
 |---|---|---|
@@ -30,6 +30,7 @@ Am 28. August 2026 wurden sämtliche 114 aus Endverbraucher-Templates referenzie
 | Berichte | `berichte-aktuell.png`, `report-assistant.png` | Trainer |
 | Dashboard | `trainer-dashboard.png`, `widget-hinzufuegen.png`, `statistik-widget-hinzufuegen.png`, `widget-settings.png`, `widget-entfernen.png` | Trainer |
 | Erste Schritte | `coach-navigation.png`, `link-request-type.png`, `link-request-team.png`, `link-request-person.png`, `link-request-relation.png`, `link-request-review.png` | Trainer beziehungsweise lokal authentifizierter Verknüpfungsablauf |
+| Einsatzplanung | `overview.png`, `create-select.png`, `create-plan.png`, `plan-details.png`, `edit-plan.png`, `settings.png`, `settings-templates.png`, `template-create.png` jeweils für `de`, `en`, `fr`, `ru` und `zh-hans` | lokale Entwicklungsoberfläche mit neutralen, vollständig sprachspezifischen Dokumentationsdaten; Vereinsorganisation |
 | Fahrgemeinschaften | `termindetails.png`, `overview.png`, `anbieten.png` | angemeldetes Teammitglied |
 | Feedback | `feedback-geben.png`, `mein-feedback.png` | angemeldetes Demo-Konto |
 | Staff und Funktionäre | `staff.png`, `funktionaere.png`, `staff-anlegen.png`, `funktionaer-anlegen.png` | Vereinsadministration |
@@ -62,4 +63,4 @@ Am 28. August 2026 wurden sämtliche 114 aus Endverbraucher-Templates referenzie
 
 ## Reproduzierbarkeit
 
-Die Aufnahmen werden mit den Audit-Skripten unter `scripts/` erstellt. Die neuen Verknüpfungs- und Dublettenbilder wurden aus der lokalen Entwicklungsoberfläche erzeugt; die Zugangsdaten wurden nur zur Laufzeit verdeckt übergeben und nicht gespeichert. `scripts/lib/wait-for-ready.mjs` prüft nachgeladene Inhalte und blockierende Ladezustände vor der Aufnahme. Kennwörter werden ausschließlich zur Laufzeit bereitgestellt und weder in Skripten noch in diesem Katalog gespeichert.
+Die Aufnahmen werden mit den Audit-Skripten unter `scripts/` erstellt. Die lokalisierten Aufnahmen der Einsatzplanung werden reproduzierbar mit `scripts/capture-event-duties.mjs` aus der aktuellen lokalen Produktoberfläche erzeugt; die dafür eingesetzten neutralen Dokumentationsdaten enthalten keine Zugangsdaten oder privaten Kontaktdaten. Die neuen Verknüpfungs- und Dublettenbilder wurden ebenfalls aus der lokalen Entwicklungsoberfläche erzeugt; die Zugangsdaten wurden nur zur Laufzeit verdeckt übergeben und nicht gespeichert. `scripts/lib/wait-for-ready.mjs` prüft nachgeladene Inhalte und blockierende Ladezustände vor der Aufnahme. Kennwörter werden ausschließlich zur Laufzeit bereitgestellt und weder in Skripten noch in diesem Katalog gespeichert.

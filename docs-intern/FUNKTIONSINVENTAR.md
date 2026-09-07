@@ -1,7 +1,8 @@
 # Funktions- und Bereichsinventar
 
-Stand der letzten Oberflächenprüfung: 28. August 2026  
-Referenzoberfläche: Kaderblick-Demo, deutsche Sprachfassung
+Stand der letzten Oberflächenprüfung: 6. September 2026
+
+Referenzoberflächen: Kaderblick-Demo sowie lokale Entwicklungsoberfläche für die Einsatzplanung, jeweils in den dokumentierten Sprachfassungen
 
 ## Statuslegende
 
@@ -54,6 +55,7 @@ Referenzoberfläche: Kaderblick-Demo, deutsche Sprachfassung
 | Spieldetails | `/games/:id` | Teilweise geprüft | Ergebnis, Zeitsteuerung, Ereignisse, Aufstellung, Videos |
 | Persönlicher Spieltag | `/mein-spieltag`, `/mein-spieltag/:eventId` | Geprüft | Teilnahme, Treffpunkt, Ablauf und eigene Aufgaben |
 | Aushelfen | `/aushelfen` | Geprüft | Spielberechtigte Personen, Verfügbarkeit und Regeln |
+| Einsatzplanung | `/einsatzplanung` | Geprüft in der lokalen Entwicklungsoberfläche | Vereinsfunktion Einsatzplaner; Spiele und Termine, Ordnungsdienst, Einlass, Kasse, Parkplatz, Sanitätsdienst, Rückmeldungen, Qualifikationen, Anwesenheit und Druck |
 | Turnierdetails | `/tournaments/:id` | Teilweise geprüft | Turnierplan, Spiele und Ergebnisse |
 | Öffentlicher Live-Ticker | `/live/*` | Teilweise geprüft | Freigabe aus dem Spiel und öffentliche Ansicht |
 | fussball.de-Import | `/imports` | Geprüft | Browser-Erweiterung, Prüfung und Übernahme |

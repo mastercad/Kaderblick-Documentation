@@ -1,10 +1,10 @@
-import { chromium } from '/media/Austausch/Projekte/fussballverein/Kaderblick-Website/frontend/node_modules/playwright/index.mjs';
+import { chromium } from '../../Kaderblick-Website/frontend/node_modules/playwright/index.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const baseUrl = process.env.KB_DOCS_URL ?? 'http://127.0.0.1:8083';
 const output = new URL('../var/integrated-sections-audit/', import.meta.url);
 await mkdir(output, { recursive: true });
-const routes = ['/getting-started', '/lineups', '/lineups/plan-tactics', '/calendar', '/help-out', '/games'];
+const routes = ['/getting-started', '/lineups', '/lineups/plan-tactics', '/calendar', '/help-out', '/event-duties', '/games'];
 const locales = ['de', 'en', 'fr', 'ru', 'zh_Hans'];
 const results = [];
 const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });

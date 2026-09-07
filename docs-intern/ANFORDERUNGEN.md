@@ -111,6 +111,8 @@ Die folgenden vom Betreiber ausdrücklich genannten Abläufe müssen in der Endv
 - Vollständiger Benachrichtigungs- und Antwortweg für Aushelferbereitschaft und konkrete Aushilfseinladungen.
 - Vollständiger Nachrichtenbereich einschließlich Posteingang, Gesendet, Einzel- und Sammeladressierung, Antworten, Weiterleiten, Löschen, Lesestatus, Ansichtswechsel und Empfängergruppen.
 - Sämtliche unterschiedlichen Kalender-Assistenten für `Spiel`, `Training`, `Vereinstreffen`, `Event`, `Aufgabe` und `Turnier`, einschließlich aller jeweils sichtbaren Schritte und Optionen.
+- Vollständige Einsatzplanung für Spiele und Veranstaltungen einschließlich Ordnungsdienst, Einlass, Kasse, Parkplatz, Sanitätsdienst, weiterer Einsatzarten, Vorbereitung im Terminassistenten, zentraler Übersicht, Einteilungen, Selbstmeldungen, Qualifikationen, Rückmeldungen, Anwesenheit, Erinnerungen, Vorlagen und Einzel- sowie Sammeldruck.
+- Einheitliche, backendseitig über Voter entschiedene Verwaltungsberechtigung ausschließlich für Personen mit aktiver Vereinsfunktion „Einsatzplaner“; eine Trainer- oder allgemeine Terminbearbeitungsberechtigung reicht nicht aus.
 - Vierstufiger Mobile Wizard für Auswertungen und der wesentlich umfangreichere Report Builder. `Anpassen` auf der Abschlussseite des Mobile Wizard öffnet den Report Builder mit der bisherigen Auswahl. Beim Anlegen eines Dashboard-Statistik-Widgets kann direkt zwischen `Einfacher Assistent` und `Detaillierter Builder` gewählt werden.
 
 ## 6. Sprache und Stil

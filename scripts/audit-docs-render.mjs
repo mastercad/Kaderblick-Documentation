@@ -1,4 +1,4 @@
-import { chromium } from '/media/Austausch/Projekte/fussballverein/Kaderblick-Website/frontend/node_modules/playwright/index.mjs';
+import { chromium } from '../../Kaderblick-Website/frontend/node_modules/playwright/index.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const baseUrl = process.env.KB_DOCS_URL ?? 'http://127.0.0.1:8099';
@@ -6,12 +6,14 @@ const output = new URL('../var/docs-render-audit/', import.meta.url);
 await mkdir(output, { recursive: true });
 
 const locales = ['de', 'en', 'fr', 'ru', 'zh_Hans'];
+const urlLocale = (locale) => locale === 'zh_Hans' ? 'zh-hans' : locale;
+const localizedUrl = (locale, route) => `${baseUrl}/${urlLocale(locale)}${route === '/' ? '/' : route}`;
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
   { name: 'tablet', width: 820, height: 1180 },
   { name: 'mobile', width: 390, height: 844 },
 ];
-const visualRoutes = ['/', '/roles', '/profile', '/xp-system', '/games', '/reports', '/knowledge-pool', '/admin'];
+const visualRoutes = ['/', '/roles', '/profile', '/xp-system', '/games', '/event-duties', '/reports', '/knowledge-pool', '/admin'];
 const findings = [];
 const results = [];
 
@@ -19,11 +21,12 @@ function localPath(value) {
   const url = new URL(value, baseUrl);
   if (url.origin !== new URL(baseUrl).origin) return null;
   if (url.pathname.startsWith('/_profiler') || url.pathname.startsWith('/_wdt')) return null;
-  if (/\.(?:png|jpe?g|gif|svg|webp|ico|css|js|woff2?|pdf|csv|zip|mtl|obj|stl|glb|gltf)$/i.test(url.pathname)) return null;
+  if (/\.(?:png|jpe?g|gif|svg|webp|ico|css|js|json|woff2?|pdf|csv|zip|mtl|obj|stl|glb|gltf)$/i.test(url.pathname)) return null;
+  const route = url.pathname.replace(/^\/(?:de|en|fr|ru|zh-hans)(?=\/|$)/i, '') || '/';
   // Camera pages contain continuously animated WebGL views. They are checked
   // separately and excluded from the general render audit.
-  if (url.pathname.startsWith('/tools/camera/')) return null;
-  return url.pathname;
+  if (route.startsWith('/tools/camera/')) return null;
+  return route.startsWith('/') ? route : `/${route}`;
 }
 
 const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/google-chrome' });
@@ -53,7 +56,7 @@ while (queue.length) {
   const route = queue.shift();
   if (routes.has(route)) continue;
   routes.add(route);
-  const response = await discovery.goto(`${baseUrl}${route}?lang=de`, { waitUntil: 'domcontentloaded' });
+  const response = await discovery.goto(localizedUrl('de', route), { waitUntil: 'domcontentloaded' });
   if (!response?.ok()) {
     findings.push(`Routenentdeckung ${route}: HTTP ${response?.status() ?? 'ohne Antwort'}`);
     continue;
@@ -69,7 +72,7 @@ await discovery.close();
 const routePage = await browser.newPage({ viewport: viewports[0] });
 for (const locale of locales) {
   for (const route of [...routes].sort()) {
-    const response = await routePage.goto(`${baseUrl}${route}?lang=${locale}`, { waitUntil: 'domcontentloaded' });
+    const response = await routePage.goto(localizedUrl(locale, route), { waitUntil: 'domcontentloaded' });
     const state = await routePage.evaluate(() => ({
       lang: document.documentElement.lang,
       heading: document.querySelector('main h1')?.textContent?.trim() ?? '',
@@ -93,7 +96,7 @@ for (const viewport of viewports) {
   const page = await browser.newPage({ viewport });
   for (const locale of locales) {
     for (const route of visualRoutes) {
-      await page.goto(`${baseUrl}${route}?lang=${locale}`, { waitUntil: 'domcontentloaded' });
+      await page.goto(localizedUrl(locale, route), { waitUntil: 'domcontentloaded' });
       let geometry = await readLayoutGeometry(page);
       if (!geometry.main || !geometry.header) {
         await page.reload({ waitUntil: 'domcontentloaded' });
@@ -107,7 +110,7 @@ for (const viewport of viewports) {
     }
   }
 
-  await page.goto(`${baseUrl}/roles?lang=de`, { waitUntil: 'domcontentloaded' });
+  await page.goto(localizedUrl('de', '/roles'), { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => localStorage.setItem('kaderblick-docs-theme', 'light'));
   await page.reload({ waitUntil: 'domcontentloaded' });
   await page.locator('.theme-toggle').click();
@@ -129,7 +132,7 @@ for (const viewport of viewports) {
 
 // The visible header field must open its result list, build a locale-specific index and link to a matching section.
 const searchPage = await browser.newPage({ viewport: viewports[0] });
-await searchPage.goto(`${baseUrl}/?lang=de`, { waitUntil: 'domcontentloaded' });
+await searchPage.goto(localizedUrl('de', '/'), { waitUntil: 'domcontentloaded' });
 await searchPage.locator('[data-search-input]').focus();
 if (await searchPage.locator('[data-search-popover]').getAttribute('hidden') !== null) findings.push('Suche: Trefferliste öffnet nicht am Suchfeld');
 await searchPage.locator('[data-search-input]').fill('Hall of Fame');
@@ -138,7 +141,7 @@ try {
   const searchResult = await searchPage.locator('.search-result__link').first().evaluate((link) => ({ text: link.textContent, href: link.getAttribute('href') }));
   if (!searchResult.text?.includes('Hall of Fame')) findings.push('Suche: erwarteter XP-Treffer fehlt');
   const resultUrl = new URL(searchResult.href, baseUrl);
-  if (resultUrl.pathname !== '/xp-system' || !resultUrl.hash) findings.push(`Suche: Treffer verweist nicht auf den passenden Abschnitt (${searchResult.href})`);
+  if (resultUrl.pathname !== '/de/xp-system' || !resultUrl.hash) findings.push(`Suche: Treffer verweist nicht auf den passenden Abschnitt (${searchResult.href})`);
   if (await searchPage.locator('.search-result__link').first().locator('mark').count() === 0) findings.push('Suche: Suchbegriff wird im Treffer nicht hervorgehoben');
   if (await searchPage.locator('.search-result__link').first().locator('.search-result__match').count() !== 1) findings.push('Suche: Trefferart fehlt');
   const snippet = await searchPage.locator('.search-result__link').first().locator('.search-result__snippet').innerText();

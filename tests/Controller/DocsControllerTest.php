@@ -52,6 +52,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'Feedback' => ['/feedback', 'Feedback und Hilfe'];
         yield 'Mein Spieltag' => ['/my-matchday', 'Mein Spieltag'];
         yield 'Aushelfen' => ['/help-out', 'Aushelfen'];
+        yield 'Einsatzplanung' => ['/event-duties', 'Einsatzplanung für Spiele und Veranstaltungen'];
         yield 'Kamerasysteme' => ['/tools/camera-systems', 'Kamerasysteme'];
         yield 'VideoManager' => ['/tools/video-manager', 'VideoManager'];
         yield 'Analyse Player' => ['/tools/analysis-player', 'Analyse Player'];
@@ -125,7 +126,7 @@ final class DocsControllerTest extends WebTestCase
 
         $germanFiles = glob($projectDirectory.'/content/de/**/*.json', GLOB_BRACE) ?: [];
         $germanFiles = array_merge($germanFiles, glob($projectDirectory.'/content/de/*.json') ?: []);
-        self::assertCount(44, array_unique($germanFiles));
+        self::assertCount(45, array_unique($germanFiles));
 
         foreach (['en', 'fr', 'ru', 'zh_Hans'] as $locale) {
             foreach (array_unique($germanFiles) as $germanFile) {
@@ -163,6 +164,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'Getting started' => ['/getting-started', 4];
         yield 'Reports' => ['/reports', 4];
         yield 'Calendar' => ['/calendar', 6];
+        yield 'Duty planning' => ['/event-duties', 5];
         yield 'Games' => ['/games', 5];
         yield 'Profile' => ['/profile', 6];
         yield 'Dashboard' => ['/dashboard', 4];
@@ -173,7 +175,7 @@ final class DocsControllerTest extends WebTestCase
     public function testLongFormSectionsUseExplicitStableIdsInEveryLocale(): void
     {
         $projectDirectory = dirname(__DIR__, 2);
-        foreach (['getting-started', 'reports', 'calendar', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams'] as $page) {
+        foreach (['getting-started', 'reports', 'calendar', 'event-duties', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams'] as $page) {
             $reference = null;
             foreach (['de', 'en', 'fr', 'ru', 'zh_Hans'] as $locale) {
                 $content = json_decode((string) file_get_contents($projectDirectory.'/content/'.$locale.'/'.$page.'.json'), true, 512, JSON_THROW_ON_ERROR);
@@ -190,7 +192,7 @@ final class DocsControllerTest extends WebTestCase
     {
         $content = static::getContainer()->get(LongFormContent::class);
         foreach (['de', 'en', 'fr', 'ru', 'zh_Hans'] as $locale) {
-            foreach (['getting-started', 'reports', 'calendar', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams'] as $page) {
+            foreach (['getting-started', 'reports', 'calendar', 'event-duties', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams'] as $page) {
                 foreach ($content->overview($page, $locale)['sections'] as $chapter) {
                     $document = $content->section($page, $chapter['slug'], $locale)['document'];
                     self::assertTrue(
@@ -296,6 +298,10 @@ final class DocsControllerTest extends WebTestCase
         yield 'Calendar French' => ['/calendar', 'fr', 'Calendrier et rendez-vous'];
         yield 'Calendar Russian' => ['/calendar', 'ru', 'Календарь и мероприятия'];
         yield 'Calendar Simplified Chinese' => ['/calendar', 'zh_Hans', '日历与日程'];
+        yield 'Duty planning English' => ['/event-duties', 'en', 'Duty planning for matches and events'];
+        yield 'Duty planning French' => ['/event-duties', 'fr', 'Planification des services pour les matchs et événements'];
+        yield 'Duty planning Russian' => ['/event-duties', 'ru', 'Планирование дежурств на матчах и мероприятиях'];
+        yield 'Duty planning Simplified Chinese' => ['/event-duties', 'zh_Hans', '比赛和活动的值勤安排'];
         yield 'Messages English' => ['/messages', 'en', 'Messages'];
         yield 'Messages French' => ['/messages', 'fr', 'Messages'];
         yield 'Messages Russian' => ['/messages', 'ru', 'Сообщения'];
@@ -609,7 +615,7 @@ final class DocsControllerTest extends WebTestCase
         self::assertSame(0, $xpath->query('//s:loc[.="http://docs.kaderblick.test/calendar"]')->length);
         self::assertSame(0, $xpath->query('//s:loc[contains(., "/tools/ball-marker-gui")]')->length);
         self::assertSame(0, $xpath->query('//s:loc[contains(., "/tools/camera-simulator")]')->length);
-        foreach (['/de/', '/en/calendar', '/zh-hans/roles/player', '/fr/clubs-teams/club-and-season'] as $path) {
+        foreach (['/de/', '/en/calendar', '/en/event-duties', '/zh-hans/roles/player', '/fr/clubs-teams/club-and-season'] as $path) {
             self::assertSame(1, $xpath->query(sprintf('//s:loc[.="http://docs.kaderblick.test%s"]', $path))->length, $path);
         }
 

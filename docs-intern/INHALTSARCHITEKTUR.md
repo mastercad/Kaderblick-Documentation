@@ -44,7 +44,7 @@ Jede JSON-Datei enthält:
 
 ## Lange Anleitungen und Kapitel
 
-- `getting-started`, `reports`, `calendar`, `games`, `profile`, `dashboard`, `lineups` und `clubs-teams` werden auf ihrer bisherigen URL als aufgabenbezogene Kapitelübersicht dargestellt.
+- `getting-started`, `reports`, `calendar`, `event-duties`, `games`, `profile`, `dashboard`, `lineups` und `clubs-teams` werden auf ihrer jeweiligen URL als aufgabenbezogene Kapitelübersicht dargestellt.
 - Der lokalisierte Inhalt bleibt je Bereich in einer gemeinsamen JSON-Datei. Jeder zugeordnete `h2`-Abschnitt besitzt eine explizite, in allen Sprachen identische semantische ID. `LongFormContent` ordnet diese benannten Abschnitte fachlich definierten Arbeitsabläufen mit stabilen, sprachunabhängigen Kapitelpfaden zu. Zusammengehörige Abschnitte dürfen dabei unabhängig von ihrer ursprünglichen Position gemeinsam dargestellt werden.
 - Kapitel werden nicht aus Textlänge, Überschriftenanzahl oder einer vorgegebenen Zielzahl abgeleitet. Maßgeblich ist, welche Abschnitte eine zusammenhängende Aufgabe beziehungsweise Entscheidung der Benutzer erklären.
 - Neue oder entfernte Fachabschnitte in diesen Dokumenten erfordern eine semantische Abschnitts-ID, eine inhaltliche Prüfung und gegebenenfalls eine bewusste Zuordnung in `LongFormContent`.
