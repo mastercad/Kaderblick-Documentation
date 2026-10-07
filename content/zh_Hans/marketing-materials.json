@@ -1,0 +1,10 @@
+{
+  "title": "宣传资料 — Kaderblick 文档",
+  "hero": {
+    "heading": "使用已批准的宣传资料",
+    "lead": "下载图片、海报、传单、图标、背景和文档。",
+    "eyebrow": null,
+    "chips": []
+  },
+  "body": "<h2>查找资料</h2><ol><li>打开<strong>社区 → 宣传资料</strong>。</li><li>输入搜索词。</li><li>需要时选择类别。</li><li>打开所需卡片。</li></ol><h2>下载资料</h2><ul><li><strong>一个文件：</strong>选择<strong>下载</strong>。</li><li><strong>多个文件：</strong>选择<strong>下载整套文件</strong>。</li><li><strong>整套文件中的单个文件：</strong>展开列表并选择文件名。</li></ul><h2>管理资料</h2><p>此区域需要管理权限。</p><ol><li>打开<strong>管理 → 营销 → 资料</strong>。</li><li>选择<strong>新建</strong>。</li><li>填写标题、说明和类别。</li><li>上传文件。</li><li>需要时选择预览图。</li><li>资料准备好后启用<strong>已发布</strong>。</li><li>保存。</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/marketing-materials/overview.png\" alt=\"带搜索、分类和下载卡片的宣传资料\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">搜索和类别可以缩小列表。</figcaption></figure>"
+}

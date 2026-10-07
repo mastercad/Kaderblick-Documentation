@@ -1,0 +1,10 @@
+{
+  "title": "排球 — Kaderblick 文档",
+  "hero": {
+    "heading": "管理排球并记录比赛",
+    "lead": "本指南介绍从球队设置到报表的排球功能。",
+    "eyebrow": null,
+    "chips": []
+  },
+  "body": "<h2>设置排球队</h2><ol><li>打开<strong>球队</strong>。</li><li>新建球队或选择<strong>编辑</strong>。</li><li>在<strong>运动项目</strong>中选择<strong>排球</strong>。</li><li>选择合适的规则配置。</li><li>检查球队类别、年龄组、场地和网高。</li><li>保存。</li></ol><h2>使用赛程</h2><ol><li>选择排球队。</li><li>打开<strong>比赛 → 赛程</strong>。</li><li>搜索，或按<strong>即将开始</strong>、<strong>直播中</strong>、<strong>已结束</strong>筛选。</li><li>选择一场比赛。</li></ol><p><strong>新建比赛</strong>会打开日历窗口。填写日期、场地、主队、客队和赛事。</p><h2>准备阵容和轮转</h2><ol><li>打开比赛。</li><li>打开<strong>阵容</strong>。</li><li>选择球队和球员。</li><li>填写号码和角色。</li><li>添加球员。</li><li>每局开始前设置首发轮转。</li></ol><p>Kaderblick 会检查人数、重复号码、自由人限制和轮转规则。</p><h2>记录比赛</h2><ol><li>选择<strong>开始本局</strong>。</li><li>选择得分类型。</li><li>需要时选择球员。</li><li>为正确的球队记录得分。</li><li>记录暂停、换人和判罚。</li><li>只在纠错时选择<strong>撤销上一分</strong>，并填写原因。</li></ol><h2>打开报表</h2><ol><li>打开<strong>比赛 → 报表</strong>。</li><li>选择报表。</li><li>设置筛选条件。</li><li>需要时导出 CSV。</li></ol><h2>维护排球基础数据</h2><p>此区域需要管理权限。</p><ol><li>打开<strong>管理 → 排球基础数据</strong>。</li><li>选择所需分类。</li><li>使用搜索和状态筛选。</li><li>选择<strong>编辑</strong>。</li><li>检查并保存。</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/volleyball/master-data.png\" alt=\"排球基础数据\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">标签页分别显示规则、赛事和其他设置。</figcaption></figure>"
+}

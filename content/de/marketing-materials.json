@@ -1,0 +1,10 @@
+{
+  "title": "Marketingmaterialien – Kaderblick-Dokumentation",
+  "hero": {
+    "heading": "Freigegebene Marketingmaterialien verwenden",
+    "lead": "Hier findest du Bilder, Poster, Flyer, Symbole, Hintergründe und Dokumente zum Herunterladen.",
+    "eyebrow": null,
+    "chips": []
+  },
+  "body": "<h2>Material finden</h2><ol><li>Öffne <strong>Community → Marketingmaterialien</strong>.</li><li>Gib einen Begriff in die Suche ein.</li><li>Wähle bei Bedarf eine Kategorie.</li><li>Öffne die passende Materialkarte.</li></ol><h2>Material herunterladen</h2><ul><li><strong>Eine Datei:</strong> Wähle <strong>Herunterladen</strong>.</li><li><strong>Mehrere Dateien:</strong> Wähle <strong>Set herunterladen</strong> für alle Dateien.</li><li><strong>Einzelne Datei aus einem Set:</strong> Öffne die Dateiliste und wähle den Dateinamen.</li></ul><div class=\"callout callout--warning\"><div class=\"callout__icon\">⚠️</div><div class=\"callout__body\"><div class=\"callout__title\">Freigabe beachten</div><div class=\"callout__text\">Verwende nur veröffentlichte Materialien. Ändere Logos und Vorlagen nur, wenn die Beschreibung dies erlaubt.</div></div></div><h2>Material verwalten</h2><p>Dieser Abschnitt ist nur für berechtigte Administratoren sichtbar.</p><ol><li>Öffne <strong>Administration → Marketing → Materialien</strong>.</li><li>Wähle <strong>Material anlegen</strong>.</li><li>Trage Titel, Beschreibung und Kategorie ein.</li><li>Lade eine oder mehrere Dateien hoch.</li><li>Wähle bei mehreren geeigneten Dateien eine Vorschau.</li><li>Aktiviere <strong>Veröffentlicht</strong>, wenn das Material sichtbar sein soll.</li><li>Speichere.</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/de/marketing-materials/overview.png\" alt=\"Marketingmaterialien mit Suche, Kategorieauswahl und Downloadkarten\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">Suche und Kategorie begrenzen die angezeigten Materialien.</figcaption></figure>"
+}

@@ -19,6 +19,7 @@ final class LongFormContent
         'dashboard' => 'dashboard/coaches-dashboard.png',
         'lineups' => 'lineups/lineup-editor.png',
         'clubs-teams' => 'clubs-teams/my-team.png',
+        'club-management' => 'club-management/overview.png',
     ];
 
     /** @var array<string, string> */
@@ -37,6 +38,7 @@ final class LongFormContent
         'dashboard' => ['dashboard-overview', 'add-widget', 'manage-widgets', 'widget-types', 'quick-response', 'training-proof', 'role-actions', 'troubleshooting'],
         'lineups' => ['template-overview', 'create-template', 'lineup-editor', 'tactics-board', 'match-plan', 'missing-player'],
         'clubs-teams' => ['my-team', 'club-season', 'manage-teams', 'manage-clubs', 'roles-visibility'],
+        'club-management' => ['overview-access', 'members', 'applications', 'data-quality', 'organization', 'finance', 'sepa', 'documents', 'reports', 'settings'],
     ];
 
     /** @var array<string, array<string, list<string>>> */
@@ -101,6 +103,18 @@ final class LongFormContent
             'manage-teams' => ['manage-teams'],
             'manage-clubs' => ['manage-clubs'],
             'roles-and-visibility' => ['roles-visibility'],
+        ],
+        'club-management' => [
+            'overview-and-access' => ['overview-access'],
+            'manage-members' => ['members'],
+            'process-requests' => ['applications'],
+            'import-and-quality' => ['data-quality'],
+            'manage-organization' => ['organization'],
+            'fees-and-payments' => ['finance'],
+            'sepa-and-bank' => ['sepa'],
+            'documents' => ['documents'],
+            'reports-and-exports' => ['reports'],
+            'settings-and-audit' => ['settings'],
         ],
     ];
 

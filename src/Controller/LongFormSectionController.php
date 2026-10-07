@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class LongFormSectionController extends BaseController
 {
-    #[Route('/{page}/{section}', name: 'docs_long_form_section', requirements: ['page' => 'getting-started|reports|calendar|event-duties|games|profile|dashboard|lineups|clubs-teams', 'section' => '[a-z0-9-]+'], priority: -10)]
+    #[Route('/{page}/{section}', name: 'docs_long_form_section', requirements: ['page' => 'getting-started|reports|calendar|event-duties|games|profile|dashboard|lineups|clubs-teams|club-management', 'section' => '[a-z0-9-]+'], priority: -10)]
     public function section(string $page, string $section, LongFormContent $longForm): Response
     {
         $locale = $this->currentLocale();

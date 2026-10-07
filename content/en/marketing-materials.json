@@ -1,0 +1,10 @@
+{
+  "title": "Marketing materials – Kaderblick documentation",
+  "hero": {
+    "heading": "Use approved marketing materials",
+    "lead": "Download images, posters, flyers, icons, backgrounds and documents.",
+    "eyebrow": null,
+    "chips": []
+  },
+  "body": "<h2>Find material</h2><ol><li>Open <strong>Community → Marketing materials</strong>.</li><li>Enter a term in the search field.</li><li>Select a category when needed.</li><li>Open the matching card.</li></ol><h2>Download material</h2><ul><li><strong>One file:</strong> select <strong>Download</strong>.</li><li><strong>Several files:</strong> select <strong>Download set</strong>.</li><li><strong>One file from a set:</strong> open the file list and select its name.</li></ul><h2>Manage material</h2><p>This section is visible only to authorised administrators.</p><ol><li>Open <strong>Administration → Marketing → Materials</strong>.</li><li>Select <strong>Create material</strong>.</li><li>Enter a title, description and category.</li><li>Upload one or more files.</li><li>Select a preview when several files support it.</li><li>Enable <strong>Published</strong> when the material is ready.</li><li>Save.</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/en/marketing-materials/overview.png\" alt=\"Marketing materials with search, category filter and download cards\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">Search and category filters narrow the list.</figcaption></figure>"
+}

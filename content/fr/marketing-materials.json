@@ -1,0 +1,10 @@
+{
+  "title": "Supports de communication – Documentation Kaderblick",
+  "hero": {
+    "heading": "Utiliser les supports validés",
+    "lead": "Télécharge des images, affiches, flyers, icônes, fonds et documents.",
+    "eyebrow": null,
+    "chips": []
+  },
+  "body": "<h2>Trouver un support</h2><ol><li>Ouvre <strong>Communauté → Supports de communication</strong>.</li><li>Saisis un terme.</li><li>Choisis une catégorie si nécessaire.</li><li>Ouvre la carte voulue.</li></ol><h2>Télécharger</h2><ul><li><strong>Un fichier :</strong> choisis <strong>Télécharger</strong>.</li><li><strong>Plusieurs fichiers :</strong> choisis <strong>Télécharger le lot</strong>.</li><li><strong>Un fichier du lot :</strong> ouvre la liste et choisis son nom.</li></ul><h2>Gérer les supports</h2><p>Cette partie exige une autorisation d’administration.</p><ol><li>Ouvre <strong>Administration → Marketing → Supports</strong>.</li><li>Choisis <strong>Créer</strong>.</li><li>Saisis le titre, la description et la catégorie.</li><li>Ajoute les fichiers.</li><li>Choisis l’aperçu si nécessaire.</li><li>Active <strong>Publié</strong> lorsque le support est prêt.</li><li>Enregistre.</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/fr/marketing-materials/overview.png\" alt=\"Supports de communication avec recherche et téléchargements\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">La recherche et la catégorie limitent la liste.</figcaption></figure>"
+}
