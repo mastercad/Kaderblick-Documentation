@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.5.12-apache
 
 ENV TZ=Europe/Berlin
 ENV APP_ENV=prod
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -yqq \
     ca-certificates \
     openssl libssl-dev \
     && update-ca-certificates \
-    && docker-php-ext-install intl zip opcache bcmath \
+    && docker-php-ext-install intl zip bcmath \
     && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite headers
