@@ -1,10 +1,10 @@
 {
     "title": "场地占用 – Kaderblick 文档",
     "hero": {
-        "heading": "查看场地占用",
-        "lead": "按场地和时间比较比赛、训练及其他日程。",
+        "heading": "检查场地占用并解决冲突",
+        "lead": "理解周和赛季视图，正确分配区域并处理重叠。",
         "eyebrow": null,
         "chips": []
     },
-    "body": "<h2>筛选占用情况</h2><p>打开<strong>场地占用</strong>，选择周视图或赛季视图、占用类型和场地。周视图最多可同时比较四块运动区域。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/location-occupancy/overview.png\" alt=\"包含多个日程的每周场地占用\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">空闲日期和占用按日期、时间和场地排列。</figcaption></figure><h2>理解并使用记录</h2><p>每条记录显示时间、日程、球队、类型和场地区域。打开记录可查看日历日程；有权限时也可编辑。当前周可返回今天，打印概览会使用当前所选时间和场地。</p><h2>查找缺失记录</h2><p>本页面使用现有日历日程。请在日历中检查类型、日期、场地和区域，不要只为占用页面创建重复日程。</p>"
+    "body": "<h2 id=\"choose-view\">选择视图、时间、类型和场地</h2><p>本页读取日历日程。选择周或赛季、全部/比赛/训练以及主场场地。周视图最多比较四个，赛季可选择全部。系统分别记住选择，并明确显示加载、错误和未选择状态。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/location-occupancy/overview.png\" alt=\"每周场地占用\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">筛选决定比较哪些日程。</figcaption></figure><h2 id=\"week-view\">查看每周占用</h2><p>按周前后移动或返回当前周。每天显示空闲或占用。比赛、训练和其他日程显示时间、参与者、类型和区域；私密标题会隐藏。准备时间计入重叠。区域可为全场、半场或 A、B、C 分区。</p><h2 id=\"season-view\">分析赛季占用</h2><p>设置起止日期。统计显示总数、比赛、训练和需检查日期，记录按场地和日期分组；手机视图保留全部状态与警告。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/location-occupancy/season.png\" alt=\"赛季占用\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">可识别需要检查的日期。</figcaption></figure><h2 id=\"conflicts\">理解时间重叠</h2><p>重叠会同时显示两个日程、共同时间和原因：区域缺失、半场不明确、全场占用、相同分区或超出容量。黄色表示需要协调，红色表示当前记录无法并存。应修改原日历日程。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/location-occupancy/conflict.png\" alt=\"场地冲突\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">两个日程和原因一起显示。</figcaption></figure><h2 id=\"event-booking\">在日历中预订场地</h2><p>在训练日程中选择场地、分区或半场/全场以及准备时间，并等待检查。结果为可用、需协调或冲突，还可提供替代时间和场地。比赛按全场检查；编辑时不会与自身冲突。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/location-occupancy/event-check.png\" alt=\"日历中的占用检查\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">正式预订保存在日历日程。</figcaption></figure><h2 id=\"print-troubleshooting\">打印并排查缺失占用</h2><p>PDF 使用当前视图、日期、类型和场地；未选场地时禁用。记录缺失时检查日期、时间、类型、场地、筛选和区域。场地必须设为主场。私密标题会隐藏。冲突排查要比较准备开始、结束和双方区域。</p>"
 }

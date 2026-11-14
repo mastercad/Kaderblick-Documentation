@@ -20,6 +20,8 @@ final class LongFormContent
         'lineups' => 'lineups/lineup-editor.png',
         'clubs-teams' => 'clubs-teams/my-team.png',
         'club-management' => 'club-management/overview.png',
+        'training-planning' => 'training-planning/editor.png',
+        'location-occupancy' => 'location-occupancy/overview.png',
     ];
 
     /** @var array<string, string> */
@@ -38,7 +40,9 @@ final class LongFormContent
         'dashboard' => ['dashboard-overview', 'add-widget', 'manage-widgets', 'widget-types', 'quick-response', 'training-proof', 'role-actions', 'troubleshooting'],
         'lineups' => ['template-overview', 'create-template', 'lineup-editor', 'tactics-board', 'match-plan', 'missing-player'],
         'clubs-teams' => ['my-team', 'club-season', 'manage-teams', 'manage-clubs', 'roles-visibility'],
-        'club-management' => ['overview-access', 'members', 'applications', 'data-quality', 'organization', 'finance', 'sepa', 'documents', 'reports', 'settings', 'current-workspaces'],
+        'training-planning' => ['entry-context', 'goals-templates', 'schedule-exercises', 'setup', 'team-publication', 'week-series', 'season-collaboration', 'run-offline', 'review-analytics', 'troubleshooting'],
+        'location-occupancy' => ['choose-view', 'week-view', 'season-view', 'conflicts', 'event-booking', 'print-troubleshooting'],
+        'club-management' => ['overview-access', 'applications', 'members', 'import-quality', 'organization-structure', 'organization-people', 'contribution-foundations', 'billing-dunning-payments', 'corrections-donations-accounting', 'sepa-mandates-collection', 'bank-reconciliation', 'documents', 'reports', 'setup-audit'],
     ];
 
     /** @var array<string, array<string, list<string>>> */
@@ -104,17 +108,41 @@ final class LongFormContent
             'manage-clubs' => ['manage-clubs'],
             'roles-and-visibility' => ['roles-visibility'],
         ],
+        'training-planning' => [
+            'open-and-orient' => ['entry-context'],
+            'goals-and-templates' => ['goals-templates'],
+            'schedule-and-exercises' => ['schedule-exercises'],
+            'visual-setup' => ['setup'],
+            'team-and-player-information' => ['team-publication'],
+            'week-and-series' => ['week-series'],
+            'season-and-collaboration' => ['season-collaboration'],
+            'run-and-offline-use' => ['run-offline'],
+            'review-and-analysis' => ['review-analytics'],
+            'permissions-and-troubleshooting' => ['troubleshooting'],
+        ],
+        'location-occupancy' => [
+            'choose-view-and-venues' => ['choose-view'],
+            'weekly-occupancy' => ['week-view'],
+            'season-overview' => ['season-view'],
+            'understand-conflicts' => ['conflicts'],
+            'book-venue-in-calendar' => ['event-booking'],
+            'print-and-troubleshoot' => ['print-troubleshooting'],
+        ],
         'club-management' => [
-            'overview-and-access' => ['overview-access', 'current-workspaces'],
-            'manage-members' => ['members'],
+            'overview-and-access' => ['overview-access'],
             'process-requests' => ['applications'],
-            'import-and-quality' => ['data-quality'],
-            'manage-organization' => ['organization'],
-            'fees-and-payments' => ['finance'],
-            'sepa-and-bank' => ['sepa'],
+            'manage-members' => ['members'],
+            'import-and-quality' => ['import-quality'],
+            'organization-structure' => ['organization-structure'],
+            'qualifications-honors-and-jubilees' => ['organization-people'],
+            'contribution-foundations' => ['contribution-foundations'],
+            'billing-dunning-and-payments' => ['billing-dunning-payments'],
+            'corrections-donations-and-accounting' => ['corrections-donations-accounting'],
+            'sepa-mandates-and-collection' => ['sepa-mandates-collection'],
+            'bank-import-and-reconciliation' => ['bank-reconciliation'],
             'documents' => ['documents'],
             'reports-and-exports' => ['reports'],
-            'settings-and-audit' => ['settings'],
+            'settings-and-audit' => ['setup-audit'],
         ],
     ];
 

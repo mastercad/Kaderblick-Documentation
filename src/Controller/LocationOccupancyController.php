@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Documentation\LongFormContent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -11,8 +12,8 @@ use Symfony\Component\Routing\Attribute\Route;
 final class LocationOccupancyController extends BaseController
 {
     #[Route('', name: '')]
-    public function index(): Response
+    public function index(LongFormContent $longForm): Response
     {
-        return $this->renderDocs('location-occupancy/index.html.twig', 'docs_location_occupancy');
+        return $this->renderLongFormOverview('location-occupancy', 'docs_location_occupancy', $longForm);
     }
 }

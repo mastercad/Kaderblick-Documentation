@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Documentation\LongFormContent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -11,8 +12,8 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TrainingPlanningController extends BaseController
 {
     #[Route('', name: '')]
-    public function index(): Response
+    public function index(LongFormContent $longForm): Response
     {
-        return $this->renderDocs('training-planning/index.html.twig', 'docs_training_planning');
+        return $this->renderLongFormOverview('training-planning', 'docs_training_planning', $longForm);
     }
 }

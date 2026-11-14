@@ -5,16 +5,21 @@ import { chromium } from '../../Kaderblick-Website/frontend/node_modules/playwri
 import { waitForReady } from './lib/wait-for-ready.mjs';
 
 const baseUrl = 'https://demo.kaderblick.de';
+const captureOnlyEventCheck = process.env.KB_CAPTURE_ONLY_EVENT_CHECK === '1';
 const password = process.env.KB_DEMO_PASSWORD;
 if (!password) throw new Error('KB_DEMO_PASSWORD muss gesetzt sein.');
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const locales = {
+const localeCatalog = {
   de: { app: 'de', asset: 'de', browser: 'de-DE' },
   en: { app: 'en', asset: 'en', browser: 'en-GB' },
   fr: { app: 'fr', asset: 'fr', browser: 'fr-FR' },
   ru: { app: 'ru', asset: 'ru', browser: 'ru-RU' },
   zh_Hans: { app: 'zh-Hans', asset: 'zh-hans', browser: 'zh-CN' },
 };
+const requestedLocale = process.env.KB_CAPTURE_LOCALE;
+const locales = requestedLocale && requestedLocale in localeCatalog
+  ? { [requestedLocale]: localeCatalog[requestedLocale] }
+  : localeCatalog;
 const accounts = {
   club: 'daniel.koenig@demo.kaderblick.example',
   coach: 'martin.berger@demo.kaderblick.example',
@@ -47,8 +52,9 @@ async function login(email) {
   return cookies;
 }
 
+const activeAccounts = captureOnlyEventCheck ? { coach: accounts.coach } : accounts;
 const sessions = Object.fromEntries(await Promise.all(
-  Object.entries(accounts).map(async ([key, email]) => [key, await login(email)]),
+  Object.entries(activeAccounts).map(async ([key, email]) => [key, await login(email)]),
 ));
 
 async function localizedPage(session, locale, viewport = { width: 1440, height: 1050 }) {
@@ -90,7 +96,7 @@ async function clean(page) {
   });
 }
 
-async function save(locator, assetLocale, relativePath) {
+async function save(locator, assetLocale, relativePath, maxHeight = null) {
   const page = locator.page();
   await waitForReady(page, locator, { timeout: 45000 });
   await page.waitForTimeout(400);
@@ -105,17 +111,31 @@ async function save(locator, assetLocale, relativePath) {
   });
   const output = join(root, 'public', 'images', 'docs', assetLocale, relativePath);
   await mkdir(dirname(output), { recursive: true });
-  await locator.screenshot({ path: output, animations: 'disabled' });
+  if (maxHeight === null) {
+    await locator.screenshot({ path: output, animations: 'disabled' });
+    return;
+  }
+  const box = await locator.boundingBox();
+  if (!box) throw new Error(`Screenshot-Bereich für ${relativePath} ist nicht sichtbar.`);
+  await page.screenshot({
+    path: output,
+    animations: 'disabled',
+    clip: { x: box.x, y: box.y, width: box.width, height: Math.min(box.height, maxHeight) },
+  });
 }
 
 for (const locale of Object.values(locales)) {
+  if (!captureOnlyEventCheck) {
   {
     const { context, page } = await localizedPage(sessions.club, locale);
     const captures = [
       ['/club-management', 'overview.png'],
       ['/club-management/people', 'members.png'],
+      ['/club-management/tasks?view=applications&panel=overview', 'applications.png'],
+      ['/club-management/people?view=import', 'import.png'],
       ['/club-management/organization', 'organization.png'],
       ['/club-management/finance', 'finance.png'],
+      ['/club-management/bank?view=sepa&panel=overview', 'bank.png'],
       ['/club-management/communication', 'documents.png'],
       ['/club-management/reports', 'reports.png'],
       ['/club-management/setup', 'settings.png'],
@@ -126,9 +146,29 @@ for (const locale of Object.values(locales)) {
       await page.locator('main').first().waitFor({ state: 'visible' });
       await save(page.locator('main').first(), locale.asset, `club-management/${filename}`);
     }
+    await page.goto(`${baseUrl}/club-management/people`, { waitUntil: 'networkidle', timeout: 60000 });
+    await clean(page);
+    const memberList = page.locator('main ul').filter({ has: page.locator('.MuiListItemButton-root') }).first();
+    await memberList.waitFor({ state: 'visible' });
+    await memberList.locator('.MuiListItemButton-root').first().click();
+    const memberRecord = page.locator('.MuiDrawer-paper').last();
+    await memberRecord.waitFor({ state: 'visible' });
+    await save(memberRecord, locale.asset, 'club-management/member-record.png');
+
     await page.goto(`${baseUrl}/location-occupancy`, { waitUntil: 'networkidle', timeout: 60000 });
     await clean(page);
     await save(page.locator('main').first(), locale.asset, 'location-occupancy/overview.png');
+    await page.locator('button[value="season"]').click();
+    await page.locator('main [role="status"]').waitFor({ state: 'hidden', timeout: 45000 }).catch(() => undefined);
+    await save(page.locator('main').first(), locale.asset, 'location-occupancy/season.png', 1200);
+    const occupancyIssue = page.locator('main [data-event-kind]').filter({
+      hasText: /Überschneidung|Overlap|Chevauchement|Пересеч|重叠/i,
+    }).first();
+    if (await occupancyIssue.isVisible().catch(() => false)) {
+      await save(occupancyIssue, locale.asset, 'location-occupancy/conflict.png');
+    } else {
+      await save(page.locator('main').first(), locale.asset, 'location-occupancy/conflict.png');
+    }
     await context.close();
   }
 
@@ -147,6 +187,7 @@ for (const locale of Object.values(locales)) {
     await save(page.locator('main').first(), locale.asset, 'member-portal/overview.png');
     await context.close();
   }
+  }
 
   {
     const { context, page } = await localizedPage(sessions.coach, locale);
@@ -160,9 +201,84 @@ for (const locale of Object.values(locales)) {
     const eventDialog = page.getByRole('dialog').filter({ hasText: 'U17 Mannschaftstraining 2026-11-17' });
     await eventDialog.waitFor({ state: 'visible' });
     await save(eventDialog, locale.asset, 'training-planning/overview.png');
+    const editEvent = eventDialog.getByRole('button', {
+      name: /Bearbeiten|Edit|Modifier|Редактировать|编辑/i,
+    }).first();
+    await editEvent.click();
+    const eventEditor = page.getByRole('dialog').last();
+    await eventEditor.waitFor({ state: 'visible' });
+    let occupancyFieldsVisible = false;
+    for (let step = 0; step < 7; step += 1) {
+      occupancyFieldsVisible = await eventEditor.locator('button[value="whole"], button[value="half"], button[value="A"]').first().isVisible().catch(() => false);
+      if (occupancyFieldsVisible) break;
+      const next = eventEditor.getByRole('button', {
+        name: /Weiter|Next|Suivant|Далее|下一步/i,
+      }).last();
+      if (!await next.isVisible().catch(() => false) || await next.isDisabled()) break;
+      await next.scrollIntoViewIfNeeded();
+      await next.click();
+    }
+    await save(eventEditor, locale.asset, 'location-occupancy/event-check.png');
+    await page.keyboard.press('Escape');
+    if (captureOnlyEventCheck) {
+      await context.close();
+      continue;
+    }
     await page.goto(`${baseUrl}/trainings/354/plan`, { waitUntil: 'networkidle', timeout: 60000 });
     await clean(page);
     await save(page.locator('main').first(), locale.asset, 'training-planning/editor.png');
+
+    const workflowTabs = page.getByRole('tab');
+    await workflowTabs.nth(1).click();
+    const schedulePanel = page.getByRole('tabpanel');
+    await schedulePanel.waitFor({ state: 'visible' });
+    const libraryButton = schedulePanel.getByRole('button').filter({ hasNot: page.locator('svg') }).first();
+    await libraryButton.click();
+    const libraryDialog = page.getByRole('dialog').last();
+    await libraryDialog.waitFor({ state: 'visible' });
+    await save(libraryDialog, locale.asset, 'training-planning/exercise-library.png');
+    await page.keyboard.press('Escape');
+
+    const setupButton = schedulePanel.locator('button').filter({ has: page.locator('svg[data-testid="MapOutlinedIcon"]') }).first();
+    if (await setupButton.isVisible().catch(() => false)) {
+      await setupButton.click();
+      const setupDialog = page.getByRole('dialog').last();
+      await setupDialog.waitFor({ state: 'visible' });
+      await save(setupDialog, locale.asset, 'training-planning/setup.png');
+      await page.keyboard.press('Escape');
+    } else {
+      await save(schedulePanel, locale.asset, 'training-planning/setup.png');
+    }
+
+    await workflowTabs.nth(2).click();
+    await save(page.getByRole('tabpanel'), locale.asset, 'training-planning/team.png');
+    await workflowTabs.nth(3).click();
+    const toolsPanel = page.getByRole('tabpanel');
+    await save(toolsPanel, locale.asset, 'training-planning/tools.png');
+    const toolButtons = toolsPanel.getByRole('button');
+    if (await toolButtons.count() > 0) {
+      await toolButtons.first().click();
+      const analyticsDialog = page.getByRole('dialog').last();
+      await analyticsDialog.waitFor({ state: 'visible' });
+      await save(analyticsDialog, locale.asset, 'training-planning/analytics.png');
+      await page.keyboard.press('Escape');
+    } else {
+      await save(toolsPanel, locale.asset, 'training-planning/analytics.png');
+    }
+
+    await page.goto(`${baseUrl}/my-team`, { waitUntil: 'networkidle', timeout: 60000 });
+    await clean(page);
+    const seasonCard = page.locator('[data-testid="training-season-navigation"]').locator('xpath=ancestor::*[contains(@class,"MuiCard-root")]').first();
+    if (await seasonCard.isVisible().catch(() => false)) {
+      await save(seasonCard, locale.asset, 'training-planning/season.png');
+    } else {
+      await save(page.locator('main').first(), locale.asset, 'training-planning/season.png');
+    }
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`${baseUrl}/trainings/354/run`, { waitUntil: 'networkidle', timeout: 60000 });
+    await clean(page);
+    await save(page.locator('main').first(), locale.asset, 'training-planning/run-mobile.png');
     await context.close();
   }
 }

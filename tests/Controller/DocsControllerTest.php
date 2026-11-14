@@ -36,7 +36,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'XP-System' => ['/xp-system', 'XP, Level, Titel und Hall of Fame'];
         yield 'Neuigkeiten' => ['/news', 'Neuigkeiten'];
         yield 'Trainingsnachweise' => ['/training-proofs', 'Trainingsnachweise'];
-        yield 'Trainingsplanung' => ['/training-planning', 'Training planen und durchführen'];
+        yield 'Trainingsplanung' => ['/training-planning', 'Training vollständig planen, durchführen und auswerten'];
         yield 'Platzbelegung' => ['/location-occupancy', 'Platzbelegung prüfen'];
         yield 'Strafenkatalog' => ['/fines-catalogue', 'Strafenkatalog'];
         yield 'Mein Deckel' => ['/my-balance', 'Mein Deckel'];
@@ -174,13 +174,15 @@ final class DocsControllerTest extends WebTestCase
         yield 'Dashboard' => ['/dashboard', 4];
         yield 'Line-ups' => ['/lineups', 4];
         yield 'Clubs and teams' => ['/clubs-teams', 5];
-        yield 'Club management' => ['/club-management', 10];
+        yield 'Training planning' => ['/training-planning', 10];
+        yield 'Location occupancy' => ['/location-occupancy', 6];
+        yield 'Club management' => ['/club-management', 14];
     }
 
     public function testLongFormSectionsUseExplicitStableIdsInEveryLocale(): void
     {
         $projectDirectory = dirname(__DIR__, 2);
-        foreach (['getting-started', 'reports', 'calendar', 'event-duties', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams', 'club-management'] as $page) {
+        foreach (['getting-started', 'reports', 'calendar', 'event-duties', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams', 'training-planning', 'location-occupancy', 'club-management'] as $page) {
             $reference = null;
             foreach (['de', 'en', 'fr', 'ru', 'zh_Hans'] as $locale) {
                 $content = json_decode((string) file_get_contents($projectDirectory.'/content/'.$locale.'/'.$page.'.json'), true, 512, JSON_THROW_ON_ERROR);
@@ -197,7 +199,7 @@ final class DocsControllerTest extends WebTestCase
     {
         $content = static::getContainer()->get(LongFormContent::class);
         foreach (['de', 'en', 'fr', 'ru', 'zh_Hans'] as $locale) {
-            foreach (['getting-started', 'reports', 'calendar', 'event-duties', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams', 'club-management'] as $page) {
+            foreach (['getting-started', 'reports', 'calendar', 'event-duties', 'games', 'profile', 'dashboard', 'lineups', 'clubs-teams', 'training-planning', 'location-occupancy', 'club-management'] as $page) {
                 foreach ($content->overview($page, $locale)['sections'] as $chapter) {
                     $document = $content->section($page, $chapter['slug'], $locale)['document'];
                     self::assertTrue(
