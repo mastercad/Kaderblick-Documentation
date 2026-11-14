@@ -1,0 +1,10 @@
+{
+    "title": "场地占用 – Kaderblick 文档",
+    "hero": {
+        "heading": "查看场地占用",
+        "lead": "按场地和时间比较比赛、训练及其他日程。",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>筛选占用情况</h2><p>打开<strong>场地占用</strong>，选择周视图或赛季视图、占用类型和场地。周视图最多可同时比较四块运动区域。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/location-occupancy/overview.png\" alt=\"包含多个日程的每周场地占用\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">空闲日期和占用按日期、时间和场地排列。</figcaption></figure><h2>理解并使用记录</h2><p>每条记录显示时间、日程、球队、类型和场地区域。打开记录可查看日历日程；有权限时也可编辑。当前周可返回今天，打印概览会使用当前所选时间和场地。</p><h2>查找缺失记录</h2><p>本页面使用现有日历日程。请在日历中检查类型、日期、场地和区域，不要只为占用页面创建重复日程。</p>"
+}

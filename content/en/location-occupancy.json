@@ -1,0 +1,10 @@
+{
+    "title": "Venue occupancy – Kaderblick documentation",
+    "hero": {
+        "heading": "Review venue occupancy",
+        "lead": "Compare matches, trainings and other events by venue and period.",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>Filter occupancy</h2><p>Open <strong>Venue occupancy</strong>. Choose week or season view, the occupancy type and the venues. The week view compares up to four playing areas.</p><figure class=\"screenshot\"><img src=\"/images/docs/en/location-occupancy/overview.png\" alt=\"Weekly venue occupancy with several events\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">Free days and bookings are ordered by date, time and venue.</figcaption></figure><h2>Understand and use entries</h2><p>Each booking shows time, event, team, event type and playing area. Open it to review the calendar event or edit it when authorised. <strong>Current week</strong> returns to today; date controls move through time. <strong>Print overview</strong> prints the selected period and venues.</p><h2>Resolve missing entries</h2><p>The view uses existing calendar events. Check event type, date, venue and playing area in the calendar. Do not create a duplicate event only for occupancy.</p>"
+}

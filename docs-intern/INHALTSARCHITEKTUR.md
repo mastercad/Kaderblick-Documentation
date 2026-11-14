@@ -1,6 +1,6 @@
 # Inhaltsarchitektur und Lokalisierung
 
-Stand: 28. August 2026
+Stand: 14. November 2026
 
 ## Verbindliche Struktur
 
@@ -11,6 +11,7 @@ Stand: 28. August 2026
 - Sprachspezifische Twig-Dateien sind unzulässig.
 - Englische kanonische Seitenpfade bestimmen den Seitenschlüssel. Beispiel: `/training-proofs` verwendet `content/de/training-proofs.json` und die entsprechenden Dateien der vier weiteren Sprachen.
 - Kameradetailseiten und nicht lokalisierte interaktive Werkzeuge behalten ihre jeweils eine Funktionsvorlage. Auch dort darf keine zweite Vorlage nur für eine Sprache entstehen.
+- Der aktuelle lokalisierte Bestand umfasst 51 Inhaltsseiten je Sprache. Dazu gehören seit November 2026 eigenständige Aufgabenwege für Trainingsplanung, Platzbelegung sowie Mitgliederportal und Mitgliedsantrag.
 
 ## Format eines Inhaltsdokuments
 

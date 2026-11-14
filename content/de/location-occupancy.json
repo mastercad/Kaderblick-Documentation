@@ -1,0 +1,10 @@
+{
+    "title": "Platzbelegung – Kaderblick-Dokumentation",
+    "hero": {
+        "heading": "Platzbelegung prüfen",
+        "lead": "Spiele, Trainings und weitere Termine nach Spielstätte und Zeitraum vergleichen.",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>Belegung öffnen und eingrenzen</h2><p>Öffne <strong>Platzbelegung</strong>. Wähle Wochen- oder Saisonansicht, die gewünschte Belegungsart und die Spielstätten. In der Wochenansicht lassen sich bis zu vier Sportflächen gleichzeitig vergleichen.</p><figure class=\"screenshot\"><img src=\"/images/docs/de/location-occupancy/overview.png\" alt=\"Wochenansicht der Platzbelegung mit mehreren Terminen\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">Freie Tage und vorhandene Belegungen sind nach Datum, Uhrzeit und Spielstätte geordnet.</figcaption></figure><h2>Einträge verstehen</h2><p>Jede Belegung nennt Zeit, Termin, Mannschaft, Terminart und den hinterlegten Platzbereich. Öffne einen Eintrag, um den zugehörigen Kalendertermin zu prüfen oder – mit passender Berechtigung – zu bearbeiten.</p><h2>Zeitraum und Ausdruck verwenden</h2><p><strong>Aktuelle Woche</strong> springt zum heutigen Zeitraum zurück. Mit der Datumsnavigation wechselst du vor und zurück. <strong>Übersicht drucken</strong> erstellt eine für Aushang oder Abstimmung geeignete Ansicht des aktuell gewählten Zeitraums und der gewählten Spielstätten.</p><h2>Fehlende oder widersprüchliche Belegungen</h2><p>Die Platzbelegung verwendet die vorhandenen Kalendertermine. Prüfe bei einem fehlenden Eintrag Terminart, Datum, Spielstätte und Platzbereich im Kalender. Lege keinen zweiten Termin nur für die Belegungsansicht an.</p>"
+}

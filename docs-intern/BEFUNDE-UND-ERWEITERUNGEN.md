@@ -1,6 +1,6 @@
 # Befunde und mögliche Erweiterungen
 
-Stand: 28. August 2026
+Stand: 14. November 2026
 
 Dieses Dokument trennt überprüfte Produktbefunde von Vorschlägen. Vorschläge sind keine angekündigten oder geplanten Funktionen.
 
@@ -16,6 +16,9 @@ Dieses Dokument trennt überprüfte Produktbefunde von Vorschlägen. Vorschläge
 - Der Dialog, der über „Neuer Trainer“ geöffnet wird, trägt in der geprüften Demo bereits beim Anlegen den Titel „Trainer bearbeiten“. Die enthaltenen Felder und die Speichern-Aktion entsprechen einem Erfassungsdialog; die abweichende Überschrift ist ein belegter Oberflächenbefund.
 - Die direkten Pfade `/tournaments` und `/admin/videos` führen in der geprüften Demo nicht zu eigenständigen Übersichten. Turniere werden über „Kalender → Neues Event → Turnier“ angelegt; Videos werden in den Details eines Spiels verwaltet. Die Dokumentation verwendet diese erreichbaren Einstiege.
 - Die maßgebliche Projektseite veröffentlicht derzeit Kaderblick Video Manager, Kaderblick Analyse Player und Kaderblick Video Combiner. BallMarkerGui und CameraSimulator sind dort nicht als veröffentlichte Projekte aufgeführt und wurden deshalb aus der regulären Software-Navigation der Kaderblick-Dokumentation entfernt.
+- Die bisherige Dokumentation besaß keinen eigenen Aufgabenweg für Trainingsplanung, Platzbelegung, Mitgliederportal und Mitgliedsantrag. Diese Bereiche sind nun in allen fünf Sprachen vorhanden und mit aktuellen Demo-Aufnahmen belegt.
+- Die interne Funktionsmatrix verwendete noch die früheren Produktoberflächenpfade `/games`, `/mein-spieltag`, `/aushelfen`, `/einsatzplanung` und `/competitions`. Sie wurde auf die aktuellen Wege für Spiele, Spieltag, Aushelfen, Einsatzplanung sowie Ligen und Pokale umgestellt. Die öffentlichen Dokumentationspfade wie `/de/games` bleiben davon unberührt.
+- Die Spielerdokumentation behauptete die Teilen-Aktion ohne Einschränkung. Die aktuelle Implementierung blendet die kompakte Aktion aus, solange für die Sportart keine passende Postervorlage verfügbar ist; der Text benennt diese Voraussetzung jetzt ausdrücklich.
 
 ## Vorschläge für nützliche Erweiterungen
 

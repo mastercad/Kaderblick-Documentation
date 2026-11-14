@@ -2,9 +2,9 @@
 
 ## Demo-Prüfung
 
-- Spieler, `/games`, Saison 2024/25 am 28.08.2026
+- Spieler, heute kanonisch `/matches`, Saison 2024/25 am 28.08.2026
 - 21 abgeschlossene Spiele für FC Sonnenberg Senioren I
-- Detailspiel `/games/178`: SV Bergheim – FC Sonnenberg, 2:4, 34 Ereignisse, Videos und Spielzeiten
+- Detailspiel heute kanonisch `/matches/178`: SV Bergheim – FC Sonnenberg, 2:4, 34 Ereignisse, Videos und Spielzeiten
 - keine API-Fehler
 
 ## Quellen
@@ -17,7 +17,7 @@
 
 ## Korrigierte Altdokumentation
 
-- In `/games` gibt es keine Funktion `Neues Spiel`; Anlage erfolgt im Kalender.
+- In `/matches` gibt es keine Funktion `Neues Spiel`; Anlage erfolgt im Kalender.
 - Kein separates manuelles Ergebnisfeld in der Spielübersicht belegt.
 - fussball.de-Synchronisation erscheint nur bei vorhandener `fussballDeUrl`; der separate Import hat einen Prüfablauf.
 - Dokumentierte Ereignisarten richten sich nach den vorhandenen Typen und tatsächlichen Demoereignissen, nicht nach einer pauschalen festen Liste.

@@ -1,0 +1,10 @@
+{
+    "title": "Occupation des installations – Documentation Kaderblick",
+    "hero": {
+        "heading": "Contrôler l’occupation des installations",
+        "lead": "Comparer matchs, entraînements et autres rendez-vous par lieu et période.",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>Filtrer l’occupation</h2><p>Ouvre <strong>Occupation des installations</strong>. Choisis la semaine ou la saison, le type d’occupation et les installations. La vue hebdomadaire compare jusqu’à quatre surfaces.</p><figure class=\"screenshot\"><img src=\"/images/docs/fr/location-occupancy/overview.png\" alt=\"Occupation hebdomadaire avec plusieurs rendez-vous\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">Les jours libres et les occupations sont classés par date, heure et installation.</figcaption></figure><h2>Comprendre et utiliser les entrées</h2><p>Chaque entrée indique l’heure, le rendez-vous, l’équipe, le type et la zone. Ouvre-la pour consulter ou, avec le droit nécessaire, modifier le rendez-vous. La semaine actuelle ramène à aujourd’hui et l’impression reprend la période et les lieux sélectionnés.</p><h2>Corriger une entrée manquante</h2><p>La vue utilise les rendez-vous existants. Vérifie dans le calendrier le type, la date, l’installation et la zone. Ne crée pas de doublon uniquement pour l’occupation.</p>"
+}

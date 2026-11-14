@@ -2,6 +2,36 @@
 
 Diese Datei enthält ausschließlich Abläufe und Bezeichnungen, die in der laufenden Demo-Instanz geprüft oder vom Betreiber fachlich verbindlich vorgegeben wurden. Ein Eintrag ist keine fertige Endverbraucherdokumentation.
 
+## 14. November 2026 – neue und geänderte Arbeitsbereiche
+
+### Vereinsverwaltung
+
+- Mit dem neutralen Vereinsverwaltungsprofil wurde die aktuelle Demo in den Bereichen Übersicht, Personen und Mitgliedschaften, Organisation, Finanzen, Dokumente und Meldungen, Auswertungen sowie Vereinsverwaltung einrichten geöffnet.
+- Die Übersicht zeigt offene Anträge und Zustandskarten für Personen, Organisation, Finanzen, Bank und SEPA, Dokumente sowie Auswertungen.
+- Die kanonischen Arbeitsbereichspfade sind `/club-management`, `/club-management/people`, `/club-management/organization`, `/club-management/finance`, `/club-management/communication`, `/club-management/reports` und `/club-management/setup`.
+
+### Platzbelegung
+
+- `/location-occupancy` wurde in der Demo mit Wochenansicht, Belegungsart, Spielstättenauswahl, freien Tagen sowie Spiel- und Trainingsterminen geöffnet.
+- Die Ansicht greift auf bestehende Kalendertermine zurück. Die Dokumentation weist deshalb ausdrücklich darauf hin, fehlende Belegungsdaten am Termin zu korrigieren statt einen parallelen Termin anzulegen.
+
+### Trainingsplanung
+
+- Ein Training der Demo-Mannschaft wurde im Kalender geöffnet. Die Aktion `Training planen` führte zum vorhandenen Termin unter `/trainings/354/plan`.
+- Der Editor zeigt den Termin- und Mannschaftskontext und gliedert den Ablauf in Ziel und Vorlage, Ablauf und Aufbau, Mannschaft und Vorbereitung sowie Prüfen und durchführen.
+- Für den geprüften Termin existierte noch keine gespeicherte Planung. Deshalb wurde keine Durchführung als vorhandener Demo-Zustand abgebildet; die Endverbraucherbeschreibung der Durchführung stützt sich zusätzlich auf die aktuelle Implementierung und die verbindliche Arbeitsanweisung zur Trainingsplanung.
+
+### Mitgliederportal und Mitgliedsantrag
+
+- Das Antragsprofil öffnete `/membership-application` mit Vereinsauswahl, geltender Satzungsfassung und der Aktion zum Einreichen eines Aufnahmeantrags.
+- Das verknüpfte Elternprofil öffnete `/member-portal` mit ausgewählter Mitgliedsbeziehung sowie den für diese Beziehung freigegebenen Registern Mitgliedsdaten, Dokumente und Änderung beantragen.
+- Weitere Register wie Finanzen werden nur beschrieben, wenn die konkrete Mitgliedsbeziehung die zugehörige Berechtigung besitzt.
+
+### Sprach- und Bildprüfung
+
+- Die genannten Wege wurden für Deutsch, Englisch, Französisch, Russisch und vereinfachtes Chinesisch gerendert.
+- Die veröffentlichten Aufnahmen wurden mit `scripts/capture-november-2026-docs.mjs` aus der Demo erzeugt. Das Kennwort wird ausschließlich zur Laufzeit übergeben.
+
 ## Auswertungen
 
 ### Fachliche Vorgabe des Betreibers
@@ -117,7 +147,7 @@ Folgende Punkte sind als Rechercheaufträge erfasst und dürfen erst nach Demo-P
 
 ### Aufstellungsvorlagen, Match-Plan und Taktiken
 
-- Demo-Prüfung als Trainer auf `/games/178` mit `scripts/audit-match-plan-actions.mjs`; Dialogtexte und Screenshots liegen unter `var/match-plan-actions-audit/`.
+- Demo-Prüfung als Trainer auf dem damaligen Pfad `/games/178`, heute kanonisch `/matches/178`, mit `scripts/audit-match-plan-actions.mjs`; Dialogtexte und Screenshots liegen unter `var/match-plan-actions-audit/`.
 - Belegt sind die Formationsauswahl, die unabhängige Kopie einer Vorlage in die Startformation, Vorschau, neue Spielformationen mit Minute und Bezeichnung, separater Taktikimport sowie das Speichern als Vorlage mit oder ohne Taktiken.
 - Der taktische Screen wurde mit `scripts/audit-tactics.mjs` geprüft. Belegt sind Ganz-/Halbfeld, eigene Spieler, Gegner, Ball, Pass- und Laufwege, Zonen, sechs Farben, nummerierte Schritte, Rückgängig/Wiederholen, Löschen und Präsentationsmodus.
 - Die Spielminutenberechnung wurde in `PlayerStatsRecalcService.php` und `PlayerStatsRecalcListener.php` geprüft: Startformation ab Minute 0, tatsächliche Wechselereignisse als Ein-/Ausstiegszeitpunkte und Berechnung erst beim beendeten Spiel unter Berücksichtigung der hinterlegten Spielzeiten.

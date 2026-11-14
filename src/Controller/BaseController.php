@@ -35,7 +35,9 @@ abstract class BaseController extends AbstractController
             'docs_authentication' => ['label' => 'nav.authentication', 'icon' => '🔐'],
             'docs_clubs_teams' => ['label' => 'nav.clubs_teams', 'icon' => '🏢'],
             'docs_venues' => ['label' => 'nav.locations', 'icon' => '📍'],
+            'docs_location_occupancy' => ['label' => 'nav.location_occupancy', 'icon' => '🗓️'],
             'docs_training_proofs' => ['label' => 'nav.training_proofs', 'icon' => '🏃'],
+            'docs_training_planning' => ['label' => 'nav.training_planning', 'icon' => '📝'],
             'docs_clothing_sizes' => ['label' => 'nav.clothing_sizes', 'icon' => '👕'],
             'docs_players' => ['label' => 'nav.players', 'icon' => '⚽'],
             'docs_coaches' => ['label' => 'nav.coaches', 'icon' => '🧑‍🏫'],
@@ -67,6 +69,7 @@ abstract class BaseController extends AbstractController
             'docs_billing' => ['label' => 'nav.billing', 'icon' => '💳'],
             'docs_inventory' => ['label' => 'nav.inventory', 'icon' => '📦'],
             'docs_profile' => ['label' => 'nav.profile', 'icon' => '👤'],
+            'docs_member_portal' => ['label' => 'nav.member_portal', 'icon' => '🪪'],
             'docs_club_management' => ['label' => 'nav.club_management', 'icon' => '🏛️'],
             'docs_administration' => ['label' => 'nav.admin', 'icon' => '⚙️'],
             'docs_user_assignments' => ['label' => 'nav.user_assignments', 'icon' => '👥'],
@@ -103,9 +106,9 @@ abstract class BaseController extends AbstractController
         $navigation = $this->getNavigation();
         $routesByGroup = [
             'sidebar.group.start' => ['docs_home', 'docs_getting_started', 'docs_roles', 'docs_authentication', 'docs_dashboard'],
-            'sidebar.group.team' => ['docs_clubs_teams', 'docs_venues', 'docs_training_proofs', 'docs_clothing_sizes', 'docs_players', 'docs_coaches', 'docs_watchlist', 'docs_profile'],
+            'sidebar.group.team' => ['docs_clubs_teams', 'docs_venues', 'docs_location_occupancy', 'docs_training_proofs', 'docs_training_planning', 'docs_clothing_sizes', 'docs_players', 'docs_coaches', 'docs_watchlist', 'docs_profile'],
             'sidebar.group.matchday' => ['docs_calendar', 'docs_games', 'docs_volleyball', 'docs_quick_events', 'docs_football_de_import', 'docs_my_matchday', 'docs_help_out', 'docs_event_duties', 'docs_lineups', 'docs_tournaments', 'docs_video_analysis', 'docs_reports'],
-            'sidebar.group.organisation' => ['docs_club_management', 'docs_messages', 'docs_news', 'docs_tasks', 'docs_surveys', 'docs_knowledge_pool', 'docs_marketing_materials', 'docs_notifications', 'docs_feedback', 'docs_car_pools', 'docs_my_balance', 'docs_cash_book', 'docs_billing', 'docs_fines_catalogue', 'docs_inventory', 'docs_administration', 'docs_user_assignments', 'docs_staff_assignments', 'docs_xp_system'],
+            'sidebar.group.organisation' => ['docs_member_portal', 'docs_club_management', 'docs_messages', 'docs_news', 'docs_tasks', 'docs_surveys', 'docs_knowledge_pool', 'docs_marketing_materials', 'docs_notifications', 'docs_feedback', 'docs_car_pools', 'docs_my_balance', 'docs_cash_book', 'docs_billing', 'docs_fines_catalogue', 'docs_inventory', 'docs_administration', 'docs_user_assignments', 'docs_staff_assignments', 'docs_xp_system'],
         ];
 
         $groups = [];

@@ -36,6 +36,8 @@ final class DocsControllerTest extends WebTestCase
         yield 'XP-System' => ['/xp-system', 'XP, Level, Titel und Hall of Fame'];
         yield 'Neuigkeiten' => ['/news', 'Neuigkeiten'];
         yield 'Trainingsnachweise' => ['/training-proofs', 'Trainingsnachweise'];
+        yield 'Trainingsplanung' => ['/training-planning', 'Training planen und durchführen'];
+        yield 'Platzbelegung' => ['/location-occupancy', 'Platzbelegung prüfen'];
         yield 'Strafenkatalog' => ['/fines-catalogue', 'Strafenkatalog'];
         yield 'Mein Deckel' => ['/my-balance', 'Mein Deckel'];
         yield 'Kassenbuch' => ['/cash-book', 'Kassenbuch'];
@@ -54,6 +56,7 @@ final class DocsControllerTest extends WebTestCase
         yield 'Aushelfen' => ['/help-out', 'Aushelfen'];
         yield 'Einsatzplanung' => ['/event-duties', 'Einsatzplanung für Spiele und Veranstaltungen'];
         yield 'Vereinsverwaltung' => ['/club-management', 'Vereinsverwaltung'];
+        yield 'Mitgliederportal' => ['/member-portal', 'Mitgliedschaft und eigene Vereinsdaten'];
         yield 'Kamerasysteme' => ['/tools/camera-systems', 'Kamerasysteme'];
         yield 'VideoManager' => ['/tools/video-manager', 'VideoManager'];
         yield 'Analyse Player' => ['/tools/analysis-player', 'Analyse Player'];
@@ -127,7 +130,7 @@ final class DocsControllerTest extends WebTestCase
 
         $germanFiles = glob($projectDirectory.'/content/de/**/*.json', GLOB_BRACE) ?: [];
         $germanFiles = array_merge($germanFiles, glob($projectDirectory.'/content/de/*.json') ?: []);
-        self::assertCount(48, array_unique($germanFiles));
+        self::assertCount(51, array_unique($germanFiles));
 
         foreach (['en', 'fr', 'ru', 'zh_Hans'] as $locale) {
             foreach (array_unique($germanFiles) as $germanFile) {

@@ -1,6 +1,6 @@
 # Screenshot-Katalog
 
-Stand: 6. September 2026
+Stand: 14. November 2026
 
 ## Verbindliche Regeln
 
@@ -14,7 +14,7 @@ Stand: 6. September 2026
 
 ## Veröffentlichte und geprüfte Aufnahmen
 
-Am 28. August 2026 wurden die damaligen 114 aus Endverbraucher-Templates referenzierten Aufnahmen als Kontaktübersichten und in auffälligen Größen zusätzlich einzeln geprüft. Am 6. und 7. September 2026 kamen insgesamt 40 lokalisierte Aufnahmen der Einsatzplanung hinzu; auch diese wurden als Kontaktübersicht und einzeln in Originalgröße geprüft. Kein veröffentlichtes Bild zeigt einen Ladeindikator, einen Cookie-Hinweis, ein geöffnetes persönliches Menü oder unmaskierte Zugangsdaten. Die neuen Aufnahmen verwenden neutrale Dokumentationsdaten; die übrigen sichtbaren Personennamen und Inhalte stammen aus der freigegebenen Demo-Instanz. Das Tokenfeld in `software/video-manager/kaderblick-settings.png` ist vollständig maskiert.
+Der aktuelle Inhaltsbestand referenziert 736 Bilddateien: 731 lokalisierte Aufnahmen und fünf bewusst gemeinsam verwendete Softwarebilder. Am 14. November 2026 wurden zusätzlich 60 lokalisierte Aufnahmen für Vereinsverwaltung, Platzbelegung, Trainingsplanung sowie Mitgliederportal und Mitgliedsantrag neu aus der Demo erzeugt. Diese 60 Aufnahmen wurden je Sprache als Kontaktübersicht und in auffälligen Fällen zusätzlich in Originalgröße geprüft. Die automatisierte Prüfung kontrolliert den vollständigen Bildbestand auf fehlende Dateien und Cookie- beziehungsweise Datenschutzüberlagerungen. Die neuen Aufnahmen verwenden neutrale Demo-Daten; Kennwörter und Tokens sind nicht abgebildet. Das Tokenfeld in `software/video-manager/kaderblick-settings.png` ist vollständig maskiert.
 
 | Bereich | Veröffentlichte Dateien | Perspektive beziehungsweise Quelle |
 |---|---|---|
@@ -37,6 +37,7 @@ Am 28. August 2026 wurden die damaligen 114 aus Endverbraucher-Templates referen
 | fussball.de-Import | `verlauf.png`, `browser-erweiterung.png`, `verbindung.png` | Trainer |
 | Inventar | `overview.png`, `neuer-artikel.png` | Zeugwart |
 | Kalender | `kalender.png`, `event-grunddaten.png`, `training-details.png`, `training-serie.png` | Trainer |
+| Platzbelegung | `overview.png` jeweils für `de`, `en`, `fr`, `ru` und `zh-hans` | Vereinsverwaltung; Wochenansicht vorhandener Kalendertermine |
 | Kassenbuch | `overview.png`, `buchung.png` | Teamkassenwart |
 | Kleidergrößen | `overview.png`, `erinnerung.png`, `bestellung.png` | Trainer |
 | Mein Deckel | `overview.png`, `buchen.png` | eigenes beziehungsweise angebotenes Personenkonto |
@@ -52,15 +53,18 @@ Am 28. August 2026 wurden die damaligen 114 aus Endverbraucher-Templates referen
 | Strafenkatalog | `katalog.png`, `neuer-typ.png` | Katalogsicht und Katalogverwaltung |
 | Trainer | `trainer-aktuell.png`, `trainer-anlegen.png`, `lizenzen.png` | Trainer beziehungsweise Administration |
 | Trainingsnachweise | `coach-overview.png` | Trainer |
+| Trainingsplanung | `overview.png`, `editor.png` jeweils für `de`, `en`, `fr`, `ru` und `zh-hans` | Trainer; geöffneter Trainingstermin und zugehöriger Planungseditor |
 | Turniere | `tournament-basic-data.png`, `tournament-details.png` | Trainer |
 | Umfragen | `umfragen-aktuell.png`, `umfrage-erstellen.png` | Teammitglied und Erstellberechtigung |
 | Vereine und Teams | `mein-team.png`, `clubs-admin.png`, `teams-admin.png`, `verein-details.png`, `verein-bearbeiten.png`, `team-details.png`, `team-bearbeiten.png` | Trainer und Vereinsadministration |
+| Vereinsverwaltung | `overview.png`, `members.png`, `organization.png`, `finance.png`, `documents.png`, `reports.png`, `settings.png` jeweils für `de`, `en`, `fr`, `ru` und `zh-hans` | Vereinsadministration; aufgabenbezogene Arbeitsbereiche der aktuellen Oberfläche |
+| Mitgliederportal und Mitgliedsantrag | `overview.png`, `application.png` jeweils für `de`, `en`, `fr`, `ru` und `zh-hans` | verknüpftes Mitglied beziehungsweise freigeschalteter Antragsteller |
 | Videoanalyse | `video-bereich.png`, `video-hinzufuegen.png` | Supporter mit Spielfreigabe |
 | Wissenspool | `overview.png`, `neuer-beitrag.png` | Teammitglied und Redaktion |
 | XP-System | `hall-of-fame.png`, `title-xp-overview.png`, `xp-aufschluesselung.png`, `xp-regeln.png` | angemeldetes Demo-Konto und XP-Administration |
 
-32 weitere Bilddateien im Medienordner werden von keinem veröffentlichten Template referenziert. Sie gelten nicht als freigegebene Dokumentationsbilder und werden bei einer späteren Bereinigung separat behandelt.
+70 weitere Bilddateien im Medienordner werden von keinem veröffentlichten Inhaltsdokument referenziert. Sie gelten nicht als freigegebene Dokumentationsbilder und werden bei einer späteren Bereinigung separat behandelt.
 
 ## Reproduzierbarkeit
 
-Die Aufnahmen werden mit den Audit-Skripten unter `scripts/` erstellt. Die lokalisierten Aufnahmen der Einsatzplanung werden reproduzierbar mit `scripts/capture-event-duties.mjs` aus der aktuellen lokalen Produktoberfläche erzeugt; die dafür eingesetzten neutralen Dokumentationsdaten enthalten keine Zugangsdaten oder privaten Kontaktdaten. Die neuen Verknüpfungs- und Dublettenbilder wurden ebenfalls aus der lokalen Entwicklungsoberfläche erzeugt; die Zugangsdaten wurden nur zur Laufzeit verdeckt übergeben und nicht gespeichert. `scripts/lib/wait-for-ready.mjs` prüft nachgeladene Inhalte und blockierende Ladezustände vor der Aufnahme. Kennwörter werden ausschließlich zur Laufzeit bereitgestellt und weder in Skripten noch in diesem Katalog gespeichert.
+Die Aufnahmen werden mit den Audit-Skripten unter `scripts/` erstellt. Die lokalisierten Aufnahmen der Einsatzplanung werden reproduzierbar mit `scripts/capture-event-duties.mjs` aus der aktuellen lokalen Produktoberfläche erzeugt; die dafür eingesetzten neutralen Dokumentationsdaten enthalten keine Zugangsdaten oder privaten Kontaktdaten. Vereinsverwaltung, Platzbelegung, Trainingsplanung, Mitgliedsantrag und Mitgliederportal werden mit `scripts/capture-november-2026-docs.mjs` in allen fünf Oberflächensprachen aus der freigegebenen Demo erzeugt. Die neuen Verknüpfungs- und Dublettenbilder wurden ebenfalls aus der lokalen Entwicklungsoberfläche erzeugt; die Zugangsdaten wurden nur zur Laufzeit verdeckt übergeben und nicht gespeichert. `scripts/lib/wait-for-ready.mjs` prüft nachgeladene Inhalte und blockierende Ladezustände vor der Aufnahme. Kennwörter werden ausschließlich zur Laufzeit bereitgestellt und weder in Skripten noch in diesem Katalog gespeichert.

@@ -4,10 +4,37 @@
 
 - Alle aktiven Endverbraucherbereiche besitzen eine deutsche Referenzseite sowie vollständige Seitenfassungen für Englisch, Französisch, Russisch und vereinfachtes Chinesisch.
 - Navigation und gemeinsame Oberflächentexte besitzen Kataloge für alle fünf Sprachen.
-- Sämtliche 154 aus veröffentlichten Inhalten referenzierten Aufnahmen sind vorhanden, nicht leer und visuell auf Ladezustände, blockierende Overlays und sichtbare Zugangsdaten geprüft.
-- 32 weitere Bilddateien sind unreferenzierter Alt- oder Duplikatbestand und gelten nicht als veröffentlicht.
+- Der lokalisierte Inhaltsbestand umfasst 51 Seiten je Sprache. Dateinamen, interne Sprachpfade und Bildgegenstücke sind über alle fünf Sprachen vollständig.
+- Sämtliche 736 aus veröffentlichten Inhalten referenzierten Aufnahmen sind vorhanden. Der lokalisierte Medienbestand von 800 PNG-Dateien wurde automatisiert auf Bildgröße und Cookie- beziehungsweise Datenschutzüberlagerungen geprüft.
+- 70 weitere Bilddateien sind unreferenzierter Alt- oder Duplikatbestand und gelten nicht als veröffentlicht.
 - Die Rollenmatrix belegt zehn Demo-Perspektiven mit jeweils 58 geöffneten Routen. Detailaktionen wurden je Funktionsbereich zusätzlich über Oberfläche und Quellpfade geprüft.
 - Administration, Rollenorientierung und bereichsübergreifende Abläufe verwenden die belegten Ebenen und Beziehungen.
+
+## 14. November 2026 – Abgleich mit dem aktuellen Produktstand
+
+### Geprüfte und ergänzte Bereiche
+
+- Die aktuelle Produktnavigation, die vorhandenen Dokumentationsseiten und das Funktionsinventar wurden miteinander abgeglichen.
+- Für Trainingsplanung und Trainingsdurchführung, Platzbelegung sowie Mitgliederportal und Mitgliedsantrag wurden eigenständige, aufgabenbezogene Seiten in Deutsch, Englisch, Französisch, Russisch und vereinfachtem Chinesisch ergänzt.
+- Vereinsverwaltung, Nachrichten, Spieler, Kalender, Spiele, Quick Events und der fussball.de-Import wurden um die aktuell belegten Bedienwege und Zustände ergänzt.
+- Die Administrationsdokumentation beschreibt wieder die sportartenübergreifenden Ligen und Pokale anstelle der nicht mehr gültigen parallelen Wettbewerbsverwaltung.
+- Veraltete Produktpfade im Funktionsinventar wurden auf die aktuellen Routen für Spiele, Spieltag, Aushelfen und Einsatzplanung berichtigt.
+
+### Aufnahmen
+
+- 60 neue lokalisierte Produktaufnahmen wurden aus der laufenden Demo-Instanz erzeugt: je Sprache sieben Ansichten der Vereinsverwaltung sowie Platzbelegung, Mitgliedsantrag, Mitgliederportal, Trainingstermin und Trainingsplan-Editor.
+- Die Aufnahme wartet vor dem Speichern auf abgeschlossene Ladezustände und entfernt keine fachlichen Inhalte. Die erzeugten Sprachsätze wurden als Kontaktübersichten kontrolliert; auffällige Aufnahmen wurden zusätzlich in Originalgröße geprüft.
+- Die zunächst angeschnittene Überschrift des Trainingsplan-Editors wurde durch einen korrigierten Aufnahmebereich behoben und in allen fünf Sprachen neu erzeugt.
+
+### Abschlussprüfung
+
+- `scripts/validate-content.mjs`: ohne Befund; interne Sprachpfade, vorhandene Bilddateien und lokalisierte Bildgegenstücke geprüft.
+- `scripts/validate-screenshots.sh`: 800 PNG-Dateien ohne Befund geprüft.
+- YAML-Syntax: 22 Dateien gültig.
+- Twig-Syntax: 25 Dateien gültig.
+- PHPUnit: 269 Tests mit 5.965 Assertions erfolgreich.
+- `scripts/audit-integrated-sections.mjs`: 35 Seitenvarianten in fünf Sprachen ohne Darstellungsfehler.
+- `scripts/audit-docs-render.mjs`: 113 Routen in fünf Sprachen ohne Befund; Desktop-, Tablet- und Mobilansichten einschließlich der neuen Bereiche geprüft.
 
 ## 6. September 2026 – Einsatzplanung
 

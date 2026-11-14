@@ -1,6 +1,6 @@
 # Funktions- und Bereichsinventar
 
-Stand der letzten Oberflächenprüfung: 6. September 2026
+Stand der letzten Oberflächenprüfung: 14. November 2026
 
 Referenzoberflächen: Kaderblick-Demo sowie lokale Entwicklungsoberfläche für die Einsatzplanung, jeweils in den dokumentierten Sprachfassungen
 
@@ -39,6 +39,8 @@ Referenzoberflächen: Kaderblick-Demo sowie lokale Entwicklungsoberfläche für 
 |---|---|---|---|
 | Dashboard | `/dashboard` | Geprüft | Widgets, Kalender, News, Nachrichten, Berichte |
 | Kalender | `/calendar` | Geprüft | Termine, Teilnahme, Erinnerungen, Teams, Spieltag |
+| Platzbelegung | `/location-occupancy` | Geprüft | Wochen- und Saisonansicht vorhandener Kalendertermine nach Spielstätte und Platzbereich |
+| Trainingsplanung | `/trainings/:eventId/plan`, `/trainings/:eventId/run` | Geprüft | vorhandener Trainingstermin, Entwurf, Vorlagen, Ablauf, Material, Durchführung und Nachbereitung |
 | Nachrichten | globaler Nachrichtenbereich | Teilweise geprüft | Personen, Teams, Benachrichtigungen |
 | Benachrichtigungen | globale Benachrichtigungszentrale | Teilweise geprüft | Aufgaben, Termine, Nachrichten und Systemhinweise |
 | Neuigkeiten | `/news`, `/news/:id` | Geprüft | Verein/Team, Veröffentlichung und Benachrichtigung |
@@ -51,11 +53,11 @@ Referenzoberflächen: Kaderblick-Demo sowie lokale Entwicklungsoberfläche für 
 
 | Bereich | Oberflächenpfad | Prüfstatus | Zentrale Zusammenhänge |
 |---|---|---|---|
-| Spiele und Turniere | `/games` | Geprüft | Teams, Wettbewerbe, Termine, Matchplan, Videos |
-| Spieldetails | `/games/:id` | Teilweise geprüft | Ergebnis, Zeitsteuerung, Ereignisse, Aufstellung, Videos |
-| Persönlicher Spieltag | `/mein-spieltag`, `/mein-spieltag/:eventId` | Geprüft | Teilnahme, Treffpunkt, Ablauf und eigene Aufgaben |
-| Aushelfen | `/aushelfen` | Geprüft | Spielberechtigte Personen, Verfügbarkeit und Regeln |
-| Einsatzplanung | `/einsatzplanung` | Geprüft in der lokalen Entwicklungsoberfläche | Vereinsfunktion Einsatzplaner; Spiele und Termine, Ordnungsdienst, Einlass, Kasse, Parkplatz, Sanitätsdienst, Rückmeldungen, Qualifikationen, Anwesenheit und Druck |
+| Spiele und Turniere | `/matches` | Geprüft | Teams, Liga oder Pokal, Termine, Matchplan und Videos |
+| Spieldetails | `/matches/:id` | Teilweise geprüft | Ergebnis, Zeitsteuerung, Ereignisse, Aufstellung, Videos und eigenständige Live-Kommentare |
+| Persönlicher Spieltag | `/matchday`, `/matchday/:eventId` | Geprüft | Teilnahme, Treffpunkt, Ablauf und eigene Aufgaben |
+| Aushelfen | `/help-out` | Geprüft | Spielberechtigte Personen, Verfügbarkeit und Regeln |
+| Einsatzplanung | `/event-duties` | Geprüft in der lokalen Entwicklungsoberfläche | Vereinsfunktion Einsatzplaner; Spiele und Termine, Ordnungsdienst, Einlass, Kasse, Parkplatz, Sanitätsdienst, Rückmeldungen, Qualifikationen, Anwesenheit und Druck |
 | Turnierdetails | `/tournaments/:id` | Teilweise geprüft | Turnierplan, Spiele und Ergebnisse |
 | Öffentlicher Live-Ticker | `/live/*` | Teilweise geprüft | Freigabe aus dem Spiel und öffentliche Ansicht |
 | fussball.de-Import | `/imports` | Geprüft | Browser-Erweiterung, Prüfung und Übernahme |
@@ -80,6 +82,9 @@ Referenzoberflächen: Kaderblick-Demo sowie lokale Entwicklungsoberfläche für 
 | Benutzer und Zuordnungen | `/admin/user-relations` | Geprüft | Konten, Spieler-/Trainerbeziehungen und Anfragen |
 | Staff-Zuordnungen | `/admin/staff-assignments` | Geprüft | Team- und Vereinsebene |
 | Funktionärszuordnungen | `/admin/functionary-assignments` | Geprüft | Team- und Vereinsebene |
+| Mitgliederportal | `/member-portal` | Geprüft | ausgewählte Mitgliedsbeziehung, eigene Mitgliedsdaten, Dokumente und Änderungsanträge |
+| Mitgliedschaft beantragen | `/membership-application` | Geprüft | Verein und Satzung prüfen, Antrag erfassen und Bearbeitungsstand verfolgen |
+| Vereinsverwaltung | `/club-management/*` | Geprüft | Aufgaben und Anträge, Personen, Organisation, Finanzen, Bank, Dokumente, Auswertungen und Einrichtung |
 
 ## Aufgaben und Organisation
 
@@ -116,7 +121,8 @@ Referenzoberflächen: Kaderblick-Demo sowie lokale Entwicklungsoberfläche für 
 | Bereich | Oberflächenpfad | Prüfstatus | Zielgruppe |
 |---|---|---|---|
 | Altersklassen | `/ageGroups` | Geprüft | Superadministration |
-| Wettbewerbe | `/competitions` | Geprüft | Superadministration |
+| Ligen | `/sports/football/admin/leagues` | Geprüft | Administration; sportartenübergreifender Katalog mit Sportart |
+| Pokale | `/sports/football/admin/cups` | Geprüft | Administration; sportartenübergreifender Katalog mit Sportart |
 | Positionen | `/positions` | Geprüft | Superadministration |
 | Starke Füße | `/strongFeets` | Geprüft | Superadministration |
 | Belagarten | `/surfaceTypes` | Geprüft | Superadministration |

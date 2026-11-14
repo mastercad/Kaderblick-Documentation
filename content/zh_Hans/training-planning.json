@@ -1,0 +1,10 @@
+{
+    "title": "训练计划 – Kaderblick 文档",
+    "hero": {
+        "heading": "计划并执行训练",
+        "lead": "从日历训练到流程、移动执行和复盘。",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>从训练日程打开计划</h2><p>训练计划扩展现有日历日程。打开训练并选择<strong>计划训练</strong>或<strong>打开计划</strong>。</p><p>页头始终显示球队、日期、时间和场地。修改前请确认这些信息。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/training-planning/overview.png\" alt=\"可计划训练的概览\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">概览打开现有日历训练的计划，不会创建第二个日程。</figcaption></figure><h2>创建草稿</h2><ol><li>填写训练重点，必要时补充具体目标。</li><li>添加包含标题、时长和说明的流程区块。</li><li>使用可见操作复制、删除或调整顺序。</li><li>在器材区添加器材和数量。</li><li>比较总时长与日历训练时长。</li><li>选择<strong>保存草稿</strong>；草稿可以暂时不完整。</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/training-planning/editor.png\" alt=\"含流程区块、时长和器材的训练编辑器\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">流程、时长和器材在同一工作区中维护。</figcaption></figure><h2>使用模板</h2><p>球队模板会把流程和器材复制到所选训练。副本相互独立，之后的修改不会影响模板或其他训练。</p><h2>准备并执行训练</h2><p>标记为已准备前，必须填写重点并至少添加一个区块。若计划时长不同，Kaderblick 会显示差值并要求确认。</p><ol><li>在训练中打开<strong>执行</strong>。</li><li>按顺序完成区块。</li><li>标记已完成区块，必要时记录简短偏差。</li><li>使用上一个和下一个；刷新后进度仍保留。</li><li>明确结束训练并填写内部复盘。</li></ol><h2>解决问题</h2><ul><li>找不到计划时，检查球队、日程类型和编辑权限。</li><li>发生版本冲突时，加载当前状态后再明确应用修改。</li><li>在日历中检查训练是否已取消或删除。</li><li>已归档或其他球队的模板通常不会显示。</li></ul>"
+}

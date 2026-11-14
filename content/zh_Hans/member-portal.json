@@ -1,0 +1,10 @@
+{
+    "title": "会员门户与入会申请 – Kaderblick 文档",
+    "hero": {
+        "heading": "会员资格与俱乐部资料",
+        "lead": "申请入会、查看关联会员档案并提交可追踪的修改。",
+        "eyebrow": null,
+        "chips": []
+    },
+    "body": "<h2>申请入会</h2><p>如果没有可访问的会员资格，导航会显示<strong>加入会员</strong>。选择俱乐部，阅读章程并打开申请表。只有俱乐部批准后，会员资格才会生效。</p><ol><li>确认俱乐部和章程版本。</li><li>填写所需个人和会员资料。</li><li>只添加要求的证明。</li><li>检查后提交。</li><li>在申请中跟踪状态、问题和回复。</li></ol><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/member-portal/application.png\" alt=\"为入会申请选择俱乐部\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">打开表单前会明确显示俱乐部和章程版本。</figcaption></figure><h2>使用会员门户</h2><p>关联确认后会显示<strong>会员门户</strong>。若有多个关系，请先选择正确的人和俱乐部。概览分为资料、财务、文档和修改申请。</p><figure class=\"screenshot\"><img src=\"/images/docs/zh-hans/member-portal/overview.png\" alt=\"可选择会员关系的会员门户\" class=\"screenshot__img\" loading=\"lazy\"><figcaption class=\"screenshot__caption\">所选人员和俱乐部适用于全部显示数据和操作。</figcaption></figure><h2>提交和更正修改</h2><p>比较当前资料，只修改过时内容。提交后仍可查看状态和历史。在允许时可以撤回、修正并重新提交。俱乐部的问题和你的回复都会保留。</p><h2>财务、文档和关联</h2><p>财务显示该关系获准查看的应收、付款和授权资料；最终文档可下载。账号、球员或教练关联本身不等于会员资格。若现有会员资格缺失，请在个人资料中申请关联或联系俱乐部管理人员。</p>"
+}

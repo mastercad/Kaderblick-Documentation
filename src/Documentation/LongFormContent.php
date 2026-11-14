@@ -31,14 +31,14 @@ final class LongFormContent
     private const SECTIONS = [
         'getting-started' => ['open-kaderblick', 'account', 'roles', 'navigation', 'profile', 'dashboard', 'troubleshooting'],
         'reports' => ['saved-reports', 'workflow-choice', 'mobile-wizard', 'report-builder', 'dashboard-use', 'data-sources', 'visibility'],
-        'calendar' => ['calendar-basics', 'event-creation', 'wizard-types', 'game-event', 'external-teams', 'event-visibility', 'training', 'task', 'tournament', 'participation', 'event-management', 'role-differences', 'connected-areas'],
+        'calendar' => ['calendar-basics', 'event-creation', 'wizard-types', 'game-event', 'external-teams', 'event-visibility', 'training', 'task', 'tournament', 'participation', 'event-management', 'role-differences', 'connected-areas', 'club-visibility-and-training-plans'],
         'event-duties' => ['overview', 'prepare', 'build-plan', 'publish', 'responses', 'attendance', 'printing', 'settings', 'permissions', 'troubleshooting'],
-        'games' => ['filters', 'overview-areas', 'game-creation', 'game-details', 'live-ticker', 'match-plan', 'events', 'videos', 'supporter-access', 'playing-times', 'personal-matchday', 'imports-and-tournaments', 'access-differences'],
+        'games' => ['filters', 'overview-areas', 'game-creation', 'game-details', 'live-ticker', 'match-plan', 'events', 'videos', 'supporter-access', 'playing-times', 'personal-matchday', 'imports-and-tournaments', 'access-differences', 'abandoned-games-and-comments'],
         'profile' => ['profile-navigation', 'profile-header', 'personal-data', 'equipment', 'settings', 'notifications', 'api-token', 'calendar-integration', 'absences', 'documents'],
         'dashboard' => ['dashboard-overview', 'add-widget', 'manage-widgets', 'widget-types', 'quick-response', 'training-proof', 'role-actions', 'troubleshooting'],
         'lineups' => ['template-overview', 'create-template', 'lineup-editor', 'tactics-board', 'match-plan', 'missing-player'],
         'clubs-teams' => ['my-team', 'club-season', 'manage-teams', 'manage-clubs', 'roles-visibility'],
-        'club-management' => ['overview-access', 'members', 'applications', 'data-quality', 'organization', 'finance', 'sepa', 'documents', 'reports', 'settings'],
+        'club-management' => ['overview-access', 'members', 'applications', 'data-quality', 'organization', 'finance', 'sepa', 'documents', 'reports', 'settings', 'current-workspaces'],
     ];
 
     /** @var array<string, array<string, list<string>>> */
@@ -61,7 +61,7 @@ final class LongFormContent
             'games' => ['game-event', 'external-teams'],
             'training' => ['training'],
             'meetings-tasks-and-tournaments' => ['event-visibility', 'task', 'tournament'],
-            'access-and-connections' => ['role-differences', 'connected-areas'],
+            'access-and-connections' => ['role-differences', 'connected-areas', 'club-visibility-and-training-plans'],
         ],
         'event-duties' => [
             'overview-and-preparation' => ['overview', 'prepare'],
@@ -73,7 +73,7 @@ final class LongFormContent
         'games' => [
             'finding-and-understanding-games' => ['filters', 'overview-areas', 'game-details'],
             'creating-and-importing-games' => ['game-creation', 'imports-and-tournaments'],
-            'planning-and-running-games' => ['live-ticker', 'match-plan', 'playing-times'],
+            'planning-and-running-games' => ['live-ticker', 'match-plan', 'playing-times', 'abandoned-games-and-comments'],
             'events-and-videos' => ['events', 'videos'],
             'personal-access-and-matchday' => ['supporter-access', 'personal-matchday', 'access-differences'],
         ],
@@ -105,7 +105,7 @@ final class LongFormContent
             'roles-and-visibility' => ['roles-visibility'],
         ],
         'club-management' => [
-            'overview-and-access' => ['overview-access'],
+            'overview-and-access' => ['overview-access', 'current-workspaces'],
             'manage-members' => ['members'],
             'process-requests' => ['applications'],
             'import-and-quality' => ['data-quality'],

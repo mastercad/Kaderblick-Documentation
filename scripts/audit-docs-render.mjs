@@ -13,7 +13,21 @@ const viewports = [
   { name: 'tablet', width: 820, height: 1180 },
   { name: 'mobile', width: 390, height: 844 },
 ];
-const visualRoutes = ['/', '/roles', '/profile', '/xp-system', '/games', '/event-duties', '/reports', '/knowledge-pool', '/admin'];
+const visualRoutes = [
+  '/',
+  '/roles',
+  '/profile',
+  '/xp-system',
+  '/games',
+  '/event-duties',
+  '/reports',
+  '/knowledge-pool',
+  '/admin',
+  '/club-management',
+  '/training-planning',
+  '/location-occupancy',
+  '/member-portal',
+];
 const findings = [];
 const results = [];
 
